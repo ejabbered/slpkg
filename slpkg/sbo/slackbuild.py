@@ -119,6 +119,8 @@ class SBoInstall(object):
         if self.package_found:
             print("\nThe following packages will be automatically "
                   "installed or upgraded \nwith new version:\n")
+            if self.match:
+                self.msg.matching(self.slackbuilds)
             self.top_view()
             self.msg.upg_inst(self.is_upgrade)
 

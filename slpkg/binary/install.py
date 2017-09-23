@@ -80,6 +80,7 @@ class BinaryInstall(object):
         for name in self.data[0]:
             self.repo_pkg_names.append(split_package(name)[0])
         self.blacklist = BlackList().packages(self.data[0], self.repo)
+        self.matching = False
 
     def start(self, is_upgrade):
         """
@@ -103,6 +104,8 @@ class BinaryInstall(object):
         if self.install:
             print("\nThe following packages will be automatically "
                   "installed or upgraded \nwith new version:\n")
+            if self.matching:
+                self.msg.matching(self.packages)
             self.top_view()
             self.msg.upg_inst(self.is_upgrade)
             mas_sum = self.views(self.install, self.comp_sum)
@@ -337,6 +340,7 @@ class BinaryInstall(object):
                                                  self.data[2], self.data[3]):
                     name = split_package(pk)[0]
                     if (pk and pkg in name and name not in self.blacklist):
+                        self.matching = True
                         dwn.append("{0}{1}/{2}".format(self.mirror, loc, pk))
                         install.append(pk)
                         comp_sum.append(comp)

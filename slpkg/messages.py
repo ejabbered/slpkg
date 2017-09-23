@@ -161,3 +161,10 @@ class Msg(object):
                 print("| Package {0} installed successfully".format(installed))
         self.template(78)
         print("")
+
+    def matching(self, packages):
+        print("Not found package with the name [ {0}{1}{2} ]. "
+              "Matching packages:\nNOTE: Not dependenc"
+              "ies are resolved\n".format(self.meta.color["CYAN"],
+                                          "".join(packages),
+                                          self.meta.color["ENDC"]))
