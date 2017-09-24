@@ -2,6 +2,9 @@
 Fixed:
 - Strange dependency problem #97
 
+Added:
+- patches/ directory from slack repository (slpkg -F "slack" fail #98)
+
 3.2.8 - 06/08/2017
 Fixed:
 - BugFix: Package return after build

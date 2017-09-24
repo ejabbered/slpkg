@@ -47,6 +47,8 @@ from slpkg.binary.greps import repo_data
 from slpkg.binary.repo_init import RepoInit
 from slpkg.binary.dependency import Dependencies
 
+from slpkg.slack.slack_version import slack_ver
+
 
 class BinaryInstall(object):
     """Install binaries packages with all dependencies from
@@ -349,4 +351,26 @@ class BinaryInstall(object):
         install.reverse()
         comp_sum.reverse()
         uncomp_sum.reverse()
+        if self.repo == "slack":
+            dwn, install, comp_sum, uncomp_sum = self.patches(dwn, install,
+                                                              comp_sum,
+                                                              uncomp_sum)
         return [dwn, install, comp_sum, uncomp_sum]
+
+    def patches(self, dwn, install, comp_sum, uncomp_sum):
+        """Seperates packages from patches/ directory
+        """
+        dwnp, installp, comp_sump, uncomp_sump = ([] for i in range(4))
+        for d, i, c, u in zip(dwn, install, comp_sum, uncomp_sum):
+            if "_slack" + slack_ver() in i:
+                dwnp.append(d)
+                dwn.remove(d)
+                installp.append(i)
+                install.remove(i)
+                comp_sump.append(c)
+                comp_sum.remove(c)
+                uncomp_sump.append(u)
+                uncomp_sum.remove(u)
+        if "--patches" in self.flag:
+            return dwnp, installp, comp_sump, uncomp_sump
+        return dwn, install, comp_sum, uncomp_sum

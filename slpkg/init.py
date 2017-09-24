@@ -109,7 +109,7 @@ class Initialization(object):
             os.mkdir(log)
         if not os.path.exists(lib):
             os.mkdir(lib)
-        dirs = ["core/", "extra/", "pasture/"]
+        dirs = ["core/", "extra/", "pasture/", "patches/"]
         for d in dirs:
             if not os.path.exists(lib + d):
                 os.mkdir(lib + d)
@@ -120,6 +120,8 @@ class Initialization(object):
         self.EXT_CHECKSUMS = mirrors(md5_file, dirs[1])
         self.PASTURE = mirrors(lib_file, dirs[2])
         self.PAS_CHECKSUMS = mirrors(md5_file, dirs[2])
+        self.PATCHES = mirrors(lib_file, dirs[3])
+        self.PAT_CHECKSUMS = mirrors(md5_file, dirs[3])
         ChangeLog_txt = mirrors(log_file, "")
         if self.check:
             return self.checks_logs(log, ChangeLog_txt)
@@ -130,15 +132,19 @@ class Initialization(object):
         if slack_ver() != "14.0":   # no pasture/ folder for 14.0 version
             self.down(lib + dirs[2], self.PASTURE, repo_name)
             self.down(lib + dirs[2], self.PAS_CHECKSUMS, repo_name)
+        self.down(lib + dirs[3], self.PATCHES, repo_name)
+        self.down(lib + dirs[3], self.PAT_CHECKSUMS, repo_name)
         self.down(log, ChangeLog_txt, repo_name)
         self.remote(log, ChangeLog_txt, lib, PACKAGES_TXT, CHECKSUMS_MD5,
                     FILELIST_TXT, repo_name)
         self.merge(lib, "PACKAGES.TXT", ["core/PACKAGES.TXT",
                                          "extra/PACKAGES.TXT",
-                                         "pasture/PACKAGES.TXT"])
+                                         "pasture/PACKAGES.TXT",
+                                         "patches/PACKAGES.TXT"])
         self.merge(lib, "CHECKSUMS.md5", ["core/CHECKSUMS.md5",
                                           "extra/CHECKSUMS.md5",
-                                          "pasture/CHECKSUMS.md5"])
+                                          "pasture/CHECKSUMS.md5",
+                                          "patches/CHECKSUMS_md5"])
 
     def sbo(self):
         """Creating sbo local library

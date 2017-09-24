@@ -352,7 +352,8 @@ class ArgParse(object):
             "--directory-prefix=",
             "--case-ins",
             "--rebuild",
-            "--reinstall"
+            "--reinstall",
+            "--patches"
         ]
         for arg in self.args:
             if arg.startswith(additional_options[2]):
@@ -360,6 +361,10 @@ class ArgParse(object):
                 arg = ""
             if arg in additional_options:
                 flag.append(arg)
+        # clean from flags
+        for ar in flag:
+            if ar in self.args:
+                self.args.remove(ar)
         if len(self.args) >= 3 and self.args[0] in options:
             if (self.args[1] in self.meta.repositories and
                     self.args[1] not in ["sbo"]):

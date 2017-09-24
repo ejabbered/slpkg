@@ -117,7 +117,7 @@ Optional arguments:
        --rebuild, --reinstall,               directly from remote repositories
        --resolve-off, --download-only,       with all dependencies.
        --directory-prefix=[dir],
-       --case-ins
+       --case-ins, --patches
 
   -t | --tracking, [repository] [package],   Tracking package dependencies and
        --check-deps, --graph=[type],         print package dependencies tree
@@ -198,7 +198,7 @@ def usage(repo):
              [-s [repository] [package...], --rebuild, --reinstall,
                                             --resolve-off, --download-only,
                                             --directory-prefix=[dir],
-                                            --case-ins]
+                                            --case-ins, --patches]
              [-t [repository] [package], --check-deps, --graph=[type],
                                          --case-ins]
              [-p [repository] [package], --color=[]]

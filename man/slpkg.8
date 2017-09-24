@@ -11,7 +11,7 @@
 .\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 .\" GNU General Public License for more details.
 .\"
-.TH Slpkg "20" "1" 2016" "slpkg"
+.TH Slpkg "24" "9" 2017" "slpkg"
 .SH NAME
 Slpkg is a user-friendly package manager for Slackware installations
 .SH SYNOPSIS
@@ -44,7 +44,7 @@ Usage: slpkg [COMMANDS|OPTIONS] {repository|package...}
              [-s [repository] [package...], --rebuild, --reinstall,
                                             --resolve-off, --download-only,
                                             --directory-prefix=[dir],
-                                            --case-ins]
+                                            --case-ins, --patches]
              [-t [repository] [package], --check-deps, --graph=[type],
                                          --case-ins]
              [-p [repository] [package], --color=[]]
@@ -226,7 +226,7 @@ Additional options:
 \fB--checklist\fP : Enable dialog utility and checklist option. (Require python2-pythondialog)
 
 .SS -s, --sync, synchronize packages, download, build and install package with all dependencies
-\fBslpkg\fP \fB-s\fP <\fIrepository\fP> <\fInames of packages\fP>, \fB--resolve-off\fP, \fB--case-ins\fP
+\fBslpkg\fP \fB-s\fP <\fIrepository\fP> <\fInames of packages\fP>, \fB--resolve-off\fP, \fB--case-ins\fP, \fB--patches\fP
 .PP
 Installs or upgrade packages from the repositories with automatically resolving all 
 dependencies of the package.
@@ -244,6 +244,8 @@ Additional options:
 \fB--directory-prefix=[path/to/dir/]\fP : Download packages in specific directory.
 .PP
 \fB--case-ins\fP : Search package name in repository with case insensitive.
+.PP
+\fB--patches\fP : Switch to patches\ directory, only for slack repository.
 
 .SS -t, --tracking,  tracking dependencies
 \fBslpkg\fP \fB-t\fP <\fIrepository\fP> <\fIname of package\fP>, \fB--check-deps\fP, \fB--graph=[type]\fP \fB--case-ins\fP
@@ -433,7 +435,7 @@ Dimitris Zlatanidis <d.zlatanidis@gmail.com>
 .SH HOMEPAGE
 https://github.com/dslackw/slpkg
 .SH COPYRIGHT
-Copyright \(co 2014-2016 Dimitris Zlatanidis
+Copyright \(co 2014-2017 Dimitris Zlatanidis
 
 .SH SEE ALSO
 installpkg(8), upgradepkg(8), removepkg(8), pkgtool(8), slackpkg(8), explodepkg(8),

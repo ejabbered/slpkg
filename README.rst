@@ -274,6 +274,8 @@ The most famous command is '# slpkg -s <repository> <packages>' , this command d
 installs packages with resolve all the dependencies or switch off resolve with additional option
 '--resolve-off'. Also additional option "--case-ins" help you find packages with case insensitive.
 Two new arguments will help you to rebuild '--rebuild' or reinstall '--reinstall' packages.
+The last one argument "--patches" help you to switch in the patches/ directory only for slack
+repository.
 
 Tracking the dependencies of a package with command '# slpkg -t <repository> <package>'.
 Displays a package dependency tree and also tells you which ones are installed on your system events.
@@ -479,7 +481,7 @@ Command Line Tool Usage
            --rebuild, --reinstall,               directly from remote repositories
            --resolve-off, --download-only,       with all dependencies.
            --directory-prefix=[dir],
-           --case-ins
+           --case-ins, --patches
 
       -t | --tracking, [repository] [package],   Tracking package dependencies and
            --check-deps, --graph=[type],         print package dependencies tree
