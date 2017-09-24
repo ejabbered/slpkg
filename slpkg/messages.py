@@ -163,6 +163,8 @@ class Msg(object):
         print("")
 
     def matching(self, packages):
+        """Message for matching packages
+        """
         print("Not found package with the name [ {0}{1}{2} ]. "
               "Matching packages:\nNOTE: Not dependenc"
               "ies are resolved\n".format(self.meta.color["CYAN"],
