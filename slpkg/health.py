@@ -54,7 +54,7 @@ class PackageHealth(object):
                     not line.startswith("dev/") and
                     not line.startswith("install/") and
                     "/incoming/" not in line):
-                if not os.path.isfile("/" + line):
+                if not os.path.isfile(r"/" + line):
                     self.cn += 1
                     print("Not installed: {0}/{1}{2} --> {3}".format(
                         self.meta.color["RED"], line, self.meta.color["ENDC"],
@@ -75,6 +75,9 @@ class PackageHealth(object):
                 self.lf = 0
                 with open(self.pkg_path + pkg, "r") as fopen:
                     for line in fopen:
+                        if "\0" in line:
+                            print("Null: {0}").format(line)
+                            break
                         self.cf += 1     # count all files
                         self.lf += 1     # count each package files
                         if self.lf > 19:
