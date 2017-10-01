@@ -1,6 +1,9 @@
 3.3.0 - 01/10/2017
-Fixed: TypeError: stat() argument 1 must be encoded string without null bytes,
+Fixed: 
+- TypeError: stat() argument 1 must be encoded string without null bytes,
 not str #100
+- Check file script before build (IOError: [Errno 2] No such file or
+directory: )
 
 3.2.9 - 24/09/2017
 Fixed:

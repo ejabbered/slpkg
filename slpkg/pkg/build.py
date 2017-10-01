@@ -70,7 +70,11 @@ class BuildPackage(object):
         """
         try:
             self._delete_dir()
-            tar = tarfile.open(self.script)
+            try:
+                tar = tarfile.open(self.script)
+            except Exception as err:
+                print err
+                raise SystemExit()
             tar.extractall()
             tar.close()
             self._makeflags()
