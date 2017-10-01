@@ -1,3 +1,7 @@
+3.3.0 - 01/10/2017
+Fixed: TypeError: stat() argument 1 must be encoded string without null bytes,
+not str #100
+
 3.2.9 - 24/09/2017
 Fixed:
 - Strange dependency problem #97
