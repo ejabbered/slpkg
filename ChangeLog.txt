@@ -2,6 +2,9 @@
 Fixed: TypeError: stat() argument 1 must be encoded string without null bytes,
 not str #100
 
+Added:
+- Checkng for the internet connection before downloading files
+
 3.2.9 - 24/09/2017
 Fixed:
 - Strange dependency problem #97

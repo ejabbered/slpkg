@@ -23,6 +23,7 @@
 
 
 import os
+import urllib2
 import tarfile
 import subprocess
 
@@ -45,6 +46,7 @@ class Download(object):
         self.dir_prefix = ""
         self.downder = self.meta.downder
         self.downder_options = self.meta.downder_options
+        self._internet_check()
 
     def start(self):
         """Download files using wget or other downloader.
@@ -120,3 +122,16 @@ class Download(object):
             self.downder_options += certificate
             if not self.msg.answer() in ["y", "Y"]:
                 raise SystemExit()
+
+    def _internet_check(self):
+        """Check for internet connection
+        """
+        url = "".join(self.url)
+        try:
+            f = urllib2.urlopen(url)
+            return f.read()
+        except (urllib2.URLError, ValueError):
+            print("\n{0}slpkg: Error: unable to resolve the internet connection"
+                  "{1}\n".format(self.meta.color["RED"],
+                                 self.meta.color["ENDC"]))
+            raise SystemExit()
