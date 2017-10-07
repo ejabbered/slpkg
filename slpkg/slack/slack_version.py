@@ -34,7 +34,7 @@ def slack_ver():
     """
 
     slackware_version = _meta_.slackware_version
-    if slackware_version == "off":
+    if slackware_version == "off" or slackware_version == "OFF":
         sv = Utils().read_file("/etc/slackware-version")
         version = re.findall(r"\d+", sv)
         if len(sv) > 2:
