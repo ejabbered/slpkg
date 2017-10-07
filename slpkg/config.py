@@ -44,6 +44,7 @@ class Config(object):
         conf_args = [
             "RELEASE",
             "SLACKWARE_VERSION",
+            "COMP_ARCH",
             "BUILD_PATH",
             "PACKAGES",
             "PATCHES",

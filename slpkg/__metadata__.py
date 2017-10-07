@@ -98,6 +98,7 @@ class MetaData(object):
     _conf_slpkg = {
         "RELEASE": "stable",
         "SLACKWARE_VERSION": "off",
+        "COMP_ARCH": "off",
         "REPOSITORIES": ["slack", "sbo", "rlw", "alien",
                          "slacky", "conrad", "slonly",
                          "ktown{latest}", "multi", "slacke{18}",
@@ -150,6 +151,7 @@ class MetaData(object):
     # Set values from configuration file
     slack_rel = _conf_slpkg["RELEASE"]
     slackware_version = _conf_slpkg["SLACKWARE_VERSION"]
+    comp_arch = _conf_slpkg["COMP_ARCH"]
     build_path = _conf_slpkg["BUILD_PATH"]
     sbosrcarch = _conf_slpkg["SBOSRCARCH"]
     sbosrcarch_link = _conf_slpkg["SBOSRCARCH_LINK"]
@@ -238,7 +240,10 @@ class MetaData(object):
     slackpkg_lib_path = "/var/lib/slackpkg/"
 
     # computer architecture
-    arch = os.uname()[4]
+    if comp_arch == "off" or comp_arch == "OFF":
+        arch = os.uname()[4]
+    else:
+        arch = comp_arch
 
     # get sbo OUTPUT enviroment variable
     try:
