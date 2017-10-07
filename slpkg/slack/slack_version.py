@@ -25,15 +25,21 @@
 import re
 
 from slpkg.utils import Utils
+from __metadata__ import MetaData as _meta_
 
 
 def slack_ver():
     """
     Open file and read Slackware version
     """
-    sv = Utils().read_file("/etc/slackware-version")
-    version = re.findall(r"\d+", sv)
-    if len(sv) > 2:
-        return (".".join(version[:2]))
+
+    slackware_version = _meta_.slackware_version
+    if slackware_version == "off":
+        sv = Utils().read_file("/etc/slackware-version")
+        version = re.findall(r"\d+", sv)
+        if len(sv) > 2:
+            return (".".join(version[:2]))
+        else:
+            return (".".join(version))
     else:
-        return (".".join(version))
+        return slackware_version

@@ -78,7 +78,7 @@ class MetaData(object):
 
     __all__ = "slpkg"
     __author__ = "dslackw"
-    __version_info__ = (3, 3, 0)
+    __version_info__ = (3, 3, 1)
     __version__ = "{0}.{1}.{2}".format(*__version_info__)
     __license__ = "GNU General Public License v3 (GPLv3)"
     __email__ = "d.zlatanidis@gmail.com"
@@ -97,6 +97,7 @@ class MetaData(object):
     # Default configuration values
     _conf_slpkg = {
         "RELEASE": "stable",
+        "SLACKWARE_VERSION": "off",
         "REPOSITORIES": ["slack", "sbo", "rlw", "alien",
                          "slacky", "conrad", "slonly",
                          "ktown{latest}", "multi", "slacke{18}",
@@ -148,6 +149,7 @@ class MetaData(object):
 
     # Set values from configuration file
     slack_rel = _conf_slpkg["RELEASE"]
+    slackware_version = _conf_slpkg["SLACKWARE_VERSION"]
     build_path = _conf_slpkg["BUILD_PATH"]
     sbosrcarch = _conf_slpkg["SBOSRCARCH"]
     sbosrcarch_link = _conf_slpkg["SBOSRCARCH_LINK"]

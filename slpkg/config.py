@@ -43,6 +43,7 @@ class Config(object):
         print("")   # new line at start
         conf_args = [
             "RELEASE",
+            "SLACKWARE_VERSION",
             "BUILD_PATH",
             "PACKAGES",
             "PATCHES",
