@@ -25,7 +25,7 @@
 import re
 
 from slpkg.utils import Utils
-from __metadata__ import MetaData as _meta_
+from slpkg.__metadata__ import MetaData as _meta_
 
 
 def slack_ver():
