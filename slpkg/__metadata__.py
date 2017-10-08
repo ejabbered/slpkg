@@ -240,7 +240,7 @@ class MetaData(object):
     slackpkg_lib_path = "/var/lib/slackpkg/"
 
     # computer architecture
-    if comp_arch == "off" or comp_arch == "OFF":
+    if comp_arch in ["off", "OFF"]:
         arch = os.uname()[4]
     else:
         arch = comp_arch
