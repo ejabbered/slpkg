@@ -117,10 +117,11 @@ class SBoInstall(object):
         self.clear_masters()
 
         if self.package_found:
-            print("\nThe following packages will be automatically "
-                  "installed or upgraded \nwith new version:\n")
             if self.match:
                 self.msg.matching(self.slackbuilds)
+            else:
+                print("\nThe following packages will be automatically "
+                      "installed or upgraded \nwith new version:\n")
             self.top_view()
             self.msg.upg_inst(self.is_upgrade)
 
@@ -141,8 +142,12 @@ class SBoInstall(object):
 
             count_total = sum([self.count_ins, self.count_upg,
                                self.count_uni])
+            if self.match:
+                print("\nMatching summary")
+                print("=" * 79)
+                print("Total {0} matching packages\n".format(count_total))
+                raise SystemExit(1)
             print("\nInstalling summary")
-            print("=" * 79)
             print("{0}Total {1} {2}.".format(
                 self.meta.color["GREY"], count_total,
                 self.msg.pkg(count_total)))

@@ -104,10 +104,11 @@ class BinaryInstall(object):
                 "--resolve-off" not in self.flag):
             self.msg.done()
         if self.install:
-            print("\nThe following packages will be automatically "
-                  "installed or upgraded \nwith new version:\n")
             if self.matching:
                 self.msg.matching(self.packages)
+            else:
+                print("\nThe following packages will be automatically "
+                      "installed or upgraded \nwith new version:\n")
             self.top_view()
             self.msg.upg_inst(self.is_upgrade)
             mas_sum = self.views(self.install, self.comp_sum)
@@ -120,6 +121,11 @@ class BinaryInstall(object):
             sums = [sum(i) for i in zip(mas_sum, dep_sum)]
             unit, size = units(self.comp_sum + self.dep_comp_sum,
                                self.uncomp_sum + self.dep_uncomp_sum)
+            if self.matching:
+                print("\nMatching summary")
+                print("=" * 79)
+                print("Total {0} matching packages\n".format(sum(sums)))
+                raise SystemExit(1)
             print("\nInstalling summary")
             print("=" * 79)
             print("{0}Total {1} {2}.".format(self.meta.color["GREY"],
