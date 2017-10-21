@@ -102,7 +102,7 @@ class MetaData(object):
         "REPOSITORIES": ["slack", "sbo", "rlw", "alien",
                          "slacky", "conrad", "slonly",
                          "ktown{latest}", "multi", "slacke{18}",
-                         "salix", "slackl", "rested", "msb{1.16}",
+                         "salix", "slackl", "rested", "msb{1.18}",
                          "csb", "connos", "mles{desktop}"],
         "BUILD_PATH": "/tmp/slpkg/build/",
         "SBOSRCARCH": "off",
