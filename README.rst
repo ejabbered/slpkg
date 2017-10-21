@@ -20,7 +20,7 @@
     :target: https://github.com/dslackw/slpkg/issues
  
 
-Slpkg v3.3.1
+Slpkg v3.3.2
 ============
 
 |
@@ -79,8 +79,8 @@ Download latest release:
     
     Required root privileges
 
-    $ tar xvf slpkg-3.3.1.tar.gz
-    $ cd slpkg-3.3.1
+    $ tar xvf slpkg-3.3.2.tar.gz
+    $ cd slpkg-3.3.2
     $ ./install.sh
     
     If you want to build slpkg for use with Python 3.x (needs the
@@ -116,9 +116,9 @@ Using pip:
 
 Binary packages:
 
-Slackware: `slpkg-3.3.1-i586-1_dsw.txz <https://github.com/dslackw/slpkg/releases/download/v3.3.1/slpkg-3.3.1-i586-1_dsw.txz>`_
+Slackware: `slpkg-3.3.2-i586-1_dsw.txz <https://github.com/dslackw/slpkg/releases/download/v3.3.2/slpkg-3.3.2-i586-1_dsw.txz>`_
 
-Slackware64: `slpkg-3.3.1-x86_64-1_dsw.txz <https://github.com/dslackw/slpkg/releases/download/v3.3.1/slpkg-3.3.1-x86_64-1_dsw.txz>`_
+Slackware64: `slpkg-3.3.2-x86_64-1_dsw.txz <https://github.com/dslackw/slpkg/releases/download/v3.3.2/slpkg-3.3.2-x86_64-1_dsw.txz>`_
 
 
 Optional dependencies
