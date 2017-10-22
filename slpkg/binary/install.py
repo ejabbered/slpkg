@@ -104,7 +104,7 @@ class BinaryInstall(object):
                 "--resolve-off" not in self.flag):
             self.msg.done()
         if self.install:
-            if self.matching:
+            if self.matching and [""] != self.packages:
                 self.msg.matching(self.packages)
             else:
                 print("\nThe following packages will be automatically "
@@ -121,7 +121,7 @@ class BinaryInstall(object):
             sums = [sum(i) for i in zip(mas_sum, dep_sum)]
             unit, size = units(self.comp_sum + self.dep_comp_sum,
                                self.uncomp_sum + self.dep_uncomp_sum)
-            if self.matching:
+            if self.matching and [""] != self.packages:
                 print("\nMatching summary")
                 print("=" * 79)
                 print("Total {0} matching packages\n".format(sum(sums)))
