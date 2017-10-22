@@ -79,7 +79,7 @@ Download latest release:
     
     Required root privileges
 
-    $ tar xvf slpkg-3.3.2.tar.gz
+    $ tar xvf slpkg-3.3.2.tar.gz (don't delete the archive file after extract)
     $ cd slpkg-3.3.2
     $ ./install.sh
     
