@@ -1667,7 +1667,7 @@ own python code.
 
 Get package dependencies from sbo repository:
 
-.. code-block:: python
+.. code-block:: bash
     >>> from slpkg.sbo.dependency import Requires
     >>> Requires(flag="").sbo("Flask")
     [['werkzeug', 'Jinja2', 'itsdangerous', 'click'], ['MarkupSafe']]
