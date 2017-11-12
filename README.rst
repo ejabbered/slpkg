@@ -1736,6 +1736,79 @@ Grap package files:
     >>> SBoGrep(name="Flask").files()
     'Flask.SlackBuild Flask.info README slack-desc'
 
+Grab packages for binary repository:
+
+.. code-block:: bash
+
+    >>> from slpkg.binary.greps import repo_data
+    >>> from slpkg.binary.repo_init import RepoInit
+    >>> PACKAGES_TXT, mirror = RepoInit("slonly").fetch()
+    >>> name, location, size, unsize = repo_data(PACKAGES_TXT, repo="slonly", flag="")
+
+Find package url from sbo repository:
+
+.. code-block:: bash
+
+    fromm slpkg.sbo.search import sbo_search_pkg
+    >>> sbo_search_pkg(name="Flask")
+    'http://slackbuilds.org/slackbuilds/14.2/python/Flask/'
+
+Check if the package exist in the binary repository:
+
+.. code-block:: bash
+
+    >>> from slpkg.binary.search import search_pkg
+    >>> search_pkg(name="vlc", repo="alien")
+    'vlc'
+
+Read files from sbo repository:
+
+.. code-block:: bash
+
+    >>> from slpkg.sbo.search import sbo_search_pkg
+    >>> from slpkg.sbo.read import ReadSBo
+    >>> url = sbo_search_pkg(name="libreoffice")
+    >>> ReadSBo(url).readme("README")
+    'LibreOffice is a productivity suite that is compatible with other major\noffice
+     suites, and available on a variety of platforms. It is free\nsoftware and there
+    fore free to download, use and distribute.\n\nThis script builds a Slackware pac
+    kage from the official binary (RPM\'s)\ndistributed by The Document Foundation.
+     Everything needed by the\napplication should be built statically into it, so th
+    ere aren\'t any\ndependencies not satisfied by a normal installation.\n\nBe sure
+     to look at the script for some optional things you can do when\nbuilding.\n\nNO
+    TE: See the separate SlackBuild script for the language packs.\n\nNOTE2: To keep
+     LibreOffice installed concurrently with OpenOffice, run the\n       included "o
+    pen-libre-together.sh" script saved in the documentation\n       directory of th
+    is package to patch the .desktop menu files.\n\nNOTE3: LibreOffice versions chan
+    ge quite often. If the version for which\n       this script was written is no l
+    onger available, look for it at:\n       http://download.documentfoundation.org/
+    libreoffice/old/stable/\n       It will go there after the next release.\n
+     You can also try building the newer version using:\n       # VERSION="x.y.z" ./
+    libreoffice.SlackBuild\n       This *might* work, but upstream has a habit of ch
+    anging the naming\n       and structure of the files, etc. between versions, so:
+     YMMV.\n'
+    
+    >>> ReadSBo(url).slackbuild("libreoffice", ".SlackBuild")
+    ...
+
+    >>> ReadSBo(libreoffice).info("libreoffice", ".info")
+    'PRGNAM="libreoffice"\nVERSION="5.4.3"\nHOMEPAGE="http://www.libreoffice.org"\nD
+    OWNLOAD="http://download.documentfoundation.org/libreoffice/stable/5.4.3/rpm/x86
+    /LibreOffice_5.4.3_Linux_x86_rpm.tar.gz"\nMD5SUM="bada10945a979537ff42268462fc8b
+    de"\nDOWNLOAD_x86_64="http://download.documentfoundation.org/libreoffice/stable/
+    5.4.3/rpm/x86_64/LibreOffice_5.4.3_Linux_x86-64_rpm.tar.gz"\nMD5SUM_x86_64="4b0b
+    46a6d2df74a1446837ba76af07fd"\nREQUIRES="jdk"\nMAINTAINER="Willy Sudiarto Raharj
+    o"\nEMAIL="willysr@slackbuilds.org"\n'
+
+
+    >>> ReadSBo(libreoffice).doinst("doinst.sh")
+    'if [ -x /usr/bin/update-desktop-database ]; then\n  /usr/bin/update-desktop-dat
+    abase -q usr/share/applications\nfi\n\nif [ -x /usr/bin/update-mime-database ];
+    then\n  /usr/bin/update-mime-database usr/share/mime >/dev/null 2>&1\nfi\n\nif [
+    -x /usr/bin/gtk-update-icon-cache ]; then\n  for theme in gnome locolor hicolor
+    ; do\n    if [ -e usr/share/icons/$theme/icon-theme.cache ]; then\n      /usr/b
+    in/gtk-update-icon-cache -f usr/share/icons/$theme >/dev/null 2>&1\n    fi\n  do
+    ne\nfi\
 
 Donate
 ------
@@ -1751,4 +1824,4 @@ Copyright
 
 - Copyright 2014-2017 © Dimitris Zlatanidis
 - Slackware® is a Registered Trademark of Patrick Volkerding.
-i Linux is a Registered Trademark of Linus Torvalds.
+- Linux is a Registered Trademark of Linus Torvalds.
