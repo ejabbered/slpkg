@@ -1,3 +1,7 @@
+3.3.3 - 12/11/2017
+Updated:
+- README.rst for python modules
+
 3.3.2 - 21/10/2017
 Fixed:
 - Strange dependency problem (2) #97
