@@ -1,23 +1,23 @@
 .. image:: https://img.shields.io/github/release/dslackw/slpkg.svg
-    :target: https://github.com/dslackw/slpkg/releases
+   :target: https://github.com/dslackw/slpkg/releases
 .. image:: https://travis-ci.org/dslackw/slpkg.svg?branch=master
-    :target: https://travis-ci.org/dslackw/slpkg
+   :target: https://travis-ci.org/dslackw/slpkg
 .. image:: https://landscape.io/github/dslackw/slpkg/master/landscape.png
-    :target: https://landscape.io/github/dslackw/slpkg/master
+   :target: https://landscape.io/github/dslackw/slpkg/master
 .. image:: https://img.shields.io/codacy/51c30a1fe61241edaab414ecde44488d.svg
-    :target: https://www.codacy.com/public/dzlatanidis/slpkg/dashboard
+   :target: https://www.codacy.com/public/dzlatanidis/slpkg/dashboard
 .. image:: https://img.shields.io/pypi/dm/slpkg.svg
-    :target: https://pypi.python.org/pypi/slpkg
+   :target: https://pypi.python.org/pypi/slpkg
 .. image:: https://img.shields.io/sourceforge/dt/slpkg.svg
-    :target: https://sourceforge.net/projects/slpkg/
+   :target: https://sourceforge.net/projects/slpkg/
 .. image:: https://img.shields.io/badge/license-GPLv3-blue.svg
-    :target: https://github.com/dslackw/slpkg
+   :target: https://github.com/dslackw/slpkg
 .. image:: https://img.shields.io/github/stars/dslackw/slpkg.svg
-    :target: https://github.com/dslackw/slpkg
+   :target: https://github.com/dslackw/slpkg
 .. image:: https://img.shields.io/github/forks/dslackw/slpkg.svg
-    :target: https://github.com/dslackw/slpkg
+   :target: https://github.com/dslackw/slpkg
 .. image:: https://img.shields.io/github/issues/dslackw/slpkg.svg
-    :target: https://github.com/dslackw/slpkg/issues
+   :target: https://github.com/dslackw/slpkg/issues
  
 
 Slpkg v3.3.2
@@ -26,12 +26,12 @@ Slpkg v3.3.2
 |
 
 .. image:: https://raw.githubusercontent.com/dslackw/images/master/slpkg/slpkg_package.png
-    :target: https://github.com/dslackw/slpkg
+   :target: https://github.com/dslackw/slpkg
 
 |
 
 .. image:: https://raw.githubusercontent.com/dslackw/images/master/slpkg/poweredbyslack.gif
-    :target: http://www.slackware.com/
+   :target: http://www.slackware.com/
 |
 
 .. contents:: Table of Contents:
@@ -536,7 +536,7 @@ command.
     $ slpkg repo-enable
 
 .. image:: https://raw.githubusercontent.com/dslackw/images/master/slpkg/repo_enable.png
-    :target: https://raw.githubusercontent.com/dslackw/images/master/slpkg/deps2.png
+   :target: https://raw.githubusercontent.com/dslackw/images/master/slpkg/deps2.png
 
 
 If you use slpkg for the first time will have to create and update the package 
@@ -859,7 +859,7 @@ Drawing dependencies diagram:
     $ slpkg -t sbo flexget --graph=image.x11
 
 .. image:: https://raw.githubusercontent.com/dslackw/images/master/slpkg/deps2.png
-    :target: https://raw.githubusercontent.com/dslackw/images/master/slpkg/deps2.png
+   :target: https://raw.githubusercontent.com/dslackw/images/master/slpkg/deps2.png
 
 
 .. code-block:: bash
@@ -884,7 +884,7 @@ Drawing dependencies diagram:
      +--5: werkzeug is dependency --> Flask
 
 .. image:: https://raw.githubusercontent.com/dslackw/images/master/slpkg/deps3.png
-    :target: https://raw.githubusercontent.com/dslackw/images/master/slpkg/deps3.png
+   :target: https://raw.githubusercontent.com/dslackw/images/master/slpkg/deps3.png
 
 
 Drawing dependencies ascii diagram:
@@ -1547,20 +1547,20 @@ Remove packages using dialog utility:
     $ slpkg -r _SBo --tag --checklist
 
 .. image:: https://raw.githubusercontent.com/dslackw/images/master/slpkg/pythondialog.png
-    :target: https://github.com/dslackw/slpkg
+   :target: https://github.com/dslackw/slpkg
 
 .. code-block:: bash
 
     $ slpkg -r Flask --check-deps --checklist
 
 .. image:: https://raw.githubusercontent.com/dslackw/images/master/slpkg/pythondialog2.png
-    :target: https://github.com/dslackw/slpkg
+   :target: https://github.com/dslackw/slpkg
 
 .. image:: https://raw.githubusercontent.com/dslackw/images/master/slpkg/pythondialog3.png
-    :target: https://github.com/dslackw/slpkg
+   :target: https://github.com/dslackw/slpkg
 
-.. image:: https://raw.githubusercontent.com/dslackw/images/master/slpkg/pythondialog4.png
-    :target: https://github.com/dslackw/slpkg
+ .. image:: https://raw.githubusercontent.com/dslackw/images/master/slpkg/pythondialog4.png
+   :target: https://github.com/dslackw/slpkg
 
 
 Build and install packages that have added to the queue:
@@ -1660,13 +1660,26 @@ Man page it is available for full support:
     $ man slpkg
 
 
+Python modules
+--------------
+Slpkg has been designed it to work as cli tool however you can use some modules in your
+own python code.
+
+Get package dependencies from sbo repository:
+
+.. code-block:: python
+    >>> from slpkg.sbo.dependency import Requires
+    >>> Requires(flag="").sbo("Flask")
+    [['werkzeug', 'Jinja2', 'itsdangerous', 'click'], ['MarkupSafe']]
+
+
 Donate
 ------
 
 If you feel satisfied with this project and want to thanks me make a donation.
 
 .. image:: https://github.com/dslackw/images/blob/master/donate/paypaldonate.png
-    :target: https://www.paypal.me/dslackw
+   :target: https://www.paypal.me/dslackw
 
 
 Copyright 
