@@ -1749,7 +1749,7 @@ Find package url from sbo repository:
 
 .. code-block:: bash
 
-    fromm slpkg.sbo.search import sbo_search_pkg
+    from slpkg.sbo.search import sbo_search_pkg
     >>> sbo_search_pkg(name="Flask")
     'http://slackbuilds.org/slackbuilds/14.2/python/Flask/'
 
