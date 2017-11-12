@@ -1791,7 +1791,7 @@ Read files from sbo repository:
     >>> ReadSBo(url).slackbuild("libreoffice", ".SlackBuild")
     ...
 
-    >>> ReadSBo(libreoffice).info("libreoffice", ".info")
+    >>> ReadSBo(url).info("libreoffice", ".info")
     'PRGNAM="libreoffice"\nVERSION="5.4.3"\nHOMEPAGE="http://www.libreoffice.org"\nD
     OWNLOAD="http://download.documentfoundation.org/libreoffice/stable/5.4.3/rpm/x86
     /LibreOffice_5.4.3_Linux_x86_rpm.tar.gz"\nMD5SUM="bada10945a979537ff42268462fc8b
@@ -1801,7 +1801,7 @@ Read files from sbo repository:
     o"\nEMAIL="willysr@slackbuilds.org"\n'
 
 
-    >>> ReadSBo(libreoffice).doinst("doinst.sh")
+    >>> ReadSBo(url).doinst("doinst.sh")
     'if [ -x /usr/bin/update-desktop-database ]; then\n  /usr/bin/update-desktop-dat
     abase -q usr/share/applications\nfi\n\nif [ -x /usr/bin/update-mime-database ];
     then\n  /usr/bin/update-mime-database usr/share/mime >/dev/null 2>&1\nfi\n\nif [
