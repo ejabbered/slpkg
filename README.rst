@@ -1670,8 +1670,71 @@ Get package dependencies from sbo repository:
 .. code-block:: bash
 
     >>> from slpkg.sbo.dependency import Requires
-    >>> Requires(flag="").sbo("Flask")
-    [['werkzeug', 'Jinja2', 'itsdangerous', 'click'], ['MarkupSafe']]
+    >>> Requires(flag="").sbo("vlc")
+    [['libass', 'libdc1394', 'libdvbpsi', 'libmpeg2', 'libupnp', 'lua', 'portaudio',
+    'twolame', 'opus', 'ffmpeg', 'libwebp', 'gsm', 'opencv', 'libtar', 'libkate', '
+    faac', 'libdca', 'libmatroska', 'libshout', 'speex', 'avahi', 'projectM', 'jack-
+    audio-connection-kit', 'libsidplay2', 'zvbi', 'faad2', 'libavc1394', 'libmodplug
+    ', 'musepack-tools', 'vcdimager', 'dirac', 'gnome-vfs', 'live555', 'qt5', 'rtmpd
+    ump', 'libdvdcss', 'fluidsynth', 'schroedinger', 'libminizip', 'chromaprint', 'x
+    264', 'x265', 'libbluray'], ['libmp4v2'], ['libebml'], ['libdaemon'], ['ftgl'],
+    ['libcuefile', 'libreplaygain'], ['gnome-mime-data', 'libbonobo'], ['ORBit2'], [
+    'libxkbcommon', 'libinput'], ['libwacom']]
+
+Example from binary repository:
+
+.. code-block:: bash
+    
+    >>> from slpkg.binary.dependency import Dependencies
+    >>> Dependencies(repo="slonly", black="").binary(name"Flask", flag="")
+    [['Jinja2', 'click', 'itsdangerous', 'werkzeug'], ['MarkupSafe']]
+
+Grab packages from sbo repository:
+
+Get all package names:
+
+.. code-block:: bash
+
+    >>> from slpkg.sbo.greps import SBoGrep
+    >>> SBoGrep(name="").names()
+    ...
+
+Grab package sources links:
+
+.. code-block:: bash
+
+    >>> SBoGrep(name="jdk").source()
+    'http://download.oracle.com/otn-pub/java/jdk/8u152-b16/aa0333dd3019491ca4f6ddbe7
+    8cdb6d0/jdk-8u152-linux-x64.tar.gz'
+
+
+Grap package requires:
+
+.. code-block:: bash
+
+    >>> SBoGrep(name="Flask").requires()
+    ['werkzeug', 'Jinja2', 'itsdangerous', 'click']
+
+Grap package checksum:
+
+.. code-block:: bash
+
+    >>> SBoGrep(name="Flask").checksum()
+    ['97278dfdafda98ba7902e890b0289177']
+
+Grap package description:
+
+.. code-block:: bash
+
+    >>> SBoGrep(name="Flask").description()
+    'Flask (Microframework for Python)'
+
+Grap package files:
+
+.. code-block:: bash
+
+    >>> SBoGrep(name="Flask").files()
+    'Flask.SlackBuild Flask.info README slack-desc'
 
 
 Donate
@@ -1688,4 +1751,4 @@ Copyright
 
 - Copyright 2014-2017 © Dimitris Zlatanidis
 - Slackware® is a Registered Trademark of Patrick Volkerding.
-- Linux is a Registered Trademark of Linus Torvalds.
+i Linux is a Registered Trademark of Linus Torvalds.
