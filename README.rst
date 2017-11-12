@@ -1826,7 +1826,7 @@ Find Slackware package:
     >>> find_package(find_pkg="vlc", directory="/var/log/packages/")
     ['vlc-2.2.6-x86_64-1alien']
 
- Check for installed packages:
+Check for installed packages:
 
 .. code-block:: bash
 
