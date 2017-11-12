@@ -1810,6 +1810,34 @@ Read files from sbo repository:
     in/gtk-update-icon-cache -f usr/share/icons/$theme >/dev/null 2>&1\n    fi\n  do
     ne\nfi\
 
+Get Slackware version:
+
+.. code-block:: bash
+
+    >>> from slpkg.slack.slack_version import slack_ver
+    >>> slack_ver()
+    '14.2'
+
+Find Slackware package:
+
+.. code-block:: bash
+
+    >>> from slpkg.pkg.find import find_package
+    >>> find_package(find_pkg="vlc", directory="/var/log/packages/")
+    ['vlc-2.2.6-x86_64-1alien']
+
+ Check for installed packages:
+
+.. code-block:: bash
+
+    >>> from slpkg.pkg.installed import GetFromInstalled
+    >>> GetFromInstalled(package="ffmpeg").name()
+    'ffmpeg'
+    >>> GetFromInstalled(package="ffmpeg").version()
+    '-3.2.4'
+
+
+
 Donate
 ------
 
