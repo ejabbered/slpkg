@@ -1,6 +1,8 @@
 3.3.3 - 12/11/2017
 Updated:
 - README.rst for python modules
+- Remove python3 support temporarily until new Slackware version will be
+release
 
 3.3.2 - 21/10/2017
 Fixed:
