@@ -83,11 +83,6 @@ Download latest release:
     $ cd slpkg-3.3.2
     $ ./install.sh
     
-    If you want to build slpkg for use with Python 3.x (needs the
-    optional dependency python3) pass the script PYTHON3=yes, like:
-
-    PYTHON3=yes ./install.sh
-
     Installed as Slackware package
 
     Uninstall:

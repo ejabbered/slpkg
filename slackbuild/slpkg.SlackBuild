@@ -64,7 +64,7 @@ fi
 set -e
 
 PYTHON=python
-[ "${PYTHON3:-no}" = "yes" ] && PYTHON=python3
+# [ "${PYTHON3:-no}" = "yes" ] && PYTHON=python3
 
 rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
@@ -83,11 +83,12 @@ find -L . \
 # avoid install man page and configuration files over setup.py
 sed -i 's/if "install"/if ""/' setup.py
 
-# Python 3 support
-if [ "$PYTHON3" = "yes" ]; then
-  sh convert-py3k
-  cd py3k/$PRGNAM
-fi
+# Python 3 support temporarily is out until new Slackware version
+# will be release
+# if [ "$PYTHON3" = "yes" ]; then
+#  sh convert-py3k
+#  cd py3k/$PRGNAM
+#fi
 
 $PYTHON setup.py install --root=$PKG
 
