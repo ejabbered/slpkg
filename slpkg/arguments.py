@@ -3,7 +3,7 @@
 
 # arguments.py file is part of slpkg.
 
-# Copyright 2014-2017 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
+# Copyright 2014-2018 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
 # All rights reserved.
 
 # Slpkg is a user-friendly package manager for Slackware installations
@@ -39,12 +39,13 @@ def options():
 
 Usage: slpkg [COMMANDS|OPTIONS] {repository|package...}
 
-                                                 _       _
-                                             ___| |_ __ | | ____ _
-                                            / __| | '_ \| |/ / _` |
-                                            \__ \ | |_) |   < (_| |
-                                            |___/_| .__/|_|\_\__, |
-                                                  |_|        |___/
+                                                   _       _
+                                               ___| |_ __ | | ____ _
+                                              / __| | '_ \| |/ / _` |
+                                              \__ \ | |_) |   < (_| |
+                                              |___/_| .__/|_|\_\__, |
+                                                    |_|        |___/
+                                             _Slackware package manager_______
 
 Commands:
    update, --only=[...]                      Run this command to update all
