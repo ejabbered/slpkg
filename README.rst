@@ -398,13 +398,13 @@ Command Line Tool Usage
 
     Usage: slpkg [COMMANDS|OPTIONS] {repository|package...}
 
-                                                     _       _
-                                                 ___| |_ __ | | ____ _
-                                                / __| | '_ \| |/ / _` |
-                                                \__ \ | |_) |   < (_| |
-                                                |___/_| .__/|_|\_\__, |
-                                                      |_|        |___/
-
+                                                       _       _
+                                                   ___| |_ __ | | ____ _
+                                                  / __| | '_ \| |/ / _` |
+                                                  \__ \ | |_) |   < (_| |
+                                                  |___/_| .__/|_|\_\__, |
+                                                        |_|        |___/
+                                                 _Slackware package manager_______
     Commands:
        update, --only=[...]                      Run this command to update all
                                                  the packages list.
