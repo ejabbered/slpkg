@@ -3,6 +3,7 @@ Updated:
 - README.rst for python modules
 - Remove python3 support temporarily until new Slackware version will be
 release
+- Slackware mirrors
 
 3.3.2 - 21/10/2017
 Fixed:
