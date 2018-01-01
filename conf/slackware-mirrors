@@ -3,7 +3,7 @@
 #
 # slackware-mirrors file is part of slpkg.
 #
-# Copyright 2014-2018 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
+# Copyright 2014-2017 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
 # All rights reserved.
 #
 # Slpkg is a user-friendly package manager for Slackware installations.
@@ -31,7 +31,8 @@
 # below. Be careful is the template that the rest.
 # ----------------------------------------------------------------------------
 #
-# Last Updated: Sun Oct 22 17:47:02 UTC 2017
+#
+# Last Updated: Mon Jan 1 08:47:02 UTC 2018
 #
 # Available https mirrors:
 #
@@ -55,6 +56,7 @@
 # ie		 https://ftp.heanet.ie/mirrors/ftp.slackware.com/pub/slackware/
 # it		 https://ba.mirror.garr.it/mirrors/Slackware/
 # lt		 https://mirrors.atviras.lt/slackware/
+# nl		 https://mirror.koddos.net/slackware/
 # nl		 https://mirror.nl.leaseweb.net/slackware/
 # pl		 https://ftp.slackware.pl/pub/slackware/
 # pl		 https://sunsite.icm.edu.pl/pub/Linux/slackware/
@@ -75,6 +77,8 @@
 # us		 https://mirrors.kernel.org/slackware/
 # us		 https://mirrors.syringanetworks.net/slackware/
 # us		 https://mirrors.xmission.com/slackware/
+# us		 https://slackware.absolutehosting.net/pub/slackware/
+#
 #
 #
 # Available http mirrors:
@@ -130,6 +134,7 @@
 # za		 http://ftp.is.co.za/mirror/ftp.slackware.com/pub/
 # za		 http://ftp.wa.co.za/pub/slackware/
 # za		 http://slackware.mirror.ac.za/
+#
 #
 #
 # Available ftp mirrors:
@@ -196,6 +201,7 @@
 # us		 ftp://mirror.us.leaseweb.net/slackware/
 # us		 ftp://mirrors.syringanetworks.net/slackware/
 # us		 ftp://mirrors.xmission.com/slackware/
+# us		 ftp://slackware.absolutehosting.net/pub/slackware/
 # us		 ftp://slackware.cs.utah.edu/slackware/
 # us		 ftp://slackware.mirrors.tds.net/pub/slackware
 # za		 ftp://ftp.is.co.za/mirror/ftp.slackware.com/pub/
