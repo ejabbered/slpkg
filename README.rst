@@ -6,8 +6,6 @@
    :target: https://landscape.io/github/dslackw/slpkg/master
 .. image:: https://img.shields.io/codacy/51c30a1fe61241edaab414ecde44488d.svg
    :target: https://www.codacy.com/public/dzlatanidis/slpkg/dashboard
-.. image:: https://img.shields.io/pypi/dm/slpkg.svg
-   :target: https://pypi.python.org/pypi/slpkg
 .. image:: https://img.shields.io/sourceforge/dt/slpkg.svg
    :target: https://sourceforge.net/projects/slpkg/
 .. image:: https://img.shields.io/badge/license-GPLv3-blue.svg
