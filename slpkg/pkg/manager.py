@@ -418,7 +418,7 @@ class PackageManager(object):
             if line.startswith("UNCOMPRESSED PACKAGE SIZE:"):
                 digit = float((''.join(re.findall(
                     "[-+]?\d+[\.]?\d*[eE]?[-+]?\d*", line[26:]))))
-                self.file_size = line[27:].strip()
+                self.file_size = line[26:].strip()
                 if "M" in line[26:]:
                     self.size += digit * 1024
                 else:
