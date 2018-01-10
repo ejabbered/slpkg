@@ -1,3 +1,7 @@
+3.3.4 - 10/01/2018
+Added:
+- Print the file size per package in option -f, --find
+
 3.3.3 - 01/01/2018
 Updated:
 - README.rst for python modules
