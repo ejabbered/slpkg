@@ -46,6 +46,7 @@ class PackageManager(object):
         self.msg = Msg()
         self.skip = []
         self.size = 0
+        self.file_size = 0
         self.unit = "Kb"
 
     def install(self, flag):
@@ -391,10 +392,10 @@ class PackageManager(object):
                     match_cache = match
                 if pkg_cache in match_cache:
                     matching += 1
-                    print("[ {0}installed{1} ] - {2}".format(
-                        self.meta.color["GREEN"], self.meta.color["ENDC"],
-                        match))
                     self._sizes(match)
+                    print("[ {0}installed{1} ] [ {2} ] - {3}".format(
+                        self.meta.color["GREEN"], self.meta.color["ENDC"],
+                        self.file_size, match))
         if matching == 0:
             message = "Can't find"
             self.msg.pkg_not_found("", ", ".join(self.binary), message, "\n")
@@ -417,6 +418,7 @@ class PackageManager(object):
             if line.startswith("UNCOMPRESSED PACKAGE SIZE:"):
                 digit = float((''.join(re.findall(
                     "[-+]?\d+[\.]?\d*[eE]?[-+]?\d*", line[26:]))))
+                self.file_size = line[27:].strip()
                 if "M" in line[26:]:
                     self.size += digit * 1024
                 else:
