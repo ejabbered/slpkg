@@ -46,11 +46,12 @@ OPTIONAL_REQUIREMENTS = [
 # Non-Python/non-PyPI optional dependencies:
 # ascii diagram: graph-easy (available from SBo repository)
 
-logo_fname = os.path.join(os.path.dirname(__file__), 'logo.txt')
-with open(logo_fname, 'rb') as f:
-    logo = f.read().decode('utf-8')
-    print(logo)
-    time.sleep(1)
+if "--install" not in sys.argv:
+    logo_fname = os.path.join(os.path.dirname(__file__), 'logo.txt')
+    with open(logo_fname, 'rb') as f:
+        logo = f.read().decode('utf-8')
+        print(logo)
+        time.sleep(1)
 
 
 setup(
