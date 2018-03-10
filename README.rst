@@ -114,6 +114,12 @@ Slackware: `slpkg-3.3.4-i586-1_dsw.txz <https://github.com/dslackw/slpkg/release
 Slackware64: `slpkg-3.3.4-x86_64-1_dsw.txz <https://github.com/dslackw/slpkg/releases/download/v3.3.4/slpkg-3.3.4-x86_64-1_dsw.txz>`_
 
 
+Requirements
+------------
+
+See requirements.txt <https://github.com/dslackw/slpkg/blob/master/requirements.txt>_ file
+
+
 Optional dependencies
 ---------------------
 
