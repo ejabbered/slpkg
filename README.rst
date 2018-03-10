@@ -117,7 +117,7 @@ Slackware64: `slpkg-3.3.4-x86_64-1_dsw.txz <https://github.com/dslackw/slpkg/rel
 Requirements
 ------------
 
-See requirements.txt <https://github.com/dslackw/slpkg/blob/master/requirements.txt>_ file
+See `requirements.txt <https://github.com/dslackw/slpkg/blob/master/requirements.txt>`_ file
 
 
 Optional dependencies
