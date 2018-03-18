@@ -24,7 +24,6 @@
 
 import os
 import sys
-import gzip
 import time
 import shutil
 from slpkg.md5sum import md5
@@ -46,13 +45,40 @@ OPTIONAL_REQUIREMENTS = [
 # Non-Python/non-PyPI optional dependencies:
 # ascii diagram: graph-easy (available from SBo repository)
 
-if "--install" not in sys.argv:
-    logo_fname = os.path.join(os.path.dirname(__file__), 'logo.txt')
-    with open(logo_fname, 'rb') as f:
-        logo = f.read().decode('utf-8')
-        print(logo)
-        time.sleep(1)
 
+def print_logo():
+    if "--install" not in sys.argv:
+        logo_fname = os.path.join(os.path.dirname(__file__), 'logo.txt')
+        with open(logo_fname, 'rb') as f:
+            logo = f.read().decode('utf-8')
+            print(logo)
+            time.sleep(1)
+
+
+def setup_configurations():
+    conf_file = [
+        "conf/slpkg.conf",
+        "conf/repositories.conf",
+        "conf/blacklist",
+        "conf/slackware-mirrors",
+        "conf/default-repositories",
+        "conf/custom-repositories",
+        "conf/rlworkman.deps",
+        "conf/pkg_security"
+    ]
+    if not os.path.exists(_meta_.conf_path):
+        os.makedirs(_meta_.conf_path)
+    for conf in conf_file:
+        filename = conf.split("/")[-1]
+        if os.path.isfile(_meta_.conf_path + filename):
+            old = md5(_meta_.conf_path + filename)
+            new = md5(conf)
+            if old != new:
+                shutil.copy2(_meta_.conf_path + filename,
+                             _meta_.conf_path + filename + ".old")
+
+print_logo()
+setup_configurations()
 
 setup(
     name="slpkg",
@@ -68,6 +94,17 @@ setup(
     url="https://github.com/dslackw/slpkg",
     package_data={"": ["LICENSE", "README.rst", "CHANGELOG"]},
     install_requires=INSTALLATION_REQUIREMENTS,
+    data_files=[("man/man8", ["man/slpkg.8"]),
+                ("/etc/bash_completion.d", ["conf/slpkg.bash-completion"]),
+                ("/etc/fish/completions", ["conf/slpkg.fish"]),
+                (_meta_.conf_path, ["conf/slpkg.conf"]),
+                (_meta_.conf_path, ["conf/repositories.conf"]),
+                (_meta_.conf_path, ["conf/blacklist"]),
+                (_meta_.conf_path, ["conf/slackware-mirrors"]),
+                (_meta_.conf_path, ["conf/default-repositories"]),
+                (_meta_.conf_path, ["conf/custom-repositories"]),
+                (_meta_.conf_path, ["conf/rlworkman.deps"]),
+                (_meta_.conf_path, ["conf/pkg_security"])],
     extras_require={
         "optional": OPTIONAL_REQUIREMENTS,
         "docs": DOCS_REQUIREMENTS,
@@ -89,58 +126,3 @@ setup(
         "Topic :: Utilities"],
     long_description=open("README.rst").read()
     )
-
-# Install man page and configuration files with pip.
-if "install" in sys.argv:
-    man_path = "/usr/man/man8/"
-    if not os.path.exists(man_path):
-        os.makedirs(man_path)
-    man_page = "man/slpkg.8"
-    gzip_man = "man/slpkg.8.gz"
-    print("Installing '{0}' man pages".format(gzip_man.split("/")[1]))
-    f_in = open(man_page, "rb")
-    f_out = gzip.open(gzip_man, "wb")
-    f_out.writelines(f_in)
-    f_out.close()
-    f_in.close()
-    shutil.copy2(gzip_man, man_path)
-
-    bash_completion = "/etc/bash_completion.d/"
-    fish_completion = "/etc/fish/completions/"
-    completion_file = [
-        "conf/slpkg.bash-completion",
-        "conf/slpkg.fish"
-    ]
-    if not os.path.exists(bash_completion):
-        os.makedirs(bash_completion)
-    print("Installing '{0}' file".format(completion_file[0].split("/")[1]))
-    shutil.copy2(completion_file[0], bash_completion)
-    os.chmod(bash_completion + completion_file[0].split("/")[1], 744)
-    if os.path.exists(fish_completion):
-        print("Installing '{0}' file".format(completion_file[1].split("/")[1]))
-        shutil.copy2(completion_file[1], fish_completion)
-        os.chmod(fish_completion + completion_file[1].split("/")[1], 744)
-    conf_file = [
-        "conf/slpkg.conf",
-        "conf/repositories.conf",
-        "conf/blacklist",
-        "conf/slackware-mirrors",
-        "conf/default-repositories",
-        "conf/custom-repositories",
-        "conf/rlworkman.deps",
-        "conf/pkg_security"
-    ]
-    if not os.path.exists(_meta_.conf_path):
-        os.makedirs(_meta_.conf_path)
-    for conf in conf_file:
-        filename = conf.split("/")[-1]
-        print("Installing '{0}' file".format(filename))
-        if os.path.isfile(_meta_.conf_path + filename):
-            old = md5(_meta_.conf_path + filename)
-            new = md5(conf)
-            if old != new:
-                shutil.copy2(conf, _meta_.conf_path + filename + ".new")
-        else:
-            shutil.copy2(conf, _meta_.conf_path)
-    shutil.copy2(conf_file[0],
-                 _meta_.conf_path + conf_file[0].split("/")[-1] + ".orig")

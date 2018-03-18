@@ -21,6 +21,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+import os
 
 from slpkg.utils import Utils
 from slpkg.splitting import split_package
@@ -34,7 +35,9 @@ class BlackList(object):
         self.meta = _meta_
         self.quit = False
         self.blackfile = "/etc/slpkg/blacklist"
-        self.black_conf = Utils().read_file(self.blackfile)
+        self.black_conf = ""
+        if os.path.isfile(self.blackfile):
+            self.black_conf = Utils().read_file(self.blackfile)
 
     def get_black(self):
         """Return blacklist packages from /etc/slpkg/blacklist
