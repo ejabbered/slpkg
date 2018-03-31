@@ -54,32 +54,6 @@ def print_logo():
             print(logo)
             time.sleep(1)
 
-
-current = os.getcwd() + "/"
-print current
-conf_file = [
-    "conf/slpkg.conf",
-    "conf/repositories.conf",
-    "conf/blacklist",
-    "conf/slackware-mirrors",
-    "conf/default-repositories",
-    "conf/custom-repositories",
-    "conf/rlworkman.deps",
-    "conf/pkg_security"
-]
-if not os.path.exists(_meta_.conf_path):
-    os.makedirs(_meta_.conf_path)
-for i, conf in enumerate(conf_file):
-    filename = conf.split("/")[-1]
-    if os.path.isfile(_meta_.conf_path + filename):
-        old = md5(_meta_.conf_path + filename)
-        new = md5(conf)
-        if old != new:
-            shutil.move(_meta_.conf_path + filename,
-                        _meta_.conf_path + filename + ".old")
-            shutil.move(current + conf, current + conf + ".new")
-            conf_file[i] = conf + ".new"
-
 print_logo()
 
 setup(
@@ -95,18 +69,10 @@ setup(
     author_email=_meta_.__email__,
     url="https://github.com/dslackw/slpkg",
     package_data={"": ["LICENSE", "README.rst", "CHANGELOG"]},
-    install_requires=INSTALLATION_REQUIREMENTS,
     data_files=[("man/man8", ["man/slpkg.8"]),
                 ("/etc/bash_completion.d", ["conf/slpkg.bash-completion"]),
-                ("/etc/fish/completions", ["conf/slpkg.fish"]),
-                (_meta_.conf_path, [conf_file[0]]),
-                (_meta_.conf_path, ["conf/repositories.conf"]),
-                (_meta_.conf_path, ["conf/blacklist"]),
-                (_meta_.conf_path, ["conf/slackware-mirrors"]),
-                (_meta_.conf_path, ["conf/default-repositories"]),
-                (_meta_.conf_path, ["conf/custom-repositories"]),
-                (_meta_.conf_path, ["conf/rlworkman.deps"]),
-                (_meta_.conf_path, ["conf/pkg_security"])],
+                ("/etc/fish/completions", ["conf/slpkg.fish"])],
+    install_requires=INSTALLATION_REQUIREMENTS,
     extras_require={
         "optional": OPTIONAL_REQUIREMENTS,
         "docs": DOCS_REQUIREMENTS,
@@ -129,6 +95,29 @@ setup(
     long_description=open("README.rst").read()
     )
 
-for f in os.listdir(_meta_.conf_path):
-    if f.endswith(".old"):
-        shutil.move(_meta_.conf_path + f, _meta_.conf_path + f[:-4])
+# Install man page and configuration files with pip.
+if "install" in sys.argv:
+    conf_file = [
+        "conf/slpkg.conf",
+        "conf/repositories.conf",
+        "conf/blacklist",
+        "conf/slackware-mirrors",
+        "conf/default-repositories",
+        "conf/custom-repositories",
+        "conf/rlworkman.deps",
+        "conf/pkg_security"
+    ]
+    if not os.path.exists(_meta_.conf_path):
+        os.makedirs(_meta_.conf_path)
+    for conf in conf_file:
+        filename = conf.split("/")[-1]
+        print("Installing '{0}' file".format(filename))
+        if os.path.isfile(_meta_.conf_path + filename):
+            old = md5(_meta_.conf_path + filename)
+            new = md5(conf)
+            if old != new:
+                shutil.copy2(conf, _meta_.conf_path + filename + ".new")
+        else:
+            shutil.copy2(conf, _meta_.conf_path)
+    shutil.copy2(conf_file[0],
+                 _meta_.conf_path + conf_file[0].split("/")[-1] + ".orig")

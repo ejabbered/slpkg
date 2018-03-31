@@ -80,7 +80,10 @@ find -L . \
  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
-# Python 3 support temporarily is out until new Slackware version release
+# avoid pip installs
+sed -i 's/if "install"/if ""/' setup.py
+
+# Python 3 support temporarily is out until new Slackware version
 # will be release
 # if [ "$PYTHON3" = "yes" ]; then
 #  sh convert-py3k
@@ -91,6 +94,17 @@ $PYTHON setup.py install --root=$PKG
 
 find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
+
+mkdir -p $PKG/etc/slpkg
+# install configurations files
+CONFIGS="slpkg.conf repositories.conf blacklist slackware-mirrors default-repositories \
+    custom-repositories rlworkman.deps pkg_security"
+for file in $CONFIGS; do
+    install -D -m0644 conf/$file $PKG/etc/slpkg/${file}.new
+done
+
+# keep original configuration file for reset
+cp -p conf/slpkg.conf $PKG/etc/slpkg/slpkg.conf.orig
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cp -a README.rst ChangeLog.txt LICENSE TESTING ISSUES KNOWN_ISSUES REPOSITORIES \
