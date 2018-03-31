@@ -95,7 +95,7 @@ setup(
     long_description=open("README.rst").read()
     )
 
-# Install man page and configuration files with pip.
+# Install configuration files with pip.
 if "install" in sys.argv:
     conf_file = [
         "conf/slpkg.conf",
