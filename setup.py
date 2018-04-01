@@ -111,7 +111,6 @@ if "install" in sys.argv:
         os.makedirs(_meta_.conf_path)
     for conf in conf_file:
         filename = conf.split("/")[-1]
-        print("Installing '{0}' file".format(filename))
         if os.path.isfile(_meta_.conf_path + filename):
             old = md5(_meta_.conf_path + filename)
             new = md5(conf)
