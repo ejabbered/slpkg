@@ -80,7 +80,7 @@ find -L . \
  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
-# avoid pip installs
+# skip pip installs
 sed -i 's/if "install"/if ""/' setup.py
 
 # Python 3 support temporarily is out until new Slackware version
