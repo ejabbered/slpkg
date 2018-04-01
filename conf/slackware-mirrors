@@ -3,7 +3,7 @@
 #
 # slackware-mirrors file is part of slpkg.
 #
-# Copyright 2014-2017 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
+# Copyright 2014-2018 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
 # All rights reserved.
 #
 # Slpkg is a user-friendly package manager for Slackware installations.
@@ -32,7 +32,7 @@
 # ----------------------------------------------------------------------------
 #
 #
-# Last Updated: Mon Jan 1 08:47:02 UTC 2018
+# Last Updated: Sun Apr 1 13:54:02 UTC 2018
 #
 # Available https mirrors:
 #
@@ -40,6 +40,7 @@
 # bg		 https://mirrors.netix.net/slackware/
 # ca		 https://mirror.csclub.uwaterloo.ca/slackware/
 # ca		 https://mirror.its.dal.ca/slackware/
+# cr		 https://mirrors.ucr.ac.cr/slackware/pub/slackware/
 # de		 https://ftp6.gwdg.de/pub/linux/slackware/
 # de		 https://linux.rz.rub.de/slackware/
 # de		 https://mirror.de.leaseweb.net/slackware/
@@ -48,7 +49,7 @@
 # ec		 https://mirror.cedia.org.ec/slackware/
 # gb		 https://lon.mirror.rackspace.com/slackware/
 # gb		 https://mirror.bytemark.co.uk/slackware/
-# gb		 https://www.mirrorservice.org/sites/ftp.slackware.com/pub/slackware/
+# gb		  https://www.mirrorservice.org/sites/ftp.slackware.com/pub/slackware/
 # gr		 https://ftp.cc.uoc.gr/mirrors/linux/slackware/
 # hk		 https://hkg.mirror.rackspace.com/slackware/
 # id		 https://iso.ukdw.ac.id/slackware/
@@ -56,6 +57,7 @@
 # ie		 https://ftp.heanet.ie/mirrors/ftp.slackware.com/pub/slackware/
 # it		 https://ba.mirror.garr.it/mirrors/Slackware/
 # lt		 https://mirrors.atviras.lt/slackware/
+# nl		 https://ftp.nluug.nl/os/Linux/distr/slackware/
 # nl		 https://mirror.koddos.net/slackware/
 # nl		 https://mirror.nl.leaseweb.net/slackware/
 # pl		 https://ftp.slackware.pl/pub/slackware/
@@ -87,6 +89,7 @@
 # au		 http://mirror.as24220.net/pub/slackware/slackware64-14.2/
 # au		 http://mirror.internode.on.net/pub/slackware/
 # au		 http://slackware.mirror.digitalpacific.com.au/
+# bg		 http://mirrors.slackware.bg/slackware/
 # bg		 http://mirrors.unixsol.org/slackware/
 # bg		 http://slackware.telecoms.bg/slackware/
 # bg		 http://x.ultranet.biz/slackware/
@@ -95,10 +98,10 @@
 # br		 http://slackmirror.cbpf.br/pub/slackware/
 # by		 http://mirror.datacenter.by/pub/slackware/
 # ch		 http://mirror.switch.ch/ftp/mirror/slackware/
-# cr		 http://mirrors.ucr.ac.cr/slackware/pub/slackware/
 # cz		 http://ftp.linux.cz/pub/linux/slackware/
 # de		 http://download.dlackware.com/slackware/
 # de		 http://ftp.tu-chemnitz.de/pub/linux/slackware/
+# de		 http://mirrors.nav.ro/slackware/
 # fr		 http://bear.alienbase.nl/mirrors/slackware/
 # fr		 http://nephtys.lip6.fr/pub/linux/distributions/slackware/
 # fr		 http://nephtys.lip6.fr/pub/linux/distributions/slackware/
@@ -113,14 +116,11 @@
 # jp		 http://ftp.riken.jp/Linux/slackware/
 # lt		 http://slackware.laukas.lt
 # nc		 http://mirror.lagoon.nc/pub/slackware/
-# nl		 http://ftp.nluug.nl/os/Linux/distr/slackware/
 # nl		 http://omegageek.noip.me/mirrors/slackware/
-# nl		 http://slackware.bokxing-it.nl/mirror/
 # no		 http://ftp.slackware.no/slackware/
 # nz		 http://ftp.slackware.org.nz/slackware/
 # ph		 http://mirror.rise.ph/slackware/
 # pl		 http://mirror.onet.pl/pub/mirrors/slackware/
-# ru		 http://slackware.falseking.org/slackware/
 # ru		 http://slackware.tsu.ru/slackware/
 # tr		 http://ftp.linux.org.tr/slackware/
 # tw		 http://ftp.isu.edu.tw/pub/Linux/Slackware/
@@ -144,6 +144,7 @@
 # au		 ftp://mirror.internode.on.net/pub/slackware/
 # au		 ftp://syd.mirror.rackspace.com/slackware/
 # bg		 ftp://mirrors.netix.net/slackware/
+# bg		 ftp://mirrors.slackware.bg/slackware/
 # bg		 ftp://mirrors.unixsol.org/slackware/
 # bg		 ftp://slackware.telecoms.bg/slackware/
 # br		 ftp://ftp.slackware-brasil.com.br/
@@ -159,6 +160,7 @@
 # de		 ftp://linux.rz.rub.de/slackware/
 # de		 ftp://mirror.de.leaseweb.net/slackware/
 # de		 ftp://mirror.netcologne.de/slackware/
+# de		 ftp://mirrors.nav.ro/slackware/
 # dk		 ftp://mirrors.dotsrc.org/slackware/
 # ec		 ftp://mirror.cedia.org.ec/slackware/
 # gb		 ftp://ftp.mirrorservice.org/sites/ftp.slackware.com/pub/slackware/
