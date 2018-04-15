@@ -47,8 +47,8 @@ Slpkg works in accordance with the standards of the organization slackbuilds.org
 to builds packages. Also uses the Slackware Linux instructions for installation,
 upgrading or removing packages. 
 
-What makes slpkg to distinguish it from other tools; The user friendliness is its primary 
-target as well as easy to understand and use, also use color to highlight packages and 
+What makes slpkg to distinguish it from the other tools; The user friendliness it's a primary 
+target as well as easy to understand and use, also use colors to highlight packages and 
 display warning messages, etc.
 
 
@@ -143,7 +143,7 @@ Stay updated, see `SUN (Slackware Update Notifier) <https://github.com/dslackw/s
 Upgrade
 -------
 
-Since the version '2.1.4' you can update slpkg itself with '# slpkg update slpkg'.
+Since the version '2.1.4' you can update slpkg itself with the command '# slpkg update slpkg'.
 In each slpkg upgrade you will have to keep track of changes to the configuration files 
 in the directory '/etc/slpkg'.
 
@@ -219,10 +219,11 @@ Default available Repositories:
   Versions: {14,1, 14.2}
 
 
-* Choose default repositories you need to work from file '/etc/slpkg/repositories.conf' defaults
-  are 'slack' and 'sbo' repositories and read REPOSITORIES file for each of the particularities.
-  If a repository is not in the above list, manage custom repositories with commands 'repo-add'
-  and 'repo-remove'.
+* Choose default repositories you need to work from the file '/etc/slpkg/repositories.conf' 
+  defaults are 'slack' and 'sbo' repositories and please read the REPOSITORIES file for each 
+  of the particularities.
+  If a repository is not in the above list, manage the custom repositories with the commands 
+  'repo-add' and 'repo-remove'.
 
 
 Usage
@@ -236,21 +237,21 @@ run '# slpkg repo-enable' (python2-pythondialog required).
 Add custom repositories with the command '# slpkg add-repo <repository name> <URL>' and after
 run '# slpkg update' to update package list.
 
-View list of repositories with command '# slpkg repo-list' or get repository information with
-the command '# slpkg repo-info <repository>.
+View list of repositories with the command '# slpkg repo-list' or get repository information 
+with the command '# slpkg repo-info <repository>.
 
 Update slpkg itself simply run '# slpkg update slpkg', and slpkg check from GitHub repository if
 new versions are available.
 
 Checking packages health with the command "# slpkg health" and slpkg check if the files missing from the package file list.
 
-Print dependencies status used by packages with the command '# slpkg deps-status' or drawing 
-image map dependencies with the additional option '--graph=[image]'.
+Print the dependencies status used by packages with the command '# slpkg deps-status' or 
+drawing image map dependencies with the additional option '--graph=[image]'.
 
-Manage .new configuration files with command 'slpkg new-config' like remove, overwrite, merge etc.
+Manage .new configuration files with the command 'slpkg new-config' like remove, overwrite, merge etc.
 
 If you have already downloaded the script and the source code you can build the package with 
-the command '# slpkg <sbo_script.tar.gz> <sources>'.
+the command '# slpkg -a <sbo_script.tar.gz> <sources>'.
 
 Manage the packages in the black list with the command '# slpkg -b <packages> --add or --remove'.
 
@@ -265,15 +266,15 @@ Combine with the command 'grep' to catch the results you want.
 
 Check and upgrade your distribution or upgrade your packages with the command '# slpkg -c <repository> 
 --upgrade'. Don't forget to update the packages list before (for 'slack' repository it's not necessary).
-This command except upgrade packages will fix packages with the broken dependencies. Switch off 
-automatic resolve dependencies with the additional option '--resolve-off'. 
-Use '--checklist' option to help you to choose easy the packages. For advanced users, 
+This command except upgrade the packages will fix the packages with the broken dependencies. 
+Switch off the automatic resolve dependencies with the additional option '--resolve-off'. 
+Use '--checklist' option to help you to choose easy the packages. For advanced users, the 
 option '--skip' give them more power (see man page).
 
 The most famous command is '# slpkg -s <repository> <packages>', this command downloads, build 
 and installs packages with the resolve all the dependencies or switch off resolve with the 
 additional option '--resolve-off'. 
-Also additional option "--case-ins" help you find the packages with case insensitive.
+Also the additional option "--case-ins" help you find the packages with case insensitive.
 Two new arguments will help you to rebuild '--rebuild' or reinstall '--reinstall' packages.
 The last one argument "--patches" help you to switch in the patches/ directory only for slack
 repository.
