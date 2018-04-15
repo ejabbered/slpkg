@@ -143,9 +143,9 @@ Stay updated, see `SUN (Slackware Update Notifier) <https://github.com/dslackw/s
 Upgrade
 -------
 
-From version '2.1.4' you can update slpkg itself with '# slpkg update slpkg'.
-In each slpkg upgrade should track the configuration files in the folder '/etc/slpkg' 
-for changes.
+Since the version '2.1.4' you can update slpkg itself with '# slpkg update slpkg'.
+In each slpkg upgrade you will have to keep track of changes to the configuration files 
+in the directory '/etc/slpkg'.
 
 
 Demonstration
@@ -219,8 +219,8 @@ Default available Repositories:
   Versions: {14,1, 14.2}
 
 
-* Choose default repositories you need to work from file '/etc/slpkg/repositories.conf' default 
-  is 'slack' and 'sbo' repositories and read REPOSITORIES file for each of the particularities.
+* Choose default repositories you need to work from file '/etc/slpkg/repositories.conf' defaults
+  are 'slack' and 'sbo' repositories and read REPOSITORIES file for each of the particularities.
   If a repository is not in the above list, manage custom repositories with commands 'repo-add'
   and 'repo-remove'.
 
@@ -228,8 +228,8 @@ Default available Repositories:
 Usage
 -----
 
-Need to run '# slpkg update' for the first time to synchronize the list of packages,
-also every time you add a new repository.
+First need to run '# slpkg update' to synchronize the list of packages, also every time you add
+a new repository.
 To add or remove repositories must edit the file '/etc/slpkg/repositories.conf' or
 run '# slpkg repo-enable' (python2-pythondialog required).
 
@@ -237,74 +237,70 @@ Add custom repositories with the command '# slpkg add-repo <repository name> <UR
 run '# slpkg update' to update package list.
 
 View list of repositories with command '# slpkg repo-list' or get repository information with
-command '# slpkg repo-info <repository>.
+the command '# slpkg repo-info <repository>.
 
 Update slpkg itself simply run '# slpkg update slpkg', and slpkg check from GitHub repository if
 new versions are available.
 
-Checking packages health with command "# slpkg health" and slpkg check if files missing from 
-package file list.
+Checking packages health with the command "# slpkg health" and slpkg check if the files missing from the package file list.
 
-Print dependencies status used by packages with command '# slpkg deps-status' or drawing image 
-map dependencies with additional option '--graph=[image]'.
+Print dependencies status used by packages with the command '# slpkg deps-status' or drawing 
+image map dependencies with the additional option '--graph=[image]'.
 
 Manage .new configuration files with command 'slpkg new-config' like remove, overwrite, merge etc.
 
 If you have already downloaded the script and the source code you can build the package with 
-the command '# slpkg <script.tar.gz> <sources>'.
+the command '# slpkg <sbo_script.tar.gz> <sources>'.
 
-Manage packages in the black list with the command '# slpkg -b <packages> --add or --remove'.
+Manage the packages in the black list with the command '# slpkg -b <packages> --add or --remove'.
 
-Add SBo packages to queue with command '# slpkg -q <packages> --add or --remove' and manage as 
-build, install or build and install with command '# slpkg build or install or build-install'.
-This is very useful if you want to install multiple packages together suffice to add in the right 
-order if there are dependent packages.
+Add the SBo packages to queue with the command '# slpkg -q <packages> --add or --remove' and 
+manage as build, install or build and install with the command '# slpkg build or install or 
+build-install'.
+This is very useful if you want to install multiple packages together suffice to add in the 
+right order if there are dependent packages.
 
-View list of packages from specific repository with command '# slpkg -l <repository>'.
+View list of the packages from specific repository with command '# slpkg -l <repository>'.
 Combine with the command 'grep' to catch the results you want.
 
-Check and upgrade your distribution or upgrade your packages with command '# slpkg -c <repository> 
---upgrade'. Don't forget to update packages list before (for 'slack' repository it is not necessary).
-This command except upgrade packages will fix packages with broken dependencies. Switch  off automatic
-resolve dependencies with additional option '--resolve-off'. Use '--checklist' option to help you
-to choose easy packages. For advanced users, option '--skip' give them more power (see man page).
+Check and upgrade your distribution or upgrade your packages with the command '# slpkg -c <repository> 
+--upgrade'. Don't forget to update the packages list before (for 'slack' repository it's not necessary).
+This command except upgrade packages will fix packages with the broken dependencies. Switch off 
+automatic resolve dependencies with the additional option '--resolve-off'. 
+Use '--checklist' option to help you to choose easy the packages. For advanced users, 
+option '--skip' give them more power (see man page).
 
-The most famous command is '# slpkg -s <repository> <packages>' , this command downloads and 
-installs packages with resolve all the dependencies or switch off resolve with additional option
-'--resolve-off'. Also additional option "--case-ins" help you find packages with case insensitive.
+The most famous command is '# slpkg -s <repository> <packages>', this command downloads, build 
+and installs packages with the resolve all the dependencies or switch off resolve with the 
+additional option '--resolve-off'. 
+Also additional option "--case-ins" help you find the packages with case insensitive.
 Two new arguments will help you to rebuild '--rebuild' or reinstall '--reinstall' packages.
 The last one argument "--patches" help you to switch in the patches/ directory only for slack
 repository.
 
 Tracking the dependencies of a package with command '# slpkg -t <repository> <package>'.
-Displays a package dependency tree and also tells you which ones are installed on your system events.
-Check if packages used from other packages with additional option '--check-deps' or drawing image 
-map dependencies with additional option '--graph=[image]'.
+Displays a package dependency tree and also shows to you which ones are installed on your 
+system events.
+Check if the packages used from other packages with the additional option '--check-deps' or 
+drawing image map dependencies with the additional option '--graph=[image]'.
 
-Get information description of a package with command '# slpkg -p <repository> <package>' and change
-color text with additional flag '--color=[]'.
+Get information description of a package with the command '# slpkg -p <repository> <package>' 
+and change the color of text with the additional flag '--color=[]'.
 
-View a page SBo package on your terminal with command '# slpkg -n <package>' and then manage multiple 
-choices such read, download, build, install etc.
+View a SBo package page on your terminal with command '# slpkg -n <package>' and then manage 
+multiple choices such read, download, build, install etc.
 
-If you want to find packages from all repositories, this command will solve your hands '# slpkg -F 
-<packages>'. It will search in all enabled repositories will find the configuration file 
-'/etc/slpkg/repositories.conf' will print all the packages that match the description that you enter.
+If you want to find the packages of all the repositories, that command will solve your hands '# slpkg -F <packages>'. It will search in all the enabled repositories will find the configuration file '/etc/slpkg/repositories.conf' will print all the packages that match the description that you enter.
 
-If you want to see if any packages are installed on your system enter the command '# slpkg -f <packages>'.
-The surprise in the end is the reporting of packages sum and size found.
+If you want to see if any packages are installed on your system enter the command '# slpkg -f <packages>'. The surprise in the end is the reporting of the packages sum and size that found.
 
 The next four commands '# slpkg --installpkg, --upgradepkg, --removepkg <packages>' install, upgrade, 
 remove packages from your system events.
-Notable mention must give the command '# slpkg --removepkg <packages>' which can remove a packages 
-with all dependencies together after editing configuration file '/etc/slpkg/slpkg.conf' 
-(default is disable) or add additional option "--deps". Also you can check if packages used as 
-dependency with additional option 
-"--check-deps". Option "--tag" allow to remove packages with by TAG.
-Optional you can use dialog utility with additional option "--checklist" (require python2-pythondialog).
+Notable mention must give the command '# slpkg --removepkg <packages>' which can remove the packages with all dependencies together after editing configuration file '/etc/slpkg/slpkg.conf' 
+(default is disable) or add additional option "--deps". Also you can check if the packages used as dependency with additional the option "--check-deps". Option "--tag" allow to remove packages with by TAG.
+Optional you can use the dialog utility with the additional option "--checklist" (require python2-pythondialog).
 
-The last command is useful to print the entire contents of a package installed on the system with the
-command '# slpkg -d <packages>'.
+The last command is useful to print the entire contents of a package installed on the system with the command '# slpkg -d <packages>'.
 
 Some examples you will see below.
 
@@ -325,7 +321,8 @@ and x86 'current' version 14.2.
 Slackware Current
 -----------------
 
-For Slackware 'current' users must change the variable VERSION in '/etc/slpkg/slpkg.conf' file.
+For Slackware 'current' users must to change the variable VERSION in '/etc/slpkg/slpkg.conf' 
+file.
 
 .. code-block:: bash
 
@@ -335,7 +332,7 @@ For Slackware 'current' users must change the variable VERSION in '/etc/slpkg/sl
 Slackware ARM
 -------------
 
-Must use only two repositories currently there 'slack' and 'sbo'.
+Must you use only two repositories currently there are 'slack' and 'sbo'.
 
 
 Slackware Mirrors
@@ -527,7 +524,7 @@ Slpkg Examples
 --------------
 
 Enable or disable default repositories, edit /etc/slpkg/repositories.conf file or with 
-command.
+the command.
 (require pythondialog, install with '# slpkg -s sbo python2-pythondialog'):
 
 .. code-block:: bash
@@ -802,8 +799,8 @@ Build packages and passing variables to the script:
     $ slpkg -a ffmpeg.tar.gz ffmpeg-2.1.5.tar.bz2
 
     
-Tracking all dependencies of packages,
-and also displays installed packages:
+Tracking all the dependencies of packages,
+and also displays the installed packages:
 
 .. code-block:: bash
 
@@ -827,7 +824,7 @@ and also displays installed packages:
      +--5 libunique
 
     
-Check if dependencies used:
+Check if the dependencies used:
 
 .. code-block:: bash
 
@@ -851,7 +848,7 @@ Check if dependencies used:
      +--5: werkzeug is dependency --> Flask
 
     
-Drawing dependencies diagram:
+Drawing the dependencies diagram:
 
 .. code-block:: bash
 
@@ -886,7 +883,7 @@ Drawing dependencies diagram:
    :target: https://raw.githubusercontent.com/dslackw/images/master/slpkg/deps3.png
 
 
-Drawing dependencies ascii diagram:
+Drawing the dependencies ascii diagram:
 
 .. code-block:: bash
    
@@ -919,7 +916,7 @@ Drawing dependencies ascii diagram:
       +-------------------------------------+
 
 
-Print dependencies status used by packages:
+Print the dependencies status used by packages:
 
 .. code-block:: bash
    
@@ -953,7 +950,7 @@ Print dependencies status used by packages:
     Found 19 dependencies in 4 packages.
 
 
-Use additional option "--graph=[image]" to drawing dependencies diagram:
+Use the additional option "--graph=[image]" to drawing the dependencies diagram:
 
 .. code-block:: bash
 
@@ -962,11 +959,11 @@ Use additional option "--graph=[image]" to drawing dependencies diagram:
 .. image:: https://raw.githubusercontent.com/dslackw/images/master/slpkg/deps.png
     :target: https://raw.githubusercontent.com/dslackw/images/master/slpkg/deps.png
 
-Check if your packages is up to date or changes in ChangeLog.txt:
+Check if your packages is up to date or the changes in ChangeLog.txt:
 
 .. code-block:: bash
 
-    You can check ChangeLog.txt for changes before with command:
+    You can check the ChangeLog.txt for changes before with the command:
 
     $ slpkg -c sbo
 
@@ -980,7 +977,7 @@ Check if your packages is up to date or changes in ChangeLog.txt:
     From 1 repositories need 1 updating. Run the command 'slpkg update'.
 
 
-And check if packages need upgrade with:
+And check if the packages need upgrade with:
 
 .. code-block:: bash
 
@@ -1034,9 +1031,9 @@ And check if packages need upgrade with:
 
 
 Check if your Slackware distribution is up to date.
-This option works independently of the others i.e not need before updating the list of
+This option works independently of the others i.e not need before you updating the list of
 packages by choosing "# slpkg update", works directly with the official repository and
-why always you can have updated your system:
+why always you should have update your system:
 
 .. code-block:: bash
 
@@ -1074,7 +1071,7 @@ Upgrade only distribution:
                                                                   // ktown repository
                                                                   // and multilib
                                                                   // from multi.
-Skip packages when upgrading:
+Skip the packages when upgrading:
 
 .. code-block:: bash
 
@@ -1137,7 +1134,7 @@ Read files, download, build or install:
       Choose an option > _
 
 
-Use dialog utility to help you find a packages:
+Use the dialog utility to help you find the packages:
 
 .. code-block:: bash
     
@@ -1160,7 +1157,7 @@ Use dialog utility to help you find a packages:
     :target: https://github.com/dslackw/slpkg
 
      
-Auto tool to build package:
+Auto tool to build a package:
 
 .. code-block:: bash
 
@@ -1241,7 +1238,7 @@ Auto tool to build package:
     Total build time for package termcolor : 1 Sec
 
 
-Upgrade, install packages like Slackware command '# upgradepkg --install-new':
+Upgrade, install the packages like Slackware command '# upgradepkg --install-new':
 
 .. code-block:: bash
 
@@ -1293,7 +1290,7 @@ Slpkg auto detect Slackware binary packages (.tgz, .txz, .tlz and .tbz) for inst
      > _
 
     
-Search for packages from the enabled repositories:
+Search for the packages from the enabled repositories:
 
 .. code-block:: bash
    
@@ -1336,7 +1333,7 @@ Search for packages from the enabled repositories:
     Total found 7 packages in 3 repositories.
 
 
-Find installed packages:
+Find the installed packages:
 
 .. code-block:: bash
 
@@ -1446,7 +1443,7 @@ Removes a previously installed Slackware binary packages:
     +==============================================================================
 
 
-Remove packages with all dependencies and check if used as dependency:
+Remove packages with all the dependencies and check if used as dependency:
 (Presupposes install with the option '# slpkg -s <repository> <packages>')
 
 .. code-block:: bash
@@ -1510,7 +1507,7 @@ Remove packages with all dependencies and check if used as dependency:
     | Package werkzeug-0.9.4 removed
     +==============================================================================
 
-Remove packages with by TAG:
+Remove the packages with by TAG:
 
 .. code-block:: bash
     
@@ -1539,7 +1536,7 @@ Remove packages with by TAG:
 
     Are you sure to remove 14 packages [y/N]? 
 
-Remove packages using dialog utility:
+Remove the packages using dialog utility:
 
 .. code-block:: bash
 
@@ -1562,7 +1559,7 @@ Remove packages using dialog utility:
    :target: https://github.com/dslackw/slpkg
 
 
-Build and install packages that have added to the queue:
+Build and install the packages that have added to the queue:
 
 .. code-block:: bash
 
@@ -1597,7 +1594,7 @@ Build and install packages that have added to the queue:
     $ slpkg -q build-install (build and install)
 
 
-Add or remove packages in blacklist file manually from 
+Add or remove the packages in blacklist file manually from 
 /etc/slpkg/blacklist or with the following options:
 
 .. code-block:: bash
@@ -1634,7 +1631,7 @@ Add or remove packages in blacklist file manually from
     multi:*multilib*   \\ Add all packages include string "multilib" from "multi"
                        \\ repository.
     
-Print package description:
+Print a package description:
 
 .. code-block:: bash
 
@@ -1664,7 +1661,7 @@ Python modules
 Slpkg has been designed it to work as cli tool however you can use some modules in your
 own python code.
 
-Get package dependencies from sbo repository:
+Get the package dependencies from the sbo repository:
 
 .. code-block:: bash
 
@@ -1688,9 +1685,9 @@ Example from binary repository:
     >>> Dependencies(repo="slonly", black="").binary(name"Flask", flag="")
     [['Jinja2', 'click', 'itsdangerous', 'werkzeug'], ['MarkupSafe']]
 
-Grab packages from sbo repository:
+Grab packages from the sbo repository:
 
-Get all package names:
+Get all the package names:
 
 .. code-block:: bash
 
@@ -1698,7 +1695,7 @@ Get all package names:
     >>> SBoGrep(name="").names()
     ...
 
-Grab package sources links:
+Grab the package sources links:
 
 .. code-block:: bash
 
@@ -1707,35 +1704,35 @@ Grab package sources links:
     8cdb6d0/jdk-8u152-linux-x64.tar.gz'
 
 
-Grap package requires:
+Grap a package requires:
 
 .. code-block:: bash
 
     >>> SBoGrep(name="Flask").requires()
     ['werkzeug', 'Jinja2', 'itsdangerous', 'click']
 
-Grap package checksum:
+Grap a package checksum:
 
 .. code-block:: bash
 
     >>> SBoGrep(name="Flask").checksum()
     ['97278dfdafda98ba7902e890b0289177']
 
-Grap package description:
+Grap a package description:
 
 .. code-block:: bash
 
     >>> SBoGrep(name="Flask").description()
     'Flask (Microframework for Python)'
 
-Grap package files:
+Grap the package files:
 
 .. code-block:: bash
 
     >>> SBoGrep(name="Flask").files()
     'Flask.SlackBuild Flask.info README slack-desc'
 
-Grab packages for binary repository:
+Grab the packages for binary repository:
 
 .. code-block:: bash
 
@@ -1744,7 +1741,7 @@ Grab packages for binary repository:
     >>> PACKAGES_TXT, mirror = RepoInit("slonly").fetch()
     >>> name, location, size, unsize = repo_data(PACKAGES_TXT, repo="slonly", flag="")
 
-Find package url from sbo repository:
+Find a package url from the sbo repository:
 
 .. code-block:: bash
 
@@ -1760,7 +1757,7 @@ Check if the package exist in the binary repository:
     >>> search_pkg(name="vlc", repo="alien")
     'vlc'
 
-Read files from sbo repository:
+Read files from the sbo repository:
 
 .. code-block:: bash
 
@@ -1809,7 +1806,7 @@ Read files from sbo repository:
     in/gtk-update-icon-cache -f usr/share/icons/$theme >/dev/null 2>&1\n    fi\n  do
     ne\nfi\
 
-Get Slackware version:
+Get the Slackware version:
 
 .. code-block:: bash
 
@@ -1817,7 +1814,7 @@ Get Slackware version:
     >>> slack_ver()
     '14.2'
 
-Find Slackware package:
+Find a Slackware package:
 
 .. code-block:: bash
 
@@ -1825,7 +1822,7 @@ Find Slackware package:
     >>> find_package(find_pkg="vlc", directory="/var/log/packages/")
     ['vlc-2.2.6-x86_64-1alien']
 
-Check for installed packages:
+Check for the installed packages:
 
 .. code-block:: bash
 
