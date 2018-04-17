@@ -108,7 +108,7 @@ class BuildPackage(object):
                 sum_time = build_time(self.start_time)
                 # write end in log file
                 log_end(self.build_logs, self.log_file, sum_time)
-                print("Total build time for package {0} : {1}\n".format(
+                print("Total build time for the package {0} : {1}\n".format(
                     self.prgnam, sum_time))
             else:
                 subprocess.call("{0} ./{1}.SlackBuild".format(

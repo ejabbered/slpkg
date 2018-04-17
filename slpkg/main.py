@@ -99,8 +99,8 @@ class ArgParse(object):
             "-F", "--FIND",
             "-f", "--find"
         ] and self.args[1] == repo and repo in enabled_repos:
-            print("\n  Please update packages lists. Run 'slpkg update'.\n" +
-                  "  This command should be used to synchronize packages\n" +
+            print("\n  Please update the packages lists. Run 'slpkg update'.\n"
+                  "  This command should be used to synchronize the packages\n"
                   "  lists from the repositories are enabled.\n")
             raise SystemExit()
 

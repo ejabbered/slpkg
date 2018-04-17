@@ -56,9 +56,9 @@ class Msg(object):
         print("| Some error on the package {0} [ {1}FAILED{2} ]".format(
             prgnam, self.meta.color["RED"], self.meta.color["ENDC"]))
         self.template(78)
-        print("| See log file in '{0}/var/log/slpkg/sbo/build_logs{1}' "
-              "directory or read README".format(self.meta.color["CYAN"],
-                                                self.meta.color["ENDC"]))
+        print("| See the log file in '{0}/var/log/slpkg/sbo/build_logs{1}' "
+              "directory or read the README file".format(
+                  self.meta.color["CYAN"], self.meta.color["ENDC"]))
         self.template(78)
         print("")   # new line at end
 
@@ -139,9 +139,9 @@ class Msg(object):
         print("| {0}{1}*** WARNING ***{2}").format(
             " " * 27, self.meta.color["RED"], self.meta.color["ENDC"])
         self.template(78)
-        print("| Before proceed with package '{0}' will you must read the\n"
-              "| README file. You can use command 'slpkg -n {1}'").format(
-                  pkg, pkg)
+        print("| Before proceed with the package '{0}' will you must read\n"
+              "| the README file. You can use the command "
+              "'slpkg -n {1}'").format(pkg, pkg)
         self.template(78)
         print("")
 

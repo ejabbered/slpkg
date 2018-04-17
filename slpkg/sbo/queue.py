@@ -79,7 +79,7 @@ class QueuePkgs(object):
     def listed(self):
         """Print packages from queue
         """
-        print("\nPackages in queue:\n")
+        print("\nPackages in the queue:\n")
         for pkg in self.packages():
             if pkg:
                 print("{0}{1}{2}".format(self.meta.color["GREEN"], pkg,
@@ -93,7 +93,7 @@ class QueuePkgs(object):
         """
         queue_list = self.packages()
         pkgs = list(OrderedDict.fromkeys(pkgs))
-        print("\nAdd packages in queue:\n")
+        print("\nAdd packages in the queue:\n")
         with open(self.queue_list, "a") as queue:
             for pkg in pkgs:
                 find = sbo_search_pkg(pkg)
@@ -113,7 +113,7 @@ class QueuePkgs(object):
     def remove(self, pkgs):
         """Remove packages from queue
         """
-        print("\nRemove packages from queue:\n")
+        print("\nRemove packages from the queue:\n")
         with open(self.queue_list, "w") as queue:
             for line in self.queued.splitlines():
                 if line not in pkgs:

@@ -185,7 +185,7 @@ class PackageManager(object):
         removed, packages = self._get_removed()
         if packages and "--checklist" in self.extra:
             removed = []
-            text = "Press 'spacebar' to unchoose packages from remove"
+            text = "Press 'spacebar' to unchoose packages from the remove"
             backtitle = "{0} {1}".format(self.meta.__all__,
                                          self.meta.__version__)
             status = True
@@ -239,7 +239,7 @@ class PackageManager(object):
         if packages:
             if "--checklist" in self.extra:
                 deps, dependencies = [], []
-                text = "Found dependencies for package {0}".format(package)
+                text = "Found dependencies for the package {0}".format(package)
                 backtitle = "{0} {1}".format(self.meta.__all__,
                                              self.meta.__version__)
                 status = True
@@ -251,7 +251,8 @@ class PackageManager(object):
             else:
                 print("")   # new line at start
                 self.msg.template(78)
-                print("| Found dependencies for package {0}:".format(package))
+                print("| Found dependencies for the package {0}:".format(
+                    package))
                 self.msg.template(78)
                 for pkg in packages:
                     find = find_package(pkg + self.meta.sp, self.meta.pkg_path)
@@ -333,8 +334,8 @@ class PackageManager(object):
                         dependency.append(rmv)
             if package:
                 if "--checklist" in self.extra:
-                    text = ("Press 'spacebar' to choose packages to exception "
-                            "remove")
+                    text = ("Press 'spacebar' to choose packages for the remove"
+                            " exception")
                     backtitle = "{0} {1}".format(self.meta.__all__,
                                                  self.meta.__version__)
                     status = False

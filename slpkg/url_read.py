@@ -59,7 +59,7 @@ class URL(object):
             f = urllib2.urlopen(self.link)
             return f.read()
         except (urllib2.URLError, ValueError):
-            print("\n{0}Can't read file '{1}'{2}".format(
+            print("\n{0}Can't read the file '{1}'{2}".format(
                 self.meta.color["RED"], self.link.split("/")[-1],
                 self.meta.color["ENDC"]))
             return " "

@@ -272,8 +272,8 @@ class Patches(object):
         """Update packages list and ChangeLog.txt file after
         upgrade distribution
         """
-        print("{0}Update package lists ?{1}".format(self.meta.color["GREEN"],
-                                                    self.meta.color["ENDC"]))
+        print("{0}Update the package lists ?{1}".format(
+            self.meta.color["GREEN"], self.meta.color["ENDC"]))
         print("=" * 79)
         if self.msg.answer() in ["y", "Y"]:
             Update().repository(["slack"])

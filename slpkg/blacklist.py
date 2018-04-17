@@ -53,7 +53,7 @@ class BlackList(object):
     def listed(self):
         """Print blacklist packages
         """
-        print("\nPackages in blacklist:\n")
+        print("\nPackages in the blacklist:\n")
         for black in self.get_black():
             if black:
                 print("{0}{1}{2}".format(self.meta.color["GREEN"], black,
@@ -67,7 +67,7 @@ class BlackList(object):
         """
         blacklist = self.get_black()
         pkgs = set(pkgs)
-        print("\nAdd packages in blacklist:\n")
+        print("\nAdd packages in the blacklist:\n")
         with open(self.blackfile, "a") as black_conf:
             for pkg in pkgs:
                 if pkg not in blacklist:
@@ -82,7 +82,7 @@ class BlackList(object):
     def remove(self, pkgs):
         """Remove packages from blacklist
         """
-        print("\nRemove packages from blacklist:\n")
+        print("\nRemove packages from the blacklist:\n")
         with open(self.blackfile, "w") as remove:
             for line in self.black_conf.splitlines():
                 if line not in pkgs:
