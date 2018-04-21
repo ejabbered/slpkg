@@ -96,7 +96,7 @@ Using pip:
 
 .. code-block:: bash
     
-    $ pip install slpkg --upgrade
+    $ pip install https://github.com/dslackw/slpkg/archive/v3.3.6.tar.gz
     
     Uninstall:
 
