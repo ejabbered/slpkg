@@ -47,7 +47,7 @@ OPTIONAL_REQUIREMENTS = [
 
 
 def print_logo():
-    if "--install" not in sys.argv:
+    if "install" not in sys.argv:
         logo_fname = os.path.join(os.path.dirname(__file__), 'logo.txt')
         with open(logo_fname, 'rb') as f:
             logo = f.read().decode('utf-8')
