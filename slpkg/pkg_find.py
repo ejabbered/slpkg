@@ -75,8 +75,9 @@ class FindFromRepos(object):
                             size))
         print("\nFound summary")
         print("=" * 79)
-        print("{0}Total found {1} packages in {2} repositories.{3}\n".format(
-            self.grey, self.count_pkg, self.count_repo, self.endc))
+        print("{0}Total found {1} packages in {2} repositories."
+              "{3}\n".format(self.grey, self.count_pkg,
+                             self.count_repo, self.endc))
 
     def sbo_version(self, repo, find):
         """
