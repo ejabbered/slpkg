@@ -1,3 +1,7 @@
+3.3.7 - 22/04/2018
+Fixed:
+- Download 'v3.3.6.tar.gz' file [ FAILED ] #109
+
 3.3.6 - 21/04/2018
 Fixed:
 - pip install with print logo #106

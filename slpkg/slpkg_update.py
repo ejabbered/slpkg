@@ -66,21 +66,22 @@ def it_self_update():
         else:
             raise SystemExit()
         dwn_link = ["https://{0}.com/{1}/{2}/archive/"
-                    "v{3}.tar.gz".format(repository, _meta_.__author__,
-                                         _meta_.__all__,
-                                         __new_version__)]
+                    "v{3}/{4}-{5}.tar.gz".format(repository, _meta_.__author__,
+                                                 _meta_.__all__,
+                                                 __new_version__,
+                                                 _meta_.__all__,
+                                                 __new_version__)]
         if not os.path.exists(_meta_.build_path):
             os.makedirs(_meta_.build_path)
         Download(_meta_.build_path, dwn_link, repo="").start()
         os.chdir(_meta_.build_path)
-        slpkg_tar_file = "v" + __new_version__ + ".tar.gz"
+        slpkg_tar_file = "slpkg" + "-" + __new_version__ + ".tar.gz"
         tar = tarfile.open(slpkg_tar_file)
         tar.extractall()
         tar.close()
         file_name = "{0}-{1}".format(_meta_.__all__, __new_version__)
         os.chdir(file_name)
-        check_md5(pkg_checksum(_meta_.__all__ + "-" + slpkg_tar_file[1:],
-                               _meta_.__all__),
+        check_md5(pkg_checksum(slpkg_tar_file, _meta_.__all__),
                   _meta_.build_path + slpkg_tar_file)
         subprocess.call("chmod +x {0}".format("install.sh"), shell=True)
         subprocess.call("sh install.sh", shell=True)
