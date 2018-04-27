@@ -106,6 +106,9 @@ done
 # keep original configuration file for reset
 cp -p conf/slpkg.conf $PKG/etc/slpkg/slpkg.conf.orig
 
+find $PKG/usr/man -type f -exec gzip -9 {} \;
+for i in $( find $PKG/usr/man -type l ) ; do ln -s $( readlink $i ).gz $i.gz ; rm $i ; done
+
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cp -a README.rst ChangeLog.txt LICENSE TESTING ISSUES KNOWN_ISSUES REPOSITORIES \
     requirements.txt $PKG/usr/doc/$PRGNAM-$VERSION
