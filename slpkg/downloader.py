@@ -65,10 +65,15 @@ class Download(object):
                 dwn_count, len(self.url), self.meta.color["GREEN"],
                 self.meta.color["ENDC"],
                 self.file_name))
-            if self.downder in ["wget", "aria2c"]:
+            if self.downder in ["wget"]:
                 subprocess.call("{0} {1} {2}{3} {4}".format(
                                 self.downder, self.downder_options,
                                 self.dir_prefix, self.path, dwn),
+                                shell=True)
+            if self.downder in ["aria2c"]:
+                subprocess.call("{0} {1} {2}{3} {4}".format(
+                                self.downder, self.downder_options,
+                                self.dir_prefix, self.path[:-1], dwn),
                                 shell=True)
             elif self.downder in ["curl", "http"]:
                 subprocess.call("{0} {1} {2}{3} {4}".format(
