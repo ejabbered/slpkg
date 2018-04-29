@@ -1,3 +1,7 @@
+3.3.8 - 29/04/2018
+Fixed:
+- aria2c (optional downloader) downloading path
+
 3.3.7 - 22/04/2018
 Fixed:
 - Download 'v3.3.6.tar.gz' file [ FAILED ] #109
