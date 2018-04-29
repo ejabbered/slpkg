@@ -1683,7 +1683,7 @@ Example from binary repository:
 .. code-block:: bash
     
     >>> from slpkg.binary.dependency import Dependencies
-    >>> Dependencies(repo="slonly", black="").binary(name"Flask", flag="")
+    >>> Dependencies(repo="slonly", black="").binary(name="Flask", flag="")
     [['Jinja2', 'click', 'itsdangerous', 'werkzeug'], ['MarkupSafe']]
 
 Grab packages from the sbo repository:
