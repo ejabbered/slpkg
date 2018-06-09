@@ -1813,7 +1813,7 @@ Donate
 
 If you feel satisfied with this project and want to thanks me make a donation.
 
-.. image:: https://gitlab.com/dslackw/images/raw/master/slpkg/paypaldonate.png
+.. image:: https://gitlab.com/dslackw/images/raw/master/donate/paypaldonate.png
    :target: https://www.paypal.me/dslackw
 
 
