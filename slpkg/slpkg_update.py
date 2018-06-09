@@ -39,9 +39,9 @@ def it_self_update():
     download and update itself
     """
     __new_version__ = ""
-    repository = "github"
+    repository = "gitlab.com"
     branch = "master"
-    ver_link = ("https://raw.{0}usercontent.com/{1}/{2}/"
+    ver_link = ("https://{0}/{1}/{2}/raw/"
                 "{3}/{4}/__metadata__.py".format(repository, _meta_.__author__,
                                                  _meta_.__all__, branch,
                                                  _meta_.__all__))
