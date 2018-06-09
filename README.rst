@@ -1,23 +1,3 @@
-.. image:: https://img.shields.io/github/release/dslackw/slpkg.svg
-   :target: https://github.com/dslackw/slpkg/releases
-.. image:: https://travis-ci.org/dslackw/slpkg.svg?branch=master
-   :target: https://travis-ci.org/dslackw/slpkg
-.. image:: https://landscape.io/github/dslackw/slpkg/master/landscape.png
-   :target: https://landscape.io/github/dslackw/slpkg/master
-.. image:: https://img.shields.io/codacy/51c30a1fe61241edaab414ecde44488d.svg
-   :target: https://www.codacy.com/public/dzlatanidis/slpkg/dashboard
-.. image:: https://img.shields.io/sourceforge/dt/slpkg.svg
-   :target: https://sourceforge.net/projects/slpkg/
-.. image:: https://img.shields.io/badge/license-GPLv3-blue.svg
-   :target: https://github.com/dslackw/slpkg
-.. image:: https://img.shields.io/github/stars/dslackw/slpkg.svg
-   :target: https://github.com/dslackw/slpkg
-.. image:: https://img.shields.io/github/forks/dslackw/slpkg.svg
-   :target: https://github.com/dslackw/slpkg
-.. image:: https://img.shields.io/github/issues/dslackw/slpkg.svg
-   :target: https://github.com/dslackw/slpkg/issues
- 
-
 Slpkg v3.3.8
 ============
 
@@ -96,7 +76,7 @@ Using pip:
 
 .. code-block:: bash
     
-    $ pip install https://github.com/dslackw/slpkg/archive/v3.3.8.tar.gz
+    $ pip install https://gitlab.com/dslackw/slpkg/-/archive/v3.3.8/slpkg-v3.3.8.tar.gz
     
     Uninstall:
 
