@@ -3,12 +3,12 @@ Slpkg v3.3.8
 
 |
 
-.. image:: https://raw.githubusercontent.com/dslackw/images/master/slpkg/slpkg_package.png
-   :target: https://github.com/dslackw/slpkg
+.. image:: https://gitlab.com/dslackw/images/raw/master/slpkg/slpkg_package.png
+   :target: https://gitlab.com/dslackw/slpkg
 
 |
 
-.. image:: https://raw.githubusercontent.com/dslackw/images/master/slpkg/poweredbyslack.gif
+.. image:: https://gitlab.com/dslackw/images/raw/master/slpkg/poweredbyslack.gif
    :target: http://www.slackware.com/
 |
 
@@ -87,17 +87,10 @@ Using pip:
     $ python clean.py
 
 
-Binary packages:
-
-Slackware: `slpkg-3.3.8-i586-1_dsw.txz <https://github.com/dslackw/slpkg/releases/download/v3.3.8/slpkg-3.3.8-i586-1_dsw.txz>`_
-
-Slackware64: `slpkg-3.3.8-x86_64-1_dsw.txz <https://github.com/dslackw/slpkg/releases/download/v3.3.8/slpkg-3.3.8-x86_64-1_dsw.txz>`_
-
-
 Requirements
 ------------
 
-See `requirements.txt <https://github.com/dslackw/slpkg/blob/master/requirements.txt>`_ file
+See `requirements.txt <https://gitlab.com/dslackw/slpkg/blob/master/requirements.txt>`_ file
 
 
 Optional dependencies
@@ -117,7 +110,7 @@ Optional dependencies
 Recommended
 -----------
 
-Stay updated, see `SUN (Slackware Update Notifier) <https://github.com/dslackw/sun>`_
+Stay updated, see `SUN (Slackware Update Notifier) <https://gitlab.com/dslackw/sun>`_
 
 
 Upgrade
@@ -131,7 +124,7 @@ in the directory '/etc/slpkg'.
 Demonstration
 -------------
 
-.. image:: https://raw.githubusercontent.com/dslackw/images/master/slpkg/slpkg_youtube.png
+.. image:: https://gitlab.com/dslackw/images/raw/master/slpkg/slpkg_youtube.png
     :target: https://www.youtube.com/watch?v=oTtD4XhHKlA
 
 
@@ -220,7 +213,7 @@ run '# slpkg update' to update package list.
 View list of repositories with the command '# slpkg repo-list' or get repository information 
 with the command '# slpkg repo-info <repository>.
 
-Update slpkg itself simply run '# slpkg update slpkg', and slpkg check from GitHub repository if
+Update slpkg itself simply run '# slpkg update slpkg', and slpkg check from GitLab repository if
 new versions are available.
 
 Checking packages health with the command "# slpkg health" and slpkg check if the files missing from the package file list.
@@ -289,7 +282,7 @@ Some examples you will see below.
 Issues
 ------
 
-Please report any bugs in `ISSUES <https://github.com/dslackw/slpkg/issues>`_
+Please report any bugs in `ISSUES <https://gitlab.com/dslackw/slpkg/issues>`_
 
 
 Testing
@@ -512,8 +505,8 @@ the command.
     
     $ slpkg repo-enable
 
-.. image:: https://raw.githubusercontent.com/dslackw/images/master/slpkg/repo_enable.png
-   :target: https://raw.githubusercontent.com/dslackw/images/master/slpkg/deps2.png
+.. image:: https://gitlab.com/dslackw/images/raw/master/slpkg/repo_enable.png
+   :target: https://gitlab.com/dslackw/images/raw/master/slpkg/repo_enable.png
 
 
 If you use slpkg for the first time will have to create and update the package 
@@ -835,8 +828,8 @@ Drawing the dependencies diagram:
 
     $ slpkg -t sbo flexget --graph=image.x11
 
-.. image:: https://raw.githubusercontent.com/dslackw/images/master/slpkg/deps2.png
-   :target: https://raw.githubusercontent.com/dslackw/images/master/slpkg/deps2.png
+.. image:: https://gitlab.com/dslackw/images/raw/master/slpkg/deps2.png
+   :target: https://gitlab.com/dslackw/images/raw/master/slpkg/deps2.png
 
 
 .. code-block:: bash
@@ -860,8 +853,8 @@ Drawing the dependencies diagram:
      |
      +--5: werkzeug is dependency --> Flask
 
-.. image:: https://raw.githubusercontent.com/dslackw/images/master/slpkg/deps3.png
-   :target: https://raw.githubusercontent.com/dslackw/images/master/slpkg/deps3.png
+.. image:: https://gitlab.com/dslackw/images/raw/master/slpkg/deps3.png
+   :target: https://gitlab.com/dslackw/images/raw/master/slpkg/deps3.png
 
 
 Drawing the dependencies ascii diagram:
@@ -937,8 +930,8 @@ Use the additional option "--graph=[image]" to drawing the dependencies diagram:
 
     $ slpkg deps-status --graph=image.x11
 
-.. image:: https://raw.githubusercontent.com/dslackw/images/master/slpkg/deps.png
-    :target: https://raw.githubusercontent.com/dslackw/images/master/slpkg/deps.png
+.. image:: https://gitlab.com/dslackw/images/raw/master/slpkg/deps.png
+    :target: https://gitlab.com/dslackw/images/raw/master/slpkg/deps.png
 
 Check if your packages is up to date or the changes in ChangeLog.txt:
 
@@ -1124,8 +1117,8 @@ Use the dialog utility to help you find the packages:
     $ slpkg -n ALL --checklist
     Reading package lists...
 
-.. image:: https://raw.githubusercontent.com/dslackw/images/master/slpkg/pythondialog5.png
-    :target: https://github.com/dslackw/slpkg
+.. image:: https://gitlab.com/dslackw/images/raw/master/slpkg/pythondialog5.png
+    :target: https://gitlab.com/dslackw/images/raw/master/slpkg/pythondialog5.png
 
 .. code-block:: bash
     
@@ -1134,8 +1127,8 @@ Use the dialog utility to help you find the packages:
     $ slpkg -n perl --checklist
     Reading package lists...
 
-.. image:: https://raw.githubusercontent.com/dslackw/images/master/slpkg/pythondialog6.png
-    :target: https://github.com/dslackw/slpkg
+.. image:: https://gitlab.com/dslackw/images/raw/master/slpkg/pythondialog6.png
+    :target: https://gitlab.com/dslackw/images/raw/master/slpkg/pythondialog6.png
 
      
 Auto tool to build a package:
@@ -1523,21 +1516,21 @@ Remove the packages using dialog utility:
 
     $ slpkg -r _SBo --tag --checklist
 
-.. image:: https://raw.githubusercontent.com/dslackw/images/master/slpkg/pythondialog.png
-   :target: https://github.com/dslackw/slpkg
+.. image:: https://gitlab.com/dslackw/images/raw/master/slpkg/pythondialog.png
+   :target: https://gitlab.com/dslackw/images/raw/master/slpkg/pythondialog.png
 
 .. code-block:: bash
 
     $ slpkg -r Flask --check-deps --checklist
 
-.. image:: https://raw.githubusercontent.com/dslackw/images/master/slpkg/pythondialog2.png
-   :target: https://github.com/dslackw/slpkg
+.. image:: https://gitlab.com/dslackw/images/raw/master/slpkg/pythondialog2.png
+   :target: https://gitlab.com/dslackw/images/raw/master/slpkg/pythondialog2.png
 
-.. image:: https://raw.githubusercontent.com/dslackw/images/master/slpkg/pythondialog3.png
-   :target: https://github.com/dslackw/slpkg
+.. image:: https://gitlab.com/dslackw/images/raw/master/slpkg/pythondialog3.png
+   :target: https://gitlab.com/dslackw/images/raw/master/slpkg/pythondialog3.png
 
- .. image:: https://raw.githubusercontent.com/dslackw/images/master/slpkg/pythondialog4.png
-   :target: https://github.com/dslackw/slpkg
+ .. image:: https://gitlab.com/dslackw/images/raw/master/slpkg/pythondialog4.png
+   :target: https://gitlab.com/dslackw/images/raw/master/slpkg/pythondialog4.png
 
 
 Build and install the packages that have added to the queue:
@@ -1820,7 +1813,7 @@ Donate
 
 If you feel satisfied with this project and want to thanks me make a donation.
 
-.. image:: https://github.com/dslackw/images/blob/master/donate/paypaldonate.png
+.. image:: https://gitlab.com/dslackw/images/raw/master/slpkg/paypaldonate.png
    :target: https://www.paypal.me/dslackw
 
 
