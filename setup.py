@@ -8,7 +8,7 @@
 
 # Slpkg is a user-friendly package manager for Slackware installations
 
-# https://github.com/dslackw/slpkg
+# https://gitlab.com/dslackw/slpkg
 
 # Slpkg is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -67,7 +67,7 @@ setup(
               "view", "slackpkg", "tool", "build"],
     author=_meta_.__author__,
     author_email=_meta_.__email__,
-    url="https://github.com/dslackw/slpkg",
+    url="https://gitlab.com/dslackw/slpkg",
     package_data={"": ["LICENSE", "README.rst", "CHANGELOG"]},
     data_files=[("man/man8", ["man/slpkg.8"]),
                 ("/etc/bash_completion.d", ["conf/slpkg.bash-completion"]),

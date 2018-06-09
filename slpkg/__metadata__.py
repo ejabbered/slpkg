@@ -8,7 +8,7 @@
 
 # Slpkg is a user-friendly package manager for Slackware installations
 
-# https://github.com/dslackw/slpkg
+# https://gitlab.com/dslackw/slpkg
 
 # Slpkg is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -215,7 +215,7 @@ class MetaData(object):
             "ENDC": ""
         }
 
-    CHECKSUMS_link = ("https://raw.githubusercontent.com/{0}/{1}/"
+    CHECKSUMS_link = ("https://raw.gitlabusercontent.com/{0}/{1}/"
                       "master/CHECKSUMS.md5".format(__author__, __all__))
 
     # file spacer
