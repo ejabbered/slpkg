@@ -1,6 +1,8 @@
-3.3.8 - 29/04/2018
+3.3.8 - 09/06/2018
 Fixed:
 - aria2c (optional downloader) downloading path
+Updated:
+- Switch to gitlab repository
 
 3.3.7 - 22/04/2018
 Fixed:
