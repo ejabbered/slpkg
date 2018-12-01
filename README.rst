@@ -1,16 +1,13 @@
 Slpkg v3.3.8
 ============
 
-|
 
 .. image:: https://gitlab.com/dslackw/images/raw/master/slpkg/slpkg_package.png
    :target: https://gitlab.com/dslackw/slpkg
 
-|
-
 .. image:: https://gitlab.com/dslackw/images/raw/master/slpkg/poweredbyslack.gif
    :target: http://www.slackware.com/
-|
+
 
 .. contents:: Table of Contents:
 
