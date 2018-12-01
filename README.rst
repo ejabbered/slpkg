@@ -196,86 +196,6 @@ Default available Repositories:
   'repo-add' and 'repo-remove'.
 
 
-Usage
------
-
-First need to run '# slpkg update' to synchronize the list of packages, also every time you add
-a new repository.
-To add or remove repositories must edit the file '/etc/slpkg/repositories.conf' or
-run '# slpkg repo-enable' (python2-pythondialog required).
-
-Add custom repositories with the command '# slpkg add-repo <repository name> <URL>' and after
-run '# slpkg update' to update package list.
-
-View list of repositories with the command '# slpkg repo-list' or get repository information 
-with the command '# slpkg repo-info <repository>.
-
-Update slpkg itself simply run '# slpkg update slpkg', and slpkg check from GitLab repository if
-new versions are available.
-
-Checking packages health with the command "# slpkg health" and slpkg check if the files missing from the package file list.
-
-Print the dependencies status used by packages with the command '# slpkg deps-status' or 
-drawing image map dependencies with the additional option '--graph=[image]'.
-
-Manage .new configuration files with the command 'slpkg new-config' like remove, overwrite, merge etc.
-
-If you have already downloaded the script and the source code you can build the package with 
-the command '# slpkg -a <sbo_script.tar.gz> <sources>'.
-
-Manage the packages in the black list with the command '# slpkg -b <packages> --add or --remove'.
-
-Add the SBo packages to queue with the command '# slpkg -q <packages> --add or --remove' and 
-manage as build, install or build and install with the command '# slpkg build or install or 
-build-install'.
-This is very useful if you want to install multiple packages together suffice to add in the 
-right order if there are dependent packages.
-
-View list of the packages from specific repository with command '# slpkg -l <repository>'.
-Combine with the command 'grep' to catch the results you want.
-
-Check and upgrade your distribution or upgrade your packages with the command '# slpkg -c <repository> 
---upgrade'. Don't forget to update the packages list before (for 'slack' repository it's not necessary).
-This command except upgrade the packages will fix the packages with the broken dependencies. 
-Switch off the automatic resolve dependencies with the additional option '--resolve-off'. 
-Use '--checklist' option to help you to choose easy the packages. For advanced users, the 
-option '--skip' give them more power (see man page).
-
-The most famous command is '# slpkg -s <repository> <packages>', this command downloads, build 
-and installs packages with the resolve all the dependencies or switch off resolve with the 
-additional option '--resolve-off'. 
-Also the additional option "--case-ins" help you find the packages with case insensitive.
-Two new arguments will help you to rebuild '--rebuild' or reinstall '--reinstall' packages.
-The last one argument "--patches" help you to switch in the patches/ directory only for slack
-repository.
-
-Tracking the dependencies of a package with command '# slpkg -t <repository> <package>'.
-Displays a package dependency tree and also shows to you which ones are installed on your 
-system events.
-Check if the packages used from other packages with the additional option '--check-deps' or 
-drawing image map dependencies with the additional option '--graph=[image]'.
-
-Get information description of a package with the command '# slpkg -p <repository> <package>' 
-and change the color of text with the additional flag '--color=[]'.
-
-View a SBo package page on your terminal with command '# slpkg -n <package>' and then manage 
-multiple choices such read, download, build, install etc.
-
-If you want to find the packages of all the repositories, that command will solve your hands '# slpkg -F <packages>'. It will search in all the enabled repositories will find the configuration file '/etc/slpkg/repositories.conf' will print all the packages that match the description that you enter.
-
-If you want to see if any packages are installed on your system enter the command '# slpkg -f <packages>'. The surprise in the end is the reporting of the packages sum and size that found.
-
-The next four commands '# slpkg --installpkg, --upgradepkg, --removepkg <packages>' install, upgrade, 
-remove packages from your system events.
-Notable mention must give the command '# slpkg --removepkg <packages>' which can remove the packages with all dependencies together after editing configuration file '/etc/slpkg/slpkg.conf' 
-(default is disable) or add additional option "--deps". Also you can check if the packages used as dependency with additional the option "--check-deps". Option "--tag" allow to remove packages with by TAG.
-Optional you can use the dialog utility with the additional option "--checklist" (require python2-pythondialog).
-
-The last command is useful to print the entire contents of a package installed on the system with the command '# slpkg -d <packages>'.
-
-Some examples you will see below.
-
-
 Issues
 ------
 
@@ -370,12 +290,6 @@ Command Line Tool Usage
 
     Usage: slpkg [COMMANDS|OPTIONS] {repository|package...}
 
-                                                       _       _
-                                                   ___| |_ __ | | ____ _
-                                                  / __| | '_ \| |/ / _` |
-                                                  \__ \ | |_) |   < (_| |
-                                                  |___/_| .__/|_|\_\__, |
-                                                        |_|        |___/
                                                  _Slackware package manager_______
     Commands:
        update, --only=[...]                      Run this command to update all
@@ -472,7 +386,7 @@ Command Line Tool Usage
       -f | --find, [package...], --case-ins      Find and print installed packages
                                                  reporting the size and the sum.
 
-      -i | --installpkg, [options] [package...]  Installs single or multiple *.tgz
+      -i | --installpkg, [options] [package...]  Installs single or multiple \*.tgz
            options=[--warn, --md5sum, --root,    (or .tbz, .tlz, .txz) Slackware
            --infobox, --menu, --terse, --ask,    binary packages designed for use
            --priority, --tagfile]                with the Slackware Linux
@@ -1035,7 +949,7 @@ Upgrade only distribution:
 
 .. code-block:: bash
 
-    $ slpkg -c slack --upgrade --skip="multi:*multilib*,ktown:*"  // This upgrade 
+    $ slpkg -c slack --upgrade --skip="multi:\*multilib*,ktown:\*"  // This upgrade 
     Checking... Done                                              // distribution
                                                                   // and skip all 
     Slackware64 'stable' v14.2 distribution is up to date         // packages from
@@ -1047,9 +961,9 @@ Skip the packages when upgrading:
 .. code-block:: bash
 
     $ slpkg -c sbo --upgrade --skip=pip,jdk     // Available options:
-    Checking... Done                            // repository:*string*
+    Checking... Done                            // repository:\*string*
     Reading package lists... Done               // repository:string*
-    Resolving dependencies... Done              // repository:*string
+    Resolving dependencies... Done              // repository:\*string
 
     The following packages will be automatically installed or upgraded 
     with new version:
@@ -1234,11 +1148,11 @@ Install mass-packages:
 
 .. code-block:: bash
 
-    $ slpkg -u --install-new *.t?z
+    $ slpkg -u --install-new \*.t?z
     
     or 
 
-    $ slpkg -i *.t?z
+    $ slpkg -i \*.t?z
 
 
 Slpkg auto detect Slackware binary packages (.tgz, .txz, .tlz and .tbz) for installation:
@@ -1595,11 +1509,11 @@ Add or remove the packages in blacklist file manually from
 
     Note: you can use asterisk "*" to match more packages like:
 
-    *lib*   \\ Add all packages inlcude string "lib"
-    *lib    \\ Add all packages ends with string "lib"
+    \*lib*   \\ Add all packages inlcude string "lib"
+    \*lib    \\ Add all packages ends with string "lib"
     lib*    \\ Add all packages starts with string "lib"
 
-    multi:*multilib*   \\ Add all packages include string "multilib" from "multi"
+    multi:\*multilib*   \\ Add all packages include string "multilib" from "multi"
                        \\ repository.
     
 Print a package description:
@@ -1751,7 +1665,7 @@ Read files from the sbo repository:
     onger available, look for it at:\n       http://download.documentfoundation.org/
     libreoffice/old/stable/\n       It will go there after the next release.\n
      You can also try building the newer version using:\n       # VERSION="x.y.z" ./
-    libreoffice.SlackBuild\n       This *might* work, but upstream has a habit of ch
+    libreoffice.SlackBuild\n       This \*might* work, but upstream has a habit of ch
     anging the naming\n       and structure of the files, etc. between versions, so:
      YMMV.\n'
     
