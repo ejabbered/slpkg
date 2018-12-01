@@ -289,6 +289,12 @@ Command Line Tool Usage
     Slpkg is a user-friendly package manager for Slackware installations
 
     Usage: slpkg [COMMANDS|OPTIONS] {repository|package...}
+                                                       _       _
+                                                   ___| |_ __ | | ____ _
+                                                  / __| | '_ \| |/ / _` |
+                                                  \__ \ | |_) |   < (_| |
+                                                  |___/_| .__/|_|\_\__, |
+                                                        |_|        |___/
 
                                                  _Slackware package manager_______
     Commands:
