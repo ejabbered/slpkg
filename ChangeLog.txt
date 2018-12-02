@@ -1,3 +1,8 @@
+3.3.9 - 01/12/2018
+Updated:
+- Readme file and added example text file
+
+
 3.3.8 - 09/06/2018
 Fixed:
 - aria2c (optional downloader) downloading path

@@ -392,7 +392,7 @@ Command Line Tool Usage
       -f | --find, [package...], --case-ins      Find and print installed packages
                                                  reporting the size and the sum.
 
-      -i | --installpkg, [options] [package...]  Installs single or multiple \*.tgz
+      -i | --installpkg, [options] [package...]  Installs single or multiple *.tgz
            options=[--warn, --md5sum, --root,    (or .tbz, .tlz, .txz) Slackware
            --infobox, --menu, --terse, --ask,    binary packages designed for use
            --priority, --tagfile]                with the Slackware Linux
