@@ -5,6 +5,10 @@
 # source tree that works under Python 3.
 # (Thanks beautifulsoup4 for the script).
 #
+# ******************************** WARNING ***********************************
+# There are some issues here, please do not use before Slackware 15.0 release.
+# ****************************************************************************
+
 echo "About to destroy and rebuild the py3k/slpkg directory."
 rm -rf py3k/slpkg
 mkdir -p py3k/slpkg
