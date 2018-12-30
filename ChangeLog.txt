@@ -1,7 +1,8 @@
-3.3.9 - 01/12/2018
+3.3.9 - 30/12/2018
 Updated:
 - Readme file and added example text file
-
+Added:
+- Support elilo and grub upgrade boot loader after kernel upgrade
 
 3.3.8 - 09/06/2018
 Fixed:
