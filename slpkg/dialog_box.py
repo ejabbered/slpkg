@@ -34,8 +34,6 @@ class DialogUtil(object):
         try:
             from dialog import Dialog
         except ImportError:
-            print("Require 'pythondialog': Install with 'slpkg -s sbo "
-                  "python2-pythondialog'")
             raise SystemExit()
         self.d = Dialog(dialog="dialog", autowidgetsize=True)
         self.data = args[0]

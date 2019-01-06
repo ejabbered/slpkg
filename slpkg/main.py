@@ -336,6 +336,8 @@ class ArgParse(object):
                     flag.append(arg)
                     if arg in self.args:
                         self.args.remove(arg)
+        if "--checklist" in flag:
+            self.if_checklist()
         return flag, skip
 
     def pkg_install(self):
@@ -433,7 +435,8 @@ class ArgParse(object):
             if add in self.args:
                 flag.append(add)
                 self.args.remove(add)
-        print flag
+        if "--checklist" in flag:
+            self.if_checklist()
         if (len(self.args) == 2 and self.args[0] in options and
                 "sbo" in self.meta.repositories):
             SBoNetwork(self.args[1], flag).view()
@@ -603,6 +606,8 @@ class ArgParse(object):
                 if fl in self.args:
                     flag = self.args[1]
                     packages = self.args[2:]
+            if "--checklist" in extra:
+                self.if_checklist()
             PackageManager(packages).remove(flag, extra)
         else:
             usage("")
@@ -746,6 +751,14 @@ class ArgParse(object):
             if not_found:
                 for ntf in not_found:
                     self.msg.pkg_not_found("", ntf, "Not installed", "")
+            raise SystemExit()
+
+    def if_checklist(self):
+        try:
+            from dialog import Dialog
+        except ImportError:
+            print("Require 'pythondialog': Install with 'slpkg -s sbo "
+                  "python2-pythondialog'")
             raise SystemExit()
 
 
