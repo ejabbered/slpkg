@@ -36,6 +36,8 @@ from slpkg.dialog_box import DialogUtil
 from slpkg.splitting import split_package
 from slpkg.__metadata__ import MetaData as _meta_
 
+from slpkg.slack.slackware_repo import slackware_repository
+
 
 class PackageManager(object):
     """Package manager class for install, upgrade,
@@ -115,9 +117,11 @@ class PackageManager(object):
             if remove_pkg in ["y", "Y"]:
                 self._check_if_used(self.binary)
                 for rmv in self.removed:
-                    # If package build and install with "slpkg -s sbo <package>"
-                    # then look log file for dependencies in /var/log/slpkg/dep,
-                    # read and remove all else remove only the package.
+                    '''
+                    If package build and install with "slpkg -s sbo <package>"
+                    then look log file for dependencies in /var/log/slpkg/dep,
+                    read and remove all else remove only the package.
+                    '''
                     if (os.path.isfile(self.dep_path + rmv) and
                             self.meta.del_deps in ["on", "ON"] or
                             os.path.isfile(self.dep_path + rmv) and
@@ -334,8 +338,8 @@ class PackageManager(object):
                         dependency.append(rmv)
             if package:
                 if "--checklist" in self.extra:
-                    text = ("Press 'spacebar' to choose packages for the remove"
-                            " exception")
+                    text = ("Press 'spacebar' to choose packages for the"
+                            " remove exception")
                     backtitle = "{0} {1}".format(self.meta.__all__,
                                                  self.meta.__version__)
                     status = False
@@ -379,24 +383,33 @@ class PackageManager(object):
     def find(self, flag):
         """Find installed Slackware packages
         """
-        matching, pkg_cache, match_cache = 0, "", ""
+        matching, packages = 0, []
+        pkg_cache, match_cache = "", ""
+        slackware_packages = slackware_repository()
         print("\nPackages with matching name [ {0}{1}{2} ]\n".format(
             self.meta.color["CYAN"], ", ".join(self.binary),
             self.meta.color["ENDC"]))
         for pkg in self.binary:
             for match in find_package("", self.meta.pkg_path):
+                pkg_cache = pkg
+                match_cache = match
                 if "--case-ins" in flag:
                     pkg_cache = pkg.lower()
                     match_cache = match.lower()
-                else:
-                    pkg_cache = pkg
-                    match_cache = match
-                if pkg_cache in match_cache:
-                    matching += 1
-                    self._sizes(match)
-                    print("[ {0}installed{1} ] [ {2} ] - {3}".format(
-                        self.meta.color["GREEN"], self.meta.color["ENDC"],
-                        self.file_size, match))
+                if ("--third-party" in flag and pkg_cache in match_cache and
+                        match not in slackware_packages):
+                        packages.append(match)
+                if pkg_cache in match_cache and not flag:
+                    packages.append(match)
+                if ("--case-ins" in flag and "--third-party" not in flag and
+                        pkg_cache in match_cache):
+                    packages.append(match)
+        for pkgs in packages:
+            matching += 1
+            self._sizes(pkgs)
+            print("[ {0}installed{1} ] [ {2} ] - {3}".format(
+                self.meta.color["GREEN"], self.meta.color["ENDC"],
+                self.file_size, pkgs))
         if matching == 0:
             message = "Can't find"
             self.msg.pkg_not_found("", ", ".join(self.binary), message, "\n")
@@ -418,7 +431,7 @@ class PackageManager(object):
         for line in data.splitlines():
             if line.startswith("UNCOMPRESSED PACKAGE SIZE:"):
                 digit = float((''.join(re.findall(
-                    "[-+]?\d+[\.]?\d*[eE]?[-+]?\d*", line[26:]))))
+                    r"[-+]?\d+[\.]?\d*[eE]?[-+]?\d*", line[26:]))))
                 self.file_size = line[26:].strip()
                 if "M" in line[26:]:
                     self.size += digit * 1024
@@ -533,7 +546,8 @@ class PackageManager(object):
                                              "SLACKBUILDS.TXT".format(repo))
         else:
             if (os.path.isfile(
-                    self.meta.lib_path + "{0}_repo/PACKAGES.TXT".format(repo))):
+                    self.meta.lib_path + "{0}_repo/PACKAGES.TXT".format(
+                        repo))):
                 packages = Utils().read_file(self.meta.lib_path + "{0}_repo/"
                                              "PACKAGES.TXT".format(repo))
         return packages

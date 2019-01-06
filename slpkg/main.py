@@ -433,6 +433,7 @@ class ArgParse(object):
             if add in self.args:
                 flag.append(add)
                 self.args.remove(add)
+        print flag
         if (len(self.args) == 2 and self.args[0] in options and
                 "sbo" in self.meta.repositories):
             SBoNetwork(self.args[1], flag).view()
@@ -614,11 +615,14 @@ class ArgParse(object):
             "-f",
             "--find"
         ]
-        additional_options = ["--case-ins"]
-        for arg in self.args:
-            if arg in additional_options:
-                flag.append(arg)
-                self.args.remove(arg)
+        additional_options = [
+            "--case-ins",
+            "--third-party"
+        ]
+        for add in additional_options:
+            if add in self.args:
+                flag.append(add)
+                self.args.remove(add)
         packages = self.args[1:]
         if len(self.args) > 1 and self.args[0] in options:
             PackageManager(packages).find(flag)
