@@ -50,7 +50,7 @@ Usage: slpkg [COMMANDS|OPTIONS] {repository|package...}
              [-p [repository] [package], --color=[]]
              [-n [SBo package], --checklist, --case-ins]
              [-F [package...], --case-ins]
-             [-f [package...], --case-ins]
+             [-f [package...], --case-ins, --third-party]
              [-i [options] [package...]]
              [-u [options] [package...]]
              [-r [options] [package...], --deps, --check-deps, --tag,
@@ -291,6 +291,7 @@ Example you can view all installed sbo packages like "# slpkg -f _SBo".
 Additional options:
 .PP
 \fB--case-ins\fP : Search package name with case insensitive.
+\fB--third-party\fP : View third party packages.
 
 .SS -n, --network, view SBo packages
 \fBslpkg\fP \fB-n\fP <\fIname of package\fP>, <\fI[pattern], --checklist\fP>, \fI--case-ins\fP

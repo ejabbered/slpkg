@@ -4,6 +4,7 @@ Updated:
 - Checklist error message
 Added:
 - Support elilo and grub upgrade boot loader after kernel upgrade
+- View third party packages
 
 3.3.8 - 09/06/2018
 Fixed:
