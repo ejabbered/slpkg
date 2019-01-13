@@ -156,16 +156,26 @@ class PackageManager(object):
     def _get_removed(self):
         """Manage removed packages by extra options
         """
-        removed, packages = [], []
-        if "--tag" in self.extra:
+        extra = self.extra
+        removed, packages, pkg = [], [], ""
+        if "--tag" in extra:
             for pkg in find_package("", self.meta.pkg_path):
                 for tag in self.binary:
                     if pkg.endswith(tag):
                         removed.append(split_package(pkg)[0])
                         packages.append(pkg)
-            if not removed:
-                self.msg.pkg_not_found("", "'tag'", "Can't remove", "\n")
-                raise SystemExit(1)
+            pkg = ""
+            extra = ""
+        elif "--third-party" in extra:
+            slackware_packages = slackware_repository()
+            # if "ALL" in self.binary or not self.binary:
+            slpkg_pkg = self.meta.__all__ + "-" + self.meta.__version__
+            for pkg in find_package("", self.meta.pkg_path):
+                if pkg not in slackware_packages and slpkg_pkg not in pkg:
+                    removed.append(split_package(pkg)[0])
+                    packages.append(pkg)
+            pkg = ""
+            extra = ""
         else:
             for pkg in self.binary:
                 name = GetFromInstalled(pkg).name()
@@ -175,9 +185,9 @@ class PackageManager(object):
                 if pkg and name == pkg:
                     removed.append(pkg)
                     packages.append(package[0])
-                else:
-                    self.msg.pkg_not_found("", pkg, "Can't remove", "\n")
-                    raise SystemExit(1)
+        if not removed:
+            self.msg.pkg_not_found("", pkg, "Can't remove", "\n")
+            raise SystemExit(1)
         return removed, packages
 
     def _view_removed(self):
@@ -206,6 +216,15 @@ class PackageManager(object):
                 self._sizes(pkg)
             self._calc_sizes()
             self._remove_summary()
+        if "--third-party" in self.extra:
+            print("\n")
+            self.msg.template(78)
+            print("| {0}{1}*** WARNING ***{2}").format(
+                " " * 27, self.meta.color["RED"], self.meta.color["ENDC"])
+            print("| Be sure you have update the package lists before. \n| Run"
+                  " the command 'slpkg update' or 'slpkg upgrade "
+                  "--only=slack'")
+            self.msg.template(78)
         return removed
 
     def _calc_sizes(self):

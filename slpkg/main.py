@@ -583,7 +583,8 @@ class ArgParse(object):
             "--deps",
             "--check-deps",
             "--tag",
-            "--checklist"
+            "--checklist",
+            "--third-party"
         ]
         flag, extra = "", []
         flags = [

@@ -203,7 +203,7 @@ Command Line Tool Usage
 
       -r | --removepkg, [options] [package...],  Removes a previously installed
            --deps, --check-deps, --tag,          Slackware binary packages,
-           --checklist                           while writing a progress report
+           --checklist, --third-party            while writing a progress report
            options=[-warn, -preserve, -copy,     to the standard output.
            -keep]                                Use only package name.
 

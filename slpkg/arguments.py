@@ -154,7 +154,7 @@ Optional arguments:
 
   -r | --removepkg, [options] [package...],  Removes a previously installed
        --deps, --check-deps, --tag,          Slackware binary packages,
-       --checklist                           while writing a progress report
+       --checklist, --third-party            while writing a progress report
        options=[-warn, -preserve, -copy,     to the standard output.
        -keep]                                Use only package name.
 
@@ -209,7 +209,7 @@ def usage(repo):
              [-i [options] [package...]]
              [-u [options] [package...]]
              [-r [options] [package...], --deps, --check-deps, --tag,
-                                         --checklist]
+                                         --checklist, --third-party]
              [-d [package...]]
              """
     if repo and repo not in _meta_.repositories:
