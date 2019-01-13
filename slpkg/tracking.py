@@ -93,7 +93,7 @@ class TrackingDeps(object):
                     used = self.check_used(pkg)
                     self.deps_used(pkg, used)
                     used = "{0} {1}{2}{3}".format(
-                        "is dependency -->", self.cyan,
+                        "is dependence on -->", self.cyan,
                         ", ".join(used), self.endc)
                 else:
                     used = ""

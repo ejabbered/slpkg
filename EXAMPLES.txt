@@ -506,15 +506,15 @@ Check if the dependencies used:
     \
      +---[ Tree of dependencies ]
      |
-     +--1: pysetuptools is dependency --> Flask, bpython, pip, pylint
+     +--1: pysetuptools is dependence on --> Flask, bpython, pip, pylint
      |
-     +--2: MarkupSafe is dependency --> Flask
+     +--2: MarkupSafe is dependence on --> Flask
      |
-     +--3: itsdangerous is dependency --> Flask
+     +--3: itsdangerous is dependence on --> Flask
      |
-     +--4: Jinja2 is dependency --> Flask
+     +--4: Jinja2 is dependence on --> Flask
      |
-     +--5: werkzeug is dependency --> Flask
+     +--5: werkzeug is dependence on --> Flask
 
     
 Drawing the dependencies diagram:
@@ -533,15 +533,15 @@ Drawing the dependencies diagram:
     \
      +---[ Tree of dependencies ]
      |
-     +--1: pysetuptools is dependency --> APScheduler, Flask, Jinja2, MarkupSafe, astroid, autopep8, blessings, bpython, cffi, cryptography, curtsies, itsdangerous, monty, ndg_httpsclient, pip, pyOpenSSL, pylint, wcwidth
+     +--1: pysetuptools is dependence on --> APScheduler, Flask, Jinja2, MarkupSafe, astroid, autopep8, blessings, bpython, cffi, cryptography, curtsies, itsdangerous, monty, ndg_httpsclient, pip, pyOpenSSL, pylint, wcwidth
      |
-     +--2: MarkupSafe is dependency --> Flask, Jinja2
+     +--2: MarkupSafe is dependence on --> Flask, Jinja2
      |
-     +--3: itsdangerous is dependency --> Flask
+     +--3: itsdangerous is dependence on --> Flask
      |
-     +--4: Jinja2 is dependency --> Flask
+     +--4: Jinja2 is dependence on --> Flask
      |
-     +--5: werkzeug is dependency --> Flask
+     +--5: werkzeug is dependence on --> Flask
 
 .. image:: https://gitlab.com/dslackw/images/raw/master/slpkg/deps3.png
 
