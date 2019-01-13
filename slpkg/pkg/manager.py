@@ -168,7 +168,6 @@ class PackageManager(object):
             extra = ""
         elif "--third-party" in extra:
             slackware_packages = slackware_repository()
-            # if "ALL" in self.binary or not self.binary:
             slpkg_pkg = self.meta.__all__ + "-" + self.meta.__version__
             for pkg in find_package("", self.meta.pkg_path):
                 if pkg not in slackware_packages and slpkg_pkg not in pkg:
