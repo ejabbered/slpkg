@@ -268,9 +268,11 @@ class SBoNetwork(object):
         self.msg.template(78)
         print("| {0} > {1} > {2}{3}{4}".format(slack_ver(),
                                                sbo_url.split("/")[-3].title(),
-                                               self.cyan, self.name, self.endc))
+                                               self.cyan, self.name,
+                                               self.endc))
         self.msg.template(78)
-        print("| {0}Package url{1}: {2}".format(self.green, self.endc, sbo_url))
+        print("| {0}Package url{1}: {2}".format(self.green, self.endc,
+                                                sbo_url))
         self.msg.template(78)
         print("| {0}Description: {1}{2}".format(self.green,
                                                 self.endc, self.sbo_desc))
