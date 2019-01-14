@@ -223,8 +223,9 @@ class PackageManager(object):
             self.msg.template(78)
             print("| {0}{1}*** WARNING ***{2}").format(
                 " " * 27, self.meta.color["RED"], self.meta.color["ENDC"])
-            print("| Be sure you have update the package lists before. \n| Run"
-                  " the command 'slpkg update' and 'slpkg -c slack --upgrade'")
+            print("| Before you use third-party option, be sure you have"
+                  " updated the package \n| lists. Run the command"
+                  " 'slpkg update' and 'slpkg -c slack --upgrade'")
             self.msg.template(78)
         return removed
 
