@@ -613,6 +613,8 @@ class ArgParse(object):
                     packages = self.args[2:]
             if "--checklist" in extra:
                 self.if_checklist()
+            if not packages:
+                packages = [""]
             PackageManager(packages).remove(flag, extra)
         else:
             usage("")
@@ -634,6 +636,8 @@ class ArgParse(object):
                 flag.append(add)
                 self.args.remove(add)
         packages = self.args[1:]
+        if not packages:
+            packages = [""]
         if len(self.args) == 1 and self.args[0] in options:
             PackageManager(packages).find(flag)
         elif len(self.args) > 1 and self.args[0] in options:

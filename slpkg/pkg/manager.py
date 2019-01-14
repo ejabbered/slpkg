@@ -169,10 +169,13 @@ class PackageManager(object):
         elif "--third-party" in extra:
             slackware_packages = slackware_repository()
             slpkg_pkg = self.meta.__all__ + "-" + self.meta.__version__
+            binary = self.binary
             for pkg in find_package("", self.meta.pkg_path):
-                if pkg not in slackware_packages and slpkg_pkg not in pkg:
-                    removed.append(split_package(pkg)[0])
-                    packages.append(pkg)
+                for tag in binary:
+                    if (pkg not in slackware_packages and
+                            slpkg_pkg not in pkg and tag in pkg):
+                        removed.append(split_package(pkg)[0])
+                        packages.append(pkg)
             pkg = ""
             extra = ""
         else:
@@ -406,8 +409,6 @@ class PackageManager(object):
         print("\nPackages with matching name [ {0}{1}{2} ]\n".format(
             self.meta.color["CYAN"], ", ".join(self.binary),
             self.meta.color["ENDC"]))
-        if not self.binary and "--third-party" in flag:
-            self.binary = [""]
         for pkg in self.binary:
             for match in find_package("", self.meta.pkg_path):
                 pkg_cache = pkg
