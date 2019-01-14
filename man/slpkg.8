@@ -116,7 +116,7 @@ Enable or disable repositories via dialog utility (require python2-pythondialog)
 Lists all enabled or disabled repositories.
 
 .SS repo-info, repository information
-\fBslpkg\fP \fBrepo-info\fP <\fBrepository\fP>
+\fBslpkg\fP \fBrepo-info\fP <\fIrepository\fP>
 .PP
 View repository information.
 
@@ -283,7 +283,7 @@ Additional options:
 \fB--case-ins\fP : Search package name in repository with case insensitive.
 
 .SS -f, --find, find installed packages
-\fBslpkg\fP \fB-f\fP <\fInames of packages\fP>, \fI--case-ins\fP 
+\fBslpkg\fP \fB-f\fP <\fInames of packages\fP>, \fB--case-ins\fP, \fB--third-party\fP
 .PP
 Find installed packages with view total file size. 
 Example you can view all installed sbo packages like "# slpkg -f _SBo".
@@ -295,7 +295,7 @@ Additional options:
 \fB--third-party\fP : View all the third-party packages.
 
 .SS -n, --network, view SBo packages
-\fBslpkg\fP \fB-n\fP <\fIname of package\fP>, <\fI[pattern], --checklist\fP>, \fI--case-ins\fP
+\fBslpkg\fP \fB-n\fP <\fIname of package\fP>, <\fI[pattern], --checklist\fP>, \fB--case-ins\fP
 .PP
 View complete slackbuilds.org site in your terminal. Read file, download, 
 build or install etc. Use "--checklist" additional option to load all repository, example:
