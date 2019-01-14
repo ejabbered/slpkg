@@ -309,13 +309,13 @@ class ArgParse(object):
                 else:
                     Patches(skip, flag).start()
             elif self.args[1] == "sbo":
-                SBoInstall(sbo_upgrade(skip, flag), flag).start(is_upgrade=True)
+                SBoInstall(sbo_upgrade(skip, flag), flag).start(
+                    is_upgrade=True)
             else:
                 usage(self.args[1])
-        elif len(self.args) == 2 and self.args[0] in options:
-            if self.args[1] == "ALL":
+        elif len(self.args) == 1 and self.args[0] in options:
                 Updates(repo="").ALL()
-            else:
+        elif len(self.args) == 2 and self.args[0] in options:
                 Updates(self.args[1]).run()
         elif (len(self.args) >= 2 and self.args[0] in options and
                 self.args[1] not in self.meta.repositories):
@@ -440,6 +440,10 @@ class ArgParse(object):
         if (len(self.args) == 2 and self.args[0] in options and
                 "sbo" in self.meta.repositories):
             SBoNetwork(self.args[1], flag).view()
+        elif (len(self.args) == 1 and self.args[0] in options and
+                "sbo" in self.meta.repositories and
+                additional_options[0] in flag):
+            SBoNetwork("", flag).view()
         else:
             usage("sbo")
 
@@ -463,8 +467,8 @@ class ArgParse(object):
                 flag[0] in self.args):
             self.args.remove(flag[0])
             blacklist.add(self.args[1:])
-        elif (len(self.args) == 3 and self.args[0] in options and
-                "ALL" in self.args and flag[1] in self.args):
+        elif (len(self.args) == 2 and self.args[0] in options and
+                flag[1] in self.args):
             self.args.remove(flag[1])
             blacklist.remove(blacklist.get_black())
         elif (len(self.args) > 2 and self.args[0] in options and
@@ -496,8 +500,8 @@ class ArgParse(object):
                 flag[0] in self.args):
             self.args.remove(flag[0])
             queue.add(self.args[1:])
-        elif (len(self.args) == 3 and self.args[0] in options and
-                "ALL" in self.args and flag[1] in self.args):
+        elif (len(self.args) == 2 and self.args[0] in options and
+                flag[1] in self.args):
             self.args.remove(flag[1])
             queue.remove(queue.packages())
         elif (len(self.args) > 2 and self.args[0] in options and

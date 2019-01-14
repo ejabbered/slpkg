@@ -312,7 +312,7 @@ class SBoNetwork(object):
         """Using dialog and checklist option
         """
         data = []
-        if self.name == "ALL":
+        if not self.name:
             data = self.data
         else:
             for name in self.data:

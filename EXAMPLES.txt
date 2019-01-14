@@ -258,7 +258,7 @@ Also you can check ChangeLog.txt for changes like:
     From 1 repositories need 1 updating. Run the command 'slpkg update'.
 
 
-    $ slpkg -c ALL
+    $ slpkg --check
 
     +==============================================================================
     | Repository         Status
@@ -786,7 +786,7 @@ Use the dialog utility to help you find the packages:
     
     Load all repository:
 
-    $ slpkg -n ALL --checklist
+    $ slpkg -n --checklist
     Reading package lists...
 
 .. image:: https://gitlab.com/dslackw/images/raw/master/slpkg/pythondialog5.png
@@ -1186,7 +1186,7 @@ Build and install the packages that have added to the queue:
     CEGUI
 
     
-    $ slpkg -q roxterm --remove (or 'slpkg -q ALL --remove' remove all packages)
+    $ slpkg -q roxterm --remove (or 'slpkg -q --remove' remove all packages)
     
     Remove packages from queue:
 
@@ -1220,7 +1220,7 @@ Add or remove the packages in blacklist file manually from
     faac
 
 
-    $ slpkg -b speex --remove (or 'slpkg -b ALL --remove' remove all packages)
+    $ slpkg -b speex --remove (or 'slpkg -b --remove' remove all packages)
 
     Remove packages from blacklist:
 
