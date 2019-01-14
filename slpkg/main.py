@@ -634,7 +634,9 @@ class ArgParse(object):
                 flag.append(add)
                 self.args.remove(add)
         packages = self.args[1:]
-        if len(self.args) > 1 and self.args[0] in options:
+        if len(self.args) == 1 and self.args[0] in options:
+            PackageManager(packages).find(flag)
+        elif len(self.args) > 1 and self.args[0] in options:
             PackageManager(packages).find(flag)
         else:
             usage("")

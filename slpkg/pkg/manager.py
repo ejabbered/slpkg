@@ -221,8 +221,7 @@ class PackageManager(object):
             print("| {0}{1}*** WARNING ***{2}").format(
                 " " * 27, self.meta.color["RED"], self.meta.color["ENDC"])
             print("| Be sure you have update the package lists before. \n| Run"
-                  " the command 'slpkg update' or 'slpkg upgrade "
-                  "--only=slack'")
+                  " the command 'slpkg update' and 'slpkg -c slack --upgrade'")
             self.msg.template(78)
         return removed
 
@@ -407,6 +406,8 @@ class PackageManager(object):
         print("\nPackages with matching name [ {0}{1}{2} ]\n".format(
             self.meta.color["CYAN"], ", ".join(self.binary),
             self.meta.color["ENDC"]))
+        if not self.binary and "--third-party" in flag:
+            self.binary = [""]
         for pkg in self.binary:
             for match in find_package("", self.meta.pkg_path):
                 pkg_cache = pkg
@@ -414,6 +415,9 @@ class PackageManager(object):
                 if "--case-ins" in flag:
                     pkg_cache = pkg.lower()
                     match_cache = match.lower()
+                if ("--third-party" in flag and not self.binary and
+                        match not in slackware_packages):
+                        packages.append(match)
                 if ("--third-party" in flag and pkg_cache in match_cache and
                         match not in slackware_packages):
                         packages.append(match)
