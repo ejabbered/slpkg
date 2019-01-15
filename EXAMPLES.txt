@@ -1,4 +1,4 @@
-Slpkg
+﻿Slpkg
 =====
 
 
@@ -17,21 +17,22 @@ View list of repositories with the command '# slpkg repo-list' or get repository
 with the command '# slpkg repo-info <repository>.
 
 Update slpkg itself simply run '# slpkg update slpkg', and slpkg check from GitLab repository if
-new versions are available.
+the new version is available.
 
-Checking packages health with the command "# slpkg health" and slpkg check if the files missing from the package file list.
+Checking packages health with the command "# slpkg health" and slpkg check if the files missing
+from the package file list.
 
-Print the dependencies status used by packages with the command '# slpkg deps-status' or
-drawing image map dependencies with the additional option '--graph=[image]'.
+Print the dependencies status with the command '# slpkg deps-status' or draw image map dependencies
+with the additional option '--graph=[image]'.
 
 Manage .new configuration files with the command 'slpkg new-config' like remove, overwrite, merge etc.
 
 If you have already downloaded the script and the source code you can build the package with
 the command '# slpkg -a <sbo_script.tar.gz> <sources>'.
 
-Manage the packages in the black list with the command '# slpkg -b <packages> --add or --remove'.
+Manage the packages in the blacklist with the command '# slpkg -b <packages> --add or --remove'.
 
-Add the SBo packages to queue with the command '# slpkg -q <packages> --add or --remove' and
+Add the SBo packages to the queue with the command '# slpkg -q <packages> --add or --remove' and
 manage as build, install or build and install with the command '# slpkg build or install or
 build-install'.
 This is very useful if you want to install multiple packages together suffice to add in the
@@ -41,11 +42,11 @@ View list of the packages from specific repository with command '# slpkg -l <rep
 Combine with the command 'grep' to catch the results you want.
 
 Check and upgrade your distribution or upgrade your packages with the command '# slpkg -c <repository>
---upgrade'. Don't forget to update the packages list before (for 'slack' repository it's not necessary).
+--upgrade'. Don't forget to update the packages list before (for the 'slack' repository it's not necessary).
 This command except upgrade the packages will fix the packages with the broken dependencies.
 Switch off the automatic resolve dependencies with the additional option '--resolve-off'.
 Use '--checklist' option to help you to choose easy the packages. For advanced users, the
-option '--skip' give them more power (see man page).
+option '--skip' give them more power (see manpage).
 
 The most famous command is '# slpkg -s <repository> <packages>', this command downloads, build
 and installs packages with the resolve all the dependencies or switch off resolve with the
@@ -59,7 +60,7 @@ Tracking the dependencies of a package with command '# slpkg -t <repository> <pa
 Displays a package dependency tree and also shows to you which ones are installed on your
 system events.
 Check if the packages used from other packages with the additional option '--check-deps' or
-drawing image map dependencies with the additional option '--graph=[image]'.
+draw image map dependencies with the additional option '--graph=[image]'.
 
 Get information description of a package with the command '# slpkg -p <repository> <package>'
 and change the color of text with the additional flag '--color=[]'.
@@ -67,17 +68,28 @@ and change the color of text with the additional flag '--color=[]'.
 View a SBo package page on your terminal with command '# slpkg -n <package>' and then manage
 multiple choices such read, download, build, install etc.
 
-If you want to find the packages of all the repositories, that command will solve your hands '# slpkg -F <packages>'. It will search in all the enabled repositories will find the configuration file '/etc/slpkg/repositories.conf' will print all the packages that match the description that you enter.
+If you want to find the packages of all the repositories, that command will solve your hands
+'# slpkg -F <packages>'. It will search in all the enable repositories and will print all the
+packages that match the description that you enter.
 
-If you want to see if any packages are installed on your system enter the command '# slpkg -f <packages>'. The surprise in the end is the reporting of the packages sum and size that found.
+If you want to see if any packages are installed on your system enter the command '# slpkg -f <packages>'.
+The surprise in the end is the reporting of the packages sum and size that
+found. The additional option "--third-party" help to view only the third-party
+packages
 
 The next four commands '# slpkg --installpkg, --upgradepkg, --removepkg <packages>' install, upgrade,
 remove packages from your system events.
-Notable mention must give the command '# slpkg --removepkg <packages>' which can remove the packages with all dependencies together after editing configuration file '/etc/slpkg/slpkg.conf'
-(default is disable) or add additional option "--deps". Also you can check if the packages used as dependency with additional the option "--check-deps". Option "--tag" allow to remove packages with by TAG.
-Optional you can use the dialog utility with the additional option "--checklist" (require python2-pythondialog).
+Notable mention must you give in the command '# slpkg --removepkg <packages>'
+which can remove the packages with all dependencies together after editing configuration file
+'/etc/slpkg/slpkg.conf' (default is disable) or add additional option "--deps". Also you can check
+if the packages they are used as dependency with additional option "--check-deps".
+Option "--tag" allow to remove packages with by TAG.
+Optional you can use the dialog utility with the additional option
+"--checklist" (require python2-pythondialog). Rmove the third-party packages
+with the option "--third-party".
 
-The last command is useful to print the entire contents of a package installed on the system with the command '# slpkg -d <packages>'.
+The last command is useful to print the entire contents of a package installed on the system with
+the command '# slpkg -d <packages>'.
 
 Some examples you will see below.
 
@@ -441,14 +453,14 @@ Close auto resolve dependencies:
     Installing:
       atkmm                   2.22.6             x86_64  1      alien         124 K
 
-     Installing summary
-     ===============================================================================
-     Total 1 package.
-     1 package will be installed, 0 will be upgraded and 0 will be reinstalled.
-     Need to get 124 Kb of archives.
-     After this process, 620 Kb of additional disk space will be used.
+    Installing summary
+    ===============================================================================
+    Total 1 package.
+    1 package will be installed, 0 will be upgraded and 0 will be reinstalled.
+    Need to get 124 Kb of archives.
+    After this process, 620 Kb of additional disk space will be used.
 
-     Would you like to continue [y/N]?
+    Would you like to continue [y/N]?
 
 
 
@@ -1442,7 +1454,7 @@ Read files from the sbo repository:
     -x /usr/bin/gtk-update-icon-cache ]; then\n  for theme in gnome locolor hicolor
     ; do\n    if [ -e usr/share/icons/$theme/icon-theme.cache ]; then\n      /usr/b
     in/gtk-update-icon-cache -f usr/share/icons/$theme >/dev/null 2>&1\n    fi\n  do
-    ne\nfi\
+    ne\nfi\'
 
 Get the Slackware version:
 
