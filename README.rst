@@ -1,4 +1,4 @@
-Slpkg v3.3.8
+Slpkg v3.3.9
 ============
 
 
@@ -54,8 +54,8 @@ Download latest release:
     
     Required root privileges
 
-    $ tar xvf slpkg-3.3.8.tar.gz (don't delete the archive file after extract)
-    $ cd slpkg-3.3.8
+    $ tar xvf slpkg-3.3.9.tar.gz (don't delete the archive file after extract)
+    $ cd slpkg-3.3.9
     $ ./install.sh
     
     Installed as Slackware package
@@ -73,7 +73,7 @@ Using pip:
 
 .. code-block:: bash
     
-    $ pip install https://gitlab.com/dslackw/slpkg/-/archive/3.3.8/slpkg-3.3.8.tar.gz
+    $ pip install https://gitlab.com/dslackw/slpkg/-/archive/3.3.9/slpkg-3.3.9.tar.gz
     
     Uninstall:
 
