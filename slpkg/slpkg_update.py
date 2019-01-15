@@ -86,6 +86,6 @@ def it_self_update():
         subprocess.call("chmod +x {0}".format("install.sh"), shell=True)
         subprocess.call("sh install.sh", shell=True)
     else:
-        print("\n{0}: There is no new version, already used the last !"
+        print("\n{0}: There is no new version, already used the last!"
               "\n".format(_meta_.__all__))
     raise SystemExit()
