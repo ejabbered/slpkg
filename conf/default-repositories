@@ -23,9 +23,9 @@
 # END OF LEGAL NOTICE
 #
 # ----------------------------------------------------------------------------
-# This file provide the URLs from repositories. Change only the URL 
-# if necessary finishing with "/". For local repository start with 
-# "file:///" avoid end path with "/". Do NOT change the name of the 
+# This file provide the URLs from repositories. Change only the URL
+# if necessary finishing with "/". For local repository start with
+# "file:///" avoid end path with "/". Do NOT change the name of the
 # repository.
 #
 # Default repositories names:
