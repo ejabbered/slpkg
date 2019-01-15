@@ -1,4 +1,4 @@
-Slpkg 
+Slpkg
 =====
 
 
@@ -13,7 +13,7 @@ run '# slpkg repo-enable' (python2-pythondialog required).
 Add custom repositories with the command '# slpkg add-repo <repository name> <URL>' and after
 run '# slpkg update' to update package list.
 
-View list of repositories with the command '# slpkg repo-list' or get repository information 
+View list of repositories with the command '# slpkg repo-list' or get repository information
 with the command '# slpkg repo-info <repository>.
 
 Update slpkg itself simply run '# slpkg update slpkg', and slpkg check from GitLab repository if
@@ -21,59 +21,59 @@ new versions are available.
 
 Checking packages health with the command "# slpkg health" and slpkg check if the files missing from the package file list.
 
-Print the dependencies status used by packages with the command '# slpkg deps-status' or 
+Print the dependencies status used by packages with the command '# slpkg deps-status' or
 drawing image map dependencies with the additional option '--graph=[image]'.
 
 Manage .new configuration files with the command 'slpkg new-config' like remove, overwrite, merge etc.
 
-If you have already downloaded the script and the source code you can build the package with 
+If you have already downloaded the script and the source code you can build the package with
 the command '# slpkg -a <sbo_script.tar.gz> <sources>'.
 
 Manage the packages in the black list with the command '# slpkg -b <packages> --add or --remove'.
 
-Add the SBo packages to queue with the command '# slpkg -q <packages> --add or --remove' and 
-manage as build, install or build and install with the command '# slpkg build or install or 
+Add the SBo packages to queue with the command '# slpkg -q <packages> --add or --remove' and
+manage as build, install or build and install with the command '# slpkg build or install or
 build-install'.
-This is very useful if you want to install multiple packages together suffice to add in the 
+This is very useful if you want to install multiple packages together suffice to add in the
 right order if there are dependent packages.
 
 View list of the packages from specific repository with command '# slpkg -l <repository>'.
 Combine with the command 'grep' to catch the results you want.
 
-Check and upgrade your distribution or upgrade your packages with the command '# slpkg -c <repository> 
+Check and upgrade your distribution or upgrade your packages with the command '# slpkg -c <repository>
 --upgrade'. Don't forget to update the packages list before (for 'slack' repository it's not necessary).
-This command except upgrade the packages will fix the packages with the broken dependencies. 
-Switch off the automatic resolve dependencies with the additional option '--resolve-off'. 
-Use '--checklist' option to help you to choose easy the packages. For advanced users, the 
+This command except upgrade the packages will fix the packages with the broken dependencies.
+Switch off the automatic resolve dependencies with the additional option '--resolve-off'.
+Use '--checklist' option to help you to choose easy the packages. For advanced users, the
 option '--skip' give them more power (see man page).
 
-The most famous command is '# slpkg -s <repository> <packages>', this command downloads, build 
-and installs packages with the resolve all the dependencies or switch off resolve with the 
-additional option '--resolve-off'. 
+The most famous command is '# slpkg -s <repository> <packages>', this command downloads, build
+and installs packages with the resolve all the dependencies or switch off resolve with the
+additional option '--resolve-off'.
 Also the additional option "--case-ins" help you find the packages with case insensitive.
 Two new arguments will help you to rebuild '--rebuild' or reinstall '--reinstall' packages.
 The last one argument "--patches" help you to switch in the patches/ directory only for slack
 repository.
 
 Tracking the dependencies of a package with command '# slpkg -t <repository> <package>'.
-Displays a package dependency tree and also shows to you which ones are installed on your 
+Displays a package dependency tree and also shows to you which ones are installed on your
 system events.
-Check if the packages used from other packages with the additional option '--check-deps' or 
+Check if the packages used from other packages with the additional option '--check-deps' or
 drawing image map dependencies with the additional option '--graph=[image]'.
 
-Get information description of a package with the command '# slpkg -p <repository> <package>' 
+Get information description of a package with the command '# slpkg -p <repository> <package>'
 and change the color of text with the additional flag '--color=[]'.
 
-View a SBo package page on your terminal with command '# slpkg -n <package>' and then manage 
+View a SBo package page on your terminal with command '# slpkg -n <package>' and then manage
 multiple choices such read, download, build, install etc.
 
 If you want to find the packages of all the repositories, that command will solve your hands '# slpkg -F <packages>'. It will search in all the enabled repositories will find the configuration file '/etc/slpkg/repositories.conf' will print all the packages that match the description that you enter.
 
 If you want to see if any packages are installed on your system enter the command '# slpkg -f <packages>'. The surprise in the end is the reporting of the packages sum and size that found.
 
-The next four commands '# slpkg --installpkg, --upgradepkg, --removepkg <packages>' install, upgrade, 
+The next four commands '# slpkg --installpkg, --upgradepkg, --removepkg <packages>' install, upgrade,
 remove packages from your system events.
-Notable mention must give the command '# slpkg --removepkg <packages>' which can remove the packages with all dependencies together after editing configuration file '/etc/slpkg/slpkg.conf' 
+Notable mention must give the command '# slpkg --removepkg <packages>' which can remove the packages with all dependencies together after editing configuration file '/etc/slpkg/slpkg.conf'
 (default is disable) or add additional option "--deps". Also you can check if the packages used as dependency with additional the option "--check-deps". Option "--tag" allow to remove packages with by TAG.
 Optional you can use the dialog utility with the additional option "--checklist" (require python2-pythondialog).
 
@@ -213,7 +213,7 @@ Command Line Tool Usage
 Slpkg Examples
 --------------
 
-Enable or disable default repositories, edit /etc/slpkg/repositories.conf file or with 
+Enable or disable default repositories, edit /etc/slpkg/repositories.conf file or with
 the command.
 (require pythondialog, install with '# slpkg -s sbo python2-pythondialog'):
 
@@ -222,7 +222,7 @@ the command.
 .. image:: https://gitlab.com/dslackw/images/raw/master/slpkg/repo_enable.png
 
 
-If you use slpkg for the first time will have to create and update the package 
+If you use slpkg for the first time will have to create and update the package
 list. This command must be executed to update the package lists:
 
     $ slpkg update
@@ -247,7 +247,7 @@ list. This command must be executed to update the package lists:
 Also you can check ChangeLog.txt for changes like:
 
     $ slpkg -c sbo
-    
+
     +==============================================================================
     | Repository         Status
     +==============================================================================
@@ -282,19 +282,19 @@ Add and remove custom repositories:
 
 
     $ slpkg repo-add repo1 file:///home/user1/repos/alien/
-    
+
     Repository 'repo1' successfully added
 
-    
+
     $ slpkg repo-remove ponce
 
     Repository 'ponce' successfully removed
 
-    
+
 View information about the repositories:
-    
+
     $ slpkg repo-list
-    
+
     +==============================================================================
     | Repo id  Repo URL                                            Default   Status
     +==============================================================================
@@ -317,7 +317,7 @@ View information about the repositories:
     Repositories summary
     ===============================================================================
     3/14 enabled default repositories and 1 custom.
-    For enable or disable default repositories edit '/etc/slpkg/repositories.conf' 
+    For enable or disable default repositories edit '/etc/slpkg/repositories.conf'
     file.
 
     $ slpkg repo-info alien
@@ -338,7 +338,7 @@ Installing packages from the repositories (supporting multi packages):
     Reading package lists... Done
     Resolving dependencies... Done
 
-    The following packages will be automatically installed or upgraded 
+    The following packages will be automatically installed or upgraded
     with new version:
 
     +==============================================================================
@@ -359,17 +359,17 @@ Installing packages from the repositories (supporting multi packages):
     will be upgraded.
 
     Would you like to continue [y/N]?
-    
-    
+
+
     Example install multi packages:
-    
+
     $ slpkg -s sbo brasero pylint atkmm
     Reading package lists... Done
     Resolving dependencies... Done
 
-    The following packages will be automatically installed or upgraded 
+    The following packages will be automatically installed or upgraded
     with new version:
-    
+
     +==============================================================================
     | Package                 New version        Arch    Build  Repos          Size
     +==============================================================================
@@ -426,13 +426,13 @@ Installing packages from the repositories (supporting multi packages):
 
     Would you like to continue [y/N]?
 
-    
+
 Close auto resolve dependencies:
 
     $ slpkg -s alien atkm --resolve-off
     Reading package lists... Done
 
-    The following packages will be automatically installed or upgraded 
+    The following packages will be automatically installed or upgraded
     with new version:
 
     +==============================================================================
@@ -440,7 +440,7 @@ Close auto resolve dependencies:
     +==============================================================================
     Installing:
       atkmm                   2.22.6             x86_64  1      alien         124 K
-    
+
      Installing summary
      ===============================================================================
      Total 1 package.
@@ -455,10 +455,10 @@ Close auto resolve dependencies:
 Build packages and passing variables to the script:
 
     First export variable(s) like:
-    
+
     $ export FFMPEG_ASS=yes FFMPEG_X264=yes
-    
-    
+
+
     And then run as you know:
 
     $ slpkg -s sbo ffmpeg
@@ -471,7 +471,7 @@ Build packages and passing variables to the script:
 
     $ slpkg -a ffmpeg.tar.gz ffmpeg-2.1.5.tar.bz2
 
-    
+
 Tracking all the dependencies of packages,
 and also displays the installed packages:
 
@@ -481,7 +481,7 @@ and also displays the installed packages:
     +=========================
     | brasero dependencies   :
     +=========================
-    \ 
+    \
      +---[ Tree of dependencies ]
      |
      +--1 orc
@@ -494,7 +494,7 @@ and also displays the installed packages:
      |
      +--5 libunique
 
-    
+
 Check if the dependencies used:
 
     $ slpkg -t sbo Flask --check-deps
@@ -516,7 +516,7 @@ Check if the dependencies used:
      |
      +--5: werkzeug is dependence on --> Flask
 
-    
+
 Drawing the dependencies diagram:
 
     $ slpkg -t sbo flexget --graph=image.x11
@@ -549,7 +549,7 @@ Drawing the dependencies diagram:
 Drawing the dependencies ascii diagram:
 
     $ slpkg -t sbo botocore --graph=ascii
-    
+
                                        +---------------------------------+
                                        |                                 |
                                        |                                 |
@@ -641,19 +641,19 @@ And check if the packages need upgrade with:
     Reading package lists... Done
     Resolving dependencies... Done
 
-    The following packages will be automatically installed or upgraded 
+    The following packages will be automatically installed or upgraded
     with new version:
 
     +==============================================================================
     | Package                 New version        Arch    Build  Repos          Size
     +==============================================================================
     Upgrading:
-      astroid-1.3.2           1.3.4              x86_64         SBo           
-      jdk-7u51                8u31               x86_64         SBo           
+      astroid-1.3.2           1.3.4              x86_64         SBo
+      jdk-7u51                8u31               x86_64         SBo
     Installing for dependencies:
-      six-1.7.3               1.8.0              x86_64         SBo           
-      logilab-common-0.60.1   0.63.2             x86_64         SBo           
-      pysetuptools-6.1        7.0                x86_64         SBo           
+      six-1.7.3               1.8.0              x86_64         SBo
+      logilab-common-0.60.1   0.63.2             x86_64         SBo
+      pysetuptools-6.1        7.0                x86_64         SBo
 
     Installing summary
     ===============================================================================
@@ -682,7 +682,7 @@ And check if the packages need upgrade with:
     Need to get 1.53 Mb of archives.
     After this process, 14.55 Mb of additional disk space will be used.
 
-    Would you like to continue [y/N]? 
+    Would you like to continue [y/N]?
 
 
 Check if your Slackware distribution is up to date.
@@ -694,7 +694,7 @@ why always you should have update your system:
     Reading package lists... Done
 
     These packages need upgrading:
-    
+
     +==============================================================================
     | Package                   New version      Arch     Build  Repos         Size
     +==============================================================================
@@ -708,16 +708,16 @@ why always you should have update your system:
     Total 3 package will be upgrading and 0 will be installed.
     Need to get 13.58 Mb of archives.
     After this process, 76.10 Mb of additional disk space will be used.
-    
+
     Would you like to continue [y/N]?
 
-    
-    
+
+
 Upgrade only distribution:
 
-    $ slpkg -c slack --upgrade --skip="multi:*multilib*,ktown:*"  // This upgrade 
+    $ slpkg -c slack --upgrade --skip="multi:*multilib*,ktown:*"  // This upgrade
     Checking... Done                                              // distribution
-                                                                  // and skip all 
+                                                                  // and skip all
     Slackware64 'stable' v14.2 distribution is up to date         // packages from
                                                                   // ktown repository
                                                                   // and multilib
@@ -729,7 +729,7 @@ Skip the packages when upgrading:
     Reading package lists... Done               // repository:string*
     Resolving dependencies... Done              // repository:*string
 
-    The following packages will be automatically installed or upgraded 
+    The following packages will be automatically installed or upgraded
     with new version:
 
     +==============================================================================
@@ -765,7 +765,7 @@ Read files, download, build or install:
     +===============================================================================
     | Description: multi-player combat game
     | SlackBuild: bitfighter.tar.gz
-    | Sources: bitfighter-019c.tar.gz, classic_level_pack.zip 
+    | Sources: bitfighter-019c.tar.gz, classic_level_pack.zip
     | Requirements: OpenAL, SDL2, speex, libmodplug
     +===============================================================================
     | README               View the README file
@@ -777,13 +777,13 @@ Read files, download, build or install:
     | Install              Download/Build/Install
     | Clear                Clear screen
       Quit                 Quit
-    +================================================================================ 
+    +================================================================================
       Choose an option > _
 
 
 Use the dialog utility to help you find the packages:
 
-    
+
     Load all repository:
 
     $ slpkg -n --checklist
@@ -791,7 +791,7 @@ Use the dialog utility to help you find the packages:
 
 .. image:: https://gitlab.com/dslackw/images/raw/master/slpkg/pythondialog5.png
 
-    
+
     Search from pattern such as all 'perl' packages:
 
     $ slpkg -n perl --checklist
@@ -799,7 +799,7 @@ Use the dialog utility to help you find the packages:
 
 .. image:: https://gitlab.com/dslackw/images/raw/master/slpkg/pythondialog6.png
 
-     
+
 Auto tool to build a package:
 
     Two files termcolor.tar.gz and termcolor-1.1.0.tar.gz
@@ -831,12 +831,12 @@ Auto tool to build a package:
     creating /tmp/SBo/package-termcolor/usr/lib64
     creating /tmp/SBo/package-termcolor/usr/lib64/python2.7
     creating /tmp/SBo/package-termcolor/usr/lib64/python2.7/site-packages
-    copying build/lib/termcolor.py -> 
+    copying build/lib/termcolor.py ->
     /tmp/SBo/package-termcolor/usr/lib64/python2.7/site-packages
-    byte-compiling /tmp/SBo/package-termcolor/usr/lib64/python2.7/site-packages/termcolor.py 
+    byte-compiling /tmp/SBo/package-termcolor/usr/lib64/python2.7/site-packages/termcolor.py
     to termcolor.pyc
     running install_egg_info
-    Writing 
+    Writing
     /tmp/SBo/package-termcolor/usr/lib64/python2.7/site-packages/termcolor-1.1.0-py2.7.egg-info
 
     Slackware package maker, version 3.14159.
@@ -901,8 +901,8 @@ Upgrade, install the packages like Slackware command '# upgradepkg --install-new
 Install mass-packages:
 
     $ slpkg -u --install-new *.t?z
-    
-    or 
+
+    or
 
     $ slpkg -i *.t?z
 
@@ -924,7 +924,7 @@ Slpkg auto detect Slackware binary packages (.tgz, .txz, .tlz and .tbz) for inst
     +==============================================================================
      > _
 
-    
+
 Search for the packages from the enabled repositories:
 
     $ slpkg -F aria2
@@ -938,12 +938,12 @@ Search for the packages from the enabled repositories:
       slonly      aria2-1.18.10-x86_64-1_slack.txz                           1124 K
       salix       aria2-1.18.1-x86_64-1rl.txz                                1052 K
       conrad      aria2-1.18.10-x86_64-1cf.txz                               1140 K
-    
+
     Found summary
     ===============================================================================
     Total found 4 packages in 4 repositories.
 
-   
+
     Search in repositories with case insensitives:
 
     $ slpkg -F pyqt5 AAA --case-ins
@@ -970,19 +970,42 @@ Find the installed packages:
 
     $ slpkg -f apr
 
-    Packages with matching name [ apr ] 
-    
-    [ installed ] - apr-1.5.0-x86_64-1_slack14.1
-    [ installed ] - apr-util-1.5.3-x86_64-1_slack14.1
-    [ installed ] - xf86dgaproto-2.1-noarch-1
-    [ installed ] - xineramaproto-1.2.1-noarch-1
+    Sckages with matching name [ apr ]
+
+    [ installed ] [ 1.1M ] - apr-1.5.2-x86_64-1
+    [ installed ] [ 530K ] - apr-util-1.5.4-x86_64-2
+    [ installed ] [ 40K ] - xf86dgaproto-2.1-noarch-1
+    [ installed ] [ 50K ] - xineramaproto-1.2.1-noarch-1
 
     Found summary
     ===============================================================================
-    Total found 4 matcing packages
-    Size of installed packages 1.61 Mb
+    Total found 4 matching packages.
+    Size of installed packages 1.71 Mb.
 
-    
+
+    Find only the third-party packages:
+
+    $ slpkg -f python --third-party
+
+    Packages with matching name [ python ]
+
+    [ installed ] [ 1.4M ] - bpython-0.17.1-x86_64-1_SBo
+    [ installed ] [ 590K ] - python-certifi-2018.11.29-x86_64-1_SBo
+    [ installed ] [ 1.9M ] - python-chardet-3.0.4-x86_64-1_SBo
+    [ installed ] [ 220K ] - python-libtmux-0.8.0-x86_64-1_SBo
+    [ installed ] [ 50K ] - python-notify2-0.3.1-x86_64-1_SBo
+    [ installed ] [ 1.5M ] - python-requests-2.20.1-x86_64-1_SBo
+    [ installed ] [ 110K ] - python-scandir-1.8-x86_64-1_SBo
+    [ installed ] [ 1.5M ] - python-urllib3-1.23-x86_64-1_SBo
+    [ installed ] [ 440K ] - python2-pythondialog-3.4.0-x86_64-1_SBo
+    [ installed ] [ 120M ] - python3-3.6.7-x86_64-1_SBo
+
+    Found summary
+    ===============================================================================
+    Total found 10 matching packages.
+    Size of installed packages 127.68 Mb.
+
+
 Display the contents of the packages:
 
     $ slpkg -d termcolor lua
@@ -1026,16 +1049,16 @@ Display the contents of the packages:
     usr/doc/termcolor-1.1.0/COPYING.txt
     install/
     install/slack-desc
-    
+
     No such package lua: Cant find
 
 
-Removes a previously installed Slackware binary packages:
+Removes a previously installed Slackware binary package:
 
     $ slpkg -r termcolor
-    
+
     Packages with name matching [ termcolor ]
-    
+
     [ delete ] --> termcolor-1.1.0-x86_64-1_SBo
 
     Removed summary
@@ -1045,7 +1068,7 @@ Removes a previously installed Slackware binary packages:
     Are you sure to remove 1 package(s) [y/N]? y
 
     Package: termcolor-1.1.0-x86_64-1_SBo
-        Removing... 
+        Removing...
 
     Removing package /var/log/packages/termcolor-1.1.0-x86_64-1_SBo...
         Removing files:
@@ -1070,10 +1093,10 @@ Removes a previously installed Slackware binary packages:
     +==============================================================================
 
 
-Remove packages with all the dependencies and check if used as dependency:
+Remove packages with all dependencies and check if used as dependency:
 (Presupposes install with the option '# slpkg -s <repository> <packages>')
 
-    $ slpkg -r Flask --check-deps 
+    $ slpkg -r Flask --check-deps
 
     Packages with name matching [ Flask ]
 
@@ -1098,10 +1121,10 @@ Remove packages with all the dependencies and check if used as dependency:
     +==============================================================================
 
     Remove dependencies (maybe used by other packages) [y/N]? y
-    
-    
+
+
     +==============================================================================
-    |                              !!! WARNING !!!  
+    |                              !!! WARNING !!!
     +==============================================================================
     | pysetuptools is dependency of the package --> Flask
     | MarkupSafe is dependency of the package --> Flask
@@ -1135,7 +1158,7 @@ Remove packages with all the dependencies and check if used as dependency:
 Remove the packages with by TAG:
 
     $ slpkg -r _SBo --tag
-    
+
     Packages with name matching [ _SBo ]
 
     [ delete ] --> Jinja2-2.7.3-x86_64-1_SBo
@@ -1157,10 +1180,10 @@ Remove the packages with by TAG:
     ===============================================================================
     Size of removed packages 24.61 Mb.
 
-    Are you sure to remove 14 packages [y/N]? 
+    Are you sure to remove 14 packages [y/N]?
+
 
 Remove the packages using dialog utility:
-
 
     $ slpkg -r _SBo --tag --checklist
 
@@ -1175,32 +1198,63 @@ Remove the packages using dialog utility:
 .. image:: https://gitlab.com/dslackw/images/raw/master/slpkg/pythondialog4.png
 
 
+Remove only the third-party packages:
+
+    $ slpkg -r python --third-party
+
+    Packages with name matching [ python ]
+
+    [ delete ] --> bpython-0.17.1-x86_64-1_SBo
+    [ delete ] --> python-certifi-2018.11.29-x86_64-1_SBo
+    [ delete ] --> python-chardet-3.0.4-x86_64-1_SBo
+    [ delete ] --> python-libtmux-0.8.0-x86_64-1_SBo
+    [ delete ] --> python-notify2-0.3.1-x86_64-1_SBo
+    [ delete ] --> python-requests-2.20.1-x86_64-1_SBo
+    [ delete ] --> python-scandir-1.8-x86_64-1_SBo
+    [ delete ] --> python-urllib3-1.23-x86_64-1_SBo
+    [ delete ] --> python2-pythondialog-3.4.0-x86_64-1_SBo
+    [ delete ] --> python3-3.6.7-x86_64-1_SBo
+
+    Removed summary
+    ===============================================================================
+    Size of removed packages 127.68 Mb.
+
+
+    +==============================================================================
+    |                            *** WARNING ***
+    | Before you use third-party option, be sure you have updated the package
+    | lists. Run the command 'slpkg update' and 'slpkg -c slack --upgrade'
+    +==============================================================================
+
+    Are you sure to remove 10 packages [y/N]?
+
+
 Build and install the packages that have added to the queue:
 
     $ slpkg -q roxterm SDL2 CEGUI --add
-    
+
     Add packages in queue:
 
     roxterm
     SDL2
     CEGUI
 
-    
+
     $ slpkg -q roxterm --remove (or 'slpkg -q --remove' remove all packages)
-    
+
     Remove packages from queue:
 
     roxterm
 
-    
+
     $ slpkg -q list
 
     Packages in queue:
 
     SDL2
     CEGUI
-    
-    
+
+
     $ slpkg -q build (build only packages from queue)
 
     $ slpkg -q install (install packages from queue)
@@ -1208,12 +1262,12 @@ Build and install the packages that have added to the queue:
     $ slpkg -q build-install (build and install)
 
 
-Add or remove the packages in blacklist file manually from 
+Add or remove the packages in blacklist file manually from
 /etc/slpkg/blacklist or with the following options:
 
     $ slpkg -b live555 speex faac --add
 
-    Add packages in blacklist: 
+    Add packages in blacklist:
 
     live555
     speex
@@ -1242,7 +1296,7 @@ Add or remove the packages in blacklist file manually from
 
     multi:*multilib*   \\ Add all packages include string "multilib" from "multi"
                        \\ repository.
-    
+
 Print a package description:
 
     $ slpkg -p alien vlc --color=green
@@ -1367,7 +1421,7 @@ Read files from the sbo repository:
     libreoffice.SlackBuild\n       This *might* work, but upstream has a habit of ch
     anging the naming\n       and structure of the files, etc. between versions, so:
      YMMV.\n'
-    
+
     >>> ReadSBo(url).slackbuild("libreoffice", ".SlackBuild")
     ...
 
@@ -1411,7 +1465,7 @@ Check for the installed packages:
     '-3.2.4'
 
 
-Copyright 
+Copyright
 ---------
 
 - Copyright 2014-2018 © Dimitris Zlatanidis
