@@ -142,6 +142,7 @@ class ArgParse(object):
     def command_repo_enable(self):
         """Repositories enable/disable
         """
+        self.if_checklist()
         if len(self.args) == 1 and self.args[0] == "repo-enable":
             RepoEnable().choose()
         else:
