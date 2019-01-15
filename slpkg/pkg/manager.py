@@ -214,9 +214,10 @@ class PackageManager(object):
                 self.meta.default_answer = "y"
         else:
             for rmv, pkg in zip(removed, packages):
-                print("[ {0}delete{1} ] --> {2}".format(
-                    self.meta.color["RED"], self.meta.color["ENDC"], pkg))
                 self._sizes(pkg)
+                print("[ {0}delete{1} ] --> [ {2} ] - {3}".format(
+                    self.meta.color["RED"], self.meta.color["ENDC"],
+                    self.file_size, pkg))
             self._calc_sizes()
             self._remove_summary()
         if "--third-party" in self.extra:
