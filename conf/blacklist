@@ -34,11 +34,11 @@
 # *lib*
 #
 # Add packages in blacklist by repository:
-# slacky:*       `add all packages from slacky repository`
-# sbo:py*        `add all packages from sbo starts with 'py'`
-# sbo:jdk        `add jdk package from sbo repository`
-# slack:*multi*  `add packages include string 'multi' from slack`
-# msb:*.txz      `add packages ends with '.txz' from msb repository`
+# slacky:*       `add all packages from the slacky repository`
+# sbo:py*        `add all packages from the sbo starts with 'py'`
+# sbo:jdk        `add jdk package from the sbo repository`
+# slack:*multi*  `add packages include string 'multi' from the slack`
+# msb:*.txz      `add packages ends with '.txz' from the msb repository`
 #
 # Sometimes the automatic kernel update creates problems because you
 # may need to file intervention 'lilo'. The slpkg automatically detects
