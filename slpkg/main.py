@@ -101,7 +101,7 @@ class ArgParse(object):
         ] and self.args[1] == repo and repo in enabled_repos:
             print("\n  Please update the packages lists. Run 'slpkg update'.\n"
                   "  This command should be used to synchronize the packages\n"
-                  "  lists from the repositories are enabled.\n")
+                  "  lists from the repositories that are enabled.\n")
             raise SystemExit()
 
     def help_version(self):
