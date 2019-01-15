@@ -24,16 +24,19 @@
 
 from slpkg.utils import Utils
 from slpkg.binary.greps import repo_data
+from slpkg.splitting import split_package
 from slpkg.__metadata__ import MetaData as _meta_
 
 
 def slackware_repository():
-    """Return all official Slackware packages without the extension .txz
+    """Return all official Slackware packages
     """
-    slack_repo, slackware_repo = [], []
+    slack_repo, packages, names, name = [], [], [], ""
     slack_repo = repo_data(
         Utils().read_file(_meta_.lib_path + "slack_repo/PACKAGES.TXT"),
         "slack", "")
     for pkg in slack_repo[0]:
-        slackware_repo.append(pkg[:-4])
-    return slackware_repo
+        name = split_package(pkg)[0]
+        names.append(name)
+        packages.append(pkg[:-4])
+    return packages, names

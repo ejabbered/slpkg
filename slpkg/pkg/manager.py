@@ -167,12 +167,13 @@ class PackageManager(object):
             pkg = ""
             extra = ""
         elif "--third-party" in extra:
-            slackware_packages = slackware_repository()
+            slack_packages, slack_names = slackware_repository()
             slpkg_pkg = self.meta.__all__ + "-" + self.meta.__version__
             binary = self.binary
             for pkg in find_package("", self.meta.pkg_path):
+                slack_name = split_package(pkg)[0]
                 for tag in binary:
-                    if (pkg not in slackware_packages and
+                    if (slack_name not in slack_names and
                             slpkg_pkg not in pkg and tag in pkg):
                         removed.append(split_package(pkg)[0])
                         packages.append(pkg)
@@ -406,7 +407,7 @@ class PackageManager(object):
         """
         matching, packages = 0, []
         pkg_cache, match_cache = "", ""
-        slackware_packages = slackware_repository()
+        slack_packages, slack_names = slackware_repository()
         print("\nPackages with matching name [ {0}{1}{2} ]\n".format(
             self.meta.color["CYAN"], ", ".join(self.binary),
             self.meta.color["ENDC"]))
@@ -414,14 +415,15 @@ class PackageManager(object):
             for match in find_package("", self.meta.pkg_path):
                 pkg_cache = pkg
                 match_cache = match
+                split_name = split_package(match)[0]
                 if "--case-ins" in flag:
                     pkg_cache = pkg.lower()
                     match_cache = match.lower()
                 if ("--third-party" in flag and not self.binary and
-                        match not in slackware_packages):
+                        split_name not in slack_names):
                         packages.append(match)
                 if ("--third-party" in flag and pkg_cache in match_cache and
-                        match not in slackware_packages):
+                        split_name not in slack_names):
                         packages.append(match)
                 if pkg_cache in match_cache and not flag:
                     packages.append(match)
