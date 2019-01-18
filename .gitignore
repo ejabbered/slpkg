@@ -1,5 +1,6 @@
 /dist
 /build
+/public
 *.pyc
 __pycache__
 .pipy
