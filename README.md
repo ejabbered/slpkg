@@ -13,19 +13,3 @@ upgrading or removing packages.
 What makes slpkg to distinguish it from the other tools; The user friendliness it's a primary 
 target as well as easy to understand and use, also use colors to highlight packages and 
 display warning messages, etc.
-
-
-Features
---------
-
-- Dependency resolution
-- Dependencies visualizations
-- Multiple options
-- Multiple repositories
-- Easy configuration
-- Fully configurable
-- Adaptability
-- Powerful options
-- Source builder
-- Faster process
-- Better Security
