@@ -1,9 +1,3 @@
-Title: Slpkg
-Date: 2019-1-18 08:21
-Authors: dslackw
-Category: Home
-Slug: home
-
 ![alt text](https://gitlab.com/dslackw/images/raw/master/slpkg/slpkg_package.png)
 
 ![alt text](https://gitlab.com/dslackw/images/raw/master/slpkg/poweredbyslack.gif)
