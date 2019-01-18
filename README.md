@@ -1,5 +1,4 @@
-About
------
+# slpkg
 
 Slpkg is a powerful software package manager that installs, updates, and removes packages on 
 Slackware based systems. It automatically computes dependencies and figures out what things 
