@@ -52,3 +52,10 @@ Versions: {14.0, 14,1, 14.2, current}
 - [Cinnamon Desktop Environment](http://slackware.org.uk/csb/){:target="_blank"}
 Arch: {x86, x86_64}
 Versions: {14,1, 14.2, current}
+
+Choose default repositories you need to work from the file `/etc/slpkg/repositories.conf`
+defaults are `slack` and `sbo` repositories and please read the REPOSITORIES file for each
+of the particularities.
+If a repository is not in the above list, manage the custom repositories with the commands
+`repo-add` and `repo-remove`.
+
