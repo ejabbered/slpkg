@@ -1,5 +1,5 @@
 .\"                                      -*- nroff -*-
-.\" Copyright (C) 2014-2017 Dimitris Zlatanidis
+.\" Copyright (C) 2014-2019 Dimitris Zlatanidis
 .\"
 .\" This program is free software: you can redistribute it and/or modify
 .\" it under the terms of the GNU General Public License as published by
@@ -11,7 +11,7 @@
 .\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 .\" GNU General Public License for more details.
 .\"
-.TH Slpkg "21" "10" 2017" "slpkg"
+.TH Slpkg "14" "01" 2019" "slpkg"
 .SH NAME
 Slpkg is a user-friendly package manager for Slackware installations
 .SH SYNOPSIS
@@ -50,7 +50,7 @@ Usage: slpkg [COMMANDS|OPTIONS] {repository|package...}
              [-p [repository] [package], --color=[]]
              [-n [SBo package], --checklist, --case-ins]
              [-F [package...], --case-ins]
-             [-f [package...], --case-ins]
+             [-f [package...], --case-ins, --third-party]
              [-i [options] [package...]]
              [-u [options] [package...]]
              [-r [options] [package...], --deps, --check-deps, --tag,
@@ -116,7 +116,7 @@ Enable or disable repositories via dialog utility (require python2-pythondialog)
 Lists all enabled or disabled repositories.
 
 .SS repo-info, repository information
-\fBslpkg\fP \fBrepo-info\fP <\fBrepository\fP>
+\fBslpkg\fP \fBrepo-info\fP <\fIrepository\fP>
 .PP
 View repository information.
 
@@ -138,7 +138,7 @@ Additional options:
 \fBslpkg\fP \fBdeps-status\fP \fB--graph=[type]\fP
 .PP
 Print dependencies status used by packages. Prerequisite packages have been installed 
-with the option "slpkg -s <repository> <packages>".
+with the option "# slpkg -s <repository> <packages>".
 .PP
 Additional options:
 .PP
@@ -168,9 +168,9 @@ checksum from the configuration file.
 \fBslpkg\fP \fB-b\fP <\fIname of packages\fP> \fB--add\fP, \fB--remove\fP, \fBlist\fP
 .PP
 Add, remove or listed packages from blacklist file. The settings here affect 
-all repositories. Remove all packages from blacklist use argument "ALL" for package 
-like "# slpkg -b ALL --remove". Use asterisk "*" to match pagkages like "# slpkg -b 
-py* --add", this add all installed packages with starts string "py" or "# slpkg -b 
+all repositories. Remove all packages from blacklist use argument like
+"# slpkg -b --remove". Use asterisk "*" to match pagkages like "# slpkg -b
+py* --add", this add all installed packages with starts string "py" or "# slpkg -b
 multi:*multilib* --add", this add all multilib packages from repository "multi".
 
 .SS -q, --queue, add, remove, view packages in queue
@@ -180,7 +180,7 @@ multi:*multilib* --add", this add all multilib packages from repository "multi".
 .PP
 Add, remove and listed sbo packages from queue. This argument is very useful if you want
 to build and install multiple packages together. Note the correct order if there are 
-dependencies. If you want to remove all the packages from the list run "# slpkg -q ALL --remove". 
+dependencies. If you want to remove all the packages from the list run "# slpkg -q --remove".
 (these arguments only working for the sbo repository)
 Build or install or build and install packages are queued.
 
@@ -213,7 +213,7 @@ directly with the official repository and so always you can have updated your sy
 .PP
 Additional options:
 .PP
-\fB-c ALL\fP : Check ChangeLog.txt files for changes.
+\fB-c \fP : Check ChangeLog.txt files for changes.
 .PP
 \fB--upgrade\fP : Check and install packages for upgrade.
 .PP
@@ -221,7 +221,7 @@ Additional options:
 .PP
 \fB--resolve-off\fP : Switch off automatic resolve dependencies.
 .PP
-\fB--skip=[packages...]\fP : Skip packages from upgrade separate by comma like "slpkg -c sbo --skip=jdk,pep8,pip" (See REGEX).
+\fB--skip=[packages...]\fP : Skip packages from upgrade separate by comma like "# slpkg -c sbo --skip=jdk,pep8,pip" (See REGEX).
 .PP
 \fB--checklist\fP : Enable dialog utility and checklist option. (Require python2-pythondialog)
 
@@ -283,7 +283,7 @@ Additional options:
 \fB--case-ins\fP : Search package name in repository with case insensitive.
 
 .SS -f, --find, find installed packages
-\fBslpkg\fP \fB-f\fP <\fInames of packages\fP>, \fI--case-ins\fP 
+\fBslpkg\fP \fB-f\fP <\fInames of packages\fP>, \fB--case-ins\fP, \fB--third-party\fP
 .PP
 Find installed packages with view total file size. 
 Example you can view all installed sbo packages like "# slpkg -f _SBo".
@@ -291,13 +291,15 @@ Example you can view all installed sbo packages like "# slpkg -f _SBo".
 Additional options:
 .PP
 \fB--case-ins\fP : Search package name with case insensitive.
+.PP
+\fB--third-party\fP : View all the third-party packages.
 
 .SS -n, --network, view SBo packages
-\fBslpkg\fP \fB-n\fP <\fIname of package\fP>, <\fI[pattern], --checklist\fP>, \fI--case-ins\fP
+\fBslpkg\fP \fB-n\fP <\fIname of package\fP>, <\fI[pattern], --checklist\fP>, \fB--case-ins\fP
 .PP
 View complete slackbuilds.org site in your terminal. Read file, download, 
-build or install etc. Use 'ALL' in [pattern] and "--checklist" additional option to load all
-repository, example "slpkg -n ALL --checklist".
+build or install etc. Use "--checklist" additional option to load all repository, example:
+"# slpkg -n --checklist".
 .PP
 Additional options:
 .PP
@@ -320,12 +322,12 @@ and will skip any packages that do not already have a version installed.
 More information please read "man upgradepkg".
 
 .SS -r, --removepkg, remove previously installed Slackware binary packages
-\fBslpkg\fP \fB-r\fP \fB[-copy, -keep, -preserve, -warn]\fP <\fInames of packages\fP>, \fB--deps\fP, \fB--check-deps\fP, \fB--tag\fP, \fB--checklist\fP
+\fBslpkg\fP \fB-r\fP \fB[-copy, -keep, -preserve, -warn]\fP <\fInames of packages\fP>, \fB--deps\fP, \fB--check-deps\fP, \fB--tag\fP, \fB--checklist\fP, \fB--third-party\fP
 .PP
 Removes a previously installed Slackware package, while writing a progress report to 
 the standard output. A package may be specified either by the full package name (as 
 you'd see listed in /var/log/packages/), or by the base package name. If installed
-packages with command "slpkg -s <repo> <packages>" then write a file in /var/log/slpkg/dep/ 
+packages with command "# slpkg -s <repo> <packages>" then write a file in /var/log/slpkg/dep/ 
 with all dependencies and it allows you can remove them all together.
 More information please read "man removepkg".
 .PP
@@ -338,6 +340,8 @@ Additional options:
 \fB--tag\fP : Remove packages with by TAG.
 .PP
 \fB--checklist\fP : Enable dialog utility and checklist option. (Require python2-pythondialog)
+.PP
+\fB--third-party\fP : Remove all the third-party packages. (Be sure update the package lists before)
 
 .SS -d, --display, display the installed packages contents and file list
 \fBslpkg\fP \fB-d\fP <\fInames of packages\fP>
@@ -435,7 +439,7 @@ Dimitris Zlatanidis <d.zlatanidis@gmail.com>
 .SH HOMEPAGE
 https://gitlab.com/dslackw/slpkg
 .SH COPYRIGHT
-Copyright \(co 2014-2017 Dimitris Zlatanidis
+Copyright \(co 2014-2019 Dimitris Zlatanidis
 
 .SH SEE ALSO
 installpkg(8), upgradepkg(8), removepkg(8), pkgtool(8), slackpkg(8), explodepkg(8),

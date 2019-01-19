@@ -3,7 +3,7 @@
 
 # slpkg_update.py file is part of slpkg.
 
-# Copyright 2014-2018 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
+# Copyright 2014-2019 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
 # All rights reserved.
 
 # Slpkg is a user-friendly package manager for Slackware installations
@@ -35,7 +35,7 @@ from slpkg.__metadata__ import MetaData as _meta_
 
 
 def it_self_update():
-    """Check from GitHub slpkg repository if new version is available
+    """Check from GitLab slpkg repository if new version is available
     download and update itself
     """
     __new_version__ = ""
@@ -86,6 +86,6 @@ def it_self_update():
         subprocess.call("chmod +x {0}".format("install.sh"), shell=True)
         subprocess.call("sh install.sh", shell=True)
     else:
-        print("\n{0}: There is no new version, already used the last !"
+        print("\n{0}: There is no new version, already used the last!"
               "\n".format(_meta_.__all__))
     raise SystemExit()

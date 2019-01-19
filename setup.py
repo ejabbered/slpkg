@@ -3,7 +3,7 @@
 
 # setup.py file is part of slpkg.
 
-# Copyright 2014-2018 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
+# Copyright 2014-2019 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
 # All rights reserved.
 
 # Slpkg is a user-friendly package manager for Slackware installations
@@ -54,7 +54,9 @@ def print_logo():
             print(logo)
             time.sleep(1)
 
+
 print_logo()
+
 
 setup(
     name="slpkg",
@@ -68,7 +70,7 @@ setup(
     author=_meta_.__author__,
     author_email=_meta_.__email__,
     url="https://gitlab.com/dslackw/slpkg",
-    package_data={"": ["LICENSE", "README.rst", "CHANGELOG"]},
+    package_data={"": ["LICENSE", "README.md", "CHANGELOG"]},
     data_files=[("man/man8", ["man/slpkg.8"]),
                 ("/etc/bash_completion.d", ["conf/slpkg.bash-completion"]),
                 ("/etc/fish/completions", ["conf/slpkg.fish"])],
@@ -92,7 +94,7 @@ setup(
         "Topic :: System :: Archiving :: Packaging",
         "Topic :: System :: Software Distribution",
         "Topic :: Utilities"],
-    long_description=open("README.rst").read()
+    long_description=open("README.md").read()
     )
 
 # Install configuration files with pip.

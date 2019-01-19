@@ -1,3 +1,14 @@
+3.3.9 - 14/01/2019
+Updated:
+- Readme file and added example text file
+- Checklist error message
+- Removed unnecessary arguments ALL
+Added:
+- Support elilo and grub upgrade boot loader after kernel upgrade
+- View third party packages
+- Remove third party packages
+- Added file size in the removed packages
+
 3.3.8 - 09/06/2018
 Fixed:
 - aria2c (optional downloader) downloading path
@@ -42,7 +53,7 @@ Added:
 - Set computer architecture via configuration file /etc/slpkg/slpkg.conf
 
 3.3.0 - 01/10/2017
-Fixed: 
+Fixed:
 - TypeError: stat() argument 1 must be encoded string without null bytes,
 not str #100
 - Check file script before build (IOError: [Errno 2] No such file or
@@ -144,7 +155,7 @@ Remove:
 3.1.8 - 11/10/2016
 Added:
 - Feature rebuild packages for sbo repository and reinstall binaries packages
-- Slackware package management tools. Thanks to Thomas Szteliga #71 
+- Slackware package management tools. Thanks to Thomas Szteliga #71
 Fixed:
 - Print repository error message without usage
 - Count packages in deps-status option
@@ -284,7 +295,7 @@ Added:
 - Additional option "--case-ins" case insensitive in "--tracking" option
 Fixed:
 - Matching packages with case insensitive option
- 
+
 2.9.2 - 21/09/2015
 Added:
 - Clear screen in "--network" option
@@ -931,7 +942,7 @@ Fixed:
 - Build time
 Added:
 - Search dependencies from local SLACKBUILDS.TXT file
-        
+
 1.8.7 - 19/09/2014
 Fixed:
 - Build time
@@ -942,7 +953,7 @@ Fixed:
 - Updated find installed packages
 Added:
 - Print total file size of installed packages
-- Highlight upgraded packages from slack repo 
+- Highlight upgraded packages from slack repo
 
 1.8.5 - 13/09/2014
 Fixed:
@@ -984,7 +995,7 @@ Added:
 - Install.sh script
 Fixed:
 - Remove destination file after copy to sbo script directory
-- Fix appearance build tag, the packages that do not include 
+- Fix appearance build tag, the packages that do not include
 - _slack tag
 
 1.7.8 - 28/08/2014
@@ -1006,7 +1017,7 @@ Added:
 - Upgrade all SBo packages
 
 1.7.5 - 22/08/2014
-Added: 
+Added:
 - Report of packages will be installed the options `slpkg -s sbo <package>`, `slpkg -s slack <package>`, `slpkg -c slack upgrade`
 Fixed:
 - Mirrors for Slackware x86
@@ -1016,7 +1027,7 @@ Fixed:
 - BugFix NameError: global name 'getpass' is not defined
 Added:
 - Downloaded .asc files to upgrade or install packages from Slackware tree
-- Calculate file sizes in the process of installing 
+- Calculate file sizes in the process of installing
 - Packages or upgrading from Slackware mirrors
 
 1.7.3 - 16/8/2014
@@ -1026,7 +1037,7 @@ Fixed:
 - Removed some code system and replaced with Python code.
 - Reinstall if packages exist and upgrading if not in options slpkg -s slack <packages>
 - New paths created, ChangeLog.txt saved in /var/log/slpkg and SLACKBUILDS.TXT in /var/lib/slpkg/sbo_repo
-- Upgrade initilazation method 
+- Upgrade initilazation method
 - Replace mkdir -p with os.mkdir and create directories only if not exists
 
 1.7.2 - 13/08/2014
@@ -1095,7 +1106,7 @@ Fixed:
 Added:
 - Distribution upgrade from official Slackware mirrors `slpkg -c slack upgrade`
 Fixed:
-- Change detection packages mode. 2x much faster 
+- Change detection packages mode. 2x much faster
 - Messages
 
 1.6.1 - 22/07/2014
@@ -1103,10 +1114,10 @@ Fixed:
 - Fix messages
 - Package remove
 - Package find
-- Package print contents 
+- Package print contents
 
 1.6.0 - 21/07/2014
-Fixed: 
+Fixed:
 - Remove package (slpkg -r)
 - Added and fix messages
 - Create __metadata__
@@ -1158,7 +1169,7 @@ Fixed:
 - Source code
 
 1.4.8 - 06/06/2014
-Fixed: 
+Fixed:
 - Print message to upgrade, install, reinstall and report files to removed
 
 1.4.7 - 04/06/2014
@@ -1177,7 +1188,7 @@ Added:
 1.4.4 - 03/06/2014
 Added:
 - Support ALL extra sources
-Fixed: 
+Fixed:
 - Out of range in SBo version link with filename
 
 1.4.3 - 03/06/2014
@@ -1235,7 +1246,7 @@ Added:
 Fixed:
 - Bbuild arguments messages
 - TypeError: unsupported operand type(s) for +: 'NoneType' and 'str' in sbo_requires_pkg function (sbo_url = sbo_url + name + ".info")
-	
+
 1.3.1 - 21/05/2014
 Added:
 - View README file
@@ -1269,7 +1280,7 @@ Added:
 - Download source code by pc arcitecture
 
 1.2.3 - 19-05-2014
-Fixed: 
+Fixed:
 - Check packages for updates
 Added:
 - Progress bar to searching
@@ -1302,7 +1313,7 @@ Fixed:
 
 1.1.6 - 15-05-2014
 Fixed:
-- Removed stupid option binary search 
+- Removed stupid option binary search
 
 1.1.5 - 15/05/2014
 Added:
@@ -1330,7 +1341,7 @@ Added:
 - Search from SBo and print link for download
 
 1.0.9 - 12/05/2014
-Fixed: 
+Fixed:
 - Warning messages amd colors print out
 
 1.0.8 - 12/05/2014
@@ -1349,7 +1360,7 @@ Fixed:
 - Updated slackbuild argument
 
 1.0.5 - 10/05/2014
-Added: 
+Added:
 - Auto build package choice
 Fixed:
 - Man page and README.rst file

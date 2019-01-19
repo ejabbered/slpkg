@@ -3,7 +3,7 @@
 
 # dialog_box.py file is part of slpkg.
 
-# Copyright 2014-2018 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
+# Copyright 2014-2019 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
 # All rights reserved.
 
 # Slpkg is a user-friendly package manager for Slackware installations
@@ -34,8 +34,6 @@ class DialogUtil(object):
         try:
             from dialog import Dialog
         except ImportError:
-            print("Require 'pythondialog': Install with 'slpkg -s sbo "
-                  "python2-pythondialog'")
             raise SystemExit()
         self.d = Dialog(dialog="dialog", autowidgetsize=True)
         self.data = args[0]

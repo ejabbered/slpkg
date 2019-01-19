@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# search.py file is part of slpkg.
+# slackware_repo.py file is part of slpkg.
 
 # Copyright 2014-2019 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
 # All rights reserved.
@@ -23,23 +23,20 @@
 
 
 from slpkg.utils import Utils
-from slpkg.repositories import Repo
+from slpkg.binary.greps import repo_data
+from slpkg.splitting import split_package
 from slpkg.__metadata__ import MetaData as _meta_
 
-from slpkg.slack.slack_version import slack_ver
 
-
-def sbo_search_pkg(name):
-    """Search for package path from SLACKBUILDS.TXT file and
-    return url
+def slackware_repository():
+    """Return all official Slackware packages
     """
-    repo = Repo().default_repository()["sbo"]
-    sbo_url = "{0}{1}/".format(repo, slack_ver())
-    SLACKBUILDS_TXT = Utils().read_file(
-        _meta_.lib_path + "sbo_repo/SLACKBUILDS.TXT")
-    for line in SLACKBUILDS_TXT.splitlines():
-        if line.startswith("SLACKBUILD LOCATION"):
-            sbo_name = (line[23:].split("/")[-1].replace("\n", "")).strip()
-            if name == sbo_name:
-                return (sbo_url + line[23:].strip() + "/")
-    return ""
+    slack_repo, packages, names, name = [], [], [], ""
+    slack_repo = repo_data(
+        Utils().read_file(_meta_.lib_path + "slack_repo/PACKAGES.TXT"),
+        "slack", "")
+    for pkg in slack_repo[0]:
+        name = split_package(pkg)[0]
+        names.append(name)
+        packages.append(pkg[:-4])
+    return packages, names

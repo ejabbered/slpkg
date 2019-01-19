@@ -3,7 +3,7 @@
 #
 # slackware-mirrors file is part of slpkg.
 #
-# Copyright 2014-2018 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
+# Copyright 2014-2019 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
 # All rights reserved.
 #
 # Slpkg is a user-friendly package manager for Slackware installations.
@@ -28,11 +28,11 @@
 # to find the nearest one. If however for some reason this troublesome
 # please uncomment (remove the '#' character) only one mirror from
 # the list available below. You can also add a new mirror in the list
-# below. Be careful is the template that the rest.
+# below. Be careful with the template.
 # ----------------------------------------------------------------------------
 #
 #
-# Last Updated: Sun Apr 1 13:54:02 UTC 2018
+# Last Updated: Tue Jan 15 14:54:01 UTC 2019
 #
 # Available https mirrors:
 #
@@ -40,6 +40,7 @@
 # bg		 https://mirrors.netix.net/slackware/
 # ca		 https://mirror.csclub.uwaterloo.ca/slackware/
 # ca		 https://mirror.its.dal.ca/slackware/
+# ca		 https://slackware.freemirror.org/slackware/
 # cr		 https://mirrors.ucr.ac.cr/slackware/pub/slackware/
 # de		 https://ftp6.gwdg.de/pub/linux/slackware/
 # de		 https://linux.rz.rub.de/slackware/
@@ -47,14 +48,16 @@
 # de		 https://mirror.netcologne.de/slackware/
 # dk		 https://mirrors.dotsrc.org/slackware/
 # ec		 https://mirror.cedia.org.ec/slackware/
+# fr		 https://mirrors.phx.ms/slackware/
 # gb		 https://lon.mirror.rackspace.com/slackware/
 # gb		 https://mirror.bytemark.co.uk/slackware/
-# gb		  https://www.mirrorservice.org/sites/ftp.slackware.com/pub/slackware/
+# gb		 https://www.mirrorservice.org/sites/ftp.slackware.com/pub/slackware/
 # gr		 https://ftp.cc.uoc.gr/mirrors/linux/slackware/
 # hk		 https://hkg.mirror.rackspace.com/slackware/
+# hk		 https://mirror-hk.koddos.net/slackware/
+# hu		 https://quantum-mirror.hu/mirrors/pub/slackware/
 # id		 https://iso.ukdw.ac.id/slackware/
 # id		 https://repo.ukdw.ac.id/slackware/
-# ie		 https://ftp.heanet.ie/mirrors/ftp.slackware.com/pub/slackware/
 # it		 https://ba.mirror.garr.it/mirrors/Slackware/
 # lt		 https://mirrors.atviras.lt/slackware/
 # nl		 https://ftp.nluug.nl/os/Linux/distr/slackware/
@@ -66,7 +69,7 @@
 # ro		 https://mirrors.nxthost.com/slackware/
 # ru		 https://mirror.yandex.ru/slackware/
 # se		 https://ftp.acc.umu.se/mirror/slackware.com/
-# se		 https://ftp.sunet.se/mirror/slackware.com/
+# se		 https://mirror.linux.pizza/slackware/
 # sk		 https://mirror.wheel.sk/slackware/
 # tw		 https://ftp.yzu.edu.tw/Linux/Slackware/
 # ua		 https://ifconfig.com.ua/slackware/
@@ -80,7 +83,6 @@
 # us		 https://mirrors.syringanetworks.net/slackware/
 # us		 https://mirrors.xmission.com/slackware/
 # us		 https://slackware.absolutehosting.net/pub/slackware/
-#
 #
 #
 # Available http mirrors:
@@ -97,7 +99,6 @@
 # br		 http://linorg.usp.br/slackware/
 # br		 http://slackmirror.cbpf.br/pub/slackware/
 # by		 http://mirror.datacenter.by/pub/slackware/
-# ch		 http://mirror.switch.ch/ftp/mirror/slackware/
 # cz		 http://ftp.linux.cz/pub/linux/slackware/
 # de		 http://download.dlackware.com/slackware/
 # de		 http://ftp.tu-chemnitz.de/pub/linux/slackware/
@@ -136,7 +137,6 @@
 # za		 http://slackware.mirror.ac.za/
 #
 #
-#
 # Available ftp mirrors:
 #
 # au		 ftp://ftp.swin.edu.au/slackware/
@@ -152,7 +152,7 @@
 # by		 ftp://mirror.datacenter.by/pub/slackware/
 # ca		 ftp://mirror.csclub.uwaterloo.ca/slackware/
 # ca		 ftp://mirror.its.dal.ca/slackware/
-# ch		 ftp://mirror.switch.ch/mirror/slackware/
+# ca		 ftp://slackware.freemirror.org/slackware/
 # cr		 ftp://mirrors.ucr.ac.cr/slackware/pub/slackware/
 # cz		 ftp://ftp.linux.cz/pub/linux/slackware/
 # de		 ftp://ftp.tu-chemnitz.de/pub/linux/slackware/
@@ -172,7 +172,6 @@
 # gr		 ftp://ftp.otenet.gr/pub/linux/slackware/
 # hk		 ftp://hkg.mirror.rackspace.com/slackware/
 # hr		 ftp://mirror.slackware.hr/slackware/
-# ie		 ftp://ftp.heanet.ie/mirrors/ftp.slackware.com/pub/slackware/
 # jp		 ftp://ftp.kddilabs.jp/Linux/distributions/Slackware/
 # jp		 ftp://ftp.nara.wide.ad.jp/pub/Linux/slackware/
 # jp		 ftp://ftp.riken.jp/Linux/slackware/
@@ -188,7 +187,7 @@
 # pt		 ftp://ftp.rnl.tecnico.ulisboa.pt/pub/slackware/
 # ru		 ftp://mirror.yandex.ru/slackware/
 # ru		 ftp://slackware.tsu.ru/slackware/
-# se		 ftp://ftp.sunet.se/mirror/slackware.com/
+# se		 ftp://ftp.acc.umu.se/mirror/slackware.com/
 # tr		 ftp://ftp.linux.org.tr/slackware/
 # tw		 ftp://ftp.yzu.edu.tw/Linux/Slackware/
 # ua		 ftp://ifconfig.com.ua/pub/Mirror/slackware/

@@ -3,7 +3,7 @@
 
 # manager.py file is part of slpkg.
 
-# Copyright 2014-2018 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
+# Copyright 2014-2019 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
 # All rights reserved.
 
 # Slpkg is a user-friendly package manager for Slackware installations
@@ -35,6 +35,8 @@ from slpkg.messages import Msg
 from slpkg.dialog_box import DialogUtil
 from slpkg.splitting import split_package
 from slpkg.__metadata__ import MetaData as _meta_
+
+from slpkg.slack.slackware_repo import slackware_repository
 
 
 class PackageManager(object):
@@ -115,9 +117,11 @@ class PackageManager(object):
             if remove_pkg in ["y", "Y"]:
                 self._check_if_used(self.binary)
                 for rmv in self.removed:
-                    # If package build and install with "slpkg -s sbo <package>"
-                    # then look log file for dependencies in /var/log/slpkg/dep,
-                    # read and remove all else remove only the package.
+                    '''
+                    If package build and install with "slpkg -s sbo <package>"
+                    then look log file for dependencies in /var/log/slpkg/dep,
+                    read and remove all else remove only the package.
+                    '''
                     if (os.path.isfile(self.dep_path + rmv) and
                             self.meta.del_deps in ["on", "ON"] or
                             os.path.isfile(self.dep_path + rmv) and
@@ -152,16 +156,29 @@ class PackageManager(object):
     def _get_removed(self):
         """Manage removed packages by extra options
         """
-        removed, packages = [], []
-        if "--tag" in self.extra:
+        extra = self.extra
+        removed, packages, pkg = [], [], ""
+        if "--tag" in extra:
             for pkg in find_package("", self.meta.pkg_path):
                 for tag in self.binary:
                     if pkg.endswith(tag):
                         removed.append(split_package(pkg)[0])
                         packages.append(pkg)
-            if not removed:
-                self.msg.pkg_not_found("", "'tag'", "Can't remove", "\n")
-                raise SystemExit(1)
+            pkg = ""
+            extra = ""
+        elif "--third-party" in extra:
+            slack_packages, slack_names = slackware_repository()
+            slpkg_pkg = self.meta.__all__ + "-" + self.meta.__version__
+            binary = self.binary
+            for pkg in find_package("", self.meta.pkg_path):
+                slack_name = split_package(pkg)[0]
+                for tag in binary:
+                    if (slack_name not in slack_names and
+                            slpkg_pkg not in pkg and tag in pkg):
+                        removed.append(split_package(pkg)[0])
+                        packages.append(pkg)
+            pkg = ""
+            extra = ""
         else:
             for pkg in self.binary:
                 name = GetFromInstalled(pkg).name()
@@ -171,9 +188,9 @@ class PackageManager(object):
                 if pkg and name == pkg:
                     removed.append(pkg)
                     packages.append(package[0])
-                else:
-                    self.msg.pkg_not_found("", pkg, "Can't remove", "\n")
-                    raise SystemExit(1)
+        if not removed:
+            self.msg.pkg_not_found("", pkg, "Can't remove", "\n")
+            raise SystemExit(1)
         return removed, packages
 
     def _view_removed(self):
@@ -197,11 +214,21 @@ class PackageManager(object):
                 self.meta.default_answer = "y"
         else:
             for rmv, pkg in zip(removed, packages):
-                print("[ {0}delete{1} ] --> {2}".format(
-                    self.meta.color["RED"], self.meta.color["ENDC"], pkg))
                 self._sizes(pkg)
+                print("[ {0}delete{1} ] --> [ {2} ] - {3}".format(
+                    self.meta.color["RED"], self.meta.color["ENDC"],
+                    self.file_size, pkg))
             self._calc_sizes()
             self._remove_summary()
+        if "--third-party" in self.extra:
+            print("\n")
+            self.msg.template(78)
+            print("| {0}{1}*** WARNING ***{2}").format(
+                " " * 27, self.meta.color["RED"], self.meta.color["ENDC"])
+            print("| Before you use third-party option, be sure you have"
+                  " updated the package \n| lists. Run the command"
+                  " 'slpkg update' and 'slpkg -c slack --upgrade'")
+            self.msg.template(78)
         return removed
 
     def _calc_sizes(self):
@@ -334,8 +361,8 @@ class PackageManager(object):
                         dependency.append(rmv)
             if package:
                 if "--checklist" in self.extra:
-                    text = ("Press 'spacebar' to choose packages for the remove"
-                            " exception")
+                    text = ("Press 'spacebar' to choose packages for the"
+                            " remove exception")
                     backtitle = "{0} {1}".format(self.meta.__all__,
                                                  self.meta.__version__)
                     status = False
@@ -379,24 +406,37 @@ class PackageManager(object):
     def find(self, flag):
         """Find installed Slackware packages
         """
-        matching, pkg_cache, match_cache = 0, "", ""
+        matching, packages = 0, []
+        pkg_cache, match_cache = "", ""
+        slack_packages, slack_names = slackware_repository()
         print("\nPackages with matching name [ {0}{1}{2} ]\n".format(
             self.meta.color["CYAN"], ", ".join(self.binary),
             self.meta.color["ENDC"]))
         for pkg in self.binary:
             for match in find_package("", self.meta.pkg_path):
+                pkg_cache = pkg
+                match_cache = match
+                split_name = split_package(match)[0]
                 if "--case-ins" in flag:
                     pkg_cache = pkg.lower()
                     match_cache = match.lower()
-                else:
-                    pkg_cache = pkg
-                    match_cache = match
-                if pkg_cache in match_cache:
-                    matching += 1
-                    self._sizes(match)
-                    print("[ {0}installed{1} ] [ {2} ] - {3}".format(
-                        self.meta.color["GREEN"], self.meta.color["ENDC"],
-                        self.file_size, match))
+                if ("--third-party" in flag and not self.binary and
+                        split_name not in slack_names):
+                        packages.append(match)
+                if ("--third-party" in flag and pkg_cache in match_cache and
+                        split_name not in slack_names):
+                        packages.append(match)
+                if pkg_cache in match_cache and not flag:
+                    packages.append(match)
+                if ("--case-ins" in flag and "--third-party" not in flag and
+                        pkg_cache in match_cache):
+                    packages.append(match)
+        for pkgs in packages:
+            matching += 1
+            self._sizes(pkgs)
+            print("[ {0}installed{1} ] [ {2} ] - {3}".format(
+                self.meta.color["GREEN"], self.meta.color["ENDC"],
+                self.file_size, pkgs))
         if matching == 0:
             message = "Can't find"
             self.msg.pkg_not_found("", ", ".join(self.binary), message, "\n")
@@ -418,7 +458,7 @@ class PackageManager(object):
         for line in data.splitlines():
             if line.startswith("UNCOMPRESSED PACKAGE SIZE:"):
                 digit = float((''.join(re.findall(
-                    "[-+]?\d+[\.]?\d*[eE]?[-+]?\d*", line[26:]))))
+                    r"[-+]?\d+[\.]?\d*[eE]?[-+]?\d*", line[26:]))))
                 self.file_size = line[26:].strip()
                 if "M" in line[26:]:
                     self.size += digit * 1024
@@ -533,7 +573,8 @@ class PackageManager(object):
                                              "SLACKBUILDS.TXT".format(repo))
         else:
             if (os.path.isfile(
-                    self.meta.lib_path + "{0}_repo/PACKAGES.TXT".format(repo))):
+                    self.meta.lib_path + "{0}_repo/PACKAGES.TXT".format(
+                        repo))):
                 packages = Utils().read_file(self.meta.lib_path + "{0}_repo/"
                                              "PACKAGES.TXT".format(repo))
         return packages

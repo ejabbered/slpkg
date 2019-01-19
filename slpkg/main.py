@@ -3,7 +3,7 @@
 
 # main.py file is part of slpkg.
 
-# Copyright 2014-2018 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
+# Copyright 2014-2019 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
 # All rights reserved.
 
 # Slpkg is a user-friendly package manager for Slackware installations
@@ -101,7 +101,7 @@ class ArgParse(object):
         ] and self.args[1] == repo and repo in enabled_repos:
             print("\n  Please update the packages lists. Run 'slpkg update'.\n"
                   "  This command should be used to synchronize the packages\n"
-                  "  lists from the repositories are enabled.\n")
+                  "  lists from the repositories that are enabled.\n")
             raise SystemExit()
 
     def help_version(self):
@@ -142,6 +142,7 @@ class ArgParse(object):
     def command_repo_enable(self):
         """Repositories enable/disable
         """
+        self.if_checklist()
         if len(self.args) == 1 and self.args[0] == "repo-enable":
             RepoEnable().choose()
         else:
@@ -309,13 +310,13 @@ class ArgParse(object):
                 else:
                     Patches(skip, flag).start()
             elif self.args[1] == "sbo":
-                SBoInstall(sbo_upgrade(skip, flag), flag).start(is_upgrade=True)
+                SBoInstall(sbo_upgrade(skip, flag), flag).start(
+                    is_upgrade=True)
             else:
                 usage(self.args[1])
-        elif len(self.args) == 2 and self.args[0] in options:
-            if self.args[1] == "ALL":
+        elif len(self.args) == 1 and self.args[0] in options:
                 Updates(repo="").ALL()
-            else:
+        elif len(self.args) == 2 and self.args[0] in options:
                 Updates(self.args[1]).run()
         elif (len(self.args) >= 2 and self.args[0] in options and
                 self.args[1] not in self.meta.repositories):
@@ -336,6 +337,8 @@ class ArgParse(object):
                     flag.append(arg)
                     if arg in self.args:
                         self.args.remove(arg)
+        if "--checklist" in flag:
+            self.if_checklist()
         return flag, skip
 
     def pkg_install(self):
@@ -433,9 +436,15 @@ class ArgParse(object):
             if add in self.args:
                 flag.append(add)
                 self.args.remove(add)
+        if "--checklist" in flag:
+            self.if_checklist()
         if (len(self.args) == 2 and self.args[0] in options and
                 "sbo" in self.meta.repositories):
             SBoNetwork(self.args[1], flag).view()
+        elif (len(self.args) == 1 and self.args[0] in options and
+                "sbo" in self.meta.repositories and
+                additional_options[0] in flag):
+            SBoNetwork("", flag).view()
         else:
             usage("sbo")
 
@@ -459,8 +468,8 @@ class ArgParse(object):
                 flag[0] in self.args):
             self.args.remove(flag[0])
             blacklist.add(self.args[1:])
-        elif (len(self.args) == 3 and self.args[0] in options and
-                "ALL" in self.args and flag[1] in self.args):
+        elif (len(self.args) == 2 and self.args[0] in options and
+                flag[1] in self.args):
             self.args.remove(flag[1])
             blacklist.remove(blacklist.get_black())
         elif (len(self.args) > 2 and self.args[0] in options and
@@ -492,8 +501,8 @@ class ArgParse(object):
                 flag[0] in self.args):
             self.args.remove(flag[0])
             queue.add(self.args[1:])
-        elif (len(self.args) == 3 and self.args[0] in options and
-                "ALL" in self.args and flag[1] in self.args):
+        elif (len(self.args) == 2 and self.args[0] in options and
+                flag[1] in self.args):
             self.args.remove(flag[1])
             queue.remove(queue.packages())
         elif (len(self.args) > 2 and self.args[0] in options and
@@ -579,7 +588,8 @@ class ArgParse(object):
             "--deps",
             "--check-deps",
             "--tag",
-            "--checklist"
+            "--checklist",
+            "--third-party"
         ]
         flag, extra = "", []
         flags = [
@@ -602,6 +612,10 @@ class ArgParse(object):
                 if fl in self.args:
                     flag = self.args[1]
                     packages = self.args[2:]
+            if "--checklist" in extra:
+                self.if_checklist()
+            if not packages:
+                packages = [""]
             PackageManager(packages).remove(flag, extra)
         else:
             usage("")
@@ -614,13 +628,20 @@ class ArgParse(object):
             "-f",
             "--find"
         ]
-        additional_options = ["--case-ins"]
-        for arg in self.args:
-            if arg in additional_options:
-                flag.append(arg)
-                self.args.remove(arg)
+        additional_options = [
+            "--case-ins",
+            "--third-party"
+        ]
+        for add in additional_options:
+            if add in self.args:
+                flag.append(add)
+                self.args.remove(add)
         packages = self.args[1:]
-        if len(self.args) > 1 and self.args[0] in options:
+        if not packages:
+            packages = [""]
+        if len(self.args) == 1 and self.args[0] in options:
+            PackageManager(packages).find(flag)
+        elif len(self.args) > 1 and self.args[0] in options:
             PackageManager(packages).find(flag)
         else:
             usage("")
@@ -742,6 +763,14 @@ class ArgParse(object):
             if not_found:
                 for ntf in not_found:
                     self.msg.pkg_not_found("", ntf, "Not installed", "")
+            raise SystemExit()
+
+    def if_checklist(self):
+        try:
+            from dialog import Dialog
+        except ImportError:
+            print("Require 'pythondialog': Install with 'slpkg -s sbo "
+                  "python2-pythondialog'")
             raise SystemExit()
 
 

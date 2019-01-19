@@ -3,7 +3,7 @@
 
 # arguments.py file is part of slpkg.
 
-# Copyright 2014-2018 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
+# Copyright 2014-2019 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
 # All rights reserved.
 
 # Slpkg is a user-friendly package manager for Slackware installations
@@ -139,8 +139,8 @@ Optional arguments:
   -F | --FIND, [package...], --case-ins      Find packages from each enabled
                                              repository and view results.
 
-  -f | --find, [package...], --case-ins      Find and print installed packages
-                                             reporting the size and the sum.
+  -f | --find, [package...], --case-ins,     Find and print installed packages
+       --third-party                         reporting the size and the sum.
 
   -i | --installpkg, [options] [package...]  Installs single or multiple *.tgz
        options=[--warn, --md5sum, --root,    (or .tbz, .tlz, .txz) Slackware
@@ -154,7 +154,7 @@ Optional arguments:
 
   -r | --removepkg, [options] [package...],  Removes a previously installed
        --deps, --check-deps, --tag,          Slackware binary packages,
-       --checklist                           while writing a progress report
+       --checklist, --third-party            while writing a progress report
        options=[-warn, -preserve, -copy,     to the standard output.
        -keep]                                Use only package name.
 
@@ -205,11 +205,11 @@ def usage(repo):
              [-p [repository] [package], --color=[]]
              [-n [SBo package], --checklist, --case-ins]
              [-F [package...], --case-ins]
-             [-f [package...], --case-ins]
+             [-f [package...], --case-ins, --third-party]
              [-i [options] [package...]]
              [-u [options] [package...]]
              [-r [options] [package...], --deps, --check-deps, --tag,
-                                         --checklist]
+                                         --checklist, --third-party]
              [-d [package...]]
              """
     if repo and repo not in _meta_.repositories:

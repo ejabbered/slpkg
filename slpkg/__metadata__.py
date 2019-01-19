@@ -3,7 +3,7 @@
 
 # __metadata__.py file is part of slpkg.
 
-# Copyright 2014-2018 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
+# Copyright 2014-2019 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
 # All rights reserved.
 
 # Slpkg is a user-friendly package manager for Slackware installations
@@ -78,7 +78,7 @@ class MetaData(object):
 
     __all__ = "slpkg"
     __author__ = "dslackw"
-    __version_info__ = (3, 3, 8)
+    __version_info__ = (3, 3, 9)
     __version__ = "{0}.{1}.{2}".format(*__version_info__)
     __license__ = "GNU General Public License v3 (GPLv3)"
     __email__ = "d.zlatanidis@gmail.com"

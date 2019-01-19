@@ -3,7 +3,7 @@
 
 # network.py file is part of slpkg.
 
-# Copyright 2014-2018 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
+# Copyright 2014-2019 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
 # All rights reserved.
 
 # Slpkg is a user-friendly package manager for Slackware installations
@@ -268,9 +268,11 @@ class SBoNetwork(object):
         self.msg.template(78)
         print("| {0} > {1} > {2}{3}{4}".format(slack_ver(),
                                                sbo_url.split("/")[-3].title(),
-                                               self.cyan, self.name, self.endc))
+                                               self.cyan, self.name,
+                                               self.endc))
         self.msg.template(78)
-        print("| {0}Package url{1}: {2}".format(self.green, self.endc, sbo_url))
+        print("| {0}Package url{1}: {2}".format(self.green, self.endc,
+                                                sbo_url))
         self.msg.template(78)
         print("| {0}Description: {1}{2}".format(self.green,
                                                 self.endc, self.sbo_desc))
@@ -310,7 +312,7 @@ class SBoNetwork(object):
         """Using dialog and checklist option
         """
         data = []
-        if self.name == "ALL":
+        if not self.name:
             data = self.data
         else:
             for name in self.data:

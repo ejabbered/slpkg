@@ -3,7 +3,7 @@
 
 # patches.py file is part of slpkg.
 
-# Copyright 2014-2018 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
+# Copyright 2014-2019 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
 # All rights reserved.
 
 # Slpkg is a user-friendly package manager for Slackware installations
@@ -208,7 +208,8 @@ class Patches(object):
         Upgrade packages
         """
         for pkg in self.upgrade_all:
-            check_md5(pkg_checksum(pkg, "slack_patches"), self.patch_path + pkg)
+            check_md5(pkg_checksum(pkg, "slack_patches"),
+                      self.patch_path + pkg)
             pkg_ver = "{0}-{1}".format(split_package(pkg)[0],
                                        split_package(pkg)[1])
             if find_package(split_package(pkg)[0] + self.meta.sp,
@@ -239,18 +240,26 @@ class Patches(object):
                 else:
                     print("")
                     self.msg.template(78)
-                    print("| {0}*** HIGHLY recommended reinstall 'LILO' "
+                    print("| {0}*** HIGHLY recommended reinstall boot loader "
                           "***{1}".format(self.meta.color["RED"],
                                           self.meta.color["ENDC"]))
+                    print("| L=lilo / E=elilo / G=grub")
                     self.msg.template(78)
                     try:
                         answer = raw_input("\nThe kernel has been upgraded, "
-                                           "reinstall `LILO` [y/N]? ")
+                                           "reinstall boot loader [L/E/G]? ")
                     except EOFError:
                         print("")
                         raise SystemExit()
-                if answer in ["y", "Y"]:
+                if answer in ["L"]:
                     subprocess.call("lilo", shell=True)
+                    break
+                elif answer in ["E"]:
+                    subprocess.call("eliloconfig", shell=True)
+                    break
+                elif answer in ["G"]:
+                    subprocess.call("grub-mkconfig -o /boot/grub/grub.cfg",
+                                    shell=True)
                     break
 
     def slackpkg_update(self):

@@ -2,7 +2,7 @@
 #
 # default-repositories file is part of slpkg.
 #
-# Copyright 2014-2018 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
+# Copyright 2014-2019 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
 # All rights reserved.
 #
 # Slpkg is a user-friendly package manager for Slackware installations.
@@ -23,9 +23,9 @@
 # END OF LEGAL NOTICE
 #
 # ----------------------------------------------------------------------------
-# This file provide the urls from repositories. Change only the url 
-# if necessary finishing with "/". For local repository start with 
-# "file:///" avoid end path with "/". Do NOT change the name of the 
+# This file provide the URLs from repositories. Change only the URL
+# if necessary finishing with "/". For local repository start with
+# "file:///" avoid end path with "/". Do NOT change the name of the
 # repository.
 #
 # Default repositories names:

@@ -2,7 +2,7 @@
 #
 # custom-repositories file is part of slpkg.
 #
-# Copyright 2014-2018 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
+# Copyright 2014-2019 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
 # All rights reserved.
 #
 # Slpkg is a user-friendly package manager for Slackware installations.
@@ -25,8 +25,8 @@
 # ----------------------------------------------------------------------------
 # This file is used to read, write and remove custom repositories by
 # the user. The repositories will be added here should have a different
-# name from existing repositories and the default. Also, the link must
-# contain the PACKAGES.TXT files, CHECKSUMS.md5 and optional ChangeLog.txt.
+# name from existing repositories and the default. Also the URL must have
+# contained the PACKAGES.TXT, CHECKSUMS.md5 and optional ChangeLog.txt files.
 # ----------------------------------------------------------------------------
 #
 # NAME      URL
