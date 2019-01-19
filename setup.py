@@ -69,7 +69,7 @@ setup(
               "view", "slackpkg", "tool", "build"],
     author=_meta_.__author__,
     author_email=_meta_.__email__,
-    url="https://gitlab.com/dslackw/slpkg",
+    url="https://dslackw.gitlab.io/slpkg/",
     package_data={"": ["LICENSE", "README.md", "CHANGELOG"]},
     data_files=[("man/man8", ["man/slpkg.8"]),
                 ("/etc/bash_completion.d", ["conf/slpkg.bash-completion"]),
