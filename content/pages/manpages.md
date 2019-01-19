@@ -429,7 +429,7 @@ AUTHOR
        Dimitris Zlatanidis <d.zlatanidis@gmail.com>
 
 HOMEPAGE
-       https://gitlab.com/dslackw/slpkg
+       https://dslackw.gitlab.io/slpkg/
 
 COPYRIGHT
        Copyright © 2014-2019 Dimitris Zlatanidis
