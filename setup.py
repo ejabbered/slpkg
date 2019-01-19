@@ -54,7 +54,9 @@ def print_logo():
             print(logo)
             time.sleep(1)
 
+
 print_logo()
+
 
 setup(
     name="slpkg",
@@ -92,7 +94,7 @@ setup(
         "Topic :: System :: Archiving :: Packaging",
         "Topic :: System :: Software Distribution",
         "Topic :: Utilities"],
-    long_description=open("README.rst").read()
+    long_description=open("README.md").read()
     )
 
 # Install configuration files with pip.
