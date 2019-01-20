@@ -20,8 +20,8 @@ Slpkg is a powerful software package manager that installs, updates, and removes
  packages. Also uses the Slackware Linux instructions for installation, upgrading or removing
  packages.
 
-What makes slpkg to distinguish it from the other tools; The user friendliness it's a primary
- target as well as easy to understand and use, also use colors (by default) to highlight packages
+What makes slpkg to distinguish it from the other tools; The user-friendliness it's a primary
+ target as well as easy to understand and use, also use colours (by default) to highlight packages
  and display warning messages, and many of the others available options it's ready to use.
 
 
