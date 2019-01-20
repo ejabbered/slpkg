@@ -53,9 +53,8 @@ Versions: {14.0, 14,1, 14.2, current}
 Arch: {x86, x86_64}
 Versions: {14,1, 14.2, current}
 
-Choose default repositories you need to work from the file `/etc/slpkg/repositories.conf`
-defaults are `slack` and `sbo` repositories and please read the REPOSITORIES file for each
-of the particularities.
+You can enable more default repositories just edit the file `/etc/slpkg/repositories.conf`,
+by default are `slack` and `sbo` repositories is enabled. Please read the [REPOSITORIES](https://gitlab.com/dslackw/slpkg/raw/master/REPOSITORIES){:target="_blank"} file for each of the particularities.
+Alternative you can run the command `slpkg repo-enable` (`python2-pythondialog required`).
 If a repository is not in the above list, manage the custom repositories with the commands
 `repo-add` and `repo-remove`.
-

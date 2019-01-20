@@ -1,5 +1,5 @@
 Title: Slpkg 3.3.9
-Date: 2019-1-18 08:21
+Date: 2019-1-20
 Authors: dslackw
 Category: Home
 Slug: home
@@ -13,20 +13,21 @@ Tags: slpkg, slackpkg, slackware, package, manager, slackbuild, linux
 ##### About
 
 Slpkg is a powerful software package manager that installs, updates, and removes packages on
-Slackware based systems. It automatically computes dependencies and figures out what things
-should occur to install packages. Slpkg makes it easier to maintain groups of machines without
-having to manually update.
-Slpkg works in accordance with the standards of the organization slackbuilds.org
-to builds packages. Also uses the Slackware Linux instructions for installation,
-upgrading or removing packages.
+ Slackware based systems. It automatically computes dependencies and figures out what things
+ should occur to install packages. Slpkg makes it easier to maintain groups of machines without
+ having to manually update.
+ Slpkg works in accordance with the standards of the organization slackbuilds.org to builds
+ packages. Also uses the Slackware Linux instructions for installation, upgrading or removing
+ packages.
+
 What makes slpkg to distinguish it from the other tools; The user friendliness it's a primary
-target as well as easy to understand and use, also use colors to highlight packages and
-display warning messages, etc.
+ target as well as easy to understand and use, also use colors (by default) to highlight packages
+ and display warning messages, and many of the others available options it's ready to use.
 
 
 ##### Features
 
-* Dependency resolution
+* Dependencies resolutions
 * Dependencies visualizations
 * Multiple options
 * Multiple repositories
@@ -130,7 +131,7 @@ Versions: {13.1, 13.37, 14.0, 14.1, 14.2}
 Arch: {x86, x86_64}
 Versions: {3.3, 8.1, 9.0, 9.1, 10.0, 10.1, 10.2, 11.0, 12.0, 12.2, 13.0, 13.37, 14.0, 14.1, 14.2, current}
 - [Alien's](http://bear.alienbase.nl/mirrors/people/alien/sbrepos/){:target="_blank"}
-Arch: {x86, x86_64} 
+Arch: {x86, x86_64}
 Versions: {13.0, 13.1, 13.37, 14.0, 14.1, 14.2, current}
 - [Slacky](http://repository.slacky.eu/){:target="_blank"}
 Arch: {x86, x86_64}
@@ -175,10 +176,9 @@ Versions: {14,1, 14.2}
 Arch: {x86, x86_64}
 Versions: {14,1, 14.2}
 
-
-Choose default repositories you need to work from the file `/etc/slpkg/repositories.conf`
-defaults are `slack` and `sbo` repositories and please read the REPOSITORIES file for each
-of the particularities.
+You can enable more default repositories just edit the file `/etc/slpkg/repositories.conf`,
+by default are `slack` and `sbo` repositories is enabled. Please read the [REPOSITORIES](https://gitlab.com/dslackw/slpkg/raw/master/REPOSITORIES){:target="_blank"} file for each of the particularities.
+Alternative you can run the command `slpkg repo-enable` (`python2-pythondialog required`).
 If a repository is not in the above list, manage the custom repositories with the commands
 `repo-add` and `repo-remove`.
 
@@ -195,7 +195,7 @@ The majority of trials have been made in an environment Slackware x86_64 'stable
 
 ##### Slackware Current
 
-For Slackware 'current' users must to change the variable VERSION in `/etc/slpkg/slpkg.conf`
+For Slackware 'current' users, they must change the variable VERSION in `/etc/slpkg/slpkg.conf`
 file.
 
 ```
@@ -205,7 +205,7 @@ $ slpkg -g edit
 
 ##### Slackware ARM
 
-Must you use only two repositories currently there are 'slack' and 'sbo'.
+You must use only two repositories currently there are 'slack' and 'sbo'.
 
 ##### Slackware Mirrors
 

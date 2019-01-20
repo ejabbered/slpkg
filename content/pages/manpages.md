@@ -1,5 +1,5 @@
 Title: Manpage
-Date: 2019-1-18
+Date: 2019-1-20
 Authors: dslackw
 Slug: manpage
 
@@ -8,8 +8,6 @@ Slug: manpage
 
 
 ```
-Slpkg(14)                                          slpkg                                          Slpkg(14)
-
 NAME
        Slpkg is a user-friendly package manager for Slackware installations
 
@@ -436,6 +434,4 @@ COPYRIGHT
 
 SEE ALSO
        installpkg(8), upgradepkg(8), removepkg(8), pkgtool(8), slackpkg(8), explodepkg(8), makepkg(8).
-
-2019"                                                01                                           Slpkg(14)
 ```

@@ -1,12 +1,12 @@
 Title: Install
-Date: 2019-1-18
+Date: 2019-1-20
 Authors: dslackw
 Slug: install
 
 
 Download the latest release
 
-*(Required root privileges)*
+*(Required root privileges fro the install)*
 
 ```
 $ tar xvf slpkg-3.3.9.tar.gz
@@ -38,7 +38,7 @@ Uninstall
 $ pip uninstall slpkg
 ```
 
-Data remove run from source code
+Run the script `clean.py` to remove slpkg data
 
 ```
 $ python clean.py
