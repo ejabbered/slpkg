@@ -1,4 +1,4 @@
-Title: Slpkg 3.3.9
+Title: slpkg 3.3.9
 Date: 2019-1-20
 Authors: dslackw
 Category: Home
