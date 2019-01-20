@@ -32,7 +32,8 @@ AUTHOR_FEED_RSS = None
 LINKS = (('Download', 'https://gitlab.com/dslackw/slpkg/-/archive/3.3.9/slpkg-3.3.9.tar.gz'),
          ('Repository', 'https://gitlab.com/dslackw/slpkg'),
          ('Slackware', 'http://www.slackware.com/'),
-         ('SlackBuilds', 'https://slackbuilds.org/repository/14.2/system/slpkg/'),)
+         ('SlackBuilds', 'https://slackbuilds.org/repository/14.2/system/slpkg/'),
+         ('SlackDocs', 'http://docs.slackware.com/'),)
 
 # Social widget
 SOCIAL = (('Twitter', 'https://twitter.com/dslackw'),

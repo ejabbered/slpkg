@@ -392,9 +392,9 @@ If you feel satisfied with this project and want to thanks me make a donation.
 
 Please support:
 
-* [Slackware](https://paypal.me/volkerdi)
-* [SlackBuilds](https://slackbuilds.org/contributors/)
-* [AlienBob](https://alien.slackbook.org/blog/) (Eric Hameleers)
+* [Slackware](https://paypal.me/volkerdi) project.
+* [SlackBuilds](https://slackbuilds.org/contributors/) repository.
+* [AlienBob](https://alien.slackbook.org/blog/) Eric Hameleers.
 
 Thank you very much!
 
