@@ -85,14 +85,14 @@ $ python clean.py
 
 ##### Requirements
 
-*(See [requirements.txt](https://gitlab.com/dslackw/slpkg/blob/master/requirements.txt){:target="_blank"} file)*
+*(See the file [requirements.txt](https://gitlab.com/dslackw/slpkg/blob/master/requirements.txt){:target="_blank"} file)*
 
 
 ##### Upgrade
 
 Since the version `2.1.4` you can update slpkg itself with the command `slpkg update slpkg`.
-In each slpkg upgrade you will have to keep track of changes to the configuration files
-in the directory `/etc/slpkg`.
+In each slpkg upgrade, you will have to keep track of changes in the configuration files
+to the directory `/etc/slpkg`.
 
 
 ##### Recommended
@@ -198,6 +198,8 @@ The majority of trials have been made in an environment Slackware x86_64 'stable
 For Slackware 'current' users, they must change the variable VERSION in `/etc/slpkg/slpkg.conf`
 file.
 
+Edit the configuration file easy with the command:
+
 ```
 $ slpkg -g edit
 ```
@@ -205,7 +207,7 @@ $ slpkg -g edit
 
 ##### Slackware ARM
 
-You must use only two repositories currently there are 'slack' and 'sbo'.
+You must use only two repositories, currently there are 'slack' and 'sbo'.
 
 ##### Slackware Mirrors
 
@@ -388,7 +390,10 @@ If you feel satisfied with this project and want to thanks me make a donation.
 
 ##### Support
 
-Please support [Slackware](https://paypal.me/volkerdi), [SlackBuilds](https://slackbuilds.org/contributors/) repository and [AlienBob](https://alien.slackbook.org/blog/) (Eric Hameleers).
+Please support:
+- [Slackware](https://paypal.me/volkerdi)
+- [SlackBuilds](https://slackbuilds.org/contributors/)
+- [AlienBob](https://alien.slackbook.org/blog/) (Eric Hameleers)
 
 Thank you very much!
 
