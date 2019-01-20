@@ -44,7 +44,7 @@ What makes slpkg to distinguish it from the other tools; The user friendliness i
 
 Download the latest release
 
-*(Required root privileges)*
+*(Required root privileges for the install)*
 
 ```
 $ tar xvf slpkg-3.3.9.tar.gz
@@ -178,7 +178,7 @@ Versions: {14,1, 14.2}
 
 You can enable more default repositories just edit the file `/etc/slpkg/repositories.conf`,
 by default are `slack` and `sbo` repositories is enabled. Please read the [REPOSITORIES](https://gitlab.com/dslackw/slpkg/raw/master/REPOSITORIES){:target="_blank"} file for each of the particularities.
-Alternative you can run the command `slpkg repo-enable` (`python2-pythondialog required`).
+Alternative you can run the command `slpkg repo-enable` (`python2-pythondialog` required).
 If a repository is not in the above list, manage the custom repositories with the commands
 `repo-add` and `repo-remove`.
 

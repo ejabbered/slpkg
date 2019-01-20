@@ -6,7 +6,7 @@ Slug: install
 
 Download the latest release
 
-*(Required root privileges fro the install)*
+*(Required root privileges for the install)*
 
 ```
 $ tar xvf slpkg-3.3.9.tar.gz
