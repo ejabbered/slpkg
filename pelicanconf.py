@@ -30,7 +30,7 @@ AUTHOR_FEED_RSS = None
 
 # Blogroll
 LINKS = (('Download', 'https://gitlab.com/dslackw/slpkg/-/archive/3.3.9/slpkg-3.3.9.tar.gz'),
-         ('Repository', 'https://gitlab.com/dslackw/slpkg'),
+         ('GitLab', 'https://gitlab.com/dslackw/slpkg'),
          ('Slackware', 'http://www.slackware.com/'),
          ('SlackBuilds', 'https://slackbuilds.org/repository/14.2/system/slpkg/'),
          ('SlackDocs', 'http://docs.slackware.com/'),)
