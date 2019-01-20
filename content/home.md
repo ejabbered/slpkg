@@ -207,8 +207,9 @@ $ slpkg -g edit
 
 Must you use only two repositories currently there are 'slack' and 'sbo'.
 
-Slackware Mirrors
-Slpkg uses the central mirror [http://mirrors.slackware.com/slackware/](http://mirrors.slackware.com/slackware/){:target="_blank"}
+##### Slackware Mirrors
+
+Slpkg use the central mirror [http://mirrors.slackware.com/slackware/](http://mirrors.slackware.com/slackware/){:target="_blank"}
 to find the
 nearest one. If however for some reason this troublesome please edit the file in
 `/etc/slpkg/slackware-mirrors`.
