@@ -85,7 +85,7 @@ $ python clean.py
 
 ##### Requirements
 
-*(See the file [requirements.txt](https://gitlab.com/dslackw/slpkg/blob/master/requirements.txt){:target="_blank"})*
+*(See the file [requirements.txt](https://gitlab.com/dslackw/slpkg/blob/master/requirements.txt))*
 
 
 ##### Upgrade
@@ -97,26 +97,26 @@ to the directory `/etc/slpkg`.
 
 ##### Recommended
 
-Stay updated, see SUN [(Slackware Update Notifier)](https://gitlab.com/dslackw/sun){:target="_blank"}
+Stay updated, see SUN [(Slackware Update Notifier)](https://gitlab.com/dslackw/sun)
 
 
 ##### Optional dependencies
 
-* [python2-pythondialog](http://slackbuilds.org/repository/14.2/python/python2-pythondialog/){:target="_blank"} for dialog box interface
-* [pygraphviz](http://slackbuilds.org/repository/14.2/graphics/pygraphviz/){:target="_blank"} for drawing dependencies diagram
-* [graph-easy](http://slackbuilds.org/repository/14.2/graphics/graph-easy/){:target="_blank"} for drawing ascii dependencies diagram
+* [python2-pythondialog](http://slackbuilds.org/repository/14.2/python/python2-pythondialog/) for dialog box interface
+* [pygraphviz](http://slackbuilds.org/repository/14.2/graphics/pygraphviz/) for drawing dependencies diagram
+* [graph-easy](http://slackbuilds.org/repository/14.2/graphics/graph-easy/) for drawing ascii dependencies diagram
 * [httpie](https://slackbuilds.org/repository/14.2/network/httpie/) alternative downloader
-* [aria2](https://slackbuilds.org/repository/14.2/network/aria2/){:target="_blank"} alternative downloader
+* [aria2](https://slackbuilds.org/repository/14.2/network/aria2/) alternative downloader
 
 
 ##### Demonstration
 
-[<img src="https://gitlab.com/dslackw/images/raw/master/slpkg/slpkg_youtube.png">](https://www.youtube.com/watch?v=oTtD4XhHKlA){:target="_blank"}
+[<img src="https://gitlab.com/dslackw/images/raw/master/slpkg/slpkg_youtube.png">](https://www.youtube.com/watch?v=oTtD4XhHKlA)
 
 
 ##### Youtube Asciicasts
 
-[Playlist Tutorials](https://www.youtube.com/playlist?list=PLLzUUMSzaKvlS5--8AiFqWzxZPg3kxkqY){:target="_blank"}
+[Playlist Tutorials](https://www.youtube.com/playlist?list=PLLzUUMSzaKvlS5--8AiFqWzxZPg3kxkqY)
 
 
 ##### Repositories
@@ -124,60 +124,60 @@ Stay updated, see SUN [(Slackware Update Notifier)](https://gitlab.com/dslackw/s
 Default available Repositories:
 
 
-- [SBo](http://slackbuilds.org/){:target="_blank"}
+- [SBo](http://slackbuilds.org/)
 Arch: {x86, x86_64}
 Versions: {13.1, 13.37, 14.0, 14.1, 14.2}
-- [Slack](http://www.slackware.com/){:target="_blank"}
+- [Slack](http://www.slackware.com/)
 Arch: {x86, x86_64}
 Versions: {3.3, 8.1, 9.0, 9.1, 10.0, 10.1, 10.2, 11.0, 12.0, 12.2, 13.0, 13.37, 14.0, 14.1, 14.2, current}
-- [Alien's](http://bear.alienbase.nl/mirrors/people/alien/sbrepos/){:target="_blank"}
+- [Alien's](http://bear.alienbase.nl/mirrors/people/alien/sbrepos/)
 Arch: {x86, x86_64}
 Versions: {13.0, 13.1, 13.37, 14.0, 14.1, 14.2, current}
-- [Slacky](http://repository.slacky.eu/){:target="_blank"}
+- [Slacky](http://repository.slacky.eu/)
 Arch: {x86, x86_64}
 Versions: {11.0, 12.0, 12.1, 12.2, 13.0, 13.1, 13.37, 14.0, 14.1, 14.2}
-- [Robby's](http://slackware.uk/people/rlworkman/){:target="_blank"}
+- [Robby's](http://slackware.uk/people/rlworkman/)
 Arch: {x86, x86_64}
 Versions: {11.0, 12.0, 12.1, 12.2, 13.0, 13.1, 13.37, 14.0, 14.1, 14,2}
-- [Conraid's](http://slack.conraid.net/repository/slackware64-current){:target="_blank"}
+- [Conraid's](http://slack.conraid.net/repository/slackware64-current)
 Arch: {x86_64}
 Versions: {current}
-- [Slackonly](https://slackonly.com/){:target="_blank"}
+- [Slackonly](https://slackonly.com/)
 Arch: {x86, x86_64}
 Versions: {14.1, 14.2}
-- [Alien's ktown](http://alien.slackbook.org/ktown/){:target="_blank"}
+- [Alien's ktown](http://alien.slackbook.org/ktown/)
 Arch: {x86, x86_64}
 Versions: {13.37, 14.0, 14.1, 14.2, current}
-- [Alien's multi](http://bear.alienbase.nl/mirrors/people/alien/multilib/){:target="_blank"}
+- [Alien's multi](http://bear.alienbase.nl/mirrors/people/alien/multilib/)
 Arch: {x86_64}
 Versions: {13.0, 13.1, 13.37, 14.0, 14.1, 14.2, current}
-- [Slacke E17 and E18](http://ngc891.blogdns.net/pub/){:target="_blank"}
+- [Slacke E17 and E18](http://ngc891.blogdns.net/pub/)
 Arch: {x86, x86_64, arm}
 Versions: {14.1}
-- [SalixOS](http://download.salixos.org/){:target="_blank"}
+- [SalixOS](http://download.salixos.org/)
 Arch: {x86, x86_64}
 Versions: {13.0, 13.1, 13.37, 14.0, 14.1, 14.2}
-- [Slackel](http://www.slackel.gr/repo/){:target="_blank"}
+- [Slackel](http://www.slackel.gr/repo/)
 Arch: {x86, x86_64}
 Versions: {current}
-- [Restricted](http://bear.alienbase.nl/mirrors/people/alien/restricted_slackbuilds/){:target="_blank"}
+- [Restricted](http://bear.alienbase.nl/mirrors/people/alien/restricted_slackbuilds/)
 Arch: {x86, x86_64}
 Versions: {11.0, 12.0, 12.1, 12.2, 13.0, 13.1, 13.37, 14.0, 14,1, 14.2, current}
-- [MATE Desktop Environment](http://slackware.org.uk/msb/){:target="_blank"}
+- [MATE Desktop Environment](http://slackware.org.uk/msb/)
 Arch: {x86, x86_64}
 Versions: {14.0, 14,1, 14.2, current}
-- [Cinnamon Desktop Environment](http://slackware.org.uk/csb/){:target="_blank"}
+- [Cinnamon Desktop Environment](http://slackware.org.uk/csb/)
 Arch: {x86, x86_64}
 Versions: {14,1, 14.2, current}
-- [Connochaetos (Slack-n-Free)](https://connochaetos.org/slack-n-free/){:target="_blank"}
+- [Connochaetos (Slack-n-Free)](https://connochaetos.org/slack-n-free/)
 Arch: {x86, x86_64}
 Versions: {14,1, 14.2}
-- [Microlinux mles](http://slackware.uk/microlinux/){:target="_blank"}
+- [Microlinux mles](http://slackware.uk/microlinux/)
 Arch: {x86, x86_64}
 Versions: {14,1, 14.2}
 
 You can enable more default repositories just edit the file `/etc/slpkg/repositories.conf`,
-by default are `slack` and `sbo` repositories is enabled. Please read the [REPOSITORIES](https://gitlab.com/dslackw/slpkg/raw/master/REPOSITORIES){:target="_blank"} file for each of the particularities.
+by default are `slack` and `sbo` repositories is enabled. Please read the [REPOSITORIES](https://gitlab.com/dslackw/slpkg/raw/master/REPOSITORIES) file for each of the particularities.
 Alternative you can run the command `slpkg repo-enable` (`python2-pythondialog` required).
 If a repository is not in the above list, manage the custom repositories with the commands
 `repo-add` and `repo-remove`.
@@ -185,7 +185,7 @@ If a repository is not in the above list, manage the custom repositories with th
 
 ##### Issues
 
-Please report any bugs in [ISSUES](https://gitlab.com/dslackw/slpkg/issues){:target="_blank"}
+Please report any bugs in [ISSUES](https://gitlab.com/dslackw/slpkg/issues)
 
 
 ##### Testing
@@ -211,7 +211,7 @@ You must use only two repositories, currently there are 'slack' and 'sbo'.
 
 ##### Slackware Mirrors
 
-Slpkg use the central mirror [http://mirrors.slackware.com/slackware/](http://mirrors.slackware.com/slackware/){:target="_blank"}
+Slpkg use the central mirror [http://mirrors.slackware.com/slackware/](http://mirrors.slackware.com/slackware/)
 to find the
 nearest one. If however for some reason this troublesome please edit the file in
 `/etc/slpkg/slackware-mirrors`.
@@ -385,7 +385,7 @@ Optional arguments:
 
 If you feel satisfied with this project and want to thanks me make a donation.
 
-[<img src="https://gitlab.com/dslackw/images/raw/master/donate/paypaldonate.png">](https://www.paypal.me/dslackw){:target="_blank"}
+[<img src="https://gitlab.com/dslackw/images/raw/master/donate/paypaldonate.png">](https://www.paypal.me/dslackw)
 
 
 ##### Support
