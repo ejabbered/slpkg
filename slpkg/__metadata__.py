@@ -159,7 +159,7 @@ class MetaData(object):
     slpkg_tmp_patches = _conf_slpkg["PATCHES"]
     checkmd5 = _conf_slpkg["CHECKMD5"]
     del_all = _conf_slpkg["DEL_ALL"]
-    del_build = _conf_slpkg["DEL_BUILD"]
+    del_folder = _conf_slpkg["DEL_BUILD"]
     sbo_build_log = _conf_slpkg["SBO_BUILD_LOG"]
     makeflags = _conf_slpkg["MAKEFLAGS"]
     default_answer = _conf_slpkg["DEFAULT_ANSWER"]

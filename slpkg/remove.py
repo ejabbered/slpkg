@@ -40,5 +40,5 @@ def delete_package(path, packages):
 def delete_folder(folder):
     """Delete folder with all files.
     """
-    if _meta_.del_build in ["on", "ON"] and os.path.exists(folder):
+    if _meta_.del_folder in ["on", "ON"] and os.path.exists(folder):
         shutil.rmtree(folder)
