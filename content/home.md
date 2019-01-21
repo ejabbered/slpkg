@@ -6,7 +6,6 @@ Slug: home
 Tags: slpkg, slackpkg, slackware, package, manager, slackbuild, linux
 
 ![alt text](https://gitlab.com/dslackw/images/raw/master/slpkg/slpkg_package.png)
-
 ![alt text](https://gitlab.com/dslackw/images/raw/master/slpkg/poweredbyslack.gif)
 
 
