@@ -1,6 +1,7 @@
 3.4.0 - 21/01/2019
 Updated:
 - Updated manpage
+- Convert examples text file to markdown format
 
 3.3.9 - 14/01/2019
 Updated:
