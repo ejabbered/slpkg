@@ -89,9 +89,9 @@ $ python clean.py
 
 ##### Upgrade
 
-Since the version `2.1.4` you can update slpkg itself with the command `slpkg update slpkg`.
+Since the version '`2.1.4`' you can update slpkg itself with the command '`slpkg update slpkg`'.
 In each slpkg upgrade, you will have to keep track of changes in the configuration files
-to the directory `/etc/slpkg`.
+to the directory '`/etc/slpkg`'.
 
 
 ##### Recommended
@@ -175,11 +175,11 @@ Versions: {14,1, 14.2}
 Arch: {x86, x86_64}
 Versions: {14,1, 14.2}
 
-You can enable more default repositories just edit the file `/etc/slpkg/repositories.conf`,
-by default are `slack` and `sbo` repositories is enabled. Please read the [REPOSITORIES](https://gitlab.com/dslackw/slpkg/raw/master/REPOSITORIES) file for each of the particularities.
-Alternative you can run the command `slpkg repo-enable` (`python2-pythondialog` required).
+You can enable more default repositories just edit the file '`/etc/slpkg/repositories.conf`',
+by default are '`slack`' and '`sbo`' repositories is enabled. Please read the [REPOSITORIES](https://gitlab.com/dslackw/slpkg/raw/master/REPOSITORIES) file for each of the particularities.
+Alternative you can run the command '`slpkg repo-enable`' ('`python2-pythondialog`' required).
 If a repository is not in the above list, manage the custom repositories with the commands
-`repo-add` and `repo-remove`.
+'`repo-add`' and '`repo-remove`'.
 
 
 ##### Issues
@@ -194,7 +194,7 @@ The majority of trials have been made in an environment Slackware x86_64 'stable
 
 ##### Slackware Current
 
-For Slackware 'current' users, they must change the variable VERSION in `/etc/slpkg/slpkg.conf`
+For Slackware 'current' users, they must change the variable VERSION in '`/etc/slpkg/slpkg.conf`'
 file.
 
 Edit the configuration file easy with the command:
@@ -218,32 +218,32 @@ nearest one. If however for some reason this troublesome please edit the file in
 
 ##### Slpkg configuration
 
-It is important to read the configuration file `/etc/slpkg/slpkg.conf`. You will find many
+It is important to read the configuration file '`/etc/slpkg/slpkg.conf`'. You will find many
 useful options to configure the program so as you need it.
 
 
 ##### Configuration files
 
-- `/tmp/slpkg`
+- '`/tmp/slpkg`'
      - Slpkg temponary donwloaded files and build packages
-- `/etc/slpkg/slpkg.conf`
+- '`/etc/slpkg/slpkg.conf`'
      - General configuration of slpkg
-- `/etc/slpkg/repositories.conf`
+- '`/etc/slpkg/repositories.conf`'
      - Configuration file for repositories
-- `/etc/slpkg/blacklist`
+- '`/etc/slpkg/blacklist`'
      - List of packages to skip
-- `/etc/slpkg/slackware-mirrors`
+- '`/etc/slpkg/slackware-mirrors`'
      - List of Slackware Mirrors
-- `/etc/slpkg/default-repositories`
+- '`/etc/slpkg/default-repositories`'
      - List of default repositories
-- `/etc/slpkg/custom-repositories`
+- '`/etc/slpkg/custom-repositories`'
      - List of custom repositories
-- `/etc/slpkg/pkg_security`
+- '`/etc/slpkg/pkg_security`'
      - List of packages for security reasons
-- `/var/log/slpkg`
+- '`/var/log/slpkg`'
      - ChangeLog.txt repositories files
      - SlackBuilds logs and dependencies files
-- `/var/lib/slpkg`
+- '`/var/lib/slpkg`'
      - PACKAGES.TXT files
      - SLACKBUILDS.TXT files
      - CHECKSUMS.md5 files
@@ -378,6 +378,10 @@ Optional arguments:
   -d | --display, [package...]               Display the contents of installed
                                              packages and file list
 ```
+
+##### Examples
+
+Some examples you can see in the file [EXAMPLES.md](https://gitlab.com/dslackw/slpkg/blob/master/EXAMPLES.txt)
 
 
 ##### Donate

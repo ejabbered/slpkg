@@ -38,7 +38,7 @@ Uninstall
 $ pip uninstall slpkg
 ```
 
-Run the script `clean.py` to remove slpkg data
+Run the script '`clean.py`' to remove slpkg data
 
 ```
 $ python clean.py
@@ -46,6 +46,6 @@ $ python clean.py
 
 ##### Upgrade
 
-Since the version `2.1.4` you can update slpkg itself with the command `slpkg update slpkg`.
+Since the version '`2.1.4`' you can update slpkg itself with the command '`slpkg update slpkg`'.
 In each slpkg upgrade, you will have to keep track of changes in the configuration files
-to the directory `/etc/slpkg`.
+to the directory '`/etc/slpkg`'.
