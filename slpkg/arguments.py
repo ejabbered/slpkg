@@ -163,7 +163,7 @@ Optional arguments:
 
 You can read more about slpkg from manpage or see examples from readme file.
 Issues: https://gitlab.com/dslackw/slpkg/issues
-Homepage: https://gitlab.com/dslackw/slpkg
+Homepage: https://dslackw.gitlab.io/slpkg/
 """
     header()
     print(options.__doc__)
