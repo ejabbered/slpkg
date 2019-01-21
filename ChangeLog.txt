@@ -1,3 +1,7 @@
+3.4.0 - 21/01/2019
+Updated:
+- Updated manpage
+
 3.3.9 - 14/01/2019
 Updated:
 - Readme file and added example text file
