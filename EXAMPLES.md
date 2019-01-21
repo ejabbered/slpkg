@@ -1148,7 +1148,7 @@ SDL2
 CEGUI
 
 
-$ slpkg -q roxterm --remove (or 'slpkg -q --remove' remove all packages)
+$ slpkg -q roxterm --remove (or '`slpkg -q --remove`' remove all packages)
 
 Remove packages from queue:
 
