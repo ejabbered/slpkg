@@ -15,5 +15,4 @@ display warning messages, etc.
 
 ##### Copyright
 
-Copyright 2014-2019 © Dimitris Zlatanidis
-Slackware® is a Registered Trademark of Patrick Volkerding. Linux is a Registered Trademark of Linus Torvalds.
+Copyright 2014-2019 © Dimitris Zlatanidis. Slackware® is a Registered Trademark of Patrick Volkerding. Linux is a Registered Trademark of Linus Torvalds.
