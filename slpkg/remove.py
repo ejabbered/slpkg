@@ -33,3 +33,10 @@ def delete_package(path, packages):
     if _meta_.del_all in ["on", "ON"]:
         for pkg in packages:
             os.remove(path + pkg)
+
+
+def delete_folder(folder):
+    """Delete directory and all its contents.
+    """
+    if _meta_.del_build in ["on", "ON"] and os.path.exists(folder):
+        shutil.rmtree(folder)
