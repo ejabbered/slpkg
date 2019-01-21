@@ -381,7 +381,7 @@ Optional arguments:
 
 ##### Examples
 
-Some examples you can see in the file [EXAMPLES.md](https://gitlab.com/dslackw/slpkg/blob/master/EXAMPLES.txt)
+Some examples you can see in the file [EXAMPLES.md](https://gitlab.com/dslackw/slpkg/blob/master/EXAMPLES.md)
 
 
 ##### Donate
