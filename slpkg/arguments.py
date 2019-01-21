@@ -49,7 +49,7 @@ Usage: slpkg [COMMANDS|OPTIONS] {repository|package...}
 
 Commands:
    update, --only=[...]                      Run this command to update all
-                                             the packages list.
+                                             the packages lists.
 
    upgrade, --only=[...]                     Delete and recreate all packages
                                              lists.
@@ -84,7 +84,7 @@ Optional arguments:
   -v | --version                             Print program version and exit.
 
   -a | --autobuild, [script] [source...]     Auto build SBo packages.
-                                             If you already have downloaded the
+                                             If you have already downloaded the
                                              script and the source code you can
                                              build a new package with this
                                              command.
