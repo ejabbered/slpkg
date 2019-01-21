@@ -23,12 +23,14 @@
 
 
 import os
+import shutil
+
 
 from slpkg.__metadata__ import MetaData as _meta_
 
 
 def delete_package(path, packages):
-    """Remove downloaded packages
+    """Delete downloaded packages
     """
     if _meta_.del_all in ["on", "ON"]:
         for pkg in packages:
@@ -36,7 +38,7 @@ def delete_package(path, packages):
 
 
 def delete_folder(folder):
-    """Delete directory and all its contents.
+    """Delete folder with all files.
     """
     if _meta_.del_build in ["on", "ON"] and os.path.exists(folder):
         shutil.rmtree(folder)
