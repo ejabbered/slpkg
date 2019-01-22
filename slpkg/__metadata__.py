@@ -215,7 +215,7 @@ class MetaData(object):
             "ENDC": ""
         }
 
-    CHECKSUMS_link = ("https://raw.gitlabusercontent.com/{0}/{1}/"
+    CHECKSUMS_link = ("https://gitlab.com/{0}/{1}/raw/"
                       "master/CHECKSUMS.md5".format(__author__, __all__))
 
     # file spacer
