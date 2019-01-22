@@ -78,7 +78,7 @@ Commands:
 
    new-config                                Manage .new configuration files.
 
-   clean                                     Clean the tmp/ directory from
+   clean-tmp                                 Clean the tmp/ directory from
                                              downloaded packages and sources.
 Optional arguments:
   -h | --help                                Print this help message and exit.
@@ -186,7 +186,7 @@ def usage(repo):
              [health, --silent]
              [deps-status, --tree, --graph=[type]]
              [new-config]
-             [clean]
+             [clean-tmp]
 
              Optional arguments:
              [-h] [-v]

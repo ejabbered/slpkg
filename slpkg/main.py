@@ -241,9 +241,9 @@ class ArgParse(object):
         else:
             usage("")
 
-    def command_clean(self):
+    def command_clean_tmp(self):
         """Clean all downloaded packages and sources"""
-        if len(self.args) == 1 and self.args[0] == "clean":
+        if len(self.args) == 1 and self.args[0] == "clean-tmp":
             clean_tmp()
         else:
             usage("")
@@ -815,7 +815,7 @@ def main():
         "health": argparse.command_health,
         "deps-status": argparse.command_deps_status,
         "new-config": argparse.command_new_config,
-        "clean": argparse.command_clean,
+        "clean-tmp": argparse.command_clean_tmp,
         "-a": argparse.auto_build,
         "--autobuild": argparse.auto_build,
         "-l": argparse.pkg_list,
