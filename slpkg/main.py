@@ -124,7 +124,7 @@ class ArgParse(object):
         if len(self.args) == 1 and self.args[0] == "update":
             Update().repository(only="")
         elif (len(self.args) == 2 and self.args[0] == "update" and
-                self.args[1].startswith("--only=")):
+                self.args[1].startswith("--repositories=")):
             repos = self.args[1].split("=")[-1].split(",")
             for rp in repos:
                 if rp not in self.meta.repositories:
@@ -180,7 +180,7 @@ class ArgParse(object):
         if len(self.args) == 1 and self.args[0] == "upgrade":
             Initialization(False).upgrade(only="")
         elif (len(self.args) == 2 and self.args[0] == "upgrade" and
-                self.args[1].startswith("--only=")):
+                self.args[1].startswith("--repositories=")):
             repos = self.args[1].split("=")[-1].split(",")
             for rp in repos:
                 if rp not in self.meta.repositories:

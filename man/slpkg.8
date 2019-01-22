@@ -18,8 +18,8 @@ Slpkg is a user-friendly package manager for Slackware installations
 Usage: slpkg [COMMANDS|OPTIONS] {repository|package...}
 
              Commands:
-             [update, --only=[...]]
-             [upgrade, --only=[...]]
+             [update, --repositories=[...]]
+             [upgrade, --repositories=[...]]
              [repo-add [repository name] [URL]]
              [repo-remove [repository]]
              [repo-enable]
@@ -75,24 +75,24 @@ Print the version of program and exit.
 The following commands are available.
 
 .SS update, create and update packages list
-\fBslpkg\fP \fBupdate\fP, \fB--only=[repositories...]\fP
+\fBslpkg\fP \fBupdate\fP, \fB--repositories=[repositories...]\fP
 .PP
 Used to re-synchronize the package lists and create some important files.
 This command must run every new repository is added or new updates is available.
 .PP
 Additional options:
 .PP
-\fB--only=[repositories...]\fP : Update at specifically repositories separate by comma.
+\fB--repositories=[repositories...]\fP : Update at specifically repositories separate by comma.
 
 .SS upgrade, recreate packages list
-\fBslpkg\fP \fBupgrade\fP, \fB--only=[repositories...]\fP
+\fBslpkg\fP \fBupgrade\fP, \fB--repositories=[repositories...]\fP
 .PP
 It is sometimes useful to create all of the base file from the beginning so this
 command delete all the package lists and recreated.
 .PP
 Additional options:
 .PP
-\fB--only=[repositories...]\fP : Update at specifically repositories separate by comma.
+\fB--repositories=[repositories...]\fP : Update at specifically repositories separate by comma.
 
 .SS repo-add, add custom repository
 \fBslpkg\fP \fBrepo-add\fP <\fIrepository name\fP> <\fIURL\fP>

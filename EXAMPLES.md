@@ -117,7 +117,7 @@ Update repository [msb] ... Done
 Update specifically repositories:
 
 ```
-$ slpkg update --only=sbo,msb,slacky
+$ slpkg update --repositories=sbo,msb,slacky
 ```
 
 Also you can check ChangeLog.txt for changes, like:

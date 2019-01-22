@@ -48,10 +48,10 @@ Usage: slpkg [COMMANDS|OPTIONS] {repository|package...}
                                              _Slackware package manager_______
 
 Commands:
-   update, --only=[...]                      Run this command to update all
+   update, --repositories=[...]              Run this command to update all
                                              the packages lists.
 
-   upgrade, --only=[...]                     Delete and recreate all packages
+   upgrade, --repositories=[...]             Delete and recreate all packages
                                              lists.
 
    repo-add [repository name] [URL]          Add custom repository.
@@ -175,8 +175,8 @@ def usage(repo):
     """Usage: slpkg [COMMANDS|OPTIONS] {repository|package...}
 
              Commands:
-             [update, --only=[...]]
-             [upgrade, --only=[...]]
+             [update, --repositories=[...]]
+             [upgrade, --repositories=[...]]
              [repo-add [repository name] [URL]]
              [repo-remove [repository]]
              [repo-enable]
