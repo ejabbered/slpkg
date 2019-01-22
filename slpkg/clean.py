@@ -44,6 +44,6 @@ def clean_tmp():
     # Recreate the paths again
     if not os.path.exists(tmps[0]):
         for tmp in tmps:
-            print("Create directory: {0}".format(tmp))
+            print("Created directory: {0}".format(tmp))
             os.mkdir(tmp)
         print("Done!")
