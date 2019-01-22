@@ -29,6 +29,7 @@ Usage: slpkg [COMMANDS|OPTIONS] {repository|package...}
              [health, --silent]
              [deps-status, --tree, --graph=[type]]
              [new-config]
+			 [clean]
 
              Optional arguments:
              [-h] [-v]
@@ -151,6 +152,11 @@ Additional options:
 .PP
 This command searches for .new configuration files in /etc/ path and ask the user what todo with those
 files.
+
+.SS clean, the tmp/ directory
+\fBslpkg\fP \fBclean\fP
+.PP
+Clean the /tmp/slpkg/ directory from downloaded packages and sources.
 
 .SH OPTIONS
 .PP

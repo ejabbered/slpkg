@@ -5,6 +5,8 @@ Updated:
 - Merge sbo/remove.py in the slpkg/remove.py file
 Fixed:
 - Bugfix: update slpkg itself from gitlab repository
+Added:
+- Command clean to remove the packages and the sources from /tmp/slpkg/ directory
 
 3.3.9 - 14/01/2019
 Updated:

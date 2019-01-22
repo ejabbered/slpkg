@@ -25,6 +25,7 @@
 import os
 import sys
 
+from slpkg.clean import clean_tmp
 from slpkg.load import Regex
 from slpkg.desc import PkgDesc
 from slpkg.messages import Msg
@@ -82,7 +83,8 @@ class ArgParse(object):
             "update-slpkg",
             "health",
             "deps-status",
-            "new-config"
+            "new-config",
+            "clean"
         ]
 
         # checking if repositories exists
@@ -236,6 +238,13 @@ class ArgParse(object):
         """
         if len(self.args) == 1 and self.args[0] == "new-config":
             NewConfig().run()
+        else:
+            usage("")
+
+    def command_clean(self):
+        """Clean all downloaded packages and sources"""
+        if len(self.args) == 1 and self.args[0] == "clean":
+            clean_tmp()
         else:
             usage("")
 
@@ -806,6 +815,7 @@ def main():
         "health": argparse.command_health,
         "deps-status": argparse.command_deps_status,
         "new-config": argparse.command_new_config,
+        "clean": argparse.command_clean,
         "-a": argparse.auto_build,
         "--autobuild": argparse.auto_build,
         "-l": argparse.pkg_list,
