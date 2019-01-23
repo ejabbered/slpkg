@@ -1,4 +1,4 @@
-Title: Home - slpkg - Slackware package manager
+Title: Home - slpkg
 Date: 2019-1-23
 Authors: dslackw
 Slug: home

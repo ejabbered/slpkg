@@ -1,4 +1,4 @@
-Title: Install - slpkg - Slackware package manager
+Title: Install - slpkg
 Date: 2019-1-20
 Authors: dslackw
 Slug: install
