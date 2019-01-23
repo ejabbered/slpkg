@@ -22,9 +22,9 @@ DISPLAY_PAGES_ON_MENU = False
 
 
 MENUITEMS = (
-    ('Home', '/slpkg'),
-    ('Install', 'pages/install.html'),
-    ('Download', 'pages/download.html'),
+    ('Home', 'https://dslackw.io/slpkg'),
+    ('Install', 'https://dslackw.io/slpkg/pages/install.html'),
+    ('Download', 'https://dslackw.io/slpkg/pages/download.html'),
     ('Requires', 'pages/requires.html'),
     ('Issues', 'pages/issues.html'),
     ('Manpage', 'pages/manpage.html'),
