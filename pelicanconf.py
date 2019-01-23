@@ -27,7 +27,7 @@ MENUITEMS = (
     ('Download', 'https://dslackw.gitlab.io/slpkg/pages/download.html'),
     ('Requires', 'https://dslackw.gitlab.io/slpkg/pages/requires.html'),
     ('Issues', 'https://dslackw.gitlab.io/slpkg/pages/issues.html'),
-    ('Manpage', 'https://dslackw.gitlab.io/pages/manpage.html'),
+    ('Manpage', 'https://dslackw.gitlab.io/slpkg/pages/manpage.html'),
     ('Repositories', 'https://dslackw.gitlab.io/slpkg/pages/repositories.html'),
     ('Donate', 'https://dslackw.gitlab.io/slpkg/pages/donate.html'),)
 
