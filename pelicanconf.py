@@ -23,7 +23,7 @@ DISPLAY_PAGES_ON_MENU = False
 
 MENUITEMS = (
     ('Home', '/'),
-    ('Install', '/pages/install.html'),
+    ('Install', '/install.html'),
     ('Download', '/pages/download.html'),
     ('Requires', '/pages/requires.html'),
     ('Issues', '/pages/issues.html'),
