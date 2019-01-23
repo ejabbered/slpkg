@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 AUTHOR = u'dslackw'
-SITENAME = u'slpkg - Slackware package manager'
+SITENAME = u'slpkg - Slackware Linux Package Manager'
 SITEURL = 'https://dslackw.slpkg.io/slpkg'
 
 PATH = 'content'
