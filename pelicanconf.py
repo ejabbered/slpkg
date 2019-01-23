@@ -23,13 +23,13 @@ DISPLAY_PAGES_ON_MENU = False
 
 MENUITEMS = (
     ('Home', '/slpkg/'),
-    ('Install', 'pages/install.html'),
-    ('Download', 'pages/download.html'),
-    ('Requires', 'pages/requires.html'),
-    ('Issues', 'pages/issues.html'),
-    ('Manpage', 'pages/manpage.html'),
-    ('Repositories', 'pages/repositories.html'),
-    ('Donate', 'pages/donate.html'),)
+    ('Install', 'install.html'),
+    ('Download', 'download.html'),
+    ('Requires', 'requires.html'),
+    ('Issues', 'issues.html'),
+    ('Manpage', 'manpage.html'),
+    ('Repositories', 'repositories.html'),
+    ('Donate', 'donate.html'),)
 
 
 # Feed generation is usually not desired when developing
