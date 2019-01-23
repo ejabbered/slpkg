@@ -22,14 +22,14 @@ DISPLAY_PAGES_ON_MENU = False
 
 
 MENUITEMS = (
-    ('Home', 'https://dslackw.io/slpkg'),
-    ('Install', 'https://dslackw.io/slpkg/pages/install.html'),
-    ('Download', 'https://dslackw.io/slpkg/pages/download.html'),
-    ('Requires', 'pages/requires.html'),
-    ('Issues', 'pages/issues.html'),
-    ('Manpage', 'pages/manpage.html'),
-    ('Repositories', 'pages/repositories.html'),
-    ('Donate', 'pages/donate.html'),)
+    ('Home', 'https://dslackw.gitlab.io/slpkg'),
+    ('Install', 'https://dslackw.gitlab.io/slpkg/pages/install.html'),
+    ('Download', 'https://dslackw.gitlab.io/slpkg/pages/download.html'),
+    ('Requires', 'https://dslackw.gitlab.io/slpkg/pages/requires.html'),
+    ('Issues', 'https://dslackw.gitlab.io/slpkg/pages/issues.html'),
+    ('Manpage', 'https://dslackw.gitlab.io/pages/manpage.html'),
+    ('Repositories', 'https://dslackw.gitlab.io/slpkg/pages/repositories.html'),
+    ('Donate', 'https://dslackw.gitlab.io/slpkg/pages/donate.html'),)
 
 
 # Feed generation is usually not desired when developing
