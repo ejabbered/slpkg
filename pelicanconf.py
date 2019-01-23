@@ -22,9 +22,9 @@ DISPLAY_PAGES_ON_MENU = False
 
 
 MENUITEMS = (
-    ('Home', '/slpkg/'),
-    ('Install', 'install.html'),
-    ('Download', 'download.html'),
+    ('Home', '/slpkg'),
+    ('Install', '/install.html'),
+    ('Download', '/download.html'),
     ('Requires', 'requires.html'),
     ('Issues', 'issues.html'),
     ('Manpage', 'manpage.html'),
