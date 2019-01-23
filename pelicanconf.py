@@ -26,13 +26,13 @@ USE_FOLDER_AS_CATEGORY = True
 
 MENUITEMS = (
     ('Home', '/slpkg'),
-    ('Install', '../pages/install.html'),
-    ('Download', '../pages/download.html'),
-    ('Requires', '../pages/requires.html'),
-    ('Issues', '../pages/issues.html'),
-    ('Manpage', '../pages/manpage.html'),
-    ('Repositories', '../pages/repositories.html'),
-    ('Donate', '../pages/donate.html'),)
+    ('Install', '/slpkg/pages/install.html'),
+    ('Download', '/slpkg/pages/download.html'),
+    ('Requires', '/slpkg/pages/requires.html'),
+    ('Issues', 'slpkg/pages/issues.html'),
+    ('Manpage', 'slpkg/pages/manpage.html'),
+    ('Repositories', 'slpkg/pages/repositories.html'),
+    ('Donate', 'slpkg/pages/donate.html'),)
 
 
 # Feed generation is usually not desired when developing
