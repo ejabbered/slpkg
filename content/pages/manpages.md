@@ -15,8 +15,8 @@ SYNOPSIS
        Usage: slpkg [COMMANDS|OPTIONS] {repository|package...}
 
                     Commands:
-                    [update, --only=[...]]
-                    [upgrade, --only=[...]]
+                    [update, --repositories=[...]]
+                    [upgrade, --repositories=[...]]
                     [repo-add [repository name] [URL]]
                     [repo-remove [repository]]
                     [repo-enable]
@@ -26,6 +26,7 @@ SYNOPSIS
                     [health, --silent]
                     [deps-status, --tree, --graph=[type]]
                     [new-config]
+					[clean-tmp]
 
                     Optional arguments:
                     [-h] [-v]

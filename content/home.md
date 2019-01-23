@@ -265,10 +265,10 @@ Usage: slpkg [COMMANDS|OPTIONS] {repository|package...}
 
                                              _Slackware package manager_______
 Commands:
-   update, --only=[...]                      Run this command to update all
+   update, --repositories=[...]              Run this command to update all
                                              the packages list.
 
-   upgrade, --only=[...]                     Delete and recreate all packages
+   upgrade, --repositories=[...]             Delete and recreate all packages
                                              lists.
 
    repo-add [repository name] [URL]          Add custom repository.
@@ -295,6 +295,8 @@ Commands:
 
    new-config                                Manage .new configuration files.
 
+   clean-tmp                                 Clean the tmp/ directory from
+											 downloaded packages and sources.
 Optional arguments:
   -h | --help                                Print this help message and exit.
 
