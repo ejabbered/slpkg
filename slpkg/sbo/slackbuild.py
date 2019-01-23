@@ -32,6 +32,7 @@ from slpkg.toolbar import status
 from slpkg.log_deps import write_deps
 from slpkg.blacklist import BlackList
 from slpkg.downloader import Download
+from slpkg.remove import delete_folder
 from slpkg.security import pkg_security
 from slpkg.__metadata__ import MetaData as _meta_
 
@@ -41,7 +42,6 @@ from slpkg.pkg.manager import PackageManager
 from slpkg.pkg.installed import GetFromInstalled
 
 from slpkg.sbo.greps import SBoGrep
-from slpkg.sbo.remove import delete
 from slpkg.sbo.sbo_arch import SBoArch
 from slpkg.sbo.compressed import SBoLink
 from slpkg.sbo.dependency import Requires
@@ -196,7 +196,7 @@ class SBoInstall(object):
                     raise SystemExit()
                 self.msg.reference(installs, upgraded)
                 write_deps(self.deps_dict)
-                delete(self.build_folder)
+                delete_folder(self.build_folder)
 
     def view_installing_for_deps(self):
         """View installing message for dependencies

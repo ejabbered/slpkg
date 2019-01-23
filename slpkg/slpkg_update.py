@@ -39,11 +39,13 @@ def it_self_update():
     download and update itself
     """
     __new_version__ = ""
-    repository = "gitlab.com"
+    repository = "gitlab"
     branch = "master"
-    ver_link = ("https://{0}/{1}/{2}/raw/"
-                "{3}/{4}/__metadata__.py".format(repository, _meta_.__author__,
-                                                 _meta_.__all__, branch,
+    ver_link = ("https://{0}.com/{1}/{2}/raw/"
+                "{3}/{4}/__metadata__.py".format(repository,
+                                                 _meta_.__author__,
+                                                 _meta_.__all__,
+                                                 branch,
                                                  _meta_.__all__))
     version_data = URL(ver_link).reading()
     for line in version_data.splitlines():
@@ -65,12 +67,13 @@ def it_self_update():
             print("")   # new line after answer
         else:
             raise SystemExit()
-        dwn_link = ["https://{0}.com/{1}/{2}/archive/"
-                    "v{3}/{4}-{5}.tar.gz".format(repository, _meta_.__author__,
-                                                 _meta_.__all__,
-                                                 __new_version__,
-                                                 _meta_.__all__,
-                                                 __new_version__)]
+        dwn_link = ["https://{0}.com/{1}/{2}/-/archive/"
+                    "{3}/{4}-{5}.tar.gz".format(repository,
+                                                _meta_.__author__,
+                                                _meta_.__all__,
+                                                __new_version__,
+                                                _meta_.__all__,
+                                                __new_version__)]
         if not os.path.exists(_meta_.build_path):
             os.makedirs(_meta_.build_path)
         Download(_meta_.build_path, dwn_link, repo="").start()

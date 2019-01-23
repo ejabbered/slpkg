@@ -16,10 +16,10 @@
 Slpkg is a user-friendly package manager for Slackware installations
 .SH SYNOPSIS
 Usage: slpkg [COMMANDS|OPTIONS] {repository|package...}
-             
-             Commands:   
-             [update, --only=[...]]
-             [upgrade, --only=[...]]
+
+             Commands:
+             [update, --repositories=[...]]
+             [upgrade, --repositories=[...]]
              [repo-add [repository name] [URL]]
              [repo-remove [repository]]
              [repo-enable]
@@ -29,6 +29,7 @@ Usage: slpkg [COMMANDS|OPTIONS] {repository|package...}
              [health, --silent]
              [deps-status, --tree, --graph=[type]]
              [new-config]
+			 [clean]
 
              Optional arguments:
              [-h] [-v]
@@ -59,9 +60,9 @@ Usage: slpkg [COMMANDS|OPTIONS] {repository|package...}
 
 .SH DESCRIPTION
 Slpkg is a powerful software package manager that installs, updates, and
-removes packages on Slackware based systems. It automatically computes 
-dependencies and figures out what things should occur to install packages. 
-Slpkg makes it easier to maintain groups of machines without having to 
+removes packages on Slackware based systems. It automatically computes
+dependencies and figures out what things should occur to install packages.
+Slpkg makes it easier to maintain groups of machines without having to
 manually update.
 
 .SH GLOBAL OPTIONS
@@ -74,34 +75,34 @@ Print the version of program and exit.
 The following commands are available.
 
 .SS update, create and update packages list
-\fBslpkg\fP \fBupdate\fP, \fB--only=[repositories...]\fP
+\fBslpkg\fP \fBupdate\fP, \fB--repositories=[repositories...]\fP
 .PP
 Used to re-synchronize the package lists and create some important files.
 This command must run every new repository is added or new updates is available.
 .PP
 Additional options:
 .PP
-\fB--only=[repositories...]\fP : Update at specifically repositories separate by comma.
+\fB--repositories=[repositories...]\fP : Update at specifically repositories separate by comma.
 
 .SS upgrade, recreate packages list
-\fBslpkg\fP \fBupgrade\fP, \fB--only=[repositories...]\fP
+\fBslpkg\fP \fBupgrade\fP, \fB--repositories=[repositories...]\fP
 .PP
-It is sometimes useful to create all of the base file from the beginning so this 
+It is sometimes useful to create all of the base file from the beginning so this
 command delete all the package lists and recreated.
 .PP
 Additional options:
 .PP
-\fB--only=[repositories...]\fP : Update at specifically repositories separate by comma.
+\fB--repositories=[repositories...]\fP : Update at specifically repositories separate by comma.
 
 .SS repo-add, add custom repository
 \fBslpkg\fP \fBrepo-add\fP <\fIrepository name\fP> <\fIURL\fP>
 .PP
-Add custom binary repository. The repositories will be added to this command should 
+Add custom binary repository. The repositories will be added to this command should
 contain at least the files "PACKAGES.TXT" and "CHECKSUMS.md5" and optional file
 "ChangeLog.txt" used to control changes.
 
 .SS repo-remove, remove custom repository
-\fBslpkg\fP \fBrepo-remove\fP <\fIrepository\fP> 
+\fBslpkg\fP \fBrepo-remove\fP <\fIrepository\fP>
 .PP
 Remove custom repository by name.
 
@@ -137,7 +138,7 @@ Additional options:
 .SS deps-status, print dependencies status
 \fBslpkg\fP \fBdeps-status\fP \fB--graph=[type]\fP
 .PP
-Print dependencies status used by packages. Prerequisite packages have been installed 
+Print dependencies status used by packages. Prerequisite packages have been installed
 with the option "# slpkg -s <repository> <packages>".
 .PP
 Additional options:
@@ -152,6 +153,11 @@ Additional options:
 This command searches for .new configuration files in /etc/ path and ask the user what todo with those
 files.
 
+.SS clean-tmp, the tmp/ directory
+\fBslpkg\fP \fBclean-tmp\fP
+.PP
+Clean the /tmp/slpkg/ directory from downloaded packages and sources.
+
 .SH OPTIONS
 .PP
 The following arguments are available.
@@ -159,15 +165,15 @@ The following arguments are available.
 .SS -a, --autobuild, auto build packages
 \fBslpkg\fP \fB-a\fP <\fIscript.tar.gz\fP> <\fIsources\fP>
 .PP
-If you already have download the script and source with this argument you can build Slackware 
-package from source quickly and easy. Slpkg will grab checksum from the .info file to make control 
-if he does not agree with the versions you will get the wrong message. If you want switch off 
+If you already have download the script and source with this argument you can build Slackware
+package from source quickly and easy. Slpkg will grab checksum from the .info file to make control
+if he does not agree with the versions you will get the wrong message. If you want switch off
 checksum from the configuration file.
 
 .SS -b, --blacklist, add, remove, view packages in blacklist
 \fBslpkg\fP \fB-b\fP <\fIname of packages\fP> \fB--add\fP, \fB--remove\fP, \fBlist\fP
 .PP
-Add, remove or listed packages from blacklist file. The settings here affect 
+Add, remove or listed packages from blacklist file. The settings here affect
 all repositories. Remove all packages from blacklist use argument like
 "# slpkg -b --remove". Use asterisk "*" to match pagkages like "# slpkg -b
 py* --add", this add all installed packages with starts string "py" or "# slpkg -b
@@ -179,7 +185,7 @@ multi:*multilib* --add", this add all multilib packages from repository "multi".
 \fBslpkg\fP \fB-q\fP \fBlist\fP, \fBbuild\fP, \fBinstall\fP, \fBbuild-install\fP
 .PP
 Add, remove and listed sbo packages from queue. This argument is very useful if you want
-to build and install multiple packages together. Note the correct order if there are 
+to build and install multiple packages together. Note the correct order if there are
 dependencies. If you want to remove all the packages from the list run "# slpkg -q --remove".
 (these arguments only working for the sbo repository)
 Build or install or build and install packages are queued.
@@ -192,7 +198,7 @@ Print, reset or edit configuration file.
 .SS -l, --list, list of installed packages
 \fBslpkg\fP \fB-l\fP <\fIrepository\fP>, \fB--index\fP, \fB--installed\fP, \fB--name\fP
 .PP
-Print a list of all available packages from repository, index or print only packages installed on the 
+Print a list of all available packages from repository, index or print only packages installed on the
 system. Support command "grep" like "# slpkg -l sbo | grep python".
 .PP
 Additional options:
@@ -207,9 +213,9 @@ Additional options:
 \fBslpkg\fP \fB-c\fP <\fIrepository\fP> \fB--upgrade\fP \fB--rebuild\fP \fB--skip=[packages...]\fP,
 \fB--resolve-off\fP, \fB--checklist\fP
 .PP
-Check your packages if up to date. Slackware patches repository works independently of the 
-others i.e not need before updating the list of packages by choosing "# slpkg update", works 
-directly with the official repository and so always you can have updated your system. 
+Check your packages if up to date. Slackware patches repository works independently of the
+others i.e not need before updating the list of packages by choosing "# slpkg update", works
+directly with the official repository and so always you can have updated your system.
 .PP
 Additional options:
 .PP
@@ -228,7 +234,7 @@ Additional options:
 .SS -s, --sync, synchronize packages, download, build and install package with all dependencies
 \fBslpkg\fP \fB-s\fP <\fIrepository\fP> <\fInames of packages\fP>, \fB--resolve-off\fP, \fB--case-ins\fP, \fB--patches\fP
 .PP
-Installs or upgrade packages from the repositories with automatically resolving all 
+Installs or upgrade packages from the repositories with automatically resolving all
 dependencies of the package.
 .PP
 Additional options:
@@ -265,7 +271,7 @@ Additional options:
 .SS -p, --desc, print packages description
 \fBslpkg\fP \fB-p\fP <\fIrepository\fP> <\fIname of package\fP>, \fB--color=[]\fP
 .PP
-Print package description from remote repository with color. Available colors: 
+Print package description from remote repository with color. Available colors:
 red, green, yellow, cyan, grey
 .PP
 Additional options:
@@ -273,9 +279,9 @@ Additional options:
 \fB--color=[]\fP : Change color print.
 
 .SS -F, --FIND, find packages from repositories
-\fBslpkg\fP \fB-F\fP <\fInames of packages\fP>, \fI--case-ins\fP 
+\fBslpkg\fP \fB-F\fP <\fInames of packages\fP>, \fI--case-ins\fP
 .PP
-Find packages from all repositories are enabled. Useful command to find all available 
+Find packages from all repositories are enabled. Useful command to find all available
 packages per repository.
 .PP
 Additional options:
@@ -285,7 +291,7 @@ Additional options:
 .SS -f, --find, find installed packages
 \fBslpkg\fP \fB-f\fP <\fInames of packages\fP>, \fB--case-ins\fP, \fB--third-party\fP
 .PP
-Find installed packages with view total file size. 
+Find installed packages with view total file size.
 Example you can view all installed sbo packages like "# slpkg -f _SBo".
 .PP
 Additional options:
@@ -297,7 +303,7 @@ Additional options:
 .SS -n, --network, view SBo packages
 \fBslpkg\fP \fB-n\fP <\fIname of package\fP>, <\fI[pattern], --checklist\fP>, \fB--case-ins\fP
 .PP
-View complete slackbuilds.org site in your terminal. Read file, download, 
+View complete slackbuilds.org site in your terminal. Read file, download,
 build or install etc. Use "--checklist" additional option to load all repository, example:
 "# slpkg -n --checklist".
 .PP
@@ -308,26 +314,26 @@ Additional options:
 \fB--case-ins\fP : Search package name in repository with case insensitive.
 
 .SS -i, --installpkg, install Slackware binary packages
-\fBslpkg\fP \fB-i\fP \fB[--warn, --md5sum, --root /otherroot, --infobox, --menu, --terse, 
+\fBslpkg\fP \fB-i\fP \fB[--warn, --md5sum, --root /otherroot, --infobox, --menu, --terse,
 --ask, --priority ADD|REC|OPT|SKP, --tagfile /somedir/tagfile]\fP <\fIpackages.t?z\fP>
 .PP
-Installs single binary packages designed for use with the Slackware Linux 
+Installs single binary packages designed for use with the Slackware Linux
 distribution into your system. More information please read "man installpkg".
 
 .SS -u, --upgradepkg, install-upgrade Slackware binary packages with new
 \fBslpkg\fP \fB-u\fP \fB[--dry-run, --install-new, --reinstall, --verbose]\fP <\fIpackages.t?z\fP>
 .PP
-Normally upgrade only upgrades packages that are already installed on the system, 
-and will skip any packages that do not already have a version installed. 
+Normally upgrade only upgrades packages that are already installed on the system,
+and will skip any packages that do not already have a version installed.
 More information please read "man upgradepkg".
 
 .SS -r, --removepkg, remove previously installed Slackware binary packages
 \fBslpkg\fP \fB-r\fP \fB[-copy, -keep, -preserve, -warn]\fP <\fInames of packages\fP>, \fB--deps\fP, \fB--check-deps\fP, \fB--tag\fP, \fB--checklist\fP, \fB--third-party\fP
 .PP
-Removes a previously installed Slackware package, while writing a progress report to 
-the standard output. A package may be specified either by the full package name (as 
+Removes a previously installed Slackware package, while writing a progress report to
+the standard output. A package may be specified either by the full package name (as
 you'd see listed in /var/log/packages/), or by the base package name. If installed
-packages with command "# slpkg -s <repo> <packages>" then write a file in /var/log/slpkg/dep/ 
+packages with command "# slpkg -s <repo> <packages>" then write a file in /var/log/slpkg/dep/
 with all dependencies and it allows you can remove them all together.
 More information please read "man removepkg".
 .PP
@@ -355,7 +361,7 @@ command.
 For example:
   \fBslpkg \-\-help\fP - display help for slpkg
 
-.SH DEFAULT REPOSITORIES 
+.SH DEFAULT REPOSITORIES
  slackware.com = "slack"
  SlackBuilds.org = "sbo"
  Alien's = "alien"
@@ -373,7 +379,7 @@ For example:
  Cinnamon Desktop Environment = "csb"
  Connochaetos slack-n-free = "connos"
  Microlinux mles = "mles"
-   
+
  Default enable repository is "slack" and "sbo".
  Add or remove default repository in configuration file "/etc/slpkg/repositories.conf".
  Read REPOSITORIES file for particularities.
@@ -388,8 +394,8 @@ For example:
  All packages ends with: "*string"
  All packages include: "*string*"
 
-.SH PASS VARIABLES TO SCRIPT
- If you want to pass variables to the script exported as: 
+.SH PASS VARIABLES TO THE SCRIPT
+ If you want to pass variables to the script exported as:
  Usage: <NAME_VARIABLE=value>
 
  Example:
@@ -425,7 +431,7 @@ For example:
      SlackBuilds logs and dependencies files
 
 /var/lib/slpkg
-     PACKAGES.TXT files 
+     PACKAGES.TXT files
      SLACKBUILDS.TXT files
      CHECKSUMS.md5 files
      FILELIST.TXT files
@@ -437,7 +443,7 @@ For example:
 .SH AUTHOR
 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
 .SH HOMEPAGE
-https://gitlab.com/dslackw/slpkg
+https://dslackw.gitlab.io/slpkg/
 .SH COPYRIGHT
 Copyright \(co 2014-2019 Dimitris Zlatanidis
 

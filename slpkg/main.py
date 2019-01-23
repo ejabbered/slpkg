@@ -25,6 +25,7 @@
 import os
 import sys
 
+from slpkg.clean import clean_tmp
 from slpkg.load import Regex
 from slpkg.desc import PkgDesc
 from slpkg.messages import Msg
@@ -82,7 +83,8 @@ class ArgParse(object):
             "update-slpkg",
             "health",
             "deps-status",
-            "new-config"
+            "new-config",
+            "clean"
         ]
 
         # checking if repositories exists
@@ -122,7 +124,7 @@ class ArgParse(object):
         if len(self.args) == 1 and self.args[0] == "update":
             Update().repository(only="")
         elif (len(self.args) == 2 and self.args[0] == "update" and
-                self.args[1].startswith("--only=")):
+                self.args[1].startswith("--repositories=")):
             repos = self.args[1].split("=")[-1].split(",")
             for rp in repos:
                 if rp not in self.meta.repositories:
@@ -178,7 +180,7 @@ class ArgParse(object):
         if len(self.args) == 1 and self.args[0] == "upgrade":
             Initialization(False).upgrade(only="")
         elif (len(self.args) == 2 and self.args[0] == "upgrade" and
-                self.args[1].startswith("--only=")):
+                self.args[1].startswith("--repositories=")):
             repos = self.args[1].split("=")[-1].split(",")
             for rp in repos:
                 if rp not in self.meta.repositories:
@@ -236,6 +238,13 @@ class ArgParse(object):
         """
         if len(self.args) == 1 and self.args[0] == "new-config":
             NewConfig().run()
+        else:
+            usage("")
+
+    def command_clean_tmp(self):
+        """Clean all downloaded packages and sources"""
+        if len(self.args) == 1 and self.args[0] == "clean-tmp":
+            clean_tmp()
         else:
             usage("")
 
@@ -806,6 +815,7 @@ def main():
         "health": argparse.command_health,
         "deps-status": argparse.command_deps_status,
         "new-config": argparse.command_new_config,
+        "clean-tmp": argparse.command_clean_tmp,
         "-a": argparse.auto_build,
         "--autobuild": argparse.auto_build,
         "-l": argparse.pkg_list,

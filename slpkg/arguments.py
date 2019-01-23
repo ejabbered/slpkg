@@ -48,10 +48,10 @@ Usage: slpkg [COMMANDS|OPTIONS] {repository|package...}
                                              _Slackware package manager_______
 
 Commands:
-   update, --only=[...]                      Run this command to update all
-                                             the packages list.
+   update, --repositories=[...]              Run this command to update all
+                                             the packages lists.
 
-   upgrade, --only=[...]                     Delete and recreate all packages
+   upgrade, --repositories=[...]             Delete and recreate all packages
                                              lists.
 
    repo-add [repository name] [URL]          Add custom repository.
@@ -78,13 +78,15 @@ Commands:
 
    new-config                                Manage .new configuration files.
 
+   clean-tmp                                 Clean the tmp/ directory from
+                                             downloaded packages and sources.
 Optional arguments:
   -h | --help                                Print this help message and exit.
 
   -v | --version                             Print program version and exit.
 
   -a | --autobuild, [script] [source...]     Auto build SBo packages.
-                                             If you already have downloaded the
+                                             If you have already downloaded the
                                              script and the source code you can
                                              build a new package with this
                                              command.
@@ -163,7 +165,7 @@ Optional arguments:
 
 You can read more about slpkg from manpage or see examples from readme file.
 Issues: https://gitlab.com/dslackw/slpkg/issues
-Homepage: https://gitlab.com/dslackw/slpkg
+Homepage: https://dslackw.gitlab.io/slpkg/
 """
     header()
     print(options.__doc__)
@@ -173,8 +175,8 @@ def usage(repo):
     """Usage: slpkg [COMMANDS|OPTIONS] {repository|package...}
 
              Commands:
-             [update, --only=[...]]
-             [upgrade, --only=[...]]
+             [update, --repositories=[...]]
+             [upgrade, --repositories=[...]]
              [repo-add [repository name] [URL]]
              [repo-remove [repository]]
              [repo-enable]
@@ -184,6 +186,7 @@ def usage(repo):
              [health, --silent]
              [deps-status, --tree, --graph=[type]]
              [new-config]
+             [clean-tmp]
 
              Optional arguments:
              [-h] [-v]

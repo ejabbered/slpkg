@@ -31,7 +31,11 @@ def prog_version():
     print("Version   : {0}\n"
           "Licence   : {1}\n"
           "Email     : {2}\n"
-          "Maintainer: {3}".format(_meta_.__version__,
+          "Homepage  : {3}\n"
+          "Twitter   : {4}\n"
+          "Maintainer: {5}".format(_meta_.__version__,
                                    _meta_.__license__,
                                    _meta_.__email__,
+                                   _meta_.__homepage__,
+                                   _meta_.__twitter__,
                                    _meta_.__maintainer__))

@@ -78,11 +78,13 @@ class MetaData(object):
 
     __all__ = "slpkg"
     __author__ = "dslackw"
-    __version_info__ = (3, 3, 9)
+    __version_info__ = (3, 4, 0)
     __version__ = "{0}.{1}.{2}".format(*__version_info__)
     __license__ = "GNU General Public License v3 (GPLv3)"
     __email__ = "d.zlatanidis@gmail.com"
     __maintainer__ = "Dimitris Zlatanidis (dslackw)"
+    __twitter__ = "https://twitter.com/dslackw"
+    __homepage__ = "https://dslackw.gitlab.io/slpkg/"
 
     # Default Slackware release
     slack_rel = "stable"
@@ -159,7 +161,7 @@ class MetaData(object):
     slpkg_tmp_patches = _conf_slpkg["PATCHES"]
     checkmd5 = _conf_slpkg["CHECKMD5"]
     del_all = _conf_slpkg["DEL_ALL"]
-    del_build = _conf_slpkg["DEL_BUILD"]
+    del_folder = _conf_slpkg["DEL_BUILD"]
     sbo_build_log = _conf_slpkg["SBO_BUILD_LOG"]
     makeflags = _conf_slpkg["MAKEFLAGS"]
     default_answer = _conf_slpkg["DEFAULT_ANSWER"]
@@ -215,7 +217,7 @@ class MetaData(object):
             "ENDC": ""
         }
 
-    CHECKSUMS_link = ("https://raw.gitlabusercontent.com/{0}/{1}/"
+    CHECKSUMS_link = ("https://gitlab.com/{0}/{1}/raw/"
                       "master/CHECKSUMS.md5".format(__author__, __all__))
 
     # file spacer

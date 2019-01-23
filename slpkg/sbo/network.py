@@ -30,6 +30,7 @@ from slpkg.utils import Utils
 from slpkg.messages import Msg
 from slpkg.blacklist import BlackList
 from slpkg.downloader import Download
+from slpkg.remove import delete_folder
 from slpkg.dialog_box import DialogUtil
 from slpkg.security import pkg_security
 from slpkg.__metadata__ import MetaData as _meta_
@@ -39,7 +40,6 @@ from slpkg.pkg.build import BuildPackage
 from slpkg.pkg.manager import PackageManager
 
 from slpkg.sbo.read import ReadSBo
-from slpkg.sbo.remove import delete
 from slpkg.sbo.greps import SBoGrep
 from slpkg.sbo.sbo_arch import SBoArch
 from slpkg.sbo.compressed import SBoLink
@@ -223,7 +223,7 @@ class SBoNetwork(object):
         """Build package
         """
         self.build()
-        delete(self.build_folder)
+        delete_folder(self.build_folder)
         raise SystemExit()
 
     def choice_install(self):

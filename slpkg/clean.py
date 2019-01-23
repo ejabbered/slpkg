@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# remove.py file is part of slpkg.
+# clean.py file is part of slpkg.
 
 # Copyright 2014-2019 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
 # All rights reserved.
@@ -28,8 +28,22 @@ import shutil
 from slpkg.__metadata__ import MetaData as _meta_
 
 
-def delete(build_folder):
-    """Delete build directory and all its contents.
+def clean_tmp():
+    """Delete packages and sources from tmp/ directory
     """
-    if _meta_.del_build in ["on", "ON"] and os.path.exists(build_folder):
-        shutil.rmtree(build_folder)
+    tmps = [_meta_.tmp_path,  # /tmp/slpkg/
+            _meta_.build_path,  # /tmp/slpkg/build/
+            _meta_.slpkg_tmp_packages,  # /tmp/slpkg/packages/
+            _meta_.slpkg_tmp_patches  # /tmp/slpkg/patches/
+            ]
+    # Delete a whole slpkg folder from the tmp directory
+    if os.path.exists(tmps[0]):
+        shutil.rmtree(tmps[0])
+        print("All packages and sources were deleted from: {0}".format(
+            tmps[0]))
+    # Recreate the paths again
+    if not os.path.exists(tmps[0]):
+        for tmp in tmps:
+            print("Created directory: {0}".format(tmp))
+            os.mkdir(tmp)
+        print("Done!")
