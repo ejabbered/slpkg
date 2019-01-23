@@ -7,6 +7,8 @@ SITENAME = u'slpkg - Slackware package manager'
 SITEURL = 'https://dslackw.slpkg.io/slpkg'
 
 PATH = 'content'
+ARTICLE_PATHS = ['articles']
+PATH_PAGES = ['pages']
 OUTPUT_PATH = 'public/'
 STATIC_PATHS = ['images']
 
@@ -17,19 +19,20 @@ THEME = "tuxlite_zf"
 TIMEZONE = 'Europe/Amsterdam'
 
 DEFAULT_LANG = u'en'
-DISPLAY_CATEGORIES_ON_MENU = False
+DISPLAY_CATEGORIES_ON_MENU = True
 DISPLAY_PAGES_ON_MENU = False
+USE_FOLDER_AS_CATEGORY = True
 
 
 MENUITEMS = (
-    ('Home', 'https://dslackw.gitlab.io/slpkg'),
-    ('Install', 'https://dslackw.gitlab.io/slpkg/pages/install.html'),
-    ('Download', 'https://dslackw.gitlab.io/slpkg/pages/download.html'),
-    ('Requires', 'https://dslackw.gitlab.io/slpkg/pages/requires.html'),
-    ('Issues', 'https://dslackw.gitlab.io/slpkg/pages/issues.html'),
-    ('Manpage', 'https://dslackw.gitlab.io/slpkg/pages/manpage.html'),
-    ('Repositories', 'https://dslackw.gitlab.io/slpkg/pages/repositories.html'),
-    ('Donate', 'https://dslackw.gitlab.io/slpkg/pages/donate.html'),)
+    ('Home', '/'),
+    ('Install', '/pages/install.html'),
+    ('Download', '/pages/download.html'),
+    ('Requires', '/pages/requires.html'),
+    ('Issues', '/pages/issues.html'),
+    ('Manpage', '/pages/manpage.html'),
+    ('Repositories', '/pages/repositories.html'),
+    ('Donate', '/pages/donate.html'),)
 
 
 # Feed generation is usually not desired when developing
