@@ -25,7 +25,7 @@ USE_FOLDER_AS_CATEGORY = True
 
 
 MENUITEMS = (
-    ('Home', '/'),
+    ('Home', '/slpkg'),
     ('Install', '/pages/install.html'),
     ('Download', '/pages/download.html'),
     ('Requires', '/pages/requires.html'),
