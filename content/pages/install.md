@@ -9,8 +9,8 @@ Download the latest release
 *(Required root privileges for the install)*
 
 ```
-$ tar xvf slpkg-3.4.0.tar.gz
-$ cd slpkg-3.4.0
+$ tar xvf slpkg-3.4.1.tar.gz
+$ cd slpkg-3.4.1
 $ ./install.sh
 ```
 
@@ -29,7 +29,7 @@ $ removepkg slpkg
 Using pip
 
 ```
-$ pip install https://gitlab.com/dslackw/slpkg/-/archive/3.4.0/slpkg-3.4.0.tar.gz
+$ pip install https://gitlab.com/dslackw/slpkg/-/archive/3.4.1/slpkg-3.4.1.tar.gz
 ```
 
 Uninstall

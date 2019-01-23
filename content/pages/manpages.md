@@ -1,5 +1,5 @@
 Title: Manpage
-Date: 2019-1-20
+Date: 2019-1-23
 Authors: dslackw
 Slug: manpage
 
@@ -13,47 +13,6 @@ NAME
 
 SYNOPSIS
        Usage: slpkg [COMMANDS|OPTIONS] {repository|package...}
-
-                    Commands:
-                    [update, --repositories=[...]]
-                    [upgrade, --repositories=[...]]
-                    [repo-add [repository name] [URL]]
-                    [repo-remove [repository]]
-                    [repo-enable]
-                    [repo-list]
-                    [repo-info [repository]]
-                    [update [slpkg]]
-                    [health, --silent]
-                    [deps-status, --tree, --graph=[type]]
-                    [new-config]
-					[clean-tmp]
-
-                    Optional arguments:
-                    [-h] [-v]
-                    [-a [script] [sources...]]
-                    [-b [package...] --add, --remove,
-                        [list]]
-                    [-q [package...] --add, --remove,
-                        [list, build, install, build-install]]
-                    [-g [print, edit, reset]]
-                    [-l [repository], --index, --installed, --name]
-                    [-c [repository], --upgrade, --rebuild, --skip=[...],
-                                      --resolve-off, --checklist]
-                    [-s [repository] [package...], --rebuild, --reinstall,
-                                                   --resolve-off, --download-only,
-                                                   --directory-prefix=[dir],
-                                                   --case-ins, --patches]
-                    [-t [repository] [package], --check-deps, --graph=[type],
-                                                --case-ins]
-                    [-p [repository] [package], --color=[]]
-                    [-n [SBo package], --checklist, --case-ins]
-                    [-F [package...], --case-ins]
-                    [-f [package...], --case-ins, --third-party]
-                    [-i [options] [package...]]
-                    [-u [options] [package...]]
-                    [-r [options] [package...], --deps, --check-deps, --tag,
-                                                --checklist]
-                    [-d [package...]]
 
 DESCRIPTION
        Slpkg  is a powerful software package manager that installs, updates, and removes packages on Slack‐
@@ -70,24 +29,24 @@ COMMANDS
        The following commands are available.
 
    update, create and update packages list
-       slpkg update, --only=[repositories...]
+       slpkg update, --repositories=[repositories...]
 
        Used to re-synchronize the package lists and create some important files.   This  command  must  run
        every new repository is added or new updates is available.
 
        Additional options:
 
-       --only=[repositories...] : Update at specifically repositories separate by comma.
+       --repositories=[repositories...] : Update at specifically repositories separate by comma.
 
    upgrade, recreate packages list
-       slpkg upgrade, --only=[repositories...]
+       slpkg upgrade, --repositories=[repositories...]
 
        It  is sometimes useful to create all of the base file from the beginning so this command delete all
        the package lists and recreated.
 
        Additional options:
 
-       --only=[repositories...] : Update at specifically repositories separate by comma.
+       --repositories=[repositories...] : Update at specifically repositories separate by comma.
 
    repo-add, add custom repository
        slpkg repo-add <repository name> <URL>
@@ -148,6 +107,11 @@ COMMANDS
 
        This command searches for .new configuration files in /etc/ path and ask the  user  what  todo  with
        those files.
+
+   clean-tmp, clean the tmp/ directory
+       slpkg clean-tmp
+
+	   Clean the /tmp/slpkg/ directory from downloaded packages and sources.
 
 OPTIONS
        The following arguments are available.
