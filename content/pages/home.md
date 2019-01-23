@@ -1,7 +1,6 @@
-Title: slpkg 3.4.1
+Title: Home - slpkg - Slackware package manager
 Date: 2019-1-23
 Authors: dslackw
-Category: About
 Slug: home
 Save_as: index.html
 Tags: slpkg, slackpkg, slackware, package, manager, slackbuild, linux

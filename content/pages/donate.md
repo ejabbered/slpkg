@@ -1,4 +1,4 @@
-Title: Donate
+Title: Donate - slpkg - Slackware package manager
 Date: 2019-1-18
 Authors: dslackw
 Slug: donate

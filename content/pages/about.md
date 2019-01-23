@@ -1,4 +1,4 @@
-Title: About
+Title: About - slpkg - Slackware package manager
 Date: 2019-1-20
 Authors: dslackw
 Slug: about

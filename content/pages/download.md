@@ -1,4 +1,4 @@
-Title: Download
+Title: Download - slpkg - Slackware package manager
 Date: 2019-1-23
 Authors: dslackw
 Slug: download

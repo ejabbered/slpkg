@@ -1,4 +1,4 @@
-Title: Repositories
+Title: Repositories - slpkg - Slackware package manager
 Date: 2019-1-18
 Authors: dslackw
 Slug: repositories

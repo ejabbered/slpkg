@@ -1,4 +1,4 @@
-Title: Manpage
+Title: Manpage - slpkg - Slackware package manager
 Date: 2019-1-23
 Authors: dslackw
 Slug: manpage
