@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = u'dslackw'
 SITENAME = u'slpkg - Slackware package manager'
-SITEURL = 'https://dslackw.gitlab.io/slpkg'
+SITEURL = ''
 
 PATH = 'content'
 OUTPUT_PATH = 'public/'
@@ -12,13 +12,24 @@ STATIC_PATHS = ['images']
 
 # USE_FOLDER_AS_CATEGORY = False
 # DEFAULT_CATEGORY = ''
-# DISPLAY_CATEGORIES_ON_MENU = False
-# DISPLAY_PAGES_ON_MENU = True
 
 THEME = "tuxlite_zf"
 TIMEZONE = 'Europe/Amsterdam'
 
 DEFAULT_LANG = u'en'
+DISPLAY_CATEGORIES_ON_MENU = False
+DISPLAY_PAGES_ON_MENU = False
+
+
+MENUITEMS = (
+    ('Home', '/'),
+    ('Install', '/pages/install.html'),
+    ('Download', '/pages/download.html'),
+    ('Requires', '/pages/requires.html'),
+    ('Issues', '/pages/issues.html'),
+    ('Manpage', '/pages/manpage.html'),
+    ('Repositories', '/pages/repositories.html'),
+    ('Donate', '/pages/donate.html'),)
 
 
 # Feed generation is usually not desired when developing
