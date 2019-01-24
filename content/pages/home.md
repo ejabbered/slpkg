@@ -108,16 +108,6 @@ Stay updated, see SUN [(Slackware Update Notifier)](https://gitlab.com/dslackw/s
 * [aria2](https://slackbuilds.org/repository/14.2/network/aria2/) alternative downloader
 
 
-##### Demonstration
-
-[<img src="https://gitlab.com/dslackw/images/raw/master/slpkg/slpkg_youtube.png">](https://www.youtube.com/watch?v=oTtD4XhHKlA)
-
-
-##### Youtube Asciicasts
-
-[Playlist Tutorials](https://www.youtube.com/playlist?list=PLLzUUMSzaKvlS5--8AiFqWzxZPg3kxkqY)
-
-
 ##### Repositories
 
 Default available Repositories:
