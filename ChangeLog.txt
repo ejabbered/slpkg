@@ -1,3 +1,7 @@
+3.4.2 - 23/01/2019
+Fixed:
+- Bugfixed delete build folder in network option
+
 3.4.1 - 23/01/2019
 Fixed:
 - Fix manpage

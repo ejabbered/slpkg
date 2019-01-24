@@ -233,7 +233,7 @@ class SBoNetwork(object):
         if not find_package(self.prgnam, self.meta.pkg_path):
             self.build()
             self.install()
-            delete(self.build_folder)
+            delete_folder(self.build_folder)
             raise SystemExit()
         else:
             self.msg.template(78)
