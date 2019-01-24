@@ -1,5 +1,5 @@
 Title: Home - slpkg
-Date: 2019-1-23
+Date: 2019-1-24
 Authors: dslackw
 Slug: home
 Save_as: index.html
@@ -46,8 +46,8 @@ Download the latest release
 *(Required root privileges for the install)*
 
 ```
-$ tar xvf slpkg-3.4.1.tar.gz
-$ cd slpkg-3.4.1
+$ tar xvf slpkg-3.4.2.tar.gz
+$ cd slpkg-3.4.2
 $ ./install.sh
 ```
 
@@ -66,7 +66,7 @@ $ removepkg slpkg
 Using pip:
 
 ```
-$ pip install https://gitlab.com/dslackw/slpkg/-/archive/3.4.1/slpkg-3.4.1.tar.gz
+$ pip install https://gitlab.com/dslackw/slpkg/-/archive/3.4.2/slpkg-3.4.2.tar.gz
 ```
 
 Uninstall
