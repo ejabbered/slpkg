@@ -1,4 +1,4 @@
-# Slackware Linux
+# Slackware Linux (based)
 # Python 2.7+
 # GNU wget
 # GNU coreutils
