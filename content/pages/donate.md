@@ -1,4 +1,4 @@
-Title: Donate - slpkg
+Title: Donate | slpkg
 Date: 2019-1-18
 Authors: dslackw
 Slug: donate

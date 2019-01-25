@@ -1,4 +1,4 @@
-Title: Home - slpkg
+Title: Home | slpkg
 Date: 2019-1-24
 Authors: dslackw
 Slug: home

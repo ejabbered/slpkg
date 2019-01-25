@@ -1,4 +1,4 @@
-Title: Download - slpkg
+Title: Download | slpkg
 Date: 2019-1-24
 Authors: dslackw
 Slug: download

@@ -1,4 +1,4 @@
-Title: Issues - slpkg
+Title: Issues | slpkg
 Date: 2019-1-20
 Authors: dslackw
 Slug: issues

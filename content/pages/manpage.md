@@ -1,4 +1,4 @@
-Title: Manpage - slpkg
+Title: Manpage | slpkg
 Date: 2019-1-23
 Authors: dslackw
 Slug: manpage

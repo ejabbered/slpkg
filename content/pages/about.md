@@ -1,4 +1,4 @@
-Title: About - slpkg
+Title: About | slpkg
 Date: 2019-1-20
 Authors: dslackw
 Slug: about

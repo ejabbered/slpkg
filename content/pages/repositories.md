@@ -1,4 +1,4 @@
-Title: Repositories - slpkg
+Title: Repositories | slpkg
 Date: 2019-1-18
 Authors: dslackw
 Slug: repositories

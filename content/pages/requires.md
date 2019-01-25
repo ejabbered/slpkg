@@ -1,4 +1,4 @@
-Title: Requires - slpkg
+Title: Requires | slpkg
 Date: 2019-1-18
 Authors: dslackw
 Slug: requires
