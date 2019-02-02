@@ -40,7 +40,7 @@ LINKS = ((u'Download', u'https://gitlab.com/dslackw/slpkg/-/archive/3.4.2/slpkg-
 
 # Social widget
 SOCIAL = ((u'twitter', u'https://twitter.com/dslackw'),
-          (u'youTube', u'https://www.youtube.com/channel/UCEZIW905VLM-WwD9lZ-bzsQ'),)
+          (u'youtube', u'https://www.youtube.com/channel/UCEZIW905VLM-WwD9lZ-bzsQ'),)
 
 DEFAULT_PAGINATION = 10
 
