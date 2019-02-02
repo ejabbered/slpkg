@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = u'dslackw'
 SITENAME = u'slpkg - Slackware Linux Package Manager'
-SITEURL = 'https://dslackw.slpkg.io/slpkg'
+SITEURL = u'https://dslackw.slpkg.io/slpkg'
 
 PATH = 'content'
 ARTICLE_PATHS = ['articles']
@@ -15,24 +15,13 @@ STATIC_PATHS = ['images']
 # USE_FOLDER_AS_CATEGORY = False
 # DEFAULT_CATEGORY = ''
 
-THEME = "pelican-theme-jesuislibre"
+THEME = 'pelican-theme-jesuislibre'
 TIMEZONE = 'Europe/Amsterdam'
 
 DEFAULT_LANG = u'en'
 DISPLAY_CATEGORIES_ON_MENU = True
 DISPLAY_PAGES_ON_MENU = False
 USE_FOLDER_AS_CATEGORY = True
-
-
-MENUITEMS = (
-    ('Home', '/slpkg'),
-    ('Install', '/slpkg/pages/install.html'),
-    ('Download', '/slpkg/pages/download.html'),
-    ('Requires', '/slpkg/pages/requires.html'),
-    ('Issues', '/slpkg/pages/issues.html'),
-    ('Manpage', '/slpkg/pages/manpage.html'),
-    ('Repositories', '/slpkg/pages/repositories.html'),
-    ('Donate', '/slpkg/pages/donate.html'),)
 
 
 # Feed generation is usually not desired when developing
@@ -43,15 +32,15 @@ AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
 # Blogroll
-LINKS = (('Download', 'https://gitlab.com/dslackw/slpkg/-/archive/3.4.2/slpkg-3.4.2.tar.gz'),
-         ('GitLab', 'https://gitlab.com/dslackw/slpkg'),
-         ('Slackware', 'http://www.slackware.com/'),
-         ('SlackBuilds', 'https://slackbuilds.org/repository/14.2/system/slpkg/'),
-         ('SlackDocs', 'http://docs.slackware.com/'),)
+LINKS = ((u'Download', u'https://gitlab.com/dslackw/slpkg/-/archive/3.4.2/slpkg-3.4.2.tar.gz'),
+         (u'GitLab', u'https://gitlab.com/dslackw/slpkg'),
+         (u'Slackware', u'http://www.slackware.com/'),
+         (u'SlackBuilds', u'https://slackbuilds.org/repository/14.2/system/slpkg/'),
+         (u'SlackDocs', u'http://docs.slackware.com/'),)
 
 # Social widget
-SOCIAL = (('Twitter', 'https://twitter.com/dslackw'),
-          ('YouTube', 'https://www.youtube.com/channel/UCEZIW905VLM-WwD9lZ-bzsQ'),)
+SOCIAL = ((u'twitter', u'https://twitter.com/dslackw'),
+          (u'youTube', u'https://www.youtube.com/channel/UCEZIW905VLM-WwD9lZ-bzsQ'),)
 
 DEFAULT_PAGINATION = 10
 
