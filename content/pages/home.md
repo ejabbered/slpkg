@@ -1,4 +1,4 @@
-Title: Home | slpkg
+Title: slpkg 3.4.2
 Date: 2019-1-24
 Authors: dslackw
 Slug: home
