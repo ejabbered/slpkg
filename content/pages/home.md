@@ -123,7 +123,7 @@ Default available Repositories:
 | [Slackonly](https://slackonly.com/) | x86, x86_64 | 14.1, 14.2 |
 | [Alien's ktown](http://alien.slackbook.org/ktown/) | x86, x86_64 | 13.37 to 14.2, current |
 | [Alien's multi](http://bear.alienbase.nl/mirrors/people/alien/multilib/) | x86, x86_64 | 13.0 to 14.2, current |
-| [Slacke E17 and E18](http://ngc891.blogdns.net/pub/) | x86, x86_64, arm | 14.1 | 
+| [Slacke E17 and E18](http://ngc891.blogdns.net/pub/) | x86, x86_64 | 14.1, arm | 
 | [SalixOS](http://download.salixos.org/) | x86, x86_64 | 13.0 to 14.2 |
 | [Slackel](http://www.slackel.gr/repo/) | x86, x86_64 | current |
 | [Restricted](http://bear.alienbase.nl/mirrors/people/alien/restricted_slackbuilds/) | x86, x86_64 | 11.0 to 14.2, current |
