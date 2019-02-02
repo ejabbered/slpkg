@@ -15,7 +15,7 @@ STATIC_PATHS = ['images']
 # USE_FOLDER_AS_CATEGORY = False
 # DEFAULT_CATEGORY = ''
 
-THEME = "tuxlite_zf"
+THEME = "pelican-theme-jesuislibre"
 TIMEZONE = 'Europe/Amsterdam'
 
 DEFAULT_LANG = u'en'
