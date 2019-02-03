@@ -28,7 +28,7 @@
 # ---------------------------------------------------------------------------
 cat <<"EOT"
 # -------------------------------------------------------------------#
-# $Id: gen_repos_files.sh,v 1.92 2014/07/31 20:27:53 root Exp root $ #
+# $Id: gen_repos_files.sh,v 1.94 2018/05/03 15:02:39 root Exp root $ #
 # -------------------------------------------------------------------#
 EOT
 
@@ -36,7 +36,7 @@ EOT
 BASENAME=$( basename $0 )
 
 # The script'""s revision number will be displayed in the RSS feed:
-REV=$( echo "$Revision: 1.92 $" | cut -d' '  -f2 )
+REV=$( echo "$Revision: 1.94 $" | cut -d' '  -f2 )
 
 # The repository owner's defaults file;
 # you can override any of the default values in this file:
@@ -276,6 +276,7 @@ function addpkg {
   if [ "$FORCEPKG" == "yes" -o ! -f $LOCATION/$TXTFILE ]; then
     # This is a courtesy service:
     echo "--> Generating .txt file for $NAME"
+    rm -f $LOCATION/$TXTFILE
     $COMPEXE -cd $PKG | tar xOf - install/slack-desc | sed -n '/^#/d;/:/p' > $LOCATION/$TXTFILE
     [ "$TOUCHUP" == "yes"  ] && touch -r $PKG $LOCATION/$TXTFILE || touch -d "$UPDATEDATE" $LOCATION/$TXTFILE
   fi
@@ -303,6 +304,7 @@ function addpkg {
       SUGGESTS=$($COMPEXE -cd $PKG | tar xOf - install/slack-suggests 2>/dev/null|xargs -r )
     fi
 
+    rm -f $LOCATION/$METAFILE
     echo "PACKAGE NAME:  $NAME" > $LOCATION/$METAFILE
     if [ -n "$DL_URL" ]; then
       echo "PACKAGE MIRROR:  $DL_URL" >> $LOCATION/$METAFILE
@@ -360,6 +362,7 @@ function addman {
     # Determine the compression tool used for this package:
     COMPEXE=$( pkgcomp $PKG )
 
+    rm -f $LOCATION/$LSTFILE
     cat << EOF > $LOCATION/$LSTFILE
 ++========================================
 ||
@@ -402,6 +405,7 @@ function genmd5 {
   if [ "$FORCEMD5" == "yes" -o ! -f $LOCATION/$MD5FILE ]; then
     echo "--> Generating .md5 file for $NAME"
     (cd $LOCATION
+     rm -f $MD5FILE
      md5sum $NAME > $MD5FILE
     )
     [ "$TOUCHUP" == "yes"  ] && touch -r $PKG $LOCATION/$MD5FILE || touch -d "$UPDATEDATE" $LOCATION/$MD5FILE
@@ -455,6 +459,7 @@ function gen_filelist {
   LISTFILE=${2:-FILELIST.TXT}
 
   ( cd ${DIR}
+    rm -f ${LISTFILE}
     cat <<EOT > ${LISTFILE}
 $UPDATEDATE
 
@@ -605,6 +610,7 @@ function rss_changelog {
       # "+--------------------------+" then we just skip that.
       [ "$cline" == "+--------------------------+" ] && read cline
       PUBDATE=$(LC_ALL=C TZ=GMT date +"%a, %e %b %Y %H:%M:%S GMT" -d "$cline")
+      rm -f ${RSSFILE}
       cat <<-_EOT_ > ${RSSFILE}
 	<?xml version="1.0" encoding="iso-8859-1"?>
 	<rss version="2.0">
@@ -734,6 +740,7 @@ run_repo() {
   done
 
   # Make the changes visible:
+  rm -f PACKAGES.TXT
   echo "PACKAGES.TXT;  $UPDATEDATE" > PACKAGES.TXT
   echo "" >> PACKAGES.TXT
   if [ -n "$DL_URL" ]; then
@@ -742,12 +749,15 @@ run_repo() {
     cat .PACKAGES.TXT | grep -v "PACKAGE MIRROR: " >> PACKAGES.TXT
   fi
   rm -f .PACKAGES.TXT
+  rm -f MANIFEST
   cat .MANIFEST > MANIFEST
   rm -f .MANIFEST
   
+  rm -f PACKAGES.TXT.gz MANIFEST.bz2
   bzip2 -9f MANIFEST
   gzip -9cf PACKAGES.TXT > PACKAGES.TXT.gz
   if [ "${CHANGELOG}" == "yes" -a -f ChangeLog.txt ]; then
+    rm -f ChangeLog.txt.gz
     gzip -9cf ChangeLog.txt > ChangeLog.txt.gz
   fi
 
@@ -789,6 +799,7 @@ EOF
   else
     find . -type f -print $PRUNES | grep -v CHECKSUMS | sort | xargs md5sum $1 2>/dev/null >> .CHECKSUMS.md5
   fi
+  rm -f CHECKSUMS.md5 CHECKSUMS.md5.gz
   cat .CHECKSUMS.md5 > CHECKSUMS.md5
   gzip -9cf CHECKSUMS.md5 > CHECKSUMS.md5.gz
 
@@ -871,19 +882,37 @@ else
       rm -f $TESTTMP
       exit 1
     else
+      # Use the key fingerprint to determine whether GPG-KEY is outdated:
+      GPG_FPR=$($GPGBIN --with-colon --with-fingerprint --list-keys "$REPOSOWNERGPG" |grep ^fpr |cut -d: -f10)
+      if [ -r ${REPOSROOT}/GPG-KEY ]; then
+        # If the GPG-KEY file is outdated (user may have a new key),
+        # then we delete this file and re-generate it in the next step:
+        if ! grep -q $GPG_FPR ${REPOSROOT}/GPG-KEY ; then
+          rm -f ${REPOSROOT}/GPG-KEY
+        fi
+      fi
       if [ ! -r ${REPOSROOT}/GPG-KEY ]; then
         echo "Generating a "GPG-KEY" file in '$REPOSROOT',"
         echo "  containing the public key information for '$REPOSOWNERGPG'..."
         $GPGBIN --list-keys "$REPOSOWNERGPG" > ${REPOSROOT}/GPG-KEY
+        echo "Key fingerprint: $GPG_FPR" >> ${REPOSROOT}/GPG-KEY
         $GPGBIN -a --export "$REPOSOWNERGPG" >> ${REPOSROOT}/GPG-KEY
         chmod 444 ${REPOSROOT}/GPG-KEY
       fi
       if [ -n "$REPO_SUBDIRS" ]; then
         for SUBDIR in $REPO_SUBDIRS ; do
+          if [ -r ${REPOSROOT}}/${SUBDIR}/GPG-KEY ]; then
+            # If the GPG-KEY file is outdated (user may have a new key),
+            # then we delete this file and re-generate it in the next step:
+            if ! grep -q $GPG_FPR ${REPOSROOT}}/${SUBDIR}/GPG-KEY ; then
+              rm -f ${REPOSROOT}}/${SUBDIR}/GPG-KEY
+            fi
+          fi
           if [ ! -r ${REPOSROOT}/${SUBDIR}/GPG-KEY ]; then
             echo "Generating a "GPG-KEY" file in '$REPOSROOT/$SUBDIR',"
             echo "  containing the public key information for '$REPOSOWNERGPG'."
             $GPGBIN --list-keys "$REPOSOWNERGPG" > $REPOSROOT/$SUBDIR/GPG-KEY
+            echo "Key fingerprint: $GPG_FPR" >> $REPOSROOT/$SUBDIR/GPG-KEY
             $GPGBIN -a --export "$REPOSOWNERGPG" >> $REPOSROOT/$SUBDIR/GPG-KEY
             chmod 444 ${REPOSROOT}/${SUBDIR}/GPG-KEY
           fi
