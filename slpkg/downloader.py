@@ -26,6 +26,7 @@ import os
 import tarfile
 import subprocess
 
+from slpkg.utils import Utils
 from slpkg.messages import Msg
 from slpkg.slack.slack_version import slack_ver
 from slpkg.__metadata__ import MetaData as _meta_
@@ -53,8 +54,7 @@ class Download(object):
         dwn_count = 1
         self._directory_prefix()
         for dwn in self.url:
-            # get file name from url and fix passing char '+'
-            self.file_name = dwn.split("/")[-1].replace("%2B", "+")
+            self.file_name = Utils().fix_file_name(dwn.split("/")[-1])
 
             if dwn.startswith("file:///"):
                 source_dir = dwn[7:-7].replace(slack_ver(), "")

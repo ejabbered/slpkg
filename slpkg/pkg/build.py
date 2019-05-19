@@ -31,6 +31,7 @@ import tarfile
 import subprocess
 import multiprocessing
 
+from slpkg.utils import Utils
 from slpkg.messages import Msg
 from slpkg.checksum import check_md5
 from slpkg.__metadata__ import MetaData as _meta_
@@ -44,6 +45,7 @@ class BuildPackage(object):
     def __init__(self, script, sources, path, auto):
         self.script = script
         self.sources = sources
+        self._check_sources()
         self.path = path
         self.auto = auto
         self.meta = _meta_
@@ -89,7 +91,7 @@ class BuildPackage(object):
                 src = src.replace("%20", " ")
                 check_md5(self.sbo_md5[src], src)
                 # copy source and fix passing char '+' from file name
-                shutil.copy2(src.replace("%2B", "+"), self.path + self.prgnam)
+                shutil.copy2(src, self.path + self.prgnam)
             os.chdir(self.path + self.prgnam)
             # change permissions
             subprocess.call("chmod +x {0}.SlackBuild".format(self.prgnam),
@@ -116,6 +118,14 @@ class BuildPackage(object):
             os.chdir(self.path)
         except KeyboardInterrupt:   # (OSError, IOError):
             self.msg.pkg_not_found("\n", self.prgnam, "Wrong file", "\n")
+
+    def _check_sources(self):
+        """Fix filenames with char +
+        """
+        new_sources = []
+        for src in self.sources:
+            new_sources.append(Utils().fix_file_name(src))
+        self.sources = new_sources
 
     def _create_md5_dict(self):
         """Create md5 dictionary per source

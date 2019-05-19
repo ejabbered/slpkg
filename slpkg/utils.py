@@ -92,6 +92,16 @@ class Utils(object):
             if line and not line.startswith("#"):
                 return line
 
+    def fix_file_name(self, file_name):
+        """Get file name from url and fix passing char '+'
+        """
+        if "%2b" in file_name:
+            return file_name.replace("%2b", "+", 5)
+        elif "%2B" in file_name:
+            return file_name.replace("%2B", "+", 5)
+        else:
+            return file_name
+
     def debug(self, test):
         """Function used for print some stuff for debugging
         """
