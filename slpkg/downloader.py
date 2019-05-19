@@ -27,6 +27,7 @@ import tarfile
 import subprocess
 
 from slpkg.messages import Msg
+from slpkg.utils import Utils
 from slpkg.slack.slack_version import slack_ver
 from slpkg.__metadata__ import MetaData as _meta_
 
@@ -53,7 +54,7 @@ class Download(object):
         dwn_count = 1
         self._directory_prefix()
         for dwn in self.url:
-            self._fix_file_name(dwn.split("/")[-1])
+            self.file_name = Utils().fix_file_name(dwn.split("/")[-1])
 
             if dwn.startswith("file:///"):
                 source_dir = dwn[7:-7].replace(slack_ver(), "")
@@ -80,16 +81,6 @@ class Download(object):
                                 self.path, self.file_name, dwn), shell=True)
             self._check_if_downloaded()
             dwn_count += 1
-
-    def _fix_file_name(self, file_name):
-        """Get file name from url and fix passing char '+'
-        """
-        if "%2b" in file_name:
-            self.file_name = file_name.replace("%2b", "+", 5)
-        elif "%2B" in file_name:
-            self.file_name = file_name.replace("%2B", "+", 5)
-        else:
-            self.file_name = file_name
 
     def _make_tarfile(self, output_filename, source_dir):
         """Create .tar.gz file
