@@ -3,6 +3,7 @@ Updated:
 - Update gen_repos_files.sh to version 1.94
 Fixed:
 - Downloader to recognise the char +
+- Build from sources with char + in name
 
 3.4.2 - 23/01/2019
 Fixed:

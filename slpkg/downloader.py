@@ -26,8 +26,8 @@ import os
 import tarfile
 import subprocess
 
-from slpkg.messages import Msg
 from slpkg.utils import Utils
+from slpkg.messages import Msg
 from slpkg.slack.slack_version import slack_ver
 from slpkg.__metadata__ import MetaData as _meta_
 
