@@ -352,7 +352,7 @@ If you feel satisfied with this project and want to thanks me make a donation.
 
 Please support:
 
-* [Slackware](https://paypal.me/volkerdi) project.
+* [Slackware](https://www.patreon.com/slackwarelinux) project.
 * [SlackBuilds](https://slackbuilds.org/contributors/) repository.
 * [AlienBob](https://alien.slackbook.org/blog/) Eric Hameleers.
 
