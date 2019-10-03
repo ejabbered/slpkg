@@ -34,7 +34,7 @@ Alien's ktown (ktown), Alien's multilib (multi), Slacke E17 and E18, slack-n-fre
  mles and Alien's restricted repository has no reference dependencies.
 
 IMPORTANT: For Alien's (Eric Hameleers) repositories (alien, multi and ktown) should run
- '`slpkg upgrade`' instant '`slpkg update`', if you want to spend from -stable in -current or
+ '`slpkg upgrade`' instant '`slpkg update`', if you want to spend from -stable to -current or
   not, because there is not different file '`ChangeLog.txt`' for each version.
 
 
