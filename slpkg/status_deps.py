@@ -111,8 +111,8 @@ class DependenciesStatus(object):
             for d in dep:
                 print("+-- {0}".format(d))
                 print("|")
-            sys.stdout.write("\x1b[1A{0}\n".format(" "))
-            sys.stdout.flush()
+            print("\x1b[1A{0}\n".format(" "), end="")
+            print(end="", flush=True)
         self.summary()
         if self.image:
             Graph(self.image).dependencies(self.dmap)

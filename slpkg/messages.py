@@ -70,23 +70,23 @@ class Msg(object):
     def checking(self):
         """Message checking
         """
-        sys.stdout.write("{0}Checking...{1}  ".format(self.meta.color["GREY"],
-                                                      self.meta.color["ENDC"]))
-        sys.stdout.flush()
+        print("{0}Checking...{1}  ".format(self.meta.color["GREY"],
+                                           self.meta.color["ENDC"]), end="")
+        print(end="", flush=True)
 
     def reading(self):
         """Message reading
         """
-        sys.stdout.write("{0}Reading package lists...{1}  ".format(
-            self.meta.color["GREY"], self.meta.color["ENDC"]))
-        sys.stdout.flush()
+        print("{0}Reading package lists...{1}  ".format(
+            self.meta.color["GREY"], self.meta.color["ENDC"]), end="")
+        print(end="", flush=True)
 
     def resolving(self):
         """Message resolving
         """
-        sys.stdout.write("{0}Resolving dependencies...{1}  ".format(
-            self.meta.color["GREY"], self.meta.color["ENDC"]))
-        sys.stdout.flush()
+        print("{0}Resolving dependencies...{1}  ".format(
+            self.meta.color["GREY"], self.meta.color["ENDC"]), end="")
+        print(end="", flush=True)
 
     def done(self):
         """Message done

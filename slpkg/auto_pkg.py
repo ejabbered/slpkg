@@ -65,10 +65,10 @@ class Auto(object):
             print("")
             raise SystemExit()
         if self.choice in self.commands.keys():
-            sys.stdout.write("   \x1b[1A{0}{1}{2}\n\n".format(
+            print("   \x1b[1A{0}{1}{2}\n\n".format(
                 self.meta.color["CYAN"], self.commands[self.choice],
-                self.meta.color["ENDC"]))
-            sys.stdout.flush()
+                self.meta.color["ENDC"]), end="")
+            print(end="", flush=True)
         self.execute()
 
     def execute(self):

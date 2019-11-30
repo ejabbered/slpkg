@@ -770,13 +770,13 @@ class Update(object):
         for repo in enabled:
             if check_for_local_repos(repo) is True:
                 continue
-            sys.stdout.write("{0}Check repository [{1}{2}{3}] ... "
+            print("{0}Check repository [{1}{2}{3}] ... "
                              "{4}".format(
                                     self.meta.color["GREY"],
                                     self.meta.color["CYAN"], repo,
                                     self.meta.color["GREY"],
-                                    self.meta.color["ENDC"]))
-            sys.stdout.flush()
+                                    self.meta.color["ENDC"]), end="")
+            print(end="", flush=True)
             if repo in default:
                 exec("{0}.{1}()".format(self._init, repo))
                 sys.stdout.write(self.done)

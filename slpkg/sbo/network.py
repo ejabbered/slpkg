@@ -177,10 +177,10 @@ class SBoNetwork(object):
             print("")
             raise SystemExit()
         try:
-            sys.stdout.write("{0}\x1b[1A{1}{2}{3}\n".format(
+            print("{0}\x1b[1A{1}{2}{3}\n".format(
                 " " * len(message), self.cyan, commands[self.choice],
-                self.endc))
-            sys.stdout.flush()
+                self.endc), end="")
+            print(end="", flush=True)
         except KeyError:
             pass
 
