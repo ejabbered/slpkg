@@ -23,7 +23,6 @@
 
 
 import os
-import sys
 import shutil
 
 from slpkg.repositories import Repo
@@ -779,12 +778,12 @@ class Update(object):
             print(end="", flush=True)
             if repo in default:
                 exec("{0}.{1}()".format(self._init, repo))
-                sys.stdout.write(self.done)
+                print(self.done, end="")
             elif repo in enabled:
                 Initialization(False).custom(repo)
-                sys.stdout.write(self.done)
+                print(self.done, end="")
             else:
-                sys.stdout.write(self.error)
+                print(self.error, end="")
         print("")   # new line at end
         raise SystemExit()
 

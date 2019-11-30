@@ -22,7 +22,6 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
-import sys
 import itertools
 
 from slpkg.__metadata__ import MetaData as _meta_
@@ -91,8 +90,8 @@ class Msg(object):
     def done(self):
         """Message done
         """
-        sys.stdout.write("\b{0}Done{1}\n".format(self.meta.color["GREY"],
-                                                 self.meta.color["ENDC"]))
+        print("\b{0}Done{1}\n".format(self.meta.color["GREY"],
+                                      self.meta.color["ENDC"]), end="")
 
     def pkg(self, count):
         """Print singular plural
