@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 # log_deps.py file is part of slpkg.
@@ -33,7 +33,7 @@ def write_deps(deps_dict):
     """Write dependencies in a log file
     into directory `/var/log/slpkg/dep/`
     """
-    for name, dependencies in deps_dict.iteritems():
+    for name, dependencies in deps_dict.items():
         if find_package(name + _meta_.sp, _meta_.pkg_path):
             dep_path = _meta_.log_path + "dep/"
             if not os.path.exists(dep_path):

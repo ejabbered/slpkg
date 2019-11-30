@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 # slpkg_update.py file is part of slpkg.
@@ -59,7 +59,7 @@ def it_self_update():
             print("\nNew version '{0}-{1}' is available !\n".format(
                 _meta_.__all__, __new_version__))
             try:
-                answer = raw_input("Would you like to upgrade [y/N]? ")
+                answer = input("Would you like to upgrade [y/N]? ")
             except EOFError:
                 print("")
                 raise SystemExit()

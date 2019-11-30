@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*
 
 # file_size.py file is part of slpkg.
@@ -23,7 +23,8 @@
 
 
 import os
-import urllib2
+import urllib
+from urllib.request import urlopen
 
 
 class FileSize(object):
@@ -36,10 +37,10 @@ class FileSize(object):
         """Returns the size of remote files
         """
         try:
-            tar = urllib2.urlopen(self.registry)
+            tar = urlopen(self.registry)
             meta = tar.info()
-            return int(meta.getheaders("Content-Length")[0])
-        except (urllib2.URLError, IndexError):
+            return int(meta.get_all("Content-Length")[0])
+        except (urllib.error.URLError, IndexError):
             return " "
 
     def local(self):

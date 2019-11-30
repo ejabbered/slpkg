@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 # url_read.py file is part of slpkg.
@@ -22,8 +22,9 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
-import os
-import urllib2
+# import os
+import urllib
+from urllib.request import urlopen
 
 from slpkg.__metadata__ import MetaData as _meta_
 
@@ -39,6 +40,7 @@ class URL(object):
         """Open url and read
         """
         try:
+            '''
             # testing proxy
             proxies = {}
             try:
@@ -54,11 +56,11 @@ class URL(object):
                 proxy = urllib2.ProxyHandler(proxies)
                 opener = urllib2.build_opener(proxy)
                 urllib2.install_opener(opener)
-
             # end testing
-            f = urllib2.urlopen(self.link)
-            return f.read()
-        except (urllib2.URLError, ValueError):
+            '''
+            f = urlopen(self.link)
+            return f.read().decode("utf-8")
+        except (urllib.error.URLError, ValueError):
             print("\n{0}Can't read the file '{1}'{2}".format(
                 self.meta.color["RED"], self.link.split("/")[-1],
                 self.meta.color["ENDC"]))

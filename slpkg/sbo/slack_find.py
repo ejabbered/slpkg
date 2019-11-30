@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 # slack_find.py file is part of slpkg.
@@ -22,7 +22,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
-from distutils.version import LooseVersion
+from pkg_resources import parse_version
 
 from slpkg.messages import Msg
 from slpkg.__metadata__ import MetaData as _meta_
@@ -38,7 +38,8 @@ def slack_package(prgnam):
         if pkg.startswith(prgnam) and pkg[:-4].endswith("_SBo"):
             binaries.append(pkg)
     for bins in binaries:
-        if LooseVersion(bins) > LooseVersion(cache):
+        binary = bins
+        if parse_version(bins) > parse_version(cache):
             binary = bins
             cache = binary
     if not binary:

@@ -3,7 +3,7 @@
 
 ##### Python & OS Support
 
-Slpkg works with Python versions 2.7.5+ .
+Slpkg works with Python versions 3.7+ .
 
 Slpkg works on Slackware distribution and possibly in some Slackware based
 distribution like SalixOS, Slackel etc.
@@ -22,4 +22,4 @@ There are mainly 3 ways:
 2. Download binary package from '`https://sourceforge.net/projects/slpkg/files/binary/`'
    and use Slackware command '`upgradepkg --install-new <slpkg binary>`'
 
-3. Using pip: '`pip install https://gitlab.com/dslackw/slpkg/-/archive/3.4.3/slpkg-3.4.3.tar.gz`'
+3. Using pip: '`pip install https://gitlab.com/dslackw/slpkg/-/archive/3.7.0/slpkg-3.7.0.tar.gz`'

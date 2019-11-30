@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 # install.py file is part of slpkg.
@@ -23,7 +23,7 @@
 
 
 import os
-from distutils.version import LooseVersion
+from pkg_resources import parse_version
 
 from slpkg.utils import Utils
 from slpkg.sizes import units
@@ -192,7 +192,7 @@ class BinaryInstall(object):
             data_dict = Utils().case_sensitive(data)
             for pkg in self.packages:
                 index = self.packages.index(pkg)
-                for key, value in data_dict.iteritems():
+                for key, value in data_dict.items():
                     if key == pkg.lower():
                         self.packages[index] = value
 
@@ -247,7 +247,7 @@ class BinaryInstall(object):
         ins_ver = GetFromInstalled(name).version()[1:]
         if not ins_ver:
             ins_ver = "0"
-        if LooseVersion(rep_ver) < LooseVersion(ins_ver):
+        if parse_version(rep_ver) < parse_version(ins_ver):
             self.msg.template(78)
             print("| Package {0} don't downgrade, "
                   "setting by user".format(name))
@@ -308,7 +308,7 @@ class BinaryInstall(object):
                 " " * (18-len(pkg_repo[1])), pkg_repo[2],
                 " " * (8-len(pkg_repo[2])), pkg_repo[3],
                 " " * (7-len(pkg_repo[3])), repo,
-                comp, " K")).rstrip()
+                comp, " K").rstrip())
         return [pkg_sum, upg_sum, uni_sum]
 
     def top_view(self):

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 # repoinfo.py file is part of slpkg.
@@ -99,8 +99,8 @@ class RepoInfo(object):
             self.form["Status:"] = status
             self.form["Last updated:"] = last_upd
         print("")
-        for key, value in sorted(self.form.iteritems()):
-            print self.meta.color["GREY"] + key + self.meta.color["ENDC"], value
+        for key, value in sorted(self.form.items()):
+            print(self.meta.color["GREY"] + key + self.meta.color["ENDC"], value)
         print("")
         raise SystemExit()
 

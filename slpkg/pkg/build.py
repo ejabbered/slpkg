@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 # build.py file is part of slpkg.
@@ -75,7 +75,7 @@ class BuildPackage(object):
             try:
                 tar = tarfile.open(self.script)
             except Exception as err:
-                print err
+                print(err)
                 raise SystemExit()
             tar.extractall()
             tar.close()

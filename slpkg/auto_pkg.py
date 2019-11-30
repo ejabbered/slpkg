@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 # auto_pkg.py file is part of slpkg.
@@ -60,7 +60,7 @@ class Auto(object):
                 self.meta.color["ENDC"]))
         self.msg.template(78)
         try:
-            self.choice = raw_input(" > ")
+            self.choice = input(" > ")
         except EOFError:
             print("")
             raise SystemExit()

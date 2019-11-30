@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 # network.py file is part of slpkg.
@@ -137,7 +137,7 @@ class SBoNetwork(object):
         """
         if "--case-ins" in self.flag:
             data_dict = Utils().case_sensitive(self.data)
-            for key, value in data_dict.iteritems():
+            for key, value in data_dict.items():
                 if key == self.name.lower():
                     self.name = value
 
@@ -171,7 +171,7 @@ class SBoNetwork(object):
         }
         try:
             message = "  Choose an option > "
-            self.choice = raw_input("{0}{1}{2}".format(self.grey, message,
+            self.choice = input("{0}{1}{2}".format(self.grey, message,
                                                        self.endc))
         except EOFError:
             print("")

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 # new_config.py file is part of slpkg.
@@ -88,7 +88,7 @@ class NewConfig(object):
         print("| {0}Q{1}{2}uit from menu".format(self.red, self.endc, self.br))
         self.msg.template(78)
         try:
-            choose = raw_input("\nWhat would you like to do [K/O/R/P/Q]? ")
+            choose = input("\nWhat would you like to do [K/O/R/P/Q]? ")
         except EOFError:
             print("")
             raise SystemExit()
@@ -141,7 +141,7 @@ class NewConfig(object):
         """Choose what do to file by file
         """
         print("")
-        prompt_ask = raw_input("{0} [K/O/R/D/M/Q]? ".format(n))
+        prompt_ask = input("{0} [K/O/R/D/M/Q]? ".format(n))
         print("")
         if prompt_ask in ("K", "k"):
             self.keep()

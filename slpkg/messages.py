@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 # messages.py file is part of slpkg.
@@ -125,7 +125,7 @@ class Msg(object):
             answer = self.meta.default_answer
         else:
             try:
-                answer = raw_input("Would you like to continue [y/N]? ")
+                answer = input("Would you like to continue [y/N]? ")
             except EOFError:
                 print("")
                 raise SystemExit()
@@ -154,7 +154,7 @@ class Msg(object):
             len(install), self.pkg(len(install)),
             len(upgrade), self.pkg(len(upgrade))))
         self.template(78)
-        for installed, upgraded in itertools.izip_longest(install, upgrade):
+        for installed, upgraded in itertools.zip_longest(install, upgrade):
             if upgraded:
                 print("| Package {0} upgraded successfully".format(upgraded))
             if installed:

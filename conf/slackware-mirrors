@@ -32,7 +32,8 @@
 # ----------------------------------------------------------------------------
 #
 #
-# Last Updated: Thu Oct 10 16:54:01 UTC 2019
+# Last Updated: Tue Jan 15 14:54:01 UTC 2019
+#
 # Available https mirrors:
 #
 # bg		 https://mirrors.linux-bulgaria.org/slackware/
@@ -47,6 +48,7 @@
 # de		 https://mirror.netcologne.de/slackware/
 # dk		 https://mirrors.dotsrc.org/slackware/
 # ec		 https://mirror.cedia.org.ec/slackware/
+# fr		 https://mirrors.phx.ms/slackware/
 # gb		 https://lon.mirror.rackspace.com/slackware/
 # gb		 https://mirror.bytemark.co.uk/slackware/
 # gb		 https://www.mirrorservice.org/sites/ftp.slackware.com/pub/slackware/
@@ -83,7 +85,6 @@
 # us		 https://slackware.absolutehosting.net/pub/slackware/
 #
 #
-#
 # Available http mirrors:
 #
 # au		 http://ftp.swin.edu.au/slackware/
@@ -96,6 +97,7 @@
 # bg		 http://x.ultranet.biz/slackware/
 # br		 http://ftp.slackware-brasil.com.br/
 # br		 http://linorg.usp.br/slackware/
+# br		 http://slackmirror.cbpf.br/pub/slackware/
 # by		 http://mirror.datacenter.by/pub/slackware/
 # cz		 http://ftp.linux.cz/pub/linux/slackware/
 # de		 http://download.dlackware.com/slackware/
@@ -121,10 +123,8 @@
 # ph		 http://mirror.rise.ph/slackware/
 # pl		 http://mirror.onet.pl/pub/mirrors/slackware/
 # ru		 http://slackware.tsu.ru/slackware/
-# sg		 http://download.nus.edu.sg/mirror/slackware/
 # tr		 http://ftp.linux.org.tr/slackware/
 # tw		 http://ftp.isu.edu.tw/pub/Linux/Slackware/
-# ua		 http://slackware.ip-connect.info/
 # us		 http://ftp.gtlib.gatech.edu/pub/slackware/
 # us		 http://ftp.slackware.com/pub/slackware/
 # us		 http://mirror.cs.princeton.edu/pub/mirrors/slackware/
@@ -135,7 +135,6 @@
 # za		 http://ftp.is.co.za/mirror/ftp.slackware.com/pub/
 # za		 http://ftp.wa.co.za/pub/slackware/
 # za		 http://slackware.mirror.ac.za/
-#
 #
 #
 # Available ftp mirrors:
@@ -193,7 +192,6 @@
 # tw		 ftp://ftp.yzu.edu.tw/Linux/Slackware/
 # ua		 ftp://ifconfig.com.ua/pub/Mirror/slackware/
 # ua		 ftp://mirrors.nix.org.ua/linux/slackware/
-# ua		 ftp://slackware.ip-connect.info/mirror/slackware/
 # us		 ftp://dfw.mirror.rackspace.com/slackware/
 # us		 ftp://ftp.gtlib.gatech.edu/pub/slackware
 # us		 ftp://ftp.lug.udel.edu/pub/slackware/

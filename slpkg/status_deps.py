@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 # status_deps.py file is part of slpkg.
@@ -89,7 +89,7 @@ class DependenciesStatus(object):
         self.msg.template(78)
         print("| {0}{1}{2}".format("Dependencies", " " * 20, "Packages"))
         self.msg.template(78)
-        for key, value in self.dmap.iteritems():
+        for key, value in self.dmap.items():
             print("  {0}{1}{2}{3}{4}".format(
                 self.green, key, self.endc, " " * (32-len(key)),
                 ", ".join(value)))
@@ -105,7 +105,7 @@ class DependenciesStatus(object):
               "| -- Packages")
         self.msg.template(78)
         self.data()
-        for pkg, dep in self.dmap.iteritems():
+        for pkg, dep in self.dmap.items():
             print("+ {0}{1}{2}".format(self.green, pkg, self.endc))
             print("|")
             for d in dep:
