@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 # setup.py file is part of slpkg.
@@ -38,7 +38,7 @@ INSTALLATION_REQUIREMENTS = []
 DOCS_REQUIREMENTS = []
 TESTS_REQUIREMENTS = []
 OPTIONAL_REQUIREMENTS = [
-    "python2-pythondialog >= 3.3.0",
+    "python3-pythondialog >= 3.3.0",
     "pygraphviz >= 1.3.1"
 ]
 
@@ -86,9 +86,7 @@ setup(
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
         "Operating System :: POSIX :: Linux",
         "Operating System :: Unix",
-        "Programming Language :: Python",
-        "Programming Language :: Python :: 2",
-        "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3",
         "Programming Language :: Unix Shell",
         "Topic :: Software Development :: Build Tools",
         "Topic :: System :: Archiving :: Packaging",

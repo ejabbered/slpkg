@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 # manager.py file is part of slpkg.
@@ -108,7 +108,7 @@ class PackageManager(object):
                 if self.meta.default_answer in ["y", "Y"]:
                     remove_pkg = self.meta.default_answer
                 else:
-                    remove_pkg = raw_input(
+                    remove_pkg = input(
                         "\nAre you sure to remove {0} {1} [y/N]? ".format(
                             str(len(self.removed)), msg))
             except EOFError:
@@ -144,7 +144,7 @@ class PackageManager(object):
             remove_dep = self.meta.remove_deps_answer
         else:
             try:
-                remove_dep = raw_input(
+                remove_dep = input(
                     "\nRemove dependencies (maybe used by "
                     "other packages) [y/N]? ")
                 print("")
@@ -223,8 +223,8 @@ class PackageManager(object):
         if "--third-party" in self.extra:
             print("\n")
             self.msg.template(78)
-            print("| {0}{1}*** WARNING ***{2}").format(
-                " " * 27, self.meta.color["RED"], self.meta.color["ENDC"])
+            print(("| {0}{1}*** WARNING ***{2}").format(
+                " " * 27, self.meta.color["RED"], self.meta.color["ENDC"]))
             print("| Before you use third-party option, be sure you have"
                   " updated the packages \n| lists. Run the command"
                   " 'slpkg update' and 'slpkg -c slack --upgrade'")
@@ -337,7 +337,7 @@ class PackageManager(object):
             print("| Insert packages to exception remove:")
             self.msg.template(78)
             try:
-                self.skip = raw_input(" > ").split()
+                self.skip = input(" > ").split()
             except EOFError:
                 print("")
                 raise SystemExit()
@@ -519,7 +519,7 @@ class PackageManager(object):
                         self.meta.color["GREY"], index,
                         self.meta.color["ENDC"], pkg))
                     if index == page:
-                        read = raw_input("\nPress {0}Enter{1} to "
+                        read = input("\nPress {0}Enter{1} to "
                                          "continue... ".format(
                                              self.meta.color["CYAN"],
                                              self.meta.color["ENDC"]))

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 # check.py file is part of slpkg.
@@ -23,7 +23,7 @@
 
 
 import os
-from distutils.version import LooseVersion
+from pkg_resources import parse_version
 
 from slpkg.messages import Msg
 from slpkg.toolbar import status
@@ -49,7 +49,7 @@ def sbo_upgrade(skip, flag):
         if (name in data and name not in skip and name not in blacklist):
             sbo_package = ("{0}-{1}".format(name, SBoGrep(name).version()))
             package = ("{0}-{1}".format(name, ver))
-            if LooseVersion(sbo_package) > LooseVersion(package):
+            if parse_version(sbo_package) > parse_version(package):
                 upgrade_names.append(name)
     Msg().done()
     if "--checklist" in flag:

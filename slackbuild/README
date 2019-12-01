@@ -5,7 +5,7 @@ to install packages. Slpkg makes it easier to maintain groups
 of machines without having to manually update.
 
 Optional dependencies:
-   python2-pythondialog (for dialog box interface)
+   python3-pythondialog (for dialog box interface)
    pygraphviz (for drawing dependencies diagram)
    graph-easy (for drawing ascii dependencies diagram)
    aria2 (alternative downloader)

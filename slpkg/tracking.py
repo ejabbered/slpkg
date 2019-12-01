@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 # tracking.py file is part of slpkg.
@@ -148,7 +148,7 @@ class TrackingDeps(object):
         if "--case-ins" in self.flag:
             data = SBoGrep(name="").names()
             data_dict = Utils().case_sensitive(data)
-            for key, value in data_dict.iteritems():
+            for key, value in data_dict.items():
                 if key == self.name.lower():
                     self.name = value
 
@@ -158,7 +158,7 @@ class TrackingDeps(object):
         """
         if "--case-ins" in self.flag:
             data_dict = Utils().case_sensitive(self.names)
-            for key, value in data_dict.iteritems():
+            for key, value in data_dict.items():
                 if key == self.name.lower():
                     self.name = value
 

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 # init.py file is part of slpkg.
@@ -23,7 +23,6 @@
 
 
 import os
-import sys
 import shutil
 
 from slpkg.repositories import Repo
@@ -770,21 +769,21 @@ class Update(object):
         for repo in enabled:
             if check_for_local_repos(repo) is True:
                 continue
-            sys.stdout.write("{0}Check repository [{1}{2}{3}] ... "
+            print("{0}Check repository [{1}{2}{3}] ... "
                              "{4}".format(
                                     self.meta.color["GREY"],
                                     self.meta.color["CYAN"], repo,
                                     self.meta.color["GREY"],
-                                    self.meta.color["ENDC"]))
-            sys.stdout.flush()
+                                    self.meta.color["ENDC"]), end="")
+            print(end="", flush=True)
             if repo in default:
                 exec("{0}.{1}()".format(self._init, repo))
-                sys.stdout.write(self.done)
+                print(self.done, end="")
             elif repo in enabled:
                 Initialization(False).custom(repo)
-                sys.stdout.write(self.done)
+                print(self.done, end="")
             else:
-                sys.stdout.write(self.error)
+                print(self.error, end="")
         print("")   # new line at end
         raise SystemExit()
 

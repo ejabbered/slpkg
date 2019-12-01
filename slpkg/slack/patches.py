@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 # patches.py file is part of slpkg.
@@ -105,7 +105,7 @@ class Patches(object):
             print("{0}Total {1} {2} will be upgraded and {3} will be "
                   "installed.".format(self.meta.color["GREY"],
                                       self.count_upg,
-                                      self.msg.pkg(self.upgrade_all),
+                                      self.msg.pkg(len(self.upgrade_all)),
                                       self.count_added))
             print("Need to get {0} {1} of archives.".format(size[0],
                                                             unit[0]))
@@ -201,7 +201,7 @@ class Patches(object):
                 " " * (18-len(pkg_repo[1])), pkg_repo[2],
                 " " * (8-len(pkg_repo[2])), pkg_repo[3],
                 " " * (7-len(pkg_repo[3])), "Slack",
-                size, " K")).rstrip()
+                size, " K").rstrip())
 
     def upgrade(self):
         """
@@ -246,7 +246,7 @@ class Patches(object):
                     print("| L=lilo / E=elilo / G=grub")
                     self.msg.template(78)
                     try:
-                        answer = raw_input("\nThe kernel has been upgraded, "
+                        answer = input("\nThe kernel has been upgraded, "
                                            "reinstall boot loader [L/E/G]? ")
                     except EOFError:
                         print("")

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 # toolbar.py file is part of slpkg.
@@ -34,7 +34,7 @@ def status(sec):
     if _meta_.prg_bar in ["on", "ON"]:
         syms = ["|", "/", "-", "\\"]
         for sym in syms:
-            sys.stdout.write("\b{0}{1}{2}".format(_meta_.color["GREY"], sym,
-                                                  _meta_.color["ENDC"]))
-            sys.stdout.flush()
+            print("\b{0}{1}{2}".format(_meta_.color["GREY"], sym,
+                                       _meta_.color["ENDC"]), end="")
+            print(end="", flush=True)
             time.sleep(float(sec))

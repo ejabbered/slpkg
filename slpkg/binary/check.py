@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 # check.py file is part of slpkg.
@@ -22,7 +22,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
-from distutils.version import LooseVersion
+from pkg_resources import parse_version
 
 from slpkg.messages import Msg
 from slpkg.toolbar import status
@@ -54,7 +54,7 @@ def pkg_upgrade(repo, skip, flag):
             if name:    # this tips because some pkg_name is empty
                 repo_pkg = split_package(name[:-4])
             if (repo_pkg[0] == inst_pkg[0] and
-                LooseVersion(repo_pkg[1]) > LooseVersion(inst_pkg[1]) and
+                parse_version(repo_pkg[1]) > parse_version(inst_pkg[1]) and
                 repo_pkg[3] >= inst_pkg[3] and
                     inst_pkg[0] not in skip and
                     repo_pkg[1] != "blacklist"):

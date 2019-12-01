@@ -63,9 +63,6 @@ fi
 
 set -e
 
-PYTHON=python
-# [ "${PYTHON3:-no}" = "yes" ] && PYTHON=python3
-
 rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
@@ -83,14 +80,7 @@ find -L . \
 # skip pip installs
 sed -i 's/if "install"/if ""/' setup.py
 
-# Python 3 support temporarily is out until new Slackware version
-# will be release
-# if [ "$PYTHON3" = "yes" ]; then
-#  sh convert-py3k
-#  cd py3k/$PRGNAM
-#fi
-
-$PYTHON setup.py install --root=$PKG
+python3 setup.py install --root=$PKG
 
 find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 # messages.py file is part of slpkg.
@@ -22,7 +22,6 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
-import sys
 import itertools
 
 from slpkg.__metadata__ import MetaData as _meta_
@@ -70,29 +69,29 @@ class Msg(object):
     def checking(self):
         """Message checking
         """
-        sys.stdout.write("{0}Checking...{1}  ".format(self.meta.color["GREY"],
-                                                      self.meta.color["ENDC"]))
-        sys.stdout.flush()
+        print("{0}Checking...{1}  ".format(self.meta.color["GREY"],
+                                           self.meta.color["ENDC"]), end="")
+        print(end="", flush=True)
 
     def reading(self):
         """Message reading
         """
-        sys.stdout.write("{0}Reading package lists...{1}  ".format(
-            self.meta.color["GREY"], self.meta.color["ENDC"]))
-        sys.stdout.flush()
+        print("{0}Reading package lists...{1}  ".format(
+            self.meta.color["GREY"], self.meta.color["ENDC"]), end="")
+        print(end="", flush=True)
 
     def resolving(self):
         """Message resolving
         """
-        sys.stdout.write("{0}Resolving dependencies...{1}  ".format(
-            self.meta.color["GREY"], self.meta.color["ENDC"]))
-        sys.stdout.flush()
+        print("{0}Resolving dependencies...{1}  ".format(
+            self.meta.color["GREY"], self.meta.color["ENDC"]), end="")
+        print(end="", flush=True)
 
     def done(self):
         """Message done
         """
-        sys.stdout.write("\b{0}Done{1}\n".format(self.meta.color["GREY"],
-                                                 self.meta.color["ENDC"]))
+        print("\b{0}Done{1}\n".format(self.meta.color["GREY"],
+                                      self.meta.color["ENDC"]), end="")
 
     def pkg(self, count):
         """Print singular plural
@@ -125,7 +124,7 @@ class Msg(object):
             answer = self.meta.default_answer
         else:
             try:
-                answer = raw_input("Would you like to continue [y/N]? ")
+                answer = input("Would you like to continue [y/N]? ")
             except EOFError:
                 print("")
                 raise SystemExit()
@@ -154,7 +153,7 @@ class Msg(object):
             len(install), self.pkg(len(install)),
             len(upgrade), self.pkg(len(upgrade))))
         self.template(78)
-        for installed, upgraded in itertools.izip_longest(install, upgrade):
+        for installed, upgraded in itertools.zip_longest(install, upgrade):
             if upgraded:
                 print("| Package {0} upgraded successfully".format(upgraded))
             if installed:

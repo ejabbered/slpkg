@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 # md5sum.py file is part of slpkg.
@@ -30,6 +30,6 @@ def md5(source):
     """
     # fix passing char '+' from source
     source = source.replace("%2B", "+")
-    with open(source) as file_to_check:
+    with open(source, "rb") as file_to_check:
         data = file_to_check.read()
         return hashlib.md5(data).hexdigest()

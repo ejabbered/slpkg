@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 # slackbuild.py file is part of slpkg.
@@ -23,7 +23,7 @@
 
 
 import os
-from distutils.version import LooseVersion
+from pkg_resources import parse_version
 
 
 from slpkg.utils import Utils
@@ -171,7 +171,7 @@ class SBoInstall(object):
             data_dict = Utils().case_sensitive(self.data)
             for name in self.slackbuilds:
                 index = self.slackbuilds.index(name)
-                for key, value in data_dict.iteritems():
+                for key, value in data_dict.items():
                     if key == name.lower():
                         self.slackbuilds[index] = value
 
@@ -272,7 +272,7 @@ class SBoInstall(object):
             " " * (23-len(args[1] + ver)), args[2],
             " " * (18-len(args[2])), args[3],
             " " * (15-len(args[3])), "",
-            "", "SBo", "", "")).rstrip()
+            "", "SBo", "", "").rstrip())
 
     def tag(self, sbo):
         """Tag with color green if package already installed,
@@ -382,7 +382,7 @@ class SBoInstall(object):
         ins_ver = GetFromInstalled(name).version()[1:]
         if not ins_ver:
             ins_ver = "0"
-        if LooseVersion(sbo_ver) < LooseVersion(ins_ver):
+        if parse_version(sbo_ver) < parse_version(ins_ver):
             self.msg.template(78)
             print("| Package {0} don't downgrade, "
                   "setting by user".format(name))

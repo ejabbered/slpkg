@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 # repolist.py file is part of slpkg.
@@ -49,7 +49,7 @@ class RepoList(object):
             "Default", " " * 3,
             "Status"))
         self.msg.template(78)
-        for repo_id, repo_URL in sorted(self.all_repos.iteritems()):
+        for repo_id, repo_URL in sorted(self.all_repos.items()):
             status, COLOR = "disabled", self.meta.color["RED"]
             default = "yes"
             if len(repo_URL) > 49:
