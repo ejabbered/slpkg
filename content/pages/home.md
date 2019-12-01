@@ -1,9 +1,9 @@
-Title: slpkg 3.4.3
+Title: slpkg 3.7.0
 Date: 2019-1-24
 Authors: dslackw
 Slug: home
 Save_as: index.html
-Tags: slpkg, slackpkg, slackware, package, manager, slackbuild, linux
+Tags: slpkg, slackpkg, slackware, package, slackbuilds, sbo, manager, slackbuild, linux
 
 ![alt text](https://gitlab.com/dslackw/images/raw/master/slpkg/slpkg_package.png)
 ![alt text](https://gitlab.com/dslackw/images/raw/master/slpkg/poweredbyslack.gif)
@@ -46,8 +46,8 @@ Download the latest release
 *(Required root privileges for the install)*
 
 ```
-$ tar xvf slpkg-3.4.3.tar.gz
-$ cd slpkg-3.4.3
+$ tar xvf slpkg-3.7.0.tar.gz
+$ cd slpkg-3.7.0
 $ ./install.sh
 ```
 
@@ -66,7 +66,7 @@ $ removepkg slpkg
 Using pip:
 
 ```
-$ pip install https://gitlab.com/dslackw/slpkg/-/archive/3.4.3/slpkg-3.4.3.tar.gz
+$ pip install https://gitlab.com/dslackw/slpkg/-/archive/3.7.0/slpkg-3.7.0.tar.gz
 ```
 
 Uninstall
