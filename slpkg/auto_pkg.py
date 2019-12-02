@@ -49,7 +49,7 @@ class Auto(object):
         print("\nDetected Slackware binary package for installation:\n")
         for pkg in self.packages:
             print(" " + pkg.split("/")[-1])
-        print("")
+        print()
         self.msg.template(78)
         print("| Choose a Slackware command:")
         self.msg.template(78)
@@ -62,7 +62,7 @@ class Auto(object):
         try:
             self.choice = input(" > ")
         except EOFError:
-            print("")
+            print()
             raise SystemExit()
         if self.choice in self.commands.keys():
             print("   \x1b[1A{0}{1}{2}\n\n".format(

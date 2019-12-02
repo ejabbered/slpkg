@@ -112,7 +112,7 @@ class Patches(object):
             print("After this process, {0} {1} of additional disk space "
                   "will be used.{2}".format(size[1], unit[1],
                                             self.meta.color["ENDC"]))
-            print("")
+            print()
             if self.msg.answer() in ["y", "Y"]:
                 Download(self.patch_path, self.dwn_links,
                          repo="slack").start()
@@ -238,7 +238,7 @@ class Patches(object):
                 if self.meta.default_answer in ["y", "Y"]:
                     answer = self.meta.default_answer
                 else:
-                    print("")
+                    print()
                     self.msg.template(78)
                     print("| {0}*** HIGHLY recommended reinstall boot loader "
                           "***{1}".format(self.meta.color["RED"],
@@ -249,7 +249,7 @@ class Patches(object):
                         answer = input("\nThe kernel has been upgraded, "
                                            "reinstall boot loader [L/E/G]? ")
                     except EOFError:
-                        print("")
+                        print()
                         raise SystemExit()
                 if answer in ["L"]:
                     subprocess.call("lilo", shell=True)

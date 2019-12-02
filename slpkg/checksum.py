@@ -31,7 +31,7 @@ def check_md5(pkg_md5, src_file):
     """MD5 Checksum
     """
     if _meta_.checkmd5 in ["on", "ON"]:
-        print("")
+        print()
         md5s = md5(src_file)
         if pkg_md5 != md5s:
             Msg().template(78)
@@ -42,7 +42,7 @@ def check_md5(pkg_md5, src_file):
             print("| Expected: {0}".format(pkg_md5))
             print("| Found: {0}".format(md5s))
             Msg().template(78)
-            print("")
+            print()
             if not Msg().answer() in ["y", "Y"]:
                 raise SystemExit()
         else:
@@ -51,4 +51,4 @@ def check_md5(pkg_md5, src_file):
                 src_file.split("/")[-1], _meta_.color["GREEN"],
                 _meta_.color["ENDC"]))
             Msg().template(78)
-        print("")   # new line after pass checksum
+        print()   # new line after pass checksum

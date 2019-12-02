@@ -85,7 +85,7 @@ class DependenciesStatus(object):
         """Show dependencies status
         """
         self.data()
-        print("")
+        print()
         self.msg.template(78)
         print("| {0}{1}{2}".format("Dependencies", " " * 20, "Packages"))
         self.msg.template(78)

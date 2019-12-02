@@ -40,5 +40,5 @@ if __name__ == "__main__":
         s_user()
         main()
     except KeyboardInterrupt:
-        print("")
+        print()
         raise SystemExit()

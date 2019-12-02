@@ -60,7 +60,7 @@ class BlackList(object):
                                          self.meta.color["ENDC"]))
                 self.quit = True
         if self.quit:
-            print("")   # new line at exit
+            print()   # new line at exit
 
     def add(self, pkgs):
         """Add blacklist packages if not exist
@@ -77,7 +77,7 @@ class BlackList(object):
                     self.quit = True
             black_conf.close()
         if self.quit:
-            print("")   # new line at exit
+            print()   # new line at exit
 
     def remove(self, pkgs):
         """Remove packages from blacklist
@@ -93,7 +93,7 @@ class BlackList(object):
                     self.quit = True
             remove.close()
         if self.quit:
-            print("")   # new line at exit
+            print()   # new line at exit
 
     def packages(self, pkgs, repo):
         """Return packages in blacklist or by repository

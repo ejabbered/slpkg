@@ -40,7 +40,7 @@ class Config(object):
     def view(self):
         """View slpkg config file
         """
-        print("")   # new line at start
+        print()   # new line at start
         conf_args = [
             "RELEASE",
             "SLACKWARE_VERSION",
@@ -74,7 +74,7 @@ class Config(object):
             else:
                 print("{0}{1}{2}".format(self.meta.color["CYAN"], line,
                                          self.meta.color["ENDC"]))
-        print("")   # new line at end
+        print()   # new line at end
 
     def edit(self):
         """Edit configuration file

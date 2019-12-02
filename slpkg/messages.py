@@ -59,7 +59,7 @@ class Msg(object):
               "directory or read the README file".format(
                   self.meta.color["CYAN"], self.meta.color["ENDC"]))
         self.template(78)
-        print("")   # new line at end
+        print()   # new line at end
 
     def template(self, max_len):
         """Print template
@@ -126,14 +126,14 @@ class Msg(object):
             try:
                 answer = input("Would you like to continue [y/N]? ")
             except EOFError:
-                print("")
+                print()
                 raise SystemExit()
         return answer
 
     def security_pkg(self, pkg):
         """Warning message for some special reasons
         """
-        print("")
+        print()
         self.template(78)
         print("| {0}{1}*** WARNING ***{2}").format(
             " " * 27, self.meta.color["RED"], self.meta.color["ENDC"])
@@ -142,7 +142,7 @@ class Msg(object):
               "| the README file. You can use the command "
               "'slpkg -n {1}'").format(pkg, pkg)
         self.template(78)
-        print("")
+        print()
 
     def reference(self, install, upgrade):
         """Reference list with packages installed
@@ -159,7 +159,7 @@ class Msg(object):
             if installed:
                 print("| Package {0} installed successfully".format(installed))
         self.template(78)
-        print("")
+        print()
 
     def matching(self, packages):
         """Message for matching packages

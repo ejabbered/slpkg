@@ -100,13 +100,13 @@ class Download(object):
         """Check if file downloaded
         """
         if not os.path.isfile(self.path + self.file_name):
-            print("")
+            print()
             self.msg.template(78)
             print("| Download '{0}' file [ {1}FAILED{2} ]".format(
                 self.file_name, self.meta.color["RED"],
                 self.meta.color["ENDC"]))
             self.msg.template(78)
-            print("")
+            print()
             if not self.msg.answer() in ["y", "Y"]:
                 raise SystemExit()
 
@@ -121,7 +121,7 @@ class Download(object):
             print("| '{0}' need to go ahead downloading".format(
                 certificate[:23].strip()))
             self.msg.template(78)
-            print("")
+            print()
             self.downder_options += certificate
             if not self.msg.answer() in ["y", "Y"]:
                 raise SystemExit()

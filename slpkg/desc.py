@@ -56,7 +56,7 @@ class PkgDesc(object):
     def view(self):
         """Print package description by repository
         """
-        print("")   # new line at start
+        print()   # new line at start
         description, count = "", 0
         if self.repo == "sbo":
             description = SBoGrep(self.name).description()
@@ -75,4 +75,4 @@ class PkgDesc(object):
             self.msg.pkg_not_found("", self.name, "No matching", "\n")
             raise SystemExit(1)
         if description and self.repo == "sbo":
-            print("")
+            print()

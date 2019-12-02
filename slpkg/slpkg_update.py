@@ -61,10 +61,10 @@ def it_self_update():
             try:
                 answer = input("Would you like to upgrade [y/N]? ")
             except EOFError:
-                print("")
+                print()
                 raise SystemExit()
         if answer in ["y", "Y"]:
-            print("")   # new line after answer
+            print()   # new line after answer
         else:
             raise SystemExit()
         dwn_link = ["https://{0}.com/{1}/{2}/-/archive/"
