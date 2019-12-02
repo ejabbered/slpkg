@@ -38,7 +38,7 @@ INSTALLATION_REQUIREMENTS = []
 DOCS_REQUIREMENTS = []
 TESTS_REQUIREMENTS = []
 OPTIONAL_REQUIREMENTS = [
-    "python3-pythondialog >= 3.3.0",
+    "python3-pythondialog >= 3.5.0",
     "pygraphviz >= 1.3.1"
 ]
 
