@@ -65,6 +65,7 @@ setup(
     scripts=["bin/slpkg"],
     version=_meta_.__version__,
     description="Package manager for Slackware installations",
+    long_description=open("README.md").read(),
     keywords=["slackware", "slpkg", "upgrade", "install", "remove",
               "view", "slackpkg", "tool", "build"],
     author=_meta_.__author__,
@@ -84,6 +85,8 @@ setup(
         "Development Status :: 5 - Production/Stable",
         "Environment :: Console",
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+
+
         "Operating System :: POSIX :: Linux",
         "Operating System :: Unix",
         "Programming Language :: Python :: 3",
@@ -92,8 +95,8 @@ setup(
         "Topic :: System :: Archiving :: Packaging",
         "Topic :: System :: Software Distribution",
         "Topic :: Utilities"],
-    long_description=open("README.md").read()
-    )
+    python_requires=">=3.7"
+)
 
 # Install configuration files with pip.
 if "install" in sys.argv:

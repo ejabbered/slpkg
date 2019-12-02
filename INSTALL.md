@@ -22,4 +22,4 @@ There are mainly 3 ways:
 2. Download binary package from '`https://sourceforge.net/projects/slpkg/files/binary/`'
    and use Slackware command '`upgradepkg --install-new <slpkg binary>`'
 
-3. Using pip: '`pip install https://gitlab.com/dslackw/slpkg/-/archive/3.7.0/slpkg-3.7.0.tar.gz`'
+3. Using pip: '`pip3 install https://gitlab.com/dslackw/slpkg/-/archive/3.7.0/slpkg-3.7.0.tar.gz`'
