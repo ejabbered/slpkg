@@ -23,3 +23,4 @@ There are mainly 3 ways:
    and use Slackware command '`upgradepkg --install-new <slpkg binary>`'
 
 3. Using pip: '`pip3 install https://gitlab.com/dslackw/slpkg/-/archive/3.7.0/slpkg-3.7.0.tar.gz`'
+   or instead '`'python3 -m pip install`''.
