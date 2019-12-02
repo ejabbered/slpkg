@@ -66,13 +66,13 @@ $ removepkg slpkg
 Using pip:
 
 ```
-$ pip install https://gitlab.com/dslackw/slpkg/-/archive/3.7.0/slpkg-3.7.0.tar.gz
+$ pip3 install https://gitlab.com/dslackw/slpkg/-/archive/3.7.0/slpkg-3.7.0.tar.gz
 ```
 
 Uninstall
 
 ```
-$ pip uninstall slpkg
+$ pip3 uninstall slpkg
 ```
 
 Data remove run from source code

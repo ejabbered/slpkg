@@ -36,7 +36,7 @@ LINKS = ((u'Download', u'https://gitlab.com/dslackw/slpkg/-/archive/3.7.0/slpkg-
          (u'GitLab', u'https://gitlab.com/dslackw/slpkg'),
          (u'Slackware', u'http://www.slackware.com/'),
          (u'SlackBuilds', u'https://slackbuilds.org/repository/14.2/system/slpkg/'),
-         (u'SlackDocs', u'http://docs.slackware.com/'),)
+         (u'SlackDocs', u'http://docs.slackware.com/slackware:package_management?s[]=slpkg'),)
 
 # Social widget
 SOCIAL = ((u'twitter', u'https://twitter.com/dslackw'),
