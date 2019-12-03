@@ -1,4 +1,14 @@
-3.7.0 - 1/12/2019
+3.7.1 - 03/12/2019
+Updated:
+- pythondialog dependency
+- slackware mirrors
+- pip installation method
+- improved setup.py file for python3
+- print function for python3 format
+Added:
+- Dependency python requests replace bult-in python urllib
+
+3.7.0 - 01/12/2019
 Updated:
 - Switch to python3
 

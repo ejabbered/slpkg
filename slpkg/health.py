@@ -62,7 +62,7 @@ class PackageHealth(object):
                 elif not self.mode:
                     print(line)
         except IOError:
-            print("")
+            print()
             raise SystemExit()
 
     def test(self):
@@ -87,7 +87,7 @@ class PackageHealth(object):
     def results(self):
         """Print results
         """
-        print("")
+        print()
         per = int(round((float(self.cf) / (self.cf + self.cn)) * 100))
         if per > 90:
             color = self.meta.color["GREEN"]

@@ -52,7 +52,7 @@ class NewConfig(object):
         self.find_new()
         for n in self.news:
             print("{0}".format(n))
-        print("")
+        print()
         self.msg.template(78)
         print("| Installed {0} new configuration files:".format(
             len(self.news)))
@@ -90,9 +90,9 @@ class NewConfig(object):
         try:
             choose = input("\nWhat would you like to do [K/O/R/P/Q]? ")
         except EOFError:
-            print("")
+            print()
             raise SystemExit()
-        print("")
+        print()
         if choose in ("K", "k"):
             self.keep()
         elif choose in ("O", "o"):
@@ -114,7 +114,7 @@ class NewConfig(object):
         """
         for n in self.news:
             self._remove(n)
-        print("")
+        print()
 
     def prompt(self):
         """Select file
@@ -127,22 +127,22 @@ class NewConfig(object):
                   self.red, self.endc, self.br, self.red, self.endc, self.br,
                   self.red, self.endc, self.br, self.red, self.endc, self.br))
         self.msg.template(78)
-        print("")
+        print()
         self.i = 0
         try:
             while self.i < len(self.news):
                 self.question(self.news[self.i])
                 self.i += 1
         except EOFError:
-            print("")
+            print()
             raise SystemExit()
 
     def question(self, n):
         """Choose what do to file by file
         """
-        print("")
+        print()
         prompt_ask = input("{0} [K/O/R/D/M/Q]? ".format(n))
-        print("")
+        print()
         if prompt_ask in ("K", "k"):
             self.keep()
         elif prompt_ask in ("O", "o"):

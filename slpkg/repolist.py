@@ -41,7 +41,7 @@ class RepoList(object):
         """View or enabled or disabled repositories
         """
         def_cnt, cus_cnt = 0, 0
-        print("")
+        print()
         self.msg.template(78)
         print("{0}{1}{2}{3}{4}{5}{6}".format(
             "| Repo id", " " * 2,

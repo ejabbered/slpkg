@@ -54,5 +54,5 @@ def choose_upg(packages):
                 selected_packages.append(name)
         if not selected_packages:
             raise SystemExit()
-        print("")
+        print()
     return selected_packages

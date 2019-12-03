@@ -784,7 +784,7 @@ class Update(object):
                 print(self.done, end="")
             else:
                 print(self.error, end="")
-        print("")   # new line at end
+        print()   # new line at end
         raise SystemExit()
 
 

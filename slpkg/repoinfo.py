@@ -98,10 +98,10 @@ class RepoInfo(object):
             self.form["Number of packages:"] = sum_sbo_pkgs
             self.form["Status:"] = status
             self.form["Last updated:"] = last_upd
-        print("")
+        print()
         for key, value in sorted(self.form.items()):
             print(self.meta.color["GREY"] + key + self.meta.color["ENDC"], value)
-        print("")
+        print()
         raise SystemExit()
 
     def repository_data(self, repo):

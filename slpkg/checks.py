@@ -63,7 +63,7 @@ class Updates(object):
     def status_bar(self):
         """Top view bar status
         """
-        print("")
+        print()
         self.msg.template(78)
         print("| Repository         Status")
         self.msg.template(78)

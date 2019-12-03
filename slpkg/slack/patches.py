@@ -112,7 +112,7 @@ class Patches(object):
             print("After this process, {0} {1} of additional disk space "
                   "will be used.{2}".format(size[1], unit[1],
                                             self.meta.color["ENDC"]))
-            print("")
+            print()
             if self.msg.answer() in ["y", "Y"]:
                 Download(self.patch_path, self.dwn_links,
                          repo="slack").start()
@@ -121,9 +121,12 @@ class Patches(object):
                 self.upgrade()
                 self.kernel()
                 if self.meta.slackpkg_log in ["on", "ON"]:
+                    # update the slackpkg ChanheLog.txt file
                     self.slackpkg_update()
                 self.msg.reference(self.installed, self.upgraded)
+                # delete the downloaded packages
                 delete_package(self.patch_path, self.upgrade_all)
+                # update the packages lists
                 self.update_lists()
         else:
             slack_arch = ""
@@ -238,7 +241,7 @@ class Patches(object):
                 if self.meta.default_answer in ["y", "Y"]:
                     answer = self.meta.default_answer
                 else:
-                    print("")
+                    print()
                     self.msg.template(78)
                     print("| {0}*** HIGHLY recommended reinstall boot loader "
                           "***{1}".format(self.meta.color["RED"],
@@ -247,9 +250,9 @@ class Patches(object):
                     self.msg.template(78)
                     try:
                         answer = input("\nThe kernel has been upgraded, "
-                                           "reinstall boot loader [L/E/G]? ")
+                                       "reinstall boot loader [L/E/G]? ")
                     except EOFError:
-                        print("")
+                        print()
                         raise SystemExit()
                 if answer in ["L"]:
                     subprocess.call("lilo", shell=True)
@@ -266,6 +269,8 @@ class Patches(object):
         """This replace slackpkg ChangeLog.txt file with new
         from Slackware official mirrors after update distribution.
         """
+        print(mirrors("ChangeLog.txt", ""))
+
         NEW_ChangeLog_txt = URL(mirrors("ChangeLog.txt", "")).reading()
         if os.path.isfile(self.meta.slackpkg_lib_path + "ChangeLog.txt.old"):
             os.remove(self.meta.slackpkg_lib_path + "ChangeLog.txt.old")
@@ -275,7 +280,6 @@ class Patches(object):
             os.remove(self.meta.slackpkg_lib_path + "ChangeLog.txt")
         with open(self.meta.slackpkg_lib_path + "ChangeLog.txt", "w") as log:
             log.write(NEW_ChangeLog_txt)
-            log.close()
 
     def update_lists(self):
         """Update packages list and ChangeLog.txt file after

@@ -8,4 +8,4 @@ as important how a package is build.
 Small changes in the code each time more appreciated.
 Keep the style code applicable items.
 
-Please ensure your changes work in Python 2.7.5+
+Please ensure your changes work in Python >= 3.7

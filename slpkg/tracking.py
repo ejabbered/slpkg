@@ -79,7 +79,7 @@ class TrackingDeps(object):
                 self.deps_tree()
             self.msg.done()
             pkg_len = len(self.name) + 24
-            print("")    # new line at start
+            print()    # new line at start
             self.msg.template(pkg_len)
             print("| Package {0}{1}{2} dependencies :".format(
                 self.cyan, self.name, self.endc))
@@ -114,7 +114,7 @@ class TrackingDeps(object):
             if self.meta.use_colors in ["off", "OFF"]:
                 print("\n * = Installed\n")
             else:
-                print("")    # new line at end
+                print()    # new line at end
             if "--graph=" in self.flag:
                 self.graph()
         else:

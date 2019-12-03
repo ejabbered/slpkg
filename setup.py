@@ -34,12 +34,14 @@ try:
 except ImportError:
     from distutils.core import setup
 
-INSTALLATION_REQUIREMENTS = []
-DOCS_REQUIREMENTS = []
-TESTS_REQUIREMENTS = []
-OPTIONAL_REQUIREMENTS = [
-    "python3-pythondialog >= 3.3.0",
-    "pygraphviz >= 1.3.1"
+docs_requires = []
+tests_requires = []
+install_requires = [
+    "requests>=2.22.0"
+]
+optional_requires = [
+    "pythondialog>=3.5.0",
+    "pygraphviz>=1.3.1"
 ]
 
 # Non-Python/non-PyPI optional dependencies:
@@ -47,6 +49,7 @@ OPTIONAL_REQUIREMENTS = [
 
 
 def print_logo():
+    """print slpkg logo"""
     if "install" not in sys.argv:
         logo_fname = os.path.join(os.path.dirname(__file__), 'logo.txt')
         with open(logo_fname, 'rb') as f:
@@ -65,6 +68,7 @@ setup(
     scripts=["bin/slpkg"],
     version=_meta_.__version__,
     description="Package manager for Slackware installations",
+    long_description=open("README.md").read(),
     keywords=["slackware", "slpkg", "upgrade", "install", "remove",
               "view", "slackpkg", "tool", "build"],
     author=_meta_.__author__,
@@ -74,11 +78,11 @@ setup(
     data_files=[("man/man8", ["man/slpkg.8"]),
                 ("/etc/bash_completion.d", ["conf/slpkg.bash-completion"]),
                 ("/etc/fish/completions", ["conf/slpkg.fish"])],
-    install_requires=INSTALLATION_REQUIREMENTS,
+    install_requires=install_requires,
     extras_require={
-        "optional": OPTIONAL_REQUIREMENTS,
-        "docs": DOCS_REQUIREMENTS,
-        "tests": TESTS_REQUIREMENTS,
+        "optional": optional_requires,
+        "docs": docs_requires,
+        "tests": tests_requires,
     },
     classifiers=[
         "Development Status :: 5 - Production/Stable",
@@ -86,14 +90,18 @@ setup(
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
         "Operating System :: POSIX :: Linux",
         "Operating System :: Unix",
+        "Programming Language :: Python",
         "Programming Language :: Python :: 3",
         "Programming Language :: Unix Shell",
         "Topic :: Software Development :: Build Tools",
         "Topic :: System :: Archiving :: Packaging",
         "Topic :: System :: Software Distribution",
+        "Topic :: System :: Installation/Setup",
+        "Topic :: System :: Systems Administration",
+        "Topic :: System :: Software Distribution",
         "Topic :: Utilities"],
-    long_description=open("README.md").read()
-    )
+    python_requires=">=3.7"
+)
 
 # Install configuration files with pip.
 if "install" in sys.argv:

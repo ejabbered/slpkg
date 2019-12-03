@@ -174,7 +174,7 @@ class SBoNetwork(object):
             self.choice = input("{0}{1}{2}".format(self.grey, message,
                                                        self.endc))
         except EOFError:
-            print("")
+            print()
             raise SystemExit()
         try:
             print("{0}\x1b[1A{1}{2}{3}\n".format(
@@ -261,7 +261,7 @@ class SBoNetwork(object):
             br1 = "("
             br2 = ")"
             fix_sp = ""
-        print("")   # new line at start
+        print()   # new line at start
         self.msg.template(78)
         print("| {0}{1}SlackBuilds Repository{2}".format(" " * 28, self.grey,
                                                          self.endc))
@@ -365,7 +365,7 @@ class SBoNetwork(object):
         pkg_security([self.name])
         self.error_uns()
         if self.FAULT:
-            print("")
+            print()
             self.msg.template(78)
             print("| Package {0} {1} {2} {3}".format(self.prgnam, self.red,
                                                      self.FAULT, self.endc))

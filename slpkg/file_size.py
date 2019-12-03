@@ -23,8 +23,7 @@
 
 
 import os
-import urllib
-from urllib.request import urlopen
+import requests
 
 
 class FileSize(object):
@@ -37,10 +36,9 @@ class FileSize(object):
         """Returns the size of remote files
         """
         try:
-            tar = urlopen(self.registry)
-            meta = tar.info()
-            return int(meta.get_all("Content-Length")[0])
-        except (urllib.error.URLError, IndexError):
+            r = requests.head(self.registry)
+            return int(r.headers["Content-Length"])
+        except (requests.exceptions.Timeout):
             return " "
 
     def local(self):

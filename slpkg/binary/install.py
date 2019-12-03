@@ -140,7 +140,7 @@ class BinaryInstall(object):
             print("After this process, {0} {1} of additional disk "
                   "space will be used.{2}".format(size[1], unit[1],
                                                   self.meta.color["ENDC"]))
-            print("")
+            print()
             self.if_all_installed()
             if self.msg.answer() in ["y", "Y"]:
                 for inst, dwn in zip(self.dep_install + self.install,

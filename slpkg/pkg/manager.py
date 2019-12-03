@@ -99,7 +99,7 @@ class PackageManager(object):
         dependencies, rmv_list = [], []
         self.removed = self._view_removed()
         if not self.removed:
-            print("")   # new line at end
+            print()   # new line at end
         else:
             msg = "package"
             if len(self.removed) > 1:
@@ -112,7 +112,7 @@ class PackageManager(object):
                         "\nAre you sure to remove {0} {1} [y/N]? ".format(
                             str(len(self.removed)), msg))
             except EOFError:
-                print("")   # new line at exit
+                print()   # new line at exit
                 raise SystemExit()
             if remove_pkg in ["y", "Y"]:
                 self._check_if_used(self.binary)
@@ -147,9 +147,9 @@ class PackageManager(object):
                 remove_dep = input(
                     "\nRemove dependencies (maybe used by "
                     "other packages) [y/N]? ")
-                print("")
+                print()
             except EOFError:
-                print("")  # new line at exit
+                print()  # new line at exit
                 raise SystemExit()
         return remove_dep
 
@@ -276,7 +276,7 @@ class PackageManager(object):
                     dependencies.append("-".join(d.split("-")[:-1]))
                 self.meta.remove_deps_answer = "y"
             else:
-                print("")   # new line at start
+                print()   # new line at start
                 self.msg.template(78)
                 print("| Found dependencies for the package {0}:".format(
                     package))
@@ -339,7 +339,7 @@ class PackageManager(object):
             try:
                 self.skip = input(" > ").split()
             except EOFError:
-                print("")
+                print()
                 raise SystemExit()
         for s in self.skip:
             if s in self.removed:
@@ -388,7 +388,7 @@ class PackageManager(object):
     def _reference_rmvs(self, removes):
         """Prints all removed packages
         """
-        print("")
+        print()
         self.msg.template(78)
         msg_pkg = "package"
         if len(removes) > 1:
@@ -401,7 +401,7 @@ class PackageManager(object):
             else:
                 print("| Package {0} not found".format(pkg))
         self.msg.template(78)
-        print("")   # new line at end
+        print()   # new line at end
 
     def find(self, flag):
         """Find installed Slackware packages
@@ -498,7 +498,7 @@ class PackageManager(object):
             r = self.list_lib(repo)
             pkg_list = self.list_greps(repo, r)[0]
             all_installed_names = self.list_of_installed(repo, name)
-            print("")
+            print()
             for pkg in sorted(pkg_list):
                 pkg = self._splitting_packages(pkg, repo, name)
                 if installed:
@@ -525,13 +525,13 @@ class PackageManager(object):
                                              self.meta.color["ENDC"]))
                         if read in ["Q", "q"]:
                             break
-                        print("")   # new line after page
+                        print()   # new line after page
                         page += row
                 else:
                     print(pkg)
-            print("")   # new line at end
-        except EOFError:
-            print("")   # new line at exit
+            print()   # new line at end
+        except (EOFError, KeyboardInterrupt, BrokenPipeError, IOError):
+            print()   # new line at exit
             raise SystemExit()
 
     def _splitting_packages(self, pkg, repo, name):

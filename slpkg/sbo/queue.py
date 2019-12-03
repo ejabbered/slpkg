@@ -86,7 +86,7 @@ class QueuePkgs(object):
                                          self.meta.color["ENDC"]))
                 self.quit = True
         if self.quit:
-            print("")   # new line at exit
+            print()   # new line at exit
 
     def add(self, pkgs):
         """Add packages in queue if not exist
@@ -108,7 +108,7 @@ class QueuePkgs(object):
                     self.quit = True
             queue.close()
         if self.quit:
-            print("")   # new line at exit
+            print()   # new line at exit
 
     def remove(self, pkgs):
         """Remove packages from queue
@@ -124,7 +124,7 @@ class QueuePkgs(object):
                     self.quit = True
             queue.close()
         if self.quit:
-            print("")   # new line at exit
+            print()   # new line at exit
 
     def build(self):
         """Build packages from queue
@@ -158,7 +158,7 @@ class QueuePkgs(object):
         """
         packages = self.packages()
         if packages:
-            print("")   # new line at start
+            print()   # new line at start
             for pkg in packages:
                 ver = SBoGrep(pkg).version()
                 prgnam = "{0}-{1}".format(pkg, ver)
