@@ -41,7 +41,7 @@ What makes slpkg to distinguish it from the other tools; The user-friendliness i
 
 ##### Asciicast
 
-[<img src="https://asciinema.org/a/3uFNAOX8o16AmKKJDIvdezPBa" width="250">](https://asciinema.org/a/3uFNAOX8o16AmKKJDIvdezPBa)
+[<img src=""https://gitlab.com/dslackw/images/raw/master/slpkg/asciicast.png" width="250">](https://asciinema.org/a/3uFNAOX8o16AmKKJDIvdezPBa)
 
 
 ##### Installation
