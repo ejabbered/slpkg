@@ -22,9 +22,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
-# import os
-import urllib
-from urllib.request import urlopen
+import requests
 
 from slpkg.__metadata__ import MetaData as _meta_
 
@@ -40,27 +38,9 @@ class URL(object):
         """Open url and read
         """
         try:
-            '''
-            # testing proxy
-            proxies = {}
-            try:
-                proxies["http_proxy"] = os.environ['http_proxy']
-            except KeyError:
-                pass
-            try:
-                proxies["https_proxy"] = os.environ['https_proxy']
-            except KeyError:
-                pass
-
-            if len(proxies) != 0:
-                proxy = urllib2.ProxyHandler(proxies)
-                opener = urllib2.build_opener(proxy)
-                urllib2.install_opener(opener)
-            # end testing
-            '''
-            f = urlopen(self.link)
-            return f.read().decode("utf-8")
-        except (urllib.error.URLError, ValueError):
+            f = requests.get(self.link)
+            return f.text
+        except (requests.exceptions.Timeout):
             print("\n{0}Can't read the file '{1}'{2}".format(
                 self.meta.color["RED"], self.link.split("/")[-1],
                 self.meta.color["ENDC"]))

@@ -247,7 +247,7 @@ class Patches(object):
                     self.msg.template(78)
                     try:
                         answer = input("\nThe kernel has been upgraded, "
-                                           "reinstall boot loader [L/E/G]? ")
+                                       "reinstall boot loader [L/E/G]? ")
                     except EOFError:
                         print()
                         raise SystemExit()
@@ -266,6 +266,8 @@ class Patches(object):
         """This replace slackpkg ChangeLog.txt file with new
         from Slackware official mirrors after update distribution.
         """
+        print(mirrors("ChangeLog.txt", ""))
+
         NEW_ChangeLog_txt = URL(mirrors("ChangeLog.txt", "")).reading()
         if os.path.isfile(self.meta.slackpkg_lib_path + "ChangeLog.txt.old"):
             os.remove(self.meta.slackpkg_lib_path + "ChangeLog.txt.old")
@@ -275,7 +277,6 @@ class Patches(object):
             os.remove(self.meta.slackpkg_lib_path + "ChangeLog.txt")
         with open(self.meta.slackpkg_lib_path + "ChangeLog.txt", "w") as log:
             log.write(NEW_ChangeLog_txt)
-            log.close()
 
     def update_lists(self):
         """Update packages list and ChangeLog.txt file after
