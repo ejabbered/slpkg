@@ -87,14 +87,16 @@ setup(
         "Development Status :: 5 - Production/Stable",
         "Environment :: Console",
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
-
-
         "Operating System :: POSIX :: Linux",
         "Operating System :: Unix",
+        "Programming Language :: Python",
         "Programming Language :: Python :: 3",
         "Programming Language :: Unix Shell",
         "Topic :: Software Development :: Build Tools",
         "Topic :: System :: Archiving :: Packaging",
+        "Topic :: System :: Software Distribution",
+        "Topic :: System :: Installation/Setup",
+        "Topic :: System :: Systems Administration",
         "Topic :: System :: Software Distribution",
         "Topic :: Utilities"],
     python_requires=">=3.7"
