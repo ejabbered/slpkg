@@ -39,9 +39,9 @@ What makes slpkg to distinguish it from the other tools; The user-friendliness i
 * Better Security
 
 
-##### Asciicast:
+##### Asciicast
 
-[<img src="https://asciinema.org/a/3uFNAOX8o16AmKKJDIvdezPBa"  width="250"/>](https://asciinema.org/a/3uFNAOX8o16AmKKJDIvdezPBa)
+[<img src="https://asciinema.org/a/3uFNAOX8o16AmKKJDIvdezPBa" width="250">](https://asciinema.org/a/3uFNAOX8o16AmKKJDIvdezPBa)
 
 
 ##### Installation
