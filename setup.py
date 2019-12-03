@@ -34,12 +34,14 @@ try:
 except ImportError:
     from distutils.core import setup
 
-INSTALLATION_REQUIREMENTS = []
-DOCS_REQUIREMENTS = []
-TESTS_REQUIREMENTS = []
-OPTIONAL_REQUIREMENTS = [
-    "python3-pythondialog >= 3.5.0",
-    "pygraphviz >= 1.3.1"
+docs_requires = []
+tests_requires = []
+install_requires = [
+    "requests>=2.22.0"
+]
+optional_requires = [
+    "pythondialog>=3.5.0",
+    "pygraphviz>=1.3.1"
 ]
 
 # Non-Python/non-PyPI optional dependencies:
@@ -75,11 +77,11 @@ setup(
     data_files=[("man/man8", ["man/slpkg.8"]),
                 ("/etc/bash_completion.d", ["conf/slpkg.bash-completion"]),
                 ("/etc/fish/completions", ["conf/slpkg.fish"])],
-    install_requires=INSTALLATION_REQUIREMENTS,
+    install_requires=install_requires,
     extras_require={
-        "optional": OPTIONAL_REQUIREMENTS,
-        "docs": DOCS_REQUIREMENTS,
-        "tests": TESTS_REQUIREMENTS,
+        "optional": optional_requires,
+        "docs": docs_requires,
+        "tests": tests_requires,
     },
     classifiers=[
         "Development Status :: 5 - Production/Stable",
