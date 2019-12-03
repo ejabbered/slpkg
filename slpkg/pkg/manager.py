@@ -530,7 +530,7 @@ class PackageManager(object):
                 else:
                     print(pkg)
             print()   # new line at end
-        except EOFError:
+        except (EOFError, KeyboardInterrupt, BrokenPipeError, IOError):
             print()   # new line at exit
             raise SystemExit()
 
