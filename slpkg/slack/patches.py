@@ -121,9 +121,12 @@ class Patches(object):
                 self.upgrade()
                 self.kernel()
                 if self.meta.slackpkg_log in ["on", "ON"]:
+                    # update the slackpkg ChanheLog.txt file
                     self.slackpkg_update()
                 self.msg.reference(self.installed, self.upgraded)
+                # delete the downloaded packages
                 delete_package(self.patch_path, self.upgrade_all)
+                # update the packages lists
                 self.update_lists()
         else:
             slack_arch = ""
