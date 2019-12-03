@@ -13,6 +13,15 @@ What makes slpkg to distinguish it from the other tools; The user friendliness i
 target as well as easy to understand and use, also use colors to highlight packages and
 display warning messages, etc.
 
+
+
+
+
+[<img src="https://asciinema.org/a/3uFNAOX8o16AmKKJDIvdezPBa">](https://asciinema.org/a/3uFNAOX8o16AmKKJDIvdezPBa)
+
+
+
+
 ##### Copyright
 
 Copyright 2014-2019 © Dimitris Zlatanidis. Slackware® is a Registered Trademark of Patrick Volkerding. Linux is a Registered Trademark of Linus Torvalds.
