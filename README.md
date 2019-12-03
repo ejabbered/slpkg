@@ -17,7 +17,8 @@ display warning messages, etc.
 
 
 
-[<img src="https://asciinema.org/a/3uFNAOX8o16AmKKJDIvdezPBa">](https://asciinema.org/a/3uFNAOX8o16AmKKJDIvdezPBa)
+
+[<img src="https://asciinema.org/a/3uFNAOX8o16AmKKJDIvdezPBa">]()
 
 
 
