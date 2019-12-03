@@ -17,9 +17,9 @@ display warning messages, etc.
 
 
 
-##### Asciicast:
+#### Asciicast:
 
-[<img src="https://asciinema.org/a/3uFNAOX8o16AmKKJDIvdezPBa"  width="200"/>](https://asciinema.org/a/3uFNAOX8o16AmKKJDIvdezPBa)
+[<img src="https://asciinema.org/a/3uFNAOX8o16AmKKJDIvdezPBa"  width="250"/>](https://asciinema.org/a/3uFNAOX8o16AmKKJDIvdezPBa)
 
 
 
