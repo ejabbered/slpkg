@@ -1,4 +1,4 @@
-Title: slpkg 3.7.0
+Title: slpkg 3.7.1
 Date: 2019-1-24
 Authors: dslackw
 Slug: home
@@ -39,6 +39,11 @@ What makes slpkg to distinguish it from the other tools; The user-friendliness i
 * Better Security
 
 
+##### Asciicast:
+
+[<img src="https://asciinema.org/a/3uFNAOX8o16AmKKJDIvdezPBa"  width="250"/>](https://asciinema.org/a/3uFNAOX8o16AmKKJDIvdezPBa)
+
+
 ##### Installation
 
 Download the latest release
@@ -46,8 +51,8 @@ Download the latest release
 *(Required root privileges for the install)*
 
 ```
-$ tar xvf slpkg-3.7.0.tar.gz
-$ cd slpkg-3.7.0
+$ tar xvf slpkg-3.7.1.tar.gz
+$ cd slpkg-3.7.1
 $ ./install.sh
 ```
 
@@ -66,7 +71,7 @@ $ removepkg slpkg
 Using pip:
 
 ```
-$ pip3 install https://gitlab.com/dslackw/slpkg/-/archive/3.7.0/slpkg-3.7.0.tar.gz
+$ pip3 install https://gitlab.com/dslackw/slpkg/-/archive/3.7.1/slpkg-3.7.1.tar.gz
 ```
 
 Uninstall
