@@ -49,6 +49,7 @@ optional_requires = [
 
 
 def print_logo():
+    """print slpkg logo"""
     if "install" not in sys.argv:
         logo_fname = os.path.join(os.path.dirname(__file__), 'logo.txt')
         with open(logo_fname, 'rb') as f:
