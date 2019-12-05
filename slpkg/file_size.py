@@ -38,7 +38,8 @@ class FileSize(object):
         try:
             r = requests.head(self.registry)
             return int(r.headers["Content-Length"])
-        except (requests.exceptions.Timeout):
+        except (requests.exceptions.Timeout,
+                requests.exceptions.ConnectionError):
             return " "
 
     def local(self):

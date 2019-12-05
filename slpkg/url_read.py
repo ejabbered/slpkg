@@ -40,7 +40,8 @@ class URL(object):
         try:
             f = requests.get(self.link)
             return f.text
-        except (requests.exceptions.Timeout):
+        except (requests.exceptions.Timeout,
+                requests.exceptions.ConnectionError):
             print("\n{0}Can't read the file '{1}'{2}".format(
                 self.meta.color["RED"], self.link.split("/")[-1],
                 self.meta.color["ENDC"]))
