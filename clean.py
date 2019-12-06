@@ -26,7 +26,7 @@ import os
 import shutil
 
 
-class Clean(object):
+class Clean:
     """Clean all data like man page, log files, PACKAGES.TXT and
     configuration files. This is useful if "slpkg" installed via
     "pip" because pip uninstalls only Python packages and script
@@ -58,4 +58,5 @@ class Clean(object):
 
 
 if __name__ == "__main__":
-    Clean().start()
+    clean = Clean()
+    clean.start()
