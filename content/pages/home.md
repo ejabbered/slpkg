@@ -1,5 +1,5 @@
-Title: slpkg 3.7.1
-Date: 2019-1-24
+Title: slpkg 3.7.2
+Date: 2019-12-06
 Authors: dslackw
 Slug: home
 Save_as: index.html
@@ -51,8 +51,8 @@ Download the latest release
 *(Required root privileges for the install)*
 
 ```
-$ tar xvf slpkg-3.7.1.tar.gz
-$ cd slpkg-3.7.1
+$ tar xvf slpkg-3.7.2.tar.gz
+$ cd slpkg-3.7.2
 $ ./install.sh
 ```
 
@@ -71,7 +71,7 @@ $ removepkg slpkg
 Using pip:
 
 ```
-$ pip3 install https://gitlab.com/dslackw/slpkg/-/archive/3.7.1/slpkg-3.7.1.tar.gz
+$ pip3 install https://gitlab.com/dslackw/slpkg/-/archive/3.7.2/slpkg-3.7.2.tar.gz
 ```
 
 Uninstall
