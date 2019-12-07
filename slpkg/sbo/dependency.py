@@ -31,7 +31,7 @@ from slpkg.__metadata__ import MetaData as _meta_
 from slpkg.sbo.greps import SBoGrep
 
 
-class Requires(object):
+class Requires:
     """Resolving SBo dependencies
     """
     def __init__(self, flag):

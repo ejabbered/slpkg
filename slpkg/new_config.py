@@ -31,7 +31,7 @@ from slpkg.utils import Utils
 from slpkg.__metadata__ import MetaData as _meta_
 
 
-class NewConfig(object):
+class NewConfig:
     """Manage .new configuration files
     """
     def __init__(self):
@@ -187,15 +187,15 @@ class NewConfig(object):
             diff1 = Utils().read_file(n[:-4]).splitlines()
         if os.path.isfile(n):
             diff2 = Utils().read_file(n).splitlines()
-        lines, l, c = [], 0, 0
+        lines, ln, c = [], 0, 0
         for a, b in itertools.izip_longest(diff1, diff2):
-            l += 1
+            ln += 1
             if a != b:
                 for s1, s2 in itertools.izip_longest(str(a), str(b)):
                     c += 1
                     if s1 != s2:
                         break
-                print("@@ -{0},{1} +{2},{3} @@\n".format(l, c, l, c))
+                print("@@ -{0},{1} +{2},{3} @@\n".format(ln, c, ln, c))
                 for line in lines[-3:]:
                     print("{0}".format(line))
                 if a is None:

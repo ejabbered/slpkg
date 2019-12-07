@@ -28,7 +28,7 @@ from slpkg.splitting import split_package
 from slpkg.__metadata__ import MetaData as _meta_
 
 
-class GetFromInstalled(object):
+class GetFromInstalled:
     """Find and return version and package name from
     already installed packages
     """

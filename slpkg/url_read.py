@@ -27,7 +27,7 @@ import requests
 from slpkg.__metadata__ import MetaData as _meta_
 
 
-class URL(object):
+class URL:
     """Urls reading class
     """
     def __init__(self, link):

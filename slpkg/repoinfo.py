@@ -31,7 +31,7 @@ from slpkg.repolist import RepoList
 from slpkg.__metadata__ import MetaData as _meta_
 
 
-class RepoInfo(object):
+class RepoInfo:
     """Repository information
     """
     def __init__(self):
@@ -78,8 +78,8 @@ class RepoInfo(object):
                 self.form["Number of packages:"] = data[0]
                 self.form["Status:"] = status
                 self.form["Last updated:"] = data[3]
-        elif (repo == "sbo" and os.path.isfile(self.meta.lib_path + "{0}_repo/"
-                                               "SLACKBUILDS.TXT".format(repo))):
+        elif (repo == "sbo" and os.path.isfile(
+                self.meta.lib_path + "{0}_repo/SLACKBUILDS.TXT".format(repo))):
             status = "{0}enabled{1}".format(self.meta.color["GREEN"],
                                             self.meta.color["ENDC"])
             sum_sbo_pkgs = 0
@@ -100,7 +100,8 @@ class RepoInfo(object):
             self.form["Last updated:"] = last_upd
         print()
         for key, value in sorted(self.form.items()):
-            print(self.meta.color["GREY"] + key + self.meta.color["ENDC"], value)
+            print(self.meta.color["GREY"] + key + self.meta.color["ENDC"],
+                  value)
         print()
         raise SystemExit()
 
@@ -109,8 +110,8 @@ class RepoInfo(object):
         Grap data packages
         """
         sum_pkgs, size, unsize, last_upd = 0, [], [], ""
-        for line in (Utils().read_file(
-                self.meta.lib_path + repo + "_repo/PACKAGES.TXT").splitlines()):
+        f = self.meta.lib_path + repo + "_repo/PACKAGES.TXT"
+        for line in Utils().read_file(f).splitlines():
             if line.startswith("PACKAGES.TXT;"):
                 last_upd = line[14:].strip()
             if line.startswith("PACKAGE NAME:"):

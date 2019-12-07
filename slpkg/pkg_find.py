@@ -28,7 +28,7 @@ from slpkg.pkg.manager import PackageManager
 from slpkg.__metadata__ import MetaData as _meta_
 
 
-class FindFromRepos(object):
+class FindFromRepos:
     """Find packages from all enabled repositories
     """
     def __init__(self):
@@ -53,7 +53,8 @@ class FindFromRepos(object):
         Msg().template(78)
         for repo in _meta_.repositories:
             PACKAGES_TXT = PackageManager(pkg).list_lib(repo)
-            packages, sizes = PackageManager(pkg).list_greps(repo, PACKAGES_TXT)
+            packages, sizes = PackageManager(pkg).list_greps(repo,
+                                                             PACKAGES_TXT)
             for find, size in zip(packages, sizes):
                 for p in pkg:
                     if "--case-ins" in flag:

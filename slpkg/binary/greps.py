@@ -144,7 +144,7 @@ def ktown_filter(name, location, size, unsize):
     return [fname, flocation, fsize, funsize]
 
 
-class Requires(object):
+class Requires:
 
     def __init__(self, name, repo):
         self.name = name

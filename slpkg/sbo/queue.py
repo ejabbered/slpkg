@@ -39,7 +39,7 @@ from slpkg.sbo.search import sbo_search_pkg
 from slpkg.sbo.slack_find import slack_package
 
 
-class QueuePkgs(object):
+class QueuePkgs:
     """Manage SBo packages, add or remove for building or
     installation
     """

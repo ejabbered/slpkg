@@ -34,7 +34,7 @@ from slpkg.slack.mirrors import mirrors
 from slpkg.slack.slack_version import slack_ver
 
 
-class Initialization(object):
+class Initialization:
     """Slpkg initialization start all from here. Create local
     package lists and update or upgrade these.
     """

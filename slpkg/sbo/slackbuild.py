@@ -49,7 +49,7 @@ from slpkg.sbo.search import sbo_search_pkg
 from slpkg.sbo.slack_find import slack_package
 
 
-class SBoInstall(object):
+class SBoInstall:
     """Build and install SBo packages with all dependencies
     """
     def __init__(self, slackbuilds, flag):

@@ -28,7 +28,7 @@ from slpkg.utils import Utils
 from slpkg.__metadata__ import MetaData as _meta_
 
 
-class Repo(object):
+class Repo:
     """Manage repositories configuration files
     """
     def __init__(self):
@@ -36,7 +36,8 @@ class Repo(object):
         self.DEFAULT_REPOS_NAMES = self.meta.default_repositories
         self.custom_repo_file = "/etc/slpkg/custom-repositories"
         self.default_repo_file = "/etc/slpkg/default-repositories"
-        self.custom_repositories_list = Utils().read_file(self.custom_repo_file)
+        self.custom_repositories_list = Utils().read_file(
+            self.custom_repo_file)
         self.default_repositories_list = Utils().read_file(
             self.default_repo_file)
         self.default_repository()
@@ -62,9 +63,9 @@ class Repo(object):
                   "six (6) characters\n")
             raise SystemExit()
         with open(self.custom_repo_file, "a") as repos:
-            new_line = "  {0}{1}{2}\n".format(repo, " " * (10 - len(repo)), url)
+            new_line = "  {0}{1}{2}\n".format(repo, " " * (10 - len(repo)),
+                                              url)
             repos.write(new_line)
-        repos.close()
         print("\nRepository '{0}' successfully added\n".format(repo))
         raise SystemExit()
 

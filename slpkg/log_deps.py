@@ -44,4 +44,3 @@ def write_deps(deps_dict):
                 with open(dep_path + name, "w") as f:
                     for dep in dependencies:
                         f.write(dep + "\n")
-                    f.close()

@@ -30,7 +30,7 @@ from slpkg.__metadata__ import MetaData as _meta_
 from slpkg.pkg.manager import PackageManager
 
 
-class Auto(object):
+class Auto:
     """Select Slackware command to install packages
     """
     def __init__(self, packages):

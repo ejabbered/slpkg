@@ -22,7 +22,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
-class SBoLink(object):
+class SBoLink:
     """Create slackbuild tar.gz archive from url
     """
     def __init__(self, sbo_url):

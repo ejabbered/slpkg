@@ -27,7 +27,7 @@ from __future__ import unicode_literals
 import os
 
 
-class DialogUtil(object):
+class DialogUtil:
     """Create dialog checklist
     """
     def __init__(self, *args):

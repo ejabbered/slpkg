@@ -27,7 +27,7 @@ import itertools
 from slpkg.__metadata__ import MetaData as _meta_
 
 
-class Msg(object):
+class Msg:
     """Messages control
     """
     def __init__(self):
@@ -70,22 +70,22 @@ class Msg(object):
         """Message checking
         """
         print("{0}Checking...{1}  ".format(self.meta.color["GREY"],
-                                           self.meta.color["ENDC"]), end="")
-        print(end="", flush=True)
+                                           self.meta.color["ENDC"]), end="",
+                                           flush=True)
 
     def reading(self):
         """Message reading
         """
         print("{0}Reading package lists...{1}  ".format(
-            self.meta.color["GREY"], self.meta.color["ENDC"]), end="")
-        print(end="", flush=True)
+            self.meta.color["GREY"], self.meta.color["ENDC"]), end="",
+            flush=True)
 
     def resolving(self):
         """Message resolving
         """
         print("{0}Resolving dependencies...{1}  ".format(
-            self.meta.color["GREY"], self.meta.color["ENDC"]), end="")
-        print(end="", flush=True)
+            self.meta.color["GREY"], self.meta.color["ENDC"]), end="",
+            flush=True)
 
     def done(self):
         """Message done

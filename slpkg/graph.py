@@ -26,7 +26,7 @@ import os
 import subprocess
 
 
-class Graph(object):
+class Graph:
     """Drawing dependencies diagram
     """
     def __init__(self, image):

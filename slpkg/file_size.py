@@ -26,7 +26,7 @@ import os
 import requests
 
 
-class FileSize(object):
+class FileSize:
     """Check local or remote file size
     """
     def __init__(self, registry):
