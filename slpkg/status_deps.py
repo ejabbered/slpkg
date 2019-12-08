@@ -34,7 +34,7 @@ from slpkg.__metadata__ import MetaData as _meta_
 from slpkg.pkg.find import find_package
 
 
-class DependenciesStatus(object):
+class DependenciesStatus:
     """Print dependencies status used by packages
     """
     def __init__(self, image):
@@ -111,8 +111,7 @@ class DependenciesStatus(object):
             for d in dep:
                 print("+-- {0}".format(d))
                 print("|")
-            print("\x1b[1A{0}\n".format(" "), end="")
-            print(end="", flush=True)
+            print("\x1b[1A{0}\n".format(" "), end="", flush=True)
         self.summary()
         if self.image:
             Graph(self.image).dependencies(self.dmap)

@@ -51,7 +51,7 @@ from slpkg.slack.mirrors import mirrors
 from slpkg.slack.slack_version import slack_ver
 
 
-class Patches(object):
+class Patches:
     """Upgrade distribution from official Slackware mirrors
     """
     def __init__(self, skip, flag):

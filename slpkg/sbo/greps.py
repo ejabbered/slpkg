@@ -26,7 +26,7 @@ from slpkg.utils import Utils
 from slpkg.__metadata__ import MetaData as _meta_
 
 
-class SBoGrep(object):
+class SBoGrep:
     """Grab data from SLACKBUILDS.TXT file
     """
     def __init__(self, name):

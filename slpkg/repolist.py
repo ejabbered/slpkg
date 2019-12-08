@@ -27,7 +27,7 @@ from slpkg.repositories import Repo
 from slpkg.__metadata__ import MetaData as _meta_
 
 
-class RepoList(object):
+class RepoList:
     """List of repositories
     """
     def __init__(self):

@@ -39,7 +39,7 @@ from slpkg.__metadata__ import MetaData as _meta_
 from slpkg.sbo.greps import SBoGrep
 
 
-class BuildPackage(object):
+class BuildPackage:
     """Build SBo packages from source
     """
     def __init__(self, script, sources, path, auto):

@@ -25,7 +25,7 @@
 from slpkg.__metadata__ import MetaData as _meta_
 
 
-class SBoArch(object):
+class SBoArch:
     """Manage computer architecture for sbo repository
     """
     def __init__(self):

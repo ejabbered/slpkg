@@ -27,7 +27,7 @@ import os
 from slpkg.splitting import split_package
 
 
-class Utils(object):
+class Utils:
     """Class with usefull utilities
     """
     def case_sensitive(self, lst):

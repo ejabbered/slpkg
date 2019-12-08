@@ -32,7 +32,7 @@ from slpkg.slack.slack_version import slack_ver
 from slpkg.__metadata__ import MetaData as _meta_
 
 
-class Download(object):
+class Download:
     """Downloader manager. Slpkg use wget by default but support
     curl, aria2 and httpie
     """

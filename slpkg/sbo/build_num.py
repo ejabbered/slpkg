@@ -29,7 +29,7 @@ from slpkg.url_read import URL
 from slpkg.__metadata__ import MetaData as _meta_
 
 
-class BuildNumber(object):
+class BuildNumber:
     """Get build number from SlackBuild script
     """
     def __init__(self, sbo_url, pkg):

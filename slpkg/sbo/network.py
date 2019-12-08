@@ -49,7 +49,7 @@ from slpkg.sbo.slack_find import slack_package
 from slpkg.slack.slack_version import slack_ver
 
 
-class SBoNetwork(object):
+class SBoNetwork:
     """View SBo site in terminal and also read, build or
     install packages
     """

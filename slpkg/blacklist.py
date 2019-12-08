@@ -29,7 +29,7 @@ from slpkg.splitting import split_package
 from slpkg.__metadata__ import MetaData as _meta_
 
 
-class BlackList(object):
+class BlackList:
     """Blacklist class to add, remove or listed packages
     in blacklist file."""
     def __init__(self):

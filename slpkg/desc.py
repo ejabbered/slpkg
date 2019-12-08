@@ -29,7 +29,7 @@ from slpkg.__metadata__ import MetaData as _meta_
 from slpkg.sbo.greps import SBoGrep
 
 
-class PkgDesc(object):
+class PkgDesc:
     """Print package description from the repository
     """
     def __init__(self, name, repo, paint):

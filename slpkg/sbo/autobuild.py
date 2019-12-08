@@ -29,7 +29,7 @@ from slpkg.pkg.build import BuildPackage
 from slpkg.sbo.greps import SBoGrep
 
 
-class AutoBuild(object):
+class AutoBuild:
     """Autobuild package if sources and script is already
     downloaded
     """

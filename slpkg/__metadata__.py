@@ -74,7 +74,7 @@ def select_slack_release(slack_rel):
     return slack_rel
 
 
-class MetaData(object):
+class MetaData:
 
     __all__ = "slpkg"
     __author__ = "dslackw"

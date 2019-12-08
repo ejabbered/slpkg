@@ -30,7 +30,7 @@ from slpkg.__metadata__ import MetaData as _meta_
 from slpkg.binary.greps import Requires
 
 
-class Dependencies(object):
+class Dependencies:
     """Resolving binary dependencies
     """
     def __init__(self, repo, black):

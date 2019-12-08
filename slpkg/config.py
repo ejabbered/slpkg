@@ -30,7 +30,7 @@ from slpkg.utils import Utils
 from slpkg.__metadata__ import MetaData as _meta_
 
 
-class Config(object):
+class Config:
     """Print or edit slpkg configuration file
     """
     def __init__(self):

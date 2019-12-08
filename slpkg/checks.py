@@ -28,7 +28,7 @@ from slpkg.init import Initialization
 from slpkg.__metadata__ import MetaData as _meta_
 
 
-class Updates(object):
+class Updates:
     """Checking for news in ChangeLog.txt
     """
     def __init__(self, repo):

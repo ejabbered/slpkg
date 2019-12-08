@@ -39,7 +39,7 @@ from slpkg.__metadata__ import MetaData as _meta_
 from slpkg.slack.slackware_repo import slackware_repository
 
 
-class PackageManager(object):
+class PackageManager:
     """Package manager class for install, upgrade,
     reinstall, remove, find and display packages"""
     def __init__(self, binary):
@@ -520,9 +520,9 @@ class PackageManager(object):
                         self.meta.color["ENDC"], pkg))
                     if index == page:
                         read = input("\nPress {0}Enter{1} to "
-                                         "continue... ".format(
-                                             self.meta.color["CYAN"],
-                                             self.meta.color["ENDC"]))
+                                     "continue... ".format(
+                                         self.meta.color["CYAN"],
+                                         self.meta.color["ENDC"]))
                         if read in ["Q", "q"]:
                             break
                         print()   # new line after page

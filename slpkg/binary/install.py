@@ -50,7 +50,7 @@ from slpkg.binary.dependency import Dependencies
 from slpkg.slack.slack_version import slack_ver
 
 
-class BinaryInstall(object):
+class BinaryInstall:
     """Install binaries packages with all dependencies from
     repository
     """

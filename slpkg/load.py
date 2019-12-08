@@ -57,7 +57,7 @@ def library(repo):
     return pkg_list
 
 
-class Regex(object):
+class Regex:
     """Grap packages with simple regex using asterisk *
        with options: starts with string*
                      ends with *string

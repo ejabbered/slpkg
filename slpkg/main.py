@@ -66,7 +66,7 @@ from slpkg.binary.check import pkg_upgrade
 from slpkg.binary.install import BinaryInstall
 
 
-class ArgParse(object):
+class ArgParse:
 
     def __init__(self, args):
         self.args = args

@@ -30,7 +30,7 @@ from slpkg.__metadata__ import MetaData as _meta_
 from slpkg.pkg.find import find_package
 
 
-class PackageHealth(object):
+class PackageHealth:
     """Health check installed packages
     """
     def __init__(self, mode):
