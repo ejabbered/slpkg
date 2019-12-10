@@ -25,6 +25,7 @@
 import os
 import shutil
 
+from slpkg.utils import Utils
 from slpkg.repositories import Repo
 from slpkg.file_size import FileSize
 from slpkg.downloader import Download
@@ -701,10 +702,13 @@ class Initialization:
     def merge(self, path, outfile, infiles):
         """Merge files
         """
-        with open(path + outfile, 'w') as out_f:
-            for i in infiles:
-                if os.path.isfile("{0}{1}".format(path, i)):
-                    with open(path + i, "r") as in_f:
+        code = "utf-8"
+        with open(path + outfile, 'w', encoding=code) as out_f:
+            for f in infiles:
+                if os.path.isfile("{0}{1}".format(path, f)):
+                    # checking the encoding before read the file
+                    code = Utils.check_encoding(path, f)
+                    with open(path + f, "r", encoding=code) as in_f:
                         for line in in_f:
                             out_f.write(line)
 
@@ -770,12 +774,10 @@ class Update(object):
             if check_for_local_repos(repo) is True:
                 continue
             print("{0}Check repository [{1}{2}{3}] ... "
-                             "{4}".format(
-                                    self.meta.color["GREY"],
-                                    self.meta.color["CYAN"], repo,
-                                    self.meta.color["GREY"],
-                                    self.meta.color["ENDC"]), end="")
-            print(end="", flush=True)
+                  "{4}".format(self.meta.color["GREY"],
+                               self.meta.color["CYAN"], repo,
+                               self.meta.color["GREY"],
+                               self.meta.color["ENDC"]), end="", flush=True)
             if repo in default:
                 exec("{0}.{1}()".format(self._init, repo))
                 print(self.done, end="")

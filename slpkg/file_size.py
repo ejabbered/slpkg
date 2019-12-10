@@ -23,7 +23,7 @@
 
 
 import os
-import requests
+import urllib3
 
 
 class FileSize:
@@ -31,15 +31,15 @@ class FileSize:
     """
     def __init__(self, registry):
         self.registry = registry
+        self.http = urllib3.PoolManager()
 
     def server(self):
         """Returns the size of remote files
         """
         try:
-            r = requests.head(self.registry)
+            r = self.http.request("GET", self.registry)
             return int(r.headers["Content-Length"])
-        except (requests.exceptions.Timeout,
-                requests.exceptions.ConnectionError):
+        except urllib3.exceptions.NewConnectionError:
             return " "
 
     def local(self):
