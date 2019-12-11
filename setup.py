@@ -37,7 +37,7 @@ except ImportError:
 docs_requires = []
 tests_requires = []
 install_requires = [
-    "requests>=2.22.0"
+    "urllib3>=1.25.7"
 ]
 optional_requires = [
     "pythondialog>=3.5.0",
