@@ -104,6 +104,10 @@ to the directory '`/etc/slpkg`'.
 Stay updated, see SUN [(Slackware Update Notifier)](https://gitlab.com/dslackw/sun)
 
 
+##### Dependencies
+
+* [urllib3](https://slackbuilds.org/repository/14.2/python/python/-urllib3/) is a powerful, sanity-friendly HTTP client for Python.
+
 ##### Optional dependencies
 
 * [python2-pythondialog](http://slackbuilds.org/repository/14.2/python/python2-pythondialog/) for dialog box interface
