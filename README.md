@@ -1,4 +1,4 @@
-# slpkg 3.7.2
+# slpkg 3.7.3
 
 Slpkg is a powerful software package manager that installs, updates, and removes packages on
 [Slackware](http://www.slackware.com/) based systems. It automatically computes dependencies and
@@ -16,7 +16,7 @@ display warning messages, etc.
 
 #### Asciicast:
 
-[<img src="https://asciinema.org/a/3uFNAOX8o16AmKKJDIvdezPBa"  width="250"/>](https://asciinema.org/a/3uFNAOX8o16AmKKJDIvdezPBa)
+[<img src="https://asciinema.org/a/3uFNAOX8o16AmKKJDIvdezPBa"  width="250">](https://asciinema.org/a/3uFNAOX8o16AmKKJDIvdezPBa)
 
 
 ##### Copyright

@@ -1,3 +1,10 @@
+3.7.3 - 11/12/2019
+FIxed:
+- Bugfix: Slackware-current from Alien Bob 20191130 #119
+- Improving call class methods for reposiory updating
+- Replace requests dependency with urllib3
+- Code style to python3 compatibility
+
 3.7.2 - 06/12/2019
 Fixed:
 - Bugfix handle requests raise ConnectionError

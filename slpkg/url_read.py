@@ -22,7 +22,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
-import requests
+import urllib3
 
 from slpkg.__metadata__ import MetaData as _meta_
 
@@ -33,15 +33,15 @@ class URL:
     def __init__(self, link):
         self.link = link
         self.meta = _meta_
+        self.http = urllib3.PoolManager()
 
     def reading(self):
         """Open url and read
         """
         try:
-            f = requests.get(self.link)
-            return f.text
-        except (requests.exceptions.Timeout,
-                requests.exceptions.ConnectionError):
+            f = self.http.request('GET', self.link)
+            return f.data.decode("utf-8")
+        except urllib3.exceptions.NewConnectionError:
             print("\n{0}Can't read the file '{1}'{2}".format(
                 self.meta.color["RED"], self.link.split("/")[-1],
                 self.meta.color["ENDC"]))

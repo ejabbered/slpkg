@@ -102,6 +102,16 @@ class Utils:
         else:
             return file_name
 
+    @staticmethod
+    def check_encoding(path, f):
+        """Checking the file encoding default is utf-8
+        """
+        try:
+            with open(path + f, "r") as ftest:
+                ftest.read()
+        except UnicodeDecodeError:
+            return "ISO-8859-1"
+
     def debug(self, test):
         """Function used for print some stuff for debugging
         """

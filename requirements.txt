@@ -11,4 +11,4 @@
 # perl 5 language and graph-easy >= 0.75 (drawing dependencies ascii diagram)
 # python3-pythondialog >= 3.5.0 (Python interface to the UNIX dialog utility)
 
-python-requests >= 2.22.0
+urllib3 >= 1.25.7
