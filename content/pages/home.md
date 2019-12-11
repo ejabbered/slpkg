@@ -106,7 +106,7 @@ Stay updated, see SUN [(Slackware Update Notifier)](https://gitlab.com/dslackw/s
 
 ##### Dependencies
 
-* [urllib3](https://slackbuilds.org/repository/14.2/python/python/-urllib3/) is a powerful, sanity-friendly HTTP client for Python.
+* [urllib3](https://slackbuilds.org/repository/14.2/python/python-urllib3/) is a powerful, sanity-friendly HTTP client for Python.
 
 ##### Optional dependencies
 
