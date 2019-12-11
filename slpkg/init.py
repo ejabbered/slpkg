@@ -752,10 +752,10 @@ class Initialization:
         Update().repository(only)
 
 
-class Update(object):
+class Update:
 
     def __init__(self):
-        self._init = "Initialization(False)"
+        self.initialization = globals()['Initialization'](False)
         self.meta = _meta_
         self.done = "{0}Done{1}\n".format(self.meta.color["GREY"],
                                           self.meta.color["ENDC"])
@@ -779,7 +779,8 @@ class Update(object):
                                self.meta.color["GREY"],
                                self.meta.color["ENDC"]), end="", flush=True)
             if repo in default:
-                exec("{0}.{1}()".format(self._init, repo))
+                update = getattr(self.initialization, repo)
+                update()
                 print(self.done, end="")
             elif repo in enabled:
                 Initialization(False).custom(repo)
