@@ -40,7 +40,7 @@ class URL:
         """
         try:
             f = self.http.request('GET', self.link)
-            return f.data.decode("utf-8")
+            return f.data.decode("utf-8", "ignore")
         except urllib3.exceptions.NewConnectionError:
             print("\n{0}Can't read the file '{1}'{2}".format(
                 self.meta.color["RED"], self.link.split("/")[-1],
