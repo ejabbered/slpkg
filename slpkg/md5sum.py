@@ -33,3 +33,11 @@ def md5(source):
     with open(source, "rb") as file_to_check:
         data = file_to_check.read()
         return hashlib.md5(data).hexdigest()
+
+
+def test_md5(source="superuser.py"):
+    """Testing hashing with pytest"""
+    source = source.replace("%2B", "+")
+    with open(source, "rb") as file_to_check:
+        data = file_to_check.read()
+        assert hashlib.md5(data).hexdigest() == "e6cebdf37fbc1b8e9d3c5e3e53b300c1"
