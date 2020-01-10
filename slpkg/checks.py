@@ -33,6 +33,7 @@ class Updates:
     """
     def __init__(self, repo):
         self.repo = repo
+        self.meta = _meta_
         self.green = _meta_.color["GREEN"]
         self.grey = _meta_.color["GREY"]
         self.endc = _meta_.color["ENDC"]
@@ -120,7 +121,7 @@ class Updates:
     def print_status(self, repo):
         """Print status
         """
-        print("  {0}{1}{2}".format(repo, " " * (19 - len(repo)), self.st))
+        print(f"  {repo}{' ' * (19 - len(repo))}{self.st}")
 
     def summary(self):
         """Print summary
