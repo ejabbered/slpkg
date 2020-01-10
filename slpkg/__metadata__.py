@@ -40,7 +40,7 @@ def update_repositories(repositories, conf_path):
     """
     Upadate with user custom repositories
     """
-    repo_file = "{0}custom-repositories".format(conf_path)
+    repo_file = f"{conf_path}custom-repositories"
     if os.path.isfile(repo_file):
         f = open(repo_file, "r")
         repositories_list = f.read()
@@ -90,11 +90,11 @@ class MetaData:
     slack_rel = "stable"
 
     # Configuration path
-    conf_path = "/etc/{0}/".format(__all__)
+    conf_path = f"/etc/{__all__}/"
 
     # tmp paths
     tmp = "/tmp/"
-    tmp_path = "{0}{1}/".format(tmp, __all__)
+    tmp_path = f"{tmp}{__all__}/"
 
     # Default configuration values
     _conf_slpkg = {
@@ -138,8 +138,8 @@ class MetaData:
     # read value from configuration file
     repositories = []
     for files in ["slpkg.conf", "repositories.conf"]:
-        if os.path.isfile("%s%s" % (conf_path, files)):
-            f = open("%s%s" % (conf_path, files), "r")
+        if os.path.isfile(f"{conf_path}{files}"):
+            f = open(f"{conf_path}{files}", "r")
             conf = f.read()
             f.close()
             for line in conf.splitlines():
@@ -217,8 +217,8 @@ class MetaData:
             "ENDC": ""
         }
 
-    CHECKSUMS_link = ("https://gitlab.com/{0}/{1}/raw/"
-                      "master/CHECKSUMS.md5".format(__author__, __all__))
+    CHECKSUMS_link = (f"https://gitlab.com/{__author__}/{__all__}/raw/"
+                      "master/CHECKSUMS.md5")
 
     # file spacer
     sp = "-"
