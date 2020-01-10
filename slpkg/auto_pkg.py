@@ -33,7 +33,6 @@ class Auto:
     """
     def __init__(self, packages):
         self.packages = packages
-        self.meta = _meta_
         self.green = _meta_.color["GREEN"]
         self.red = _meta_.color["RED"]
         self.cyan = _meta_.color["CYAN"]
