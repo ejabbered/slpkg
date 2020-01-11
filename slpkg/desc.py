@@ -38,20 +38,17 @@ class PkgDesc:
         self.paint = paint
         self.meta = _meta_
         self.msg = Msg()
-        self.COLOR = ""
         self.lib = ""
-        color_text = {
+        self.color = {
             "red": self.meta.color["RED"],
             "green": self.meta.color["GREEN"],
             "yellow": self.meta.color["YELLOW"],
             "cyan": self.meta.color["CYAN"],
             "grey": self.meta.color["GREY"],
             "": ""
-        }
-        self.COLOR = color_text[self.paint]
+        }[self.paint]
         if self.repo in self.meta.repositories and self.repo != "sbo":
-            self.lib = self.meta.lib_path + "{0}_repo/PACKAGES.TXT".format(
-                self.repo)
+            self.lib = f"{self.meta.lib_path}{self.repo}_repo/PACKAGES.TXT"
 
     def view(self):
         """Print package description by repository
@@ -69,8 +66,7 @@ class PkgDesc:
                     if count == 11:
                         break
         if description:
-            print("{0}{1}{2}".format(self.COLOR, description,
-                                     self.meta.color["ENDC"]))
+            print(f"{self.color}{description}{self.meta.color['ENDC']}")
         else:
             self.msg.pkg_not_found("", self.name, "No matching", "\n")
             raise SystemExit(1)

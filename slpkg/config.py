@@ -36,6 +36,10 @@ class Config:
     def __init__(self):
         self.config_file = "/etc/slpkg/slpkg.conf"
         self.meta = _meta_
+        self.green = _meta_.color["GREEN"]
+        self.red = _meta_.color["RED"]
+        self.cyan = _meta_.color["CYAN"]
+        self.endc = _meta_.color["ENDC"]
 
     def view(self):
         """View slpkg config file
@@ -70,25 +74,20 @@ class Config:
         read_conf = Utils().read_file(self.config_file)
         for line in read_conf.splitlines():
             if not line.startswith("#") and line.split("=")[0] in conf_args:
-                print("{0}".format(line))
+                print(line)
             else:
-                print("{0}{1}{2}".format(self.meta.color["CYAN"], line,
-                                         self.meta.color["ENDC"]))
-        print()   # new line at end
+                print(f"{self.cyan}{line}{self.endc}", end="\n")
 
     def edit(self):
         """Edit configuration file
         """
-        subprocess.call("{0} {1}".format(self.meta.editor,
-                                         self.config_file), shell=True)
+        subprocess.call(f"{self.meta.editor} {self.config_file}", shell=True)
 
     def reset(self):
         """Reset slpkg.conf file with default values
         """
         shutil.copy2(self.config_file + ".orig", self.config_file)
         if filecmp.cmp(self.config_file + ".orig", self.config_file):
-            print("{0}The reset was done{1}".format(
-                self.meta.color["GREEN"], self.meta.color["ENDC"]))
+            print(f"{self.green}The reset was done{self.endc}")
         else:
-            print("{0}Reset failed{1}".format(self.meta.color["RED"],
-                                              self.meta.color["ENDC"]))
+            print(f"{self.red}Reset failed{self.endc}")

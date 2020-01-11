@@ -36,6 +36,10 @@ class PackageHealth:
     def __init__(self, mode):
         self.mode = mode
         self.meta = _meta_
+        self.green = _meta_.color["GREEN"]
+        self.red = _meta_.color["RED"]
+        self.yellow = _meta_.color["YELLOW"]
+        self.endc = _meta_.color["ENDC"]
         self.msg = Msg()
         self.pkg_path = _meta_.pkg_path
         self.installed = []
@@ -56,9 +60,7 @@ class PackageHealth:
                     "/incoming/" not in line):
                 if not os.path.isfile(r"/" + line):
                     self.cn += 1
-                    print("Not installed: {0}/{1}{2} --> {3}".format(
-                        self.meta.color["RED"], line, self.meta.color["ENDC"],
-                        pkg))
+                    print(f"Not installed: {self.red}/{line}{self.endc} --> {pkg}")
                 elif not self.mode:
                     print(line)
         except IOError:
@@ -76,7 +78,7 @@ class PackageHealth:
                 with open(self.pkg_path + pkg, "r") as fopen:
                     for line in fopen:
                         if "\0" in line:
-                            print("Null: {0}").format(line)
+                            print(f"Null: {line}")
                             break
                         self.cf += 1     # count all files
                         self.lf += 1     # count each package files
@@ -90,18 +92,14 @@ class PackageHealth:
         print()
         per = int(round((float(self.cf) / (self.cf + self.cn)) * 100))
         if per > 90:
-            color = self.meta.color["GREEN"]
+            color = self.green
         elif per < 90 and per > 60:
-            color = self.meta.color["YELLOW"]
+            color = self.yellow
         elif per < 60:
-            color = self.meta.color["RED"]
-        health = "{0}{1}%{2}".format(color, str(per), self.meta.color["ENDC"])
+            color = self.red
+        health = f"{color}{str(per)}%{self.endc}"
         self.msg.template(78)
-        print("| {0}{1}{2}{3}{4}".format(
-            "Total files", " " * 7, "Not installed", " " * 40, "Health"))
+        print(f"| Total files{' ' * 7}Not installed{' ' * 40}Health")
         self.msg.template(78)
-        print("| {0}{1}{2}{3}{4:>4}".format(
-            self.cf, " " * (18-len(str(self.cf))),
-            self.cn, " " * (55-len(str(self.cn))),
-            health))
+        print(f"| {self.cf}{' ' * (18-len(str(self.cf)))}{self.cn}{' ' * (55-len(str(self.cn)))}{health:>4}")
         self.msg.template(78)
