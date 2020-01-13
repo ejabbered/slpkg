@@ -33,6 +33,8 @@ class URL:
     def __init__(self, link):
         self.link = link
         self.meta = _meta_
+        self.red = _meta_.color["RED"]
+        self.endc = _meta_.color["ENDC"]
         self.http = urllib3.PoolManager()
 
     def reading(self):
@@ -42,7 +44,5 @@ class URL:
             f = self.http.request('GET', self.link)
             return f.data.decode("utf-8", "ignore")
         except urllib3.exceptions.NewConnectionError:
-            print("\n{0}Can't read the file '{1}'{2}".format(
-                self.meta.color["RED"], self.link.split("/")[-1],
-                self.meta.color["ENDC"]))
+            print(f"\n{self.red}Can't read the file '{self.link.split('/')[-1]}'{self.endc}")
             return " "

@@ -47,8 +47,8 @@ def sbo_upgrade(skip, flag):
         name = split_package(pkg)[0]
         ver = split_package(pkg)[1]
         if (name in data and name not in skip and name not in blacklist):
-            sbo_package = ("{0}-{1}".format(name, SBoGrep(name).version()))
-            package = ("{0}-{1}".format(name, ver))
+            sbo_package = f"{name}-{SBoGrep(name).version()}"
+            package = f"{name}-{ver}"
             if parse_version(sbo_package) > parse_version(package):
                 upgrade_names.append(name)
     Msg().done()

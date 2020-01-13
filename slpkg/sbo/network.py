@@ -94,7 +94,7 @@ class SBoNetwork:
         from slackbuilds.org
         """
         if self.sbo_url and self.name not in self.blacklist:
-            self.prgnam = ("{0}-{1}".format(self.name, self.sbo_version))
+            self.prgnam = f"{self.name}-{self.sbo_version}"
             self.view_sbo()
             while True:
                 self.read_choice()
@@ -147,10 +147,10 @@ class SBoNetwork:
         commands = {
             "r": "README",
             "R": "README",
-            "s": "{0}.SlackBuild".format(self.name),
-            "S": "{0}.SlackBuild".format(self.name),
-            "f": "{0}.info".format(self.name),
-            "F": "{0}.info".format(self.name),
+            "s": f"{self.name}.SlackBuild",
+            "S": f"{self.name}.SlackBuild",
+            "f": f"{self.name}.info",
+            "F": f"{self.name}.info",
             "o": "doinst.sh",
             "O": "doinst.sh",
             "d": "download",
@@ -171,8 +171,7 @@ class SBoNetwork:
         }
         try:
             message = "  Choose an option > "
-            self.choice = input("{0}{1}{2}".format(self.grey, message,
-                                                       self.endc))
+            self.choice = input(f"{self.grey}{message}{self.endc}")
         except EOFError:
             print()
             raise SystemExit()
@@ -263,49 +262,27 @@ class SBoNetwork:
             fix_sp = ""
         print()   # new line at start
         self.msg.template(78)
-        print("| {0}{1}SlackBuilds Repository{2}".format(" " * 28, self.grey,
-                                                         self.endc))
+        print(f"| {' ' * 28}{self.grey}SlackBuilds Repository{self.endc}")
         self.msg.template(78)
-        print("| {0} > {1} > {2}{3}{4}".format(slack_ver(),
-                                               sbo_url.split("/")[-3].title(),
-                                               self.cyan, self.name,
-                                               self.endc))
+        print(f"| {slack_ver()} > {sbo_url.split('/')[-3].title()} > {self.cyan}{self.name}{self.endc}")
         self.msg.template(78)
-        print("| {0}Package url{1}: {2}".format(self.green, self.endc,
-                                                sbo_url))
+        print(f"| {self.green}Package url{self.endc}: {sbo_url}")
         self.msg.template(78)
-        print("| {0}Description: {1}{2}".format(self.green,
-                                                self.endc, self.sbo_desc))
-        print("| {0}SlackBuild: {1}{2}".format(self.green, self.endc,
-                                               self.sbo_dwn.split("/")[-1]))
-        print("| {0}Sources: {1}{2}".format(
-            self.green, self.endc,
-            (", ".join([src.split("/")[-1] for src in self.source_dwn]))))
-        print("| {0}Requirements: {1}{2}".format(self.yellow,
-                                                 self.endc,
-                                                 ", ".join(self.sbo_req)))
+        print(f"| {self.green}Description: {self.endc}{self.sbo_desc}")
+        print(f"| {self.green}SlackBuild: {self.endc}{self.sbo_dwn.split('/')[-1]}")
+        print(f"| {self.green}Sources: {self.endc}{', '.join([src.split('/')[-1] for src in self.source_dwn])}")
+        print(f"| {self.yellow}Requirements: {self.endc}{', '.join(self.sbo_req)}")
         self.msg.template(78)
-        print("| {0}R{1}{2}EADME               View the README file".format(
-            self.red, self.endc, br2))
-        print("| {0}S{1}{2}lackBuild           View the .SlackBuild "
-              "file".format(self.red, self.endc, br2))
-        print("| In{0}{1}f{2}{3}o{4}                View the .info "
-              "file".format(br1, self.red, self.endc, br2, fix_sp))
+        print(f"| {self.red}R{self.endc}{br2}EADME               View the README file")
+        print(f"| {self.red}S{self.endc}{br2}lackBuild           View the .SlackBuild file")
+        print(f"| In{br1}{self.red}f{self.endc}{br2}o{fix_sp}                View the .info file")
         if "doinst.sh" in self.sbo_files.split():
-            print("| D{0}{1}o{2}{3}inst.sh{4}           View the doinst.sh "
-                  "file".format(br1, self.red, self.endc, br2, fix_sp))
-        print("| {0}D{1}{2}ownload             Download this package".format(
-            self.red, self.endc, br2))
-        print("| {0}B{1}{2}uild                Download and build".format(
-            self.red, self.endc, br2))
-        print("| {0}I{1}{2}nstall              Download/Build/Install".format(
-            self.red, self.endc, br2))
-        print("| {0}C{1}{2}lear                Clear screen".format(self.red,
-                                                                    self.endc,
-                                                                    br2))
-        print("| {0}Q{1}{2}uit                 Quit".format(self.red,
-                                                            self.endc, br2))
-
+            print(f"| D{br1}{self.red}o{self.endc}{br2}inst.sh{fix_sp}           View the doinst.sh file")
+        print(f"| {self.red}D{self.endc}{br2}ownload             Download this package")
+        print(f"| {self.red}B{self.endc}{br2}uild                Download and build")
+        print(f"| {self.red}I{self.endc}{br2}nstall              Download/Build/Install")
+        print(f"| {self.red}C{self.endc}{br2}lear                Clear screen")
+        print(f"| {self.red}Q{self.endc}{br2}uit                 Quit")
         self.msg.template(78)
 
     def with_checklist(self):
@@ -321,7 +298,7 @@ class SBoNetwork:
         if data:
             text = "Press 'spacebar' to choose SlackBuild for view"
             title = " SlackBuilds.org "
-            backtitle = "{0} {1}".format(_meta_.__all__, _meta_.__version__)
+            backtitle = f"{_meta_.__all__} {_meta_.__version__}"
             status = False
             pkg = DialogUtil(data, text, title, backtitle, status).checklist()
             if pkg and len(pkg) > 1:
@@ -367,8 +344,7 @@ class SBoNetwork:
         if self.FAULT:
             print()
             self.msg.template(78)
-            print("| Package {0} {1} {2} {3}".format(self.prgnam, self.red,
-                                                     self.FAULT, self.endc))
+            print(f"| Package {self.prgnam} {self.red} {self.FAULT} {self.endc}")
             self.msg.template(78)
         else:
             sources = []
@@ -391,6 +367,5 @@ class SBoNetwork:
         """Install SBo package found in /tmp directory.
         """
         binary = slack_package(self.prgnam)
-        print("[ {0}Installing{1} ] --> {2}".format(self.green, self.endc,
-                                                    self.name))
+        print(f"[ {self.green}Installing{self.endc} ] --> {self.name}")
         PackageManager(binary).upgrade(flag="--install-new")
