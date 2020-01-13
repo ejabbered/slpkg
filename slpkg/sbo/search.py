@@ -34,7 +34,7 @@ def sbo_search_pkg(name):
     return url
     """
     repo = Repo().default_repository()["sbo"]
-    sbo_url = "{0}{1}/".format(repo, slack_ver())
+    sbo_url = f"{repo}{slack_ver()}/"
     SLACKBUILDS_TXT = Utils().read_file(
         _meta_.lib_path + "sbo_repo/SLACKBUILDS.TXT")
     for line in SLACKBUILDS_TXT.splitlines():

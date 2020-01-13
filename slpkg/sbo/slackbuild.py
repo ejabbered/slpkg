@@ -57,6 +57,10 @@ class SBoInstall:
         pkg_security(self.slackbuilds)
         self.flag = flag
         self.meta = _meta_
+        self.green = _meta_.color["GREEN"]
+        self.yellow = _meta_.color["YELLOW"]
+        self.grey = _meta_.color["GREY"]
+        self.endc = _meta_.color["ENDC"]
         self.msg = Msg()
         self.arch = SBoArch().get()
         self.build_folder = self.meta.build_path
@@ -145,19 +149,15 @@ class SBoInstall:
             if self.match and [""] != self.slackbuilds:
                 print("\nMatching summary")
                 print("=" * 79)
-                print("Total {0} matching packages\n".format(count_total))
+                print(f"Total {count_total} matching packages\n")
                 raise SystemExit(1)
             print("\nInstalling summary")
             print("=" * 79)
-            print("{0}Total {1} {2}.".format(
-                self.meta.color["GREY"], count_total,
-                self.msg.pkg(count_total)))
-            print("{0} {1} will be installed, {2} already installed and "
-                  "{3} {4}".format(self.count_uni,
-                                   self.msg.pkg(self.count_uni),
-                                   self.count_ins, self.count_upg,
-                                   self.msg.pkg(self.count_upg)))
-            print("will be upgraded.{0}\n".format(self.meta.color["ENDC"]))
+            print(f"{self.grey}Total {count_total} {self.msg.pkg(count_total)}.")
+            print(f"{self.count_uni} {self.msg.pkg(self.count_uni)} will be installed, "
+                  f"{self.count_ins} already installed and "
+                  f"{self.count_upg} {self.msg.pkg(self.count_upg)}")
+            print(f"will be upgraded.{self.endc}\n")
             self.continue_to_install()
         else:
             self.msg.not_found(self.is_upgrade)
@@ -227,7 +227,7 @@ class SBoInstall:
         sbo_versions, sources = [], []
         for sbo in slackbuilds:
             status(0.02)
-            sbo_ver = "{0}-{1}".format(sbo, SBoGrep(sbo).version())
+            sbo_ver = f"{sbo}-{SBoGrep(sbo).version()}"
             sbo_versions.append(sbo_ver)
             sources.append(SBoGrep(sbo).source())
         return [sbo_versions, sources]
@@ -250,13 +250,12 @@ class SBoInstall:
         """View top template
         """
         self.msg.template(78)
-        print("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}".format(
-            "| Package", " " * 17,
-            "New version", " " * 8,
-            "Arch", " " * 4,
-            "Build", " " * 2,
-            "Repos", " " * 10,
-            "Size"))
+        print(f"| Packages{' ' * 16}"
+              f"New version{' ' * 8}"
+              f"Arch{' ' * 4}"
+              f"Build{' ' * 2}"
+              f"Repos{' ' * 10}"
+              f"Size")
         self.msg.template(78)
 
     def view_packages(self, *args):
@@ -267,12 +266,11 @@ class SBoInstall:
         args[3] arch
         """
         ver = GetFromInstalled(args[1]).version()
-        print("  {0}{1}{2}{3} {4}{5} {6}{7}{8}{9}{10}{11:>11}{12}".format(
-            args[0], args[1] + ver, self.meta.color["ENDC"],
-            " " * (23-len(args[1] + ver)), args[2],
-            " " * (18-len(args[2])), args[3],
-            " " * (15-len(args[3])), "",
-            "", "SBo", "", "").rstrip())
+        print(f"  {args[0]}{args[1] + ver}{self.endc} "
+              f"{' ' * (23-len(args[1] + ver))}{args[2]}"
+              f"{' ' * (18-len(args[2]))} {args[3]}"
+              f"{' ' * (15-len(args[3]))}{''}"
+              f"{''}SBo{''}{'':>11}{''}")
 
     def tag(self, sbo):
         """Tag with color green if package already installed,
@@ -337,9 +335,7 @@ class SBoInstall:
                 self.msg.template(78)
             elif self.unst[0] in src_link or self.unst[1] in src_link:
                 self.msg.template(78)
-                print("| Package {0} {1}{2}{3}".format(
-                    prgnam, self.meta.color["RED"], "".join(src_link),
-                    self.meta.color["ENDC"]))
+                print(f"| Package {prgnam} {self.red}{''.join(src_link)}{self.endc}")
                 self.msg.template(78)
             else:
                 sbo_url = sbo_search_pkg(pkg)
@@ -358,14 +354,10 @@ class SBoInstall:
                 binary = slack_package(prgnam)
                 if os.path.isfile("".join(binary)):
                     if GetFromInstalled(pkg).name() == pkg:
-                        print("[ {0}Upgrading{1} ] --> {2}".format(
-                            self.meta.color["YELLOW"],
-                            self.meta.color["ENDC"], prgnam))
+                        print(f"[ {self.yellow}Upgrading{self.endc} ] --> {prgnam}")
                         upgraded.append(prgnam)
                     else:
-                        print("[ {0}Installing{1} ] --> {2}".format(
-                            self.meta.color["GREEN"],
-                            self.meta.color["ENDC"], prgnam))
+                        print(f"[ {self.green}Installing{self.endc} ] --> {prgnam}")
                         installs.append(prgnam)
                     if ("--rebuild" in self.flag and
                             GetFromInstalled(pkg).name() == pkg):
@@ -384,8 +376,8 @@ class SBoInstall:
             ins_ver = "0"
         if parse_version(sbo_ver) < parse_version(ins_ver):
             self.msg.template(78)
-            print("| Package {0} don't downgrade, "
-                  "setting by user".format(name))
+            print(f"| Package {name} don't downgrade, "
+                  f"setting by user")
             self.msg.template(78)
             return True
 
@@ -393,9 +385,8 @@ class SBoInstall:
         """Alternative repository for sbo sources"""
         sources = []
         name = "-".join(prgnam.split("-")[:-1])
-        category = "{0}/{1}/".format(sbo_link.split("/")[-2], name)
+        category = f"{sbo_link.split('/')[-2]}/{name}/"
         for link in src_link:
             source = link.split("/")[-1]
-            sources.append("{0}{1}{2}".format(self.meta.sbosrcarch_link,
-                                              category, source))
+            sources.append(f"{self.meta.sbosrcarch_link}{category}{source}")
         return sources
