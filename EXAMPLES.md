@@ -5,7 +5,7 @@
 
 First you need to run '`slpkg update`' to synchronize the lists of packages, also every time you add
 a new repository. To add or remove repositories must edit the file '`/etc/slpkg/repositories.conf`'
-or run '`slpkg repo-enable`' (python2-pythondialog required). Add custom repositories with the 
+or run '`slpkg repo-enable`' (python3-pythondialog required). Add custom repositories with the
 command '`slpkg add-repo <repository name> <URL>`' and after run '`slpkg update`' to update package
 list. View list of repositories with the command `slpkg repo-list` or get repository information
 with the command '`slpkg repo-info <repository>`'.
@@ -74,7 +74,7 @@ remove packages from your system events. Notable mention you must give in the co
 after editing configuration file '`/etc/slpkg/slpkg.conf`' (default is disable) or add additional
 option '`--deps`'. Also you can check if the packages they are used as dependency with additional
 option '`--check-deps`'. Option '`--tag`' allow to remove packages with by TAG. Optional you can use
-the dialog utility with the additional option '`--checklist`' (require python2-pythondialog). Rmove
+the dialog utility with the additional option '`--checklist`' (require python3-pythondialog). Rmove
 third-party packages with the option '`--third-party`'.
 
 The command '`slpkg -d <packages>`' is useful to print the entire contents of a package.
@@ -85,7 +85,7 @@ Some examples you will see below.
 ##### Slpkg Examples
 
 Enable or disable default repositories, edit '`/etc/slpkg/repositories.conf`' file or with the command.
-(require pythondialog, install with '`slpkg -s sbo python2-pythondialog`'):
+(require pythondialog, install with '`slpkg -s sbo python3-pythondialog`'):
 
 ```
 $ slpkg repo-enable

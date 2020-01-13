@@ -778,7 +778,7 @@ class ArgParse:
             from dialog import Dialog
         except ImportError:
             print("Require 'pythondialog': Install with 'slpkg -s sbo "
-                  "python2-pythondialog'")
+                  "python3-pythondialog'")
             raise SystemExit()
 
 
