@@ -36,6 +36,9 @@ class RepoEnable:
     """
     def __init__(self):
         self.meta = _meta_
+        self.red = _meta_.color["RED"]
+        self.grey = _meta_.color["GREY"]
+        self.endc = _meta_.color["ENDC"]
         self.msg = Msg()
         self.tag = "[REPOSITORIES]"
         self.tag_line = False
@@ -101,8 +104,7 @@ Keys: SPACE   select or deselect the highlighted repositories,
         """Update repositories.conf file with enabled or disabled
         repositories
         """
-        with open("{0}{1}".format(self.meta.conf_path,
-                                  self.repositories_conf), "w") as new_conf:
+        with open(f"{self.meta.conf_path}{self.repositories_conf}", "w") as new_conf:
             for line in self.conf.splitlines():
                 line = line.lstrip()
                 if self.tag in line:
@@ -130,15 +132,13 @@ Keys: SPACE   select or deselect the highlighted repositories,
         """
         total_enabled = ", ".join(self.selected)
         if len(total_enabled) < 1:
-            total_enabled = ("{0}Are you crazy? This is a package "
-                             "manager for packages :p{1}".format(
-                                 self.meta.color["RED"],
-                                 self.meta.color["ENDC"]))
+            total_enabled = (f"{self.red}Are you crazy? This is a package "
+                             f"manager for packages :p{self.endc}")
         self.msg.template(78)
         print("| Enabled repositories:")
         self.msg.template(78)
-        print("| {0}".format(total_enabled))
+        print(f"| {total_enabled}")
         self.msg.template(78)
-        print("{0}Total {1}/{2} repositories enabled.{3}\n".format(
-            self.meta.color["GREY"], len(self.selected),
-            len(self.enabled + self.disabled), self.meta.color["ENDC"]))
+        print(f"{self.grey}Total {len(self.selected)}/{len(self.enabled + self.disabled)} "
+              f"repositories enabled.{self.endc}\n")
+        #.format(self.meta.color["GREY"], len(self.selected), len(self.enabled + self.disabled), self.meta.color["ENDC"]))
