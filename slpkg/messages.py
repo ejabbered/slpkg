@@ -32,32 +32,34 @@ class Msg:
     """
     def __init__(self):
         self.meta = _meta_
+        self.grey = _meta_.color["GREY"]
+        self.red = _meta_.color["RED"]
+        self.cyan = _meta_.color["CYAN"]
+        self.endc = _meta_.color["ENDC"]
 
     def pkg_not_found(self, bol, pkg, message, eol):
         """Print message when package not found
         """
-        print("{0}No such package {1}: {2}{3}".format(bol, pkg, message, eol))
+        print(f"{bol}No such package {pkg}: {message}{eol}")
 
     def pkg_found(self, prgnam):
         """Print message when package found
         """
-        print("| Package {0} is already installed".format(prgnam))
+        print(f"| Package {prgnam} is already installed")
 
     def pkg_installed(self, pkg):
         """Print message when package installed
         """
-        print("| Package {0} installed".format(pkg))
+        print(f"| Package {pkg} installed")
 
     def build_FAILED(self, prgnam):
         """Print error message if build failed
         """
         self.template(78)
-        print("| Some error on the package {0} [ {1}FAILED{2} ]".format(
-            prgnam, self.meta.color["RED"], self.meta.color["ENDC"]))
+        print(f"| Some error on the package {prgnam} [ {self.red}FAILED{self.endc} ]")
         self.template(78)
-        print("| See the log file in '{0}/var/log/slpkg/sbo/build_logs{1}' "
-              "directory or read the README file".format(
-                  self.meta.color["CYAN"], self.meta.color["ENDC"]))
+        print(f"| See the log file in '{self.cyan}/var/log/slpkg/sbo/build_logs{self.endc}' "
+              f"directory or read the README file")
         self.template(78)
         print()   # new line at end
 
@@ -69,29 +71,22 @@ class Msg:
     def checking(self):
         """Message checking
         """
-        print("{0}Checking...{1}  ".format(self.meta.color["GREY"],
-                                           self.meta.color["ENDC"]), end="",
-                                           flush=True)
+        print(f"{self.grey}Checking...{self.endc}  ", end="", flush=True)
 
     def reading(self):
         """Message reading
         """
-        print("{0}Reading package lists...{1}  ".format(
-            self.meta.color["GREY"], self.meta.color["ENDC"]), end="",
-            flush=True)
+        print(f"{self.grey}Reading package lists...{self.endc}  ", end="", flush=True)
 
     def resolving(self):
         """Message resolving
         """
-        print("{0}Resolving dependencies...{1}  ".format(
-            self.meta.color["GREY"], self.meta.color["ENDC"]), end="",
-            flush=True)
+        print(f"{self.grey}Resolving dependencies...{self.endc}  ", end="", flush=True)
 
     def done(self):
         """Message done
         """
-        print("\b{0}Done{1}\n".format(self.meta.color["GREY"],
-                                      self.meta.color["ENDC"]), end="")
+        print(f"\b{self.grey}Done{self.endc}\n", end="")
 
     def pkg(self, count):
         """Print singular plural
@@ -135,12 +130,11 @@ class Msg:
         """
         print()
         self.template(78)
-        print("| {0}{1}*** WARNING ***{2}").format(
-            " " * 27, self.meta.color["RED"], self.meta.color["ENDC"])
+        print(f"| {' ' * 27}{self.red}*** WARNING ***{self.endc}")
         self.template(78)
-        print("| Before proceed with the package '{0}' will you must read\n"
-              "| the README file. You can use the command "
-              "'slpkg -n {1}'").format(pkg, pkg)
+        print(f"| Before proceed with the package '{pkg}' will you must read\n"
+              f"| the README file. You can use the command "
+              f"'slpkg -n {pkg}'")
         self.template(78)
         print()
 
@@ -149,23 +143,19 @@ class Msg:
         and upgraded
         """
         self.template(78)
-        print("| Total {0} {1} installed and {2} {3} upgraded".format(
-            len(install), self.pkg(len(install)),
-            len(upgrade), self.pkg(len(upgrade))))
+        print(f"| Total {len(install)} {self.pkg(len(install))} installed and "
+              f"{len(upgrade)} {self.pkg(len(upgrade))} upgraded")
         self.template(78)
         for installed, upgraded in itertools.zip_longest(install, upgrade):
             if upgraded:
-                print("| Package {0} upgraded successfully".format(upgraded))
+                print(f"| Package {upgraded} upgraded successfully")
             if installed:
-                print("| Package {0} installed successfully".format(installed))
+                print(f"| Package {installed} installed successfully")
         self.template(78)
         print()
 
     def matching(self, packages):
         """Message for matching packages
         """
-        print("\nNot found package with the name [ {0}{1}{2} ]. "
-              "Matching packages:\nNOTE: Not dependenc"
-              "ies are resolved\n".format(self.meta.color["CYAN"],
-                                          "".join(packages),
-                                          self.meta.color["ENDC"]))
+        print(f"\nNot found package with the name [ {self.cyan}{''.join(packages)}{self.endc} ]. "
+              f"Matching packages:\nNOTE: Not dependencies are resolved\n")

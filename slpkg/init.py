@@ -779,8 +779,8 @@ def check_exists_repositories(repo):
     if check_for_local_repos(repo) is True:
         pkg_list = "PACKAGES.TXT"
         return ""
-    if not os.path.isfile(f"{_meta_.lib_path}{repo}_repo/{pkg_list}"
-    # .format(_meta_.lib_path, repo, "_repo/{0}".format(pkg_list))):
+    if not os.path.isfile(f"{_meta_.lib_path}{repo}_repo/{pkg_list}"):
+        # .format(_meta_.lib_path, repo, "_repo/{0}".format(pkg_list))):
         return repo
     return ""
 

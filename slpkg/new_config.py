@@ -51,11 +51,10 @@ class NewConfig:
         """
         self.find_new()
         for n in self.news:
-            print("{0}".format(n))
+            print(f"{n}")
         print()
         self.msg.template(78)
-        print("| Installed {0} new configuration files:".format(
-            len(self.news)))
+        print(f"| Installed {len(self.news)} new configuration files:")
         self.msg.template(78)
         self.choices()
 
@@ -76,16 +75,12 @@ class NewConfig:
     def choices(self):
         """Menu options for new configuration files
         """
-        print("| {0}K{1}{2}eep the old and .new files, no changes".format(
-            self.red, self.endc, self.br))
-        print("| {0}O{1}{2}verwrite all old configuration files with new "
-              "ones".format(self.red, self.endc, self.br))
+        print(f"| {self.red}K{self.endc}{self.br}eep the old and .new files, no changes")
+        print(f"| {self.red}O{self.endc}{self.br}verwrite all old configuration files with new ones")
         print("|  The old files will be saved with suffix .old")
-        print("| {0}R{1}{2}emove all .new files".format(
-            self.red, self.endc, self.br))
-        print("| {0}P{1}{2}rompt K, O, R, D, M option for each single "
-              "file".format(self.red, self.endc, self.br))
-        print("| {0}Q{1}{2}uit from menu".format(self.red, self.endc, self.br))
+        print(f"| {self.red}R{self.endc}{self.br}emove all .new files")
+        print(f"| {self.red}P{self.endc}{self.br}rompt K, O, R, D, M option for each single file")
+        print(f"| {self.red}Q{self.endc}{self.br}uit from menu")
         self.msg.template(78)
         try:
             choose = input("\nWhat would you like to do [K/O/R/P/Q]? ")
@@ -141,7 +136,7 @@ class NewConfig:
         """Choose what do to file by file
         """
         print()
-        prompt_ask = input("{0} [K/O/R/D/M/Q]? ".format(n))
+        prompt_ask = input(f"{n} [K/O/R/D/M/Q]? ")
         print()
         if prompt_ask in ("K", "k"):
             self.keep()
@@ -163,7 +158,7 @@ class NewConfig:
         if os.path.isfile(n):
             os.remove(n)
         if not os.path.isfile(n):
-            print("File '{0}' removed".format(n))
+            print(f"File '{n}' removed")
 
     def _overwrite(self, n):
         """Overwrite old file with new and keep file with suffix .old
@@ -195,15 +190,15 @@ class NewConfig:
                     c += 1
                     if s1 != s2:
                         break
-                print("@@ -{0},{1} +{2},{3} @@\n".format(ln, c, ln, c))
+                print(f"@@ -{ln},{c} +{ln},{c} @@\n")
                 for line in lines[-3:]:
-                    print("{0}".format(line))
+                    print(f"{line}")
                 if a is None:
                     a = ""
-                print("{0}{1}{2}{3}".format(self.red, "-", self.endc, a))
+                print(f"{self.red}-{self.endc}{a}")
                 if b is None:
                     b = ""
-                print("{0}{1}{2}{3}".format(self.green, "+", self.endc, b))
+                print(f"{self.green}+{self.endc}{b}")
                 lines = []
                 c = 0
             else:

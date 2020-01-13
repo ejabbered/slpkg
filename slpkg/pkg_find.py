@@ -45,11 +45,9 @@ class FindFromRepos:
     def find(self, pkg, flag):
         """Start to find packages and print
         """
-        print("\nPackages with name matching [ {0}{1}{2} ]\n".format(
-            self.cyan, ", ".join(pkg), self.endc))
+        print(f"\nPackages with name matching [ {self.cyan}{', '.join(pkg)}{self.endc} ]\n")
         Msg().template(78)
-        print("| {0}  {1}{2}{3}".format("Repository", "Package", " " * 54,
-                                        "Size"))
+        print(f"| Repository Package {' ' * 54}Size")
         Msg().template(78)
         for repo in _meta_.repositories:
             PACKAGES_TXT = PackageManager(pkg).list_lib(repo)
@@ -69,16 +67,12 @@ class FindFromRepos:
                         self.cache = repo
                         self.count_pkg += 1
                         ver = self.sbo_version(repo, find)
-                        print("  {0}{1}{2}{3}{4} {5}{6:>11}".format(
-                            self.cyan, repo, self.endc,
-                            " " * (12 - len(repo)),
-                            find + ver, " " * (53 - len(find + ver)),
-                            size))
+                        print(f"  {self.cyan}{repo}{self.endc}{' ' * (12 - len(repo))}{find + ver} "
+                              f"{' ' * (53 -len(find + ver))}{size:>11}")
         print("\nFound summary")
         print("=" * 79)
-        print("{0}Total found {1} packages in {2} repositories."
-              "{3}\n".format(self.grey, self.count_pkg,
-                             self.count_repo, self.endc))
+        print(f"{self.grey}Total found {self.count_pkg} packages in "
+              f"{self.count_repo} repositories.{self.endc}\n")
 
     def sbo_version(self, repo, find):
         """
