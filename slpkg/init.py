@@ -73,7 +73,7 @@ class Initialization:
         """
         repo = Repo().custom_repository()[name]
         log = self.log_path + name + "/"
-        lib = self.lib_path + "{0}_repo/".format(name)
+        lib = self.lib_path + f"{name}_repo/"
         repo_name = log[:-1].split("/")[-1]
         lib_file = "PACKAGES.TXT"
         # lst_file = ""
@@ -83,10 +83,10 @@ class Initialization:
             os.mkdir(log)
         if not os.path.exists(lib):
             os.mkdir(lib)
-        PACKAGES_TXT = "{0}{1}".format(repo, lib_file)
+        PACKAGES_TXT = f"{name}{lib_file}"
         FILELIST_TXT = ""
-        CHECKSUMS_MD5 = "{0}{1}".format(repo, md5_file)
-        ChangeLog_txt = "{0}{1}".format(repo, log_file)
+        CHECKSUMS_MD5 = f"{repo}{md5_file}"
+        ChangeLog_txt = f"{repo}{log_file}"
         if self.check:
             return self.checks_logs(log, ChangeLog_txt)
         self.down(lib, PACKAGES_TXT, repo_name)
@@ -161,10 +161,10 @@ class Initialization:
             os.mkdir(log)
         if not os.path.exists(lib):
             os.mkdir(lib)
-        SLACKBUILDS_TXT = "{0}{1}/{2}".format(repo, slack_ver(), lib_file)
+        SLACKBUILDS_TXT = f"{repo}{slack_ver()}/{lib_file}"
         FILELIST_TXT = ""
         CHECKSUMS_MD5 = ""
-        ChangeLog_txt = "{0}{1}/{2}".format(repo, slack_ver(), log_file)
+        ChangeLog_txt = f"{repo}{slack_ver()}/{log_file}"
         if self.check:
             return self.checks_logs(log, ChangeLog_txt)
         self.down(lib, SLACKBUILDS_TXT, repo_name)
@@ -187,10 +187,10 @@ class Initialization:
             os.mkdir(log)
         if not os.path.exists(lib):
             os.mkdir(lib)
-        PACKAGES_TXT = "{0}{1}/{2}".format(repo, slack_ver(), lib_file)
+        PACKAGES_TXT = f"{repo}{slack_ver()}/{lib_file}"
         FILELIST_TXT = ""
-        CHECKSUMS_MD5 = "{0}{1}/{2}".format(repo, slack_ver(), md5_file)
-        ChangeLog_txt = "{0}{1}/{2}".format(repo, slack_ver(), log_file)
+        CHECKSUMS_MD5 = f"{repo}{slack_ver()}/{md5_file}"
+        ChangeLog_txt = f"{repo}{slack_ver()}/{log_file}"
         if self.check:
             return self.checks_logs(log, ChangeLog_txt)
         self.down(lib, PACKAGES_TXT, repo_name)
@@ -221,10 +221,10 @@ class Initialization:
             ar = arch
         if self.meta.slack_rel == "current":
             ver = self.meta.slack_rel
-        PACKAGES_TXT = "{0}/{1}/{2}/{3}".format(repo, ver, ar, lib_file)
+        PACKAGES_TXT = f"{repo}/{ver}/{ar}/{lib_file}"
         FILELIST_TXT = ""
-        CHECKSUMS_MD5 = "{0}/{1}/{2}/{3}".format(repo, ver, ar, md5_file)
-        ChangeLog_txt = "{0}{1}".format(repo, log_file)
+        CHECKSUMS_MD5 = f"{repo}/{ver}/{ar}/{md5_file}"
+        ChangeLog_txt = f"{repo}{log_file}"
         if self.check:
             return self.checks_logs(log, ChangeLog_txt)
         self.down(lib, PACKAGES_TXT, repo_name)
@@ -252,14 +252,11 @@ class Initialization:
             os.mkdir(lib)
         if arch == "x86_64":
             ar = "64"
-        PACKAGES_TXT = "{0}slackware{1}-{2}/{3}".format(repo, ar, slack_ver(),
-                                                        lib_file)
+        PACKAGES_TXT = f"{repo}slackware{ar}-{slack_ver()}/{lib_file}"
         FILELIST_TXT = ""
-        CHECKSUMS_MD5 = "{0}slackware{1}-{2}/{3}".format(repo, ar, slack_ver(),
-                                                         md5_file)
+        CHECKSUMS_MD5 = f"{repo}slackware{ar}-{slack_ver()}/{md5_file}"
 
-        ChangeLog_txt = "{0}slackware{1}-{2}/{3}".format(repo, ar, slack_ver(),
-                                                         log_file)
+        ChangeLog_txt = f"{repo}slackware{ar}-{slack_ver()}/{log_file}"
         if self.check:
             return self.checks_logs(log, ChangeLog_txt)
         self.down(lib, PACKAGES_TXT, repo_name)
@@ -283,10 +280,10 @@ class Initialization:
             os.mkdir(log)
         if not os.path.exists(lib):
             os.mkdir(lib)
-        PACKAGES_TXT = "{0}{1}".format(repo, lib_file)
+        PACKAGES_TXT = f"{repo}{lib_file}"
         FILELIST_TXT = ""
-        CHECKSUMS_MD5 = "{0}{1}".format(repo, md5_file)
-        ChangeLog_txt = "{0}{1}".format(repo, log_file)
+        CHECKSUMS_MD5 = f"{repo}{md5_file}"
+        ChangeLog_txt = f"{repo}{log_file}"
         if self.check:
             return self.checks_logs(log, ChangeLog_txt)
         self.down(lib, PACKAGES_TXT, repo_name)
@@ -299,7 +296,7 @@ class Initialization:
         """Creating slackers local library
         """
         ver = slack_ver()
-        ar = "{0}-x86".format(ver)
+        ar = f"{ver}-x86"
         arch = self.meta.arch
         repo = self.def_repos_dict["slonly"]
         log = self.log_path + "slonly/"
@@ -314,15 +311,15 @@ class Initialization:
         if not os.path.exists(lib):
             os.mkdir(lib)
         if arch == "x86_64":
-            ar = "{0}-x86_64".format(ver)
+            ar = f"{ver}-x86_64"
         if self.meta.slack_rel == "current":
-            ar = "{0}-x86".format(self.meta.slack_rel)
+            ar = f"{self.meta.slack_rel}-x86"
         if self.meta.slack_rel == "current" and arch == "x86_64":
-            ar = "{0}-x86_64".format(self.meta.slack_rel)
-        PACKAGES_TXT = "{0}{1}/{2}".format(repo, ar, lib_file)
+            ar = f"{self.meta.slack_rel}-x86_64"
+        PACKAGES_TXT = f"{repo}{ar}/{lib_file}"
         FILELIST_TXT = ""
-        CHECKSUMS_MD5 = "{0}{1}/{2}".format(repo, ar, md5_file)
-        ChangeLog_txt = "{0}{1}/{2}".format(repo, ar, log_file)
+        CHECKSUMS_MD5 = f"{repo}{ar}/{md5_file}"
+        ChangeLog_txt = f"{repo}{ar}/{log_file}"
         if self.check:
             return self.checks_logs(log, ChangeLog_txt)
         self.down(lib, PACKAGES_TXT, repo_name)
@@ -346,10 +343,10 @@ class Initialization:
             os.mkdir(log)
         if not os.path.exists(lib):
             os.mkdir(lib)
-        PACKAGES_TXT = "{0}{1}".format(repo, lib_file)
+        PACKAGES_TXT = f"{repo}{lib_file}"
         FILELIST_TXT = ""
-        CHECKSUMS_MD5 = "{0}{1}".format(repo, md5_file)
-        ChangeLog_txt = "{0}{1}".format(repo, log_file)
+        CHECKSUMS_MD5 = f"{repo}{md5_file}"
+        ChangeLog_txt = f"{repo}{log_file}"
         if self.check:
             return self.checks_logs(log, ChangeLog_txt)
         self.down(lib, PACKAGES_TXT, repo_name)
@@ -376,10 +373,10 @@ class Initialization:
             os.mkdir(lib)
         if self.meta.slack_rel == "current":
             ver = self.meta.slack_rel
-        PACKAGES_TXT = "{0}{1}/{2}".format(repo, ver, lib_file)
+        PACKAGES_TXT = f"{repo}{ver}/{lib_file}"
         FILELIST_TXT = ""
-        CHECKSUMS_MD5 = "{0}{1}/{2}".format(repo, ver, md5_file)
-        ChangeLog_txt = "{0}{1}".format(repo, log_file)
+        CHECKSUMS_MD5 = f"{repo}{ver}/{md5_file}"
+        ChangeLog_txt = f"{repo}{log_file}"
         if self.check:
             return self.checks_logs(log, ChangeLog_txt)
         self.down(lib, PACKAGES_TXT, repo_name)
@@ -408,13 +405,10 @@ class Initialization:
         if arch == "x86_64":
             ar = "64"
         version = self.meta.slacke_sub_repo[1:-1]
-        PACKAGES_TXT = "{0}slacke{1}/slackware{2}-{3}/{4}".format(
-            repo, version, ar, slack_ver(), lib_file)
+        PACKAGES_TXT = f"{repo}slacke{version}/slackware{ar}-{slack_ver()}/{lib_file}"
         FILELIST_TXT = ""
-        CHECKSUMS_MD5 = "{0}slacke{1}/slackware{2}-{3}/{4}".format(
-            repo, version, ar, slack_ver(), md5_file)
-        ChangeLog_txt = "{0}slacke{1}/slackware{2}-{3}/{4}".format(
-            repo, version, ar, slack_ver(), log_file)
+        CHECKSUMS_MD5 = f"{repo}slacke{version}/slackware{ar}-{slack_ver()}/{md5_file}"
+        ChangeLog_txt = f"{repo}slacke{version}/slackware{ar}-{slack_ver()}/{log_file}"
         if self.check:
             return self.checks_logs(log, ChangeLog_txt)
         self.down(lib, PACKAGES_TXT, repo_name)
@@ -442,10 +436,10 @@ class Initialization:
             os.mkdir(lib)
         if arch == "x86_64":
             ar = "x86_64"
-        PACKAGES_TXT = "{0}{1}/{2}/{3}".format(repo, ar, slack_ver(), lib_file)
+        PACKAGES_TXT = f"{repo}{ar}/{slack_ver()}/{lib_file}"
         FILELIST_TXT = ""
-        CHECKSUMS_MD5 = "{0}{1}/{2}/{3}".format(repo, ar, slack_ver(), md5_file)
-        ChangeLog_txt = "{0}{1}/{2}/{3}".format(repo, ar, slack_ver(), log_file)
+        CHECKSUMS_MD5 = f"{repo}{ar}/{slack_ver()}/{md5_file}"
+        ChangeLog_txt = f"{repo}{ar}/{slack_ver()}/{log_file}"
         if self.check:
             return self.checks_logs(log, ChangeLog_txt)
         self.down(lib, PACKAGES_TXT, repo_name)
@@ -473,10 +467,10 @@ class Initialization:
             os.mkdir(lib)
         if arch == "x86_64":
             ar = "x86_64"
-        PACKAGES_TXT = "{0}{1}/current/{2}".format(repo, ar, lib_file)
+        PACKAGES_TXT = f"{repo}{ar}/current/{lib_file}"
         FILELIST_TXT = ""
-        CHECKSUMS_MD5 = "{0}{1}/current/{2}".format(repo, ar, md5_file)
-        ChangeLog_txt = "{0}{1}/current/{2}".format(repo, ar, log_file)
+        CHECKSUMS_MD5 = f"{repo}{ar}/current/{md5_file}"
+        ChangeLog_txt = f"{repo}{ar}/current/{log_file}"
         if self.check:
             return self.checks_logs(log, ChangeLog_txt)
         self.down(lib, PACKAGES_TXT, repo_name)
@@ -500,10 +494,10 @@ class Initialization:
             os.mkdir(log)
         if not os.path.exists(lib):
             os.mkdir(lib)
-        PACKAGES_TXT = "{0}{1}".format(repo, lib_file)
+        PACKAGES_TXT = f"{repo}{lib_file}"
         FILELIST_TXT = ""
-        CHECKSUMS_MD5 = "{0}{1}".format(repo, md5_file)
-        ChangeLog_txt = "{0}{1}".format(repo, log_file)
+        CHECKSUMS_MD5 = f"{repo}{md5_file}"
+        ChangeLog_txt = f"{repo}{log_file}"
         if self.check:
             return self.checks_logs(log, ChangeLog_txt)
         self.down(lib, PACKAGES_TXT, repo_name)
@@ -535,12 +529,10 @@ class Initialization:
         version = self.meta.msb_sub_repo[1:-1]
         if self.meta.slack_rel == "current":
             ver_slack = self.meta.slack_rel
-        PACKAGES_TXT = "{0}{1}/{2}/{3}/{4}".format(
-            repo, ver_slack, version, ar, lib_file)
+        PACKAGES_TXT = f"{repo}{ver_slack}/{version}/{ar}/{md5_file}"
         FILELIST_TXT = ""
-        CHECKSUMS_MD5 = "{0}{1}/{2}/{3}/{4}".format(
-            repo, ver_slack, version, ar, md5_file)
-        ChangeLog_txt = "{0}{1}".format(repo, log_file)
+        CHECKSUMS_MD5 = f"{repo}{ver_slack}/{version}/{ar}/{md5_file}"
+        ChangeLog_txt = f"{repo}{log_file}"
         if self.check:
             return self.checks_logs(log, ChangeLog_txt)
         self.down(lib, PACKAGES_TXT, repo_name)
@@ -571,12 +563,10 @@ class Initialization:
             ar = "x86_64"
         if self.meta.slack_rel == "current":
             ver_slack = self.meta.slack_rel
-        PACKAGES_TXT = "{0}{1}/{2}/{3}".format(
-            repo, ver_slack, ar, lib_file)
+        PACKAGES_TXT = f"{repo}{ver_slack}/{ar}/{lib_file}"
         FILELIST_TXT = ""
-        CHECKSUMS_MD5 = "{0}{1}/{2}/{3}".format(
-            repo, ver_slack, ar, md5_file)
-        ChangeLog_txt = "{0}{1}".format(repo, log_file)
+        CHECKSUMS_MD5 = f"{repo}{ver_slack}/{ar}/{md5_file}"
+        ChangeLog_txt = f"{repo}{log_file}"
         if self.check:
             return self.checks_logs(log, ChangeLog_txt)
         self.down(lib, PACKAGES_TXT, repo_name)
@@ -605,14 +595,10 @@ class Initialization:
             os.mkdir(lib)
         if arch == "x86_64":
             ar = "64"
-        PACKAGES_TXT = "{0}{1}{2}-{3}/{4}".format(repo, nickname, ar,
-                                                  slack_ver(), lib_file)
+        PACKAGES_TXT = f"{repo}{nickname}{ar}-{slack_ver()}/{lib_file}"
         FILELIST_TXT = ""
-        CHECKSUMS_MD5 = "{0}{1}{2}-{3}/{4}".format(repo, nickname, ar,
-                                                   slack_ver(), md5_file)
-
-        ChangeLog_txt = "{0}{1}{2}-{3}/{4}".format(repo, nickname, ar,
-                                                   slack_ver(), log_file)
+        CHECKSUMS_MD5 = f"{repo}{nickname}{ar}-{slack_ver()}/{md5_file}"
+        ChangeLog_txt = f"{repo}{nickname}{ar}-{slack_ver()}/{log_file}"
         if self.check:
             return self.checks_logs(log, ChangeLog_txt)
         self.down(lib, PACKAGES_TXT, repo_name)
@@ -641,13 +627,10 @@ class Initialization:
         if arch == "x86_64":
             ar = "64"
         version = self.meta.mles_sub_repo[1:-1]
-        PACKAGES_TXT = "{0}{1}-{2}-{3}bit/{4}".format(
-            repo, version, slack_ver(), ar, lib_file)
+        PACKAGES_TXT = f"{repo}{version}-{slack_ver()}-{ar}bit/{lib_file}"
         FILELIST_TXT = ""
-        CHECKSUMS_MD5 = "{0}{1}-{2}-{3}bit/{4}".format(
-            repo, version, slack_ver(), ar, md5_file)
-        ChangeLog_txt = "{0}{1}-{2}-{3}bit/{4}".format(
-            repo, version, slack_ver(), ar, log_file)
+        CHECKSUMS_MD5 = f"{repo}{version}-{slack_ver()}-{ar}bit/{md5_file}"
+        ChangeLog_txt = f"{repo}{version}-{slack_ver()}-{ar}bit/{log_file}"
         if self.check:
             return self.checks_logs(log, ChangeLog_txt)
         self.down(lib, PACKAGES_TXT, repo_name)
@@ -705,7 +688,7 @@ class Initialization:
         code = "utf-8"
         with open(path + outfile, 'w', encoding=code) as out_f:
             for f in infiles:
-                if os.path.isfile("{0}{1}".format(path, f)):
+                if os.path.isfile("f{path}{f}"):
                     # checking the encoding before read the file
                     code = Utils.check_encoding(path, f)
                     with open(path + f, "r", encoding=code) as in_f:
@@ -737,14 +720,12 @@ class Initialization:
         if only:
             repositories = only
         for repo in repositories:
-            changelogs = "{0}{1}{2}".format(self.log_path, repo,
-                                            "/ChangeLog.txt")
+            changelogs = f"{self.log_path}{repo}/ChangeLog.txt"
             if os.path.isfile(changelogs):
                 os.remove(changelogs)
-            if os.path.isdir(self.lib_path + "{0}_repo/".format(repo)):
-                for f in (os.listdir(self.lib_path + "{0}_repo/".format(
-                        repo))):
-                    files = "{0}{1}_repo/{2}".format(self.lib_path, repo, f)
+            if os.path.isdir(self.lib_path + f"{repo}_repo/"):
+                for f in (os.listdir(self.lib_path + f"{repo}_repo/")):
+                    files = f"{self.lib_path}{repo}_repo/{f}"
                     if os.path.isfile(files):
                         os.remove(files)
                     elif os.path.isdir(files):
@@ -757,10 +738,12 @@ class Update:
     def __init__(self):
         self.initialization = globals()['Initialization'](False)
         self.meta = _meta_
-        self.done = "{0}Done{1}\n".format(self.meta.color["GREY"],
-                                          self.meta.color["ENDC"])
-        self.error = "{0}Error{1}\n".format(self.meta.color["RED"],
-                                            self.meta.color["ENDC"])
+        self.grey = _meta_.color["GREY"]
+        self.red = _meta_.color["RED"]
+        self.cyan = _meta_.color["CYAN"]
+        self.endc = _meta_.color["ENDC"]
+        self.done = f"{self.grey}Done{self.endc}\n"
+        self.error = f"{self.red}Error{self.endc}\n"
 
     def repository(self, only):
         """Update repositories lists
@@ -773,11 +756,7 @@ class Update:
         for repo in enabled:
             if check_for_local_repos(repo) is True:
                 continue
-            print("{0}Check repository [{1}{2}{3}] ... "
-                  "{4}".format(self.meta.color["GREY"],
-                               self.meta.color["CYAN"], repo,
-                               self.meta.color["GREY"],
-                               self.meta.color["ENDC"]), end="", flush=True)
+            print(f"{self.grey}Check repository [{self.cyan}{repo}{self.grey}] ... {self.endc}", end="", flush=True)
             if repo in default:
                 update = getattr(self.initialization, repo)
                 update()
@@ -800,8 +779,8 @@ def check_exists_repositories(repo):
     if check_for_local_repos(repo) is True:
         pkg_list = "PACKAGES.TXT"
         return ""
-    if not os.path.isfile("{0}{1}{2}".format(
-            _meta_.lib_path, repo, "_repo/{0}".format(pkg_list))):
+    if not os.path.isfile(f"{_meta_.lib_path}{repo}_repo/{pkg_list}"
+    # .format(_meta_.lib_path, repo, "_repo/{0}".format(pkg_list))):
         return repo
     return ""
 
