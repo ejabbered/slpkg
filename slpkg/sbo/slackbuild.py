@@ -266,8 +266,8 @@ class SBoInstall:
         args[3] arch
         """
         ver = GetFromInstalled(args[1]).version()
-        print(f"  {args[0]}{args[1] + ver}{self.endc} "
-              f"{' ' * (23-len(args[1] + ver))}{args[2]}"
+        print(f"  {args[0]}{args[1] + ver}{self.endc}"
+              f"{' ' * (24-len(args[1] + ver))}{args[2]}"
               f"{' ' * (18-len(args[2]))} {args[3]}"
               f"{' ' * (15-len(args[3]))}{''}"
               f"{''}SBo{''}{'':>11}{''}")
