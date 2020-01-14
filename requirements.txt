@@ -12,3 +12,5 @@
 # python3-pythondialog >= 3.5.0 (Python interface to the UNIX dialog utility)
 
 urllib3 >= 1.25.7
+flake8 >= 3.5.0
+pylint >= 2.4.4
