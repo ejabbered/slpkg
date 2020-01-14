@@ -6,14 +6,18 @@ before_script:
 
 stages:
   - Static Analysis
+  - Test
 
 flake8:
   stage: Static Analysis
   script:
   - flake8 --max-line-length=120 bild/*.py
 
-pylint:
-  stage: Static Analysis
-  allow_failure: true
+  unit_test:
+  stage: Test
   script:
-  - pylint -d C0301 bild/*.py
+  - pwd
+  - ls -l
+  - export PYTHONPATH="$PYTHONPATH:."
+  - python -c "import sys;print(sys.path)"
+  - pytest
