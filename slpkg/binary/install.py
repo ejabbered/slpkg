@@ -220,7 +220,7 @@ class BinaryInstall:
         installs, upgraded = [], []
         for inst in (self.dep_install + self.install):
             package = (self.tmp_path + inst).split()
-            pkg_ver = f"{inst[0]}-{inst[1]}"
+            pkg_ver = f"{split_package(inst)[0]}-{split_package(inst)[1]}"
             self.checksums(inst)
             if GetFromInstalled(split_package(inst)[0]).name():
                 print(f"[ {self.yellow}upgrading{self.endc} ] --> {inst}")
