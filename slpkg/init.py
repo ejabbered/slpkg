@@ -690,7 +690,8 @@ class Initialization:
             for f in infiles:
                 if os.path.isfile(f"{path}{f}"):
                     # checking the encoding before read the file
-                    code = Utils.check_encoding(path, f)
+                    utils = Utils()
+                    code = utils.check_encoding(path, f)
                     with open(path + f, "r", encoding=code) as in_f:
                         for line in in_f:
                             out_f.write(line)

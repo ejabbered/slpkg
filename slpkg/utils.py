@@ -102,8 +102,7 @@ class Utils:
         else:
             return file_name
 
-    @staticmethod
-    def check_encoding(path, f):
+    def check_encoding(self, path, f):
         """Checking the file encoding default is utf-8
         """
         try:
