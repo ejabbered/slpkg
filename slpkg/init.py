@@ -137,14 +137,17 @@ class Initialization:
         self.down(log, ChangeLog_txt, repo_name)
         self.remote(log, ChangeLog_txt, lib, PACKAGES_TXT, CHECKSUMS_MD5,
                     FILELIST_TXT, repo_name)
-        self.merge(lib, "PACKAGES.TXT", ["core/PACKAGES.TXT",
-                                         "extra/PACKAGES.TXT",
-                                         "pasture/PACKAGES.TXT",
-                                         "patches/PACKAGES.TXT"])
-        self.merge(lib, "CHECKSUMS.md5", ["core/CHECKSUMS.md5",
-                                          "extra/CHECKSUMS.md5",
-                                          "pasture/CHECKSUMS.md5",
-                                          "patches/CHECKSUMS_md5"])
+        merge = self.merge_stable
+        if self.meta.slack_rel == "current":
+            merge = self.merge_current
+        merge(lib, "PACKAGES.TXT", ["core/PACKAGES.TXT",
+                                    "extra/PACKAGES.TXT",
+                                    "pasture/PACKAGES.TXT",
+                                    "patches/PACKAGES.TXT"])
+        merge(lib, "CHECKSUMS.md5", ["core/CHECKSUMS.md5",
+                                     "extra/CHECKSUMS.md5",
+                                     "pasture/CHECKSUMS.md5",
+                                     "patches/CHECKSUMS_md5"])
 
     def sbo(self):
         """Creating sbo local library
@@ -682,7 +685,17 @@ class Initialization:
             self.down(lib_path, FILELIST_TXT, repo)
             self.down(log_path, ChangeLog_txt, repo)
 
-    def merge(self, path, outfile, infiles):
+    def merge_stable(self, path, outfile, infiles):
+        """Merge files
+        """
+        with open(path + outfile, 'w') as out_f:
+            for i in infiles:
+                if os.path.isfile(f"{path}{i}"):
+                    with open(path + i, "r") as in_f:
+                        for line in in_f:
+                            out_f.write(line)
+
+    def merge_current(self, path, outfile, infiles):
         """Merge files
         """
         code = "utf-8"
