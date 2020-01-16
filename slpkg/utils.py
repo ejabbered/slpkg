@@ -59,9 +59,11 @@ class Utils:
     def read_file(self, registry):
         """Returns reading file
         """
-        with open(registry, "r") as file_txt:
+        code = self.check_encoding('', registry)
+        if not code:
+            code = "utf-8"
+        with open(registry, "r", encoding=code) as file_txt:
             read_file = file_txt.read()
-            file_txt.close()
             return read_file
 
     def package_name(self, PACKAGES_TXT):
