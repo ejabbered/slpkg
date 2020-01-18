@@ -52,7 +52,7 @@ class BuildPackage:
         self.msg = Msg()
         self._SOURCES = self.meta.SBo_SOURCES
         self.prgnam = self.script[:-7]
-        self.log_file = "build_{0}_log".format(self.prgnam)
+        self.log_file = f"build_{self.prgnam}_log"
         self.sbo_logs = self.meta.log_path + "sbo/"
         self.build_logs = self.sbo_logs + "build_logs/"
         self.start_log_time = time.strftime("%H:%M:%S")
@@ -94,27 +94,21 @@ class BuildPackage:
                 shutil.copy2(src, self.path + self.prgnam)
             os.chdir(self.path + self.prgnam)
             # change permissions
-            subprocess.call("chmod +x {0}.SlackBuild".format(self.prgnam),
-                            shell=True)
+            subprocess.call(f"chmod +x {self.prgnam}.SlackBuild", shell=True)
             pass_var = self._pass_variable()
             if self.meta.sbo_build_log in ["on", "ON"]:
                 if os.path.isfile(self.build_logs + self.log_file):
                     os.remove(self.build_logs + self.log_file)
                 # start log write
                 log_head(self.build_logs, self.log_file, self.start_log_time)
-                subprocess.Popen("{0} ./{1}.SlackBuild 2>&1 | tee -a "
-                                 "{2}{3}".format(" ".join(pass_var),
-                                                 self.prgnam, self.build_logs,
-                                                 self.log_file), shell=True,
-                                 stdout=sys.stdout).communicate()
+                subprocess.Popen(f"{' '.join(pass_var)} ./{self.prgnam}.SlackBuild 2>&1 | tee -a "
+                                 f"{self.build_logs}{self.log_file}", shell=True, stdout=sys.stdout).communicate()
                 sum_time = build_time(self.start_time)
                 # write end in log file
                 log_end(self.build_logs, self.log_file, sum_time)
-                print("Total build time for the package {0} : {1}\n".format(
-                    self.prgnam, sum_time))
+                print(f"Total build time for the package {self.prgnam} : {sum_time}\n")
             else:
-                subprocess.call("{0} ./{1}.SlackBuild".format(
-                    " ".join(pass_var), self.prgnam), shell=True)
+                subprocess.call(f"{' '.join(pass_ver)} ./{self.prgnam}.SlackBuild", shell=True)
             os.chdir(self.path)
         except KeyboardInterrupt:   # (OSError, IOError):
             self.msg.pkg_not_found("\n", self.prgnam, "Wrong file", "\n")
@@ -141,7 +135,7 @@ class BuildPackage:
         """
         if self.meta.makeflags in ["on", "ON"]:
             cpus = multiprocessing.cpu_count()
-            os.environ["MAKEFLAGS"] = "-j{0}".format(cpus)
+            os.environ["MAKEFLAGS"] = f"-j{cpus}"
 
     def _pass_variable(self):
         """Return enviroment variables
@@ -150,7 +144,7 @@ class BuildPackage:
         for var in os.environ.keys():
             expVAR = var.split("_")
             if expVAR[0] == self.prgnam.upper() and expVAR[1] != "PATH":
-                pass_var.append("{0}={1}".format(expVAR[1], os.environ[var]))
+                pass_var.append(f"{expVAR[1]}={os.environ[var]}")
         return pass_var
 
     def _delete_sbo_tar_gz(self):
@@ -188,7 +182,7 @@ def log_end(path, log_file, sum_time):
         log.seek(2)
         log.write("#" * 79 + "\n\n")
         log.write("Time : " + time.strftime("%H:%M:%S") + "\n")
-        log.write("Total build time : {0}\n".format(sum_time))
+        log.write(f"Total build time : {sum_time}\n")
         log.write(" " * 38 + "E N D\n\n")
         log.write("#" * 79 + "\n\n")
         log.close()
@@ -204,11 +198,9 @@ def build_time(start_time):
     elif diff_time > 59.99 and diff_time <= 3599.99:
         sum_time = round(diff_time / 60, 2)
         sum_time_list = re.findall(r"\d+", str(sum_time))
-        sum_time = ("{0} Min {1} Sec".format(sum_time_list[0],
-                                             sum_time_list[1]))
+        sum_time = (f"{sum_time_list[0]} Min {sum_time_list[1]} Sec")
     elif diff_time > 3599.99:
         sum_time = round(diff_time / 3600, 2)
         sum_time_list = re.findall(r"\d+", str(sum_time))
-        sum_time = ("{0} Hours {1} Min".format(sum_time_list[0],
-                                               sum_time_list[1]))
+        sum_time = (f"{sum_time_list[0]} Hours {sum_time_list[1]} Min")
     return sum_time
