@@ -58,6 +58,11 @@ class Patches:
         self.skip = skip
         self.flag = flag
         self.meta = _meta_
+        self.grey = _meta_.color["GREY"]
+        self.yellow = _meta_.color["YELLOW"]
+        self.green = _meta_.color["GREEN"]
+        self.red = _meta_.color["RED"]
+        self.endc = _meta_.color["ENDC"]
         self.msg = Msg()
         self.version = self.meta.slack_rel
         self.patch_path = self.meta.slpkg_tmp_patches
@@ -89,29 +94,20 @@ class Patches:
                 self.dialog_checklist()
             print("\nThese packages need upgrading:\n")
             self.msg.template(78)
-            print("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}".format(
-                "| Package", " " * 17,
-                "New Version", " " * 8,
-                "Arch", " " * 4,
-                "Build", " " * 2,
-                "Repos", " " * 10,
-                "Size"))
+            print(f"| Package{' ' * 17}New Version{' ' * 8}Arch"
+                  f"{' ' * 4}Build{' ' * 2}Repo{' ' * 11}Size")
             self.msg.template(78)
             print("Upgrading:")
             self.views()
             unit, size = units(self.comp_sum, self.uncomp_sum)
             print("\nInstalling summary")
             print("=" * 79)
-            print("{0}Total {1} {2} will be upgraded and {3} will be "
-                  "installed.".format(self.meta.color["GREY"],
-                                      self.count_upg,
-                                      self.msg.pkg(len(self.upgrade_all)),
-                                      self.count_added))
-            print("Need to get {0} {1} of archives.".format(size[0],
-                                                            unit[0]))
-            print("After this process, {0} {1} of additional disk space "
-                  "will be used.{2}".format(size[1], unit[1],
-                                            self.meta.color["ENDC"]))
+            print(f"{self.grey}Total {self.count_upg}"
+                  f"{self.msg.pkg(len(self.upgrade_all))} will be upgraded and"
+                  f" {self.count_added} will be installed.")
+            print(f"Need to get {size[0]} {unit[0]} of archives.")
+            print(f"After this process, {size[1]} {unit[1]} of additional disk space "
+                  f"will be used.{self.endc}")
             print()
             if self.msg.answer() in ["y", "Y"]:
                 Download(self.patch_path, self.dwn_links,
@@ -132,8 +128,8 @@ class Patches:
             slack_arch = ""
             if self.meta.arch == "x86_64":
                 slack_arch = "64"
-            print("\nSlackware{0} '{1}' v{2} distribution is up to "
-                  "date!\n".format(slack_arch, self.version, slack_ver()))
+            print(f"\nSlackware{slack_arch} '{self.version}' v{slack_ver()}"
+                  f"distribution is up to date!\n")
 
     def store(self):
         """
@@ -147,8 +143,7 @@ class Patches:
             if (not os.path.isfile(self.meta.pkg_path + name[:-4]) and
                     repo_pkg_name not in black and
                     repo_pkg_name not in self.skip):
-                self.dwn_links.append("{0}{1}/{2}".format(mirrors("", ""),
-                                                          loc, name))
+                self.dwn_links.append(f"{mirrors('', '')}{loc}/{name}")
                 self.comp_sum.append(comp)
                 self.uncomp_sum.append(uncomp)
                 self.upgrade_all.append(name)
@@ -167,8 +162,7 @@ class Patches:
             data.append(upg[:-4])
         text = "Press 'spacebar' to unchoose packages from upgrade"
         title = " Upgrade "
-        backtitle = "{0} {1}".format(self.meta.__all__,
-                                     self.meta.__version__)
+        backtitle = f"{self.meta.__all__} {self.meta.__version__}"
         status = True
         pkgs = DialogUtil(data, text, title, backtitle,
                           status).checklist()
@@ -198,13 +192,11 @@ class Patches:
             if pkg_repo[0] == pkg_inst:
                 color = self.meta.color["YELLOW"]
             ver = GetFromInstalled(pkg_repo[0]).version()
-            print("  {0}{1}{2}{3} {4}{5} {6}{7}{8}{9}{10}{11:>12}{12}".format(
-                color, pkg_repo[0] + ver, self.meta.color["ENDC"],
-                " " * (23-len(pkg_repo[0] + ver)), pkg_repo[1],
-                " " * (18-len(pkg_repo[1])), pkg_repo[2],
-                " " * (8-len(pkg_repo[2])), pkg_repo[3],
-                " " * (7-len(pkg_repo[3])), "Slack",
-                size, " K").rstrip())
+            print(f"  {color}{pkg_repo[0] + ver}{self.endc}"
+                  f"{' ' * (23-len(pkg_repo[0] + ver))} {pkg_repo[1]}"
+                  f"{' ' * (18-len(pkg_repo[1]))} {pkg_repo[2]}"
+                  f"{' ' * (8-len(pkg_repo[2]))}{pkg_repo[3]}"
+                  f"{' ' * (7-len(pkg_repo[3]))}Slack{size:>12} K")
 
     def upgrade(self):
         """
@@ -213,20 +205,15 @@ class Patches:
         for pkg in self.upgrade_all:
             check_md5(pkg_checksum(pkg, "slack_patches"),
                       self.patch_path + pkg)
-            pkg_ver = "{0}-{1}".format(split_package(pkg)[0],
-                                       split_package(pkg)[1])
+            pkg_ver = f"{split_package(pkg)[0]}-{split_package(pkg)[1]}"
             if find_package(split_package(pkg)[0] + self.meta.sp,
                             self.meta.pkg_path):
-                print("[ {0}upgrading{1} ] --> {2}".format(
-                    self.meta.color["YELLOW"], self.meta.color["ENDC"],
-                    pkg[:-4]))
+                print(f"[ {self.yellow}upgrading{self.endc} ] --> {pkg[:-4]}")
                 PackageManager((self.patch_path + pkg).split()).upgrade(
                     "--install-new")
                 self.upgraded.append(pkg_ver)
             else:
-                print("[ {0}installing{1} ] --> {2}".format(
-                    self.meta.color["GREEN"], self.meta.color["ENDC"],
-                    pkg[:-4]))
+                print(f"[ {self.green}installing{self.endc} ] --> {pkg[:-4]}")
                 PackageManager((self.patch_path + pkg).split()).upgrade(
                     "--install-new")
                 self.installed.append(pkg_ver)
@@ -243,9 +230,8 @@ class Patches:
                 else:
                     print()
                     self.msg.template(78)
-                    print("| {0}*** HIGHLY recommended reinstall boot loader "
-                          "***{1}".format(self.meta.color["RED"],
-                                          self.meta.color["ENDC"]))
+                    print(f"| {self.red}*** HIGHLY recommended reinstall "
+                          f"boot loader ***{self.endc}")
                     print("| L=lilo / E=elilo / G=grub")
                     self.msg.template(78)
                     try:
@@ -269,8 +255,6 @@ class Patches:
         """This replace slackpkg ChangeLog.txt file with new
         from Slackware official mirrors after update distribution.
         """
-        print(mirrors("ChangeLog.txt", ""))
-
         NEW_ChangeLog_txt = URL(mirrors("ChangeLog.txt", "")).reading()
         if os.path.isfile(self.meta.slackpkg_lib_path + "ChangeLog.txt.old"):
             os.remove(self.meta.slackpkg_lib_path + "ChangeLog.txt.old")
@@ -285,8 +269,7 @@ class Patches:
         """Update packages list and ChangeLog.txt file after
         upgrade distribution
         """
-        print("{0}Update the package lists ?{1}".format(
-            self.meta.color["GREEN"], self.meta.color["ENDC"]))
+        print(f"{self.green}Update the package lists ?{self.endc}")
         print("=" * 79)
         if self.msg.answer() in ["y", "Y"]:
             Update().repository(["slack"])

@@ -178,9 +178,10 @@ class SBoInstall:
     def update_deps(self):
         """Update dependencies dictionary with all package
         """
+        utils = Utils()
         onelist, dependencies = [], []
-        onelist = Utils().dimensional_list(self.deps)
-        dependencies = Utils().remove_dbs(onelist)
+        onelist = utils.dimensional_list(self.deps)
+        dependencies = utils.remove_dbs(onelist)
         for dep in dependencies:
             deps = Requires(self.flag).sbo(dep)
             self.deps_dict[dep] = self.one_for_all(deps)
