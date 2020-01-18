@@ -23,6 +23,7 @@
 
 
 import os
+from collections import OrderedDict
 
 from slpkg.splitting import split_package
 
@@ -50,11 +51,7 @@ class Utils:
     def remove_dbs(self, double):
         """Remove double item from list
         """
-        one = []
-        for dup in double:
-            if dup not in one:
-                one.append(dup)
-        return one
+        return list(OrderedDict.fromkeys(double))
 
     def read_file(self, registry):
         """Returns reading file
