@@ -40,11 +40,9 @@ class BuildNumber:
     def get(self):
         num = "NO_BUILD"
         if self.sbo_url:
-            SlackBuild = URL("{0}{1}.SlackBuild".format(
-                self.sbo_url, self.pkg)).reading()
+            SlackBuild = URL(f"{self.sbo_url}{self.pkg}.SlackBuild").reading()
         else:
-            SlackBuild = Utils().read_file("{0}{1}/{2}.SlackBuild".format(
-                self.meta.build_path, self.pkg, self.pkg))
+            SlackBuild = Utils().read_file(f"{self.meta.build_path}{self.pkg}/{self.pkg}.SlackBuild")
         for line in SlackBuild.splitlines():
             line = line.lstrip()
             if line.startswith("BUILD="):

@@ -68,6 +68,5 @@ class AutoBuild:
             raise SystemExit()
         for src in self.sources:
             if not os.path.isfile(self.path + src):
-                print("\nslpkg: Error: Source file '{0}' not found\n".format(
-                    src))
+                print(f"\nslpkg: Error: Source file '{src}' not found\n")
                 raise SystemExit()

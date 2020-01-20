@@ -60,6 +60,11 @@ class BinaryInstall:
         self.repo = repo
         self.flag = flag
         self.meta = _meta_
+        self.green = _meta_.color["GREEN"]
+        self.red = _meta_.color["RED"]
+        self.grey = _meta_.color["GREY"]
+        self.yellow = _meta_.color['YELLOW']
+        self.endc = _meta_.color["ENDC"]
         self.msg = Msg()
         self.version = self.meta.slack_rel
         self.tmp_path = self.meta.slpkg_tmp_packages
@@ -124,22 +129,16 @@ class BinaryInstall:
             if self.matching and [""] != self.packages:
                 print("\nMatching summary")
                 print("=" * 79)
-                print("Total {0} matching packages\n".format(sum(sums)))
+                print(f"Total {sum(sums)} matching packages\n")
                 raise SystemExit(1)
             print("\nInstalling summary")
             print("=" * 79)
-            print("{0}Total {1} {2}.".format(self.meta.color["GREY"],
-                                             sum(sums),
-                                             self.msg.pkg(sum(sums))))
-            print("{0} {1} will be installed, {2} will be upgraded and "
-                  "{3} will be reinstalled.".format(sums[2],
-                                                    self.msg.pkg(sums[2]),
-                                                    sums[1], sums[0]))
-            print("Need to get {0} {1} of archives.".format(size[0],
-                                                            unit[0]))
-            print("After this process, {0} {1} of additional disk "
-                  "space will be used.{2}".format(size[1], unit[1],
-                                                  self.meta.color["ENDC"]))
+            print(f"{self.grey}Total {sum(sums)} {self.msg.pkg(sum(sums))}.")
+            print(f"{sums[2]} {self.msg.pkg(sums[2])} will be installed, {sums[1]} will be upgraded and "
+                  f"{sums[0]} will be reinstalled.")
+            print(f"Need to get {size[0]} {unit[0]} of archives.")
+            print(f"After this process, {size[1]} {unit[1]} of additional disk "
+                  f"space will be used.{self.endc}")
             print()
             self.if_all_installed()
             if self.msg.answer() in ["y", "Y"]:
@@ -221,20 +220,17 @@ class BinaryInstall:
         installs, upgraded = [], []
         for inst in (self.dep_install + self.install):
             package = (self.tmp_path + inst).split()
-            pkg_ver = "{0}-{1}".format(split_package(inst)[0],
-                                       split_package(inst)[1])
+            pkg_ver = f"{split_package(inst)[0]}-{split_package(inst)[1]}"
             self.checksums(inst)
             if GetFromInstalled(split_package(inst)[0]).name():
-                print("[ {0}upgrading{1} ] --> {2}".format(
-                    self.meta.color["YELLOW"], self.meta.color["ENDC"], inst))
+                print(f"[ {self.yellow}upgrading{self.endc} ] --> {inst}")
                 upgraded.append(pkg_ver)
                 if "--reinstall" in self.flag:
                     PackageManager(package).upgrade("--reinstall")
                 else:
                     PackageManager(package).upgrade("--install-new")
             else:
-                print("[ {0}installing{1} ] --> {2}".format(
-                    self.meta.color["GREEN"], self.meta.color["ENDC"], inst))
+                print(f"[ {self.green}installing{self.endc} ] --> {inst}")
                 installs.append(pkg_ver)
                 PackageManager(package).upgrade("--install-new")
         return [installs, upgraded]
@@ -249,8 +245,7 @@ class BinaryInstall:
             ins_ver = "0"
         if parse_version(rep_ver) < parse_version(ins_ver):
             self.msg.template(78)
-            print("| Package {0} don't downgrade, "
-                  "setting by user".format(name))
+            print(f"| Package {name} don't downgrade, setting by user")
             self.msg.template(78)
             return True
 
@@ -302,26 +297,18 @@ class BinaryInstall:
                 COLOR = self.meta.color["RED"]
                 uni_sum += 1
             ver = GetFromInstalled(pkg_repo[0]).version()
-            print("  {0}{1}{2}{3} {4}{5} {6}{7}{8}{9}{10}{11:>11}{12}".format(
-                COLOR, pkg_repo[0] + ver, self.meta.color["ENDC"],
-                " " * (23-len(pkg_repo[0] + ver)), pkg_repo[1],
-                " " * (18-len(pkg_repo[1])), pkg_repo[2],
-                " " * (8-len(pkg_repo[2])), pkg_repo[3],
-                " " * (7-len(pkg_repo[3])), repo,
-                comp, " K").rstrip())
+            print(f"  {COLOR}{pkg_repo[0] + ver}{self.endc}"
+                  f"{' ' * (23-len(pkg_repo[0] + ver))} {pkg_repo[1]}"
+                  f"{' ' * (18-len(pkg_repo[1]))} {pkg_repo[2]}"
+                  f"{' ' * (8-len(pkg_repo[2]))}{pkg_repo[3]}"
+                  f"{' ' * (7-len(pkg_repo[3]))}{repo}{comp:>11}{' K'}")
         return [pkg_sum, upg_sum, uni_sum]
 
     def top_view(self):
         """Print packages status bar
         """
         self.msg.template(78)
-        print("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}".format(
-            "| Package", " " * 17,
-            "New Version", " " * 8,
-            "Arch", " " * 4,
-            "Build", " " * 2,
-            "Repos", " " * 10,
-            "Size"))
+        print(f"| Package{' ' * 17}New Version{' ' * 8}Arch{' ' * 4}Build{' ' * 2}Repos{' ' * 10}Size")
         self.msg.template(78)
 
     def store(self, packages):
@@ -338,7 +325,7 @@ class BinaryInstall:
                 if (pk and pkg == split_package(pk)[0] and
                         pk not in install and
                         split_package(pk)[0] not in self.blacklist):
-                    dwn.append("{0}{1}/{2}".format(self.mirror, loc, pk))
+                    dwn.append(f"{self.mirror}{loc}/{pk}")
                     install.append(pk)
                     comp_sum.append(comp)
                     uncomp_sum.append(uncomp)
@@ -349,7 +336,7 @@ class BinaryInstall:
                     name = split_package(pk)[0]
                     if (pk and pkg in name and name not in self.blacklist):
                         self.matching = True
-                        dwn.append("{0}{1}/{2}".format(self.mirror, loc, pk))
+                        dwn.append(f"{self.mirror}{loc}/{pk}")
                         install.append(pk)
                         comp_sum.append(comp)
                         uncomp_sum.append(uncomp)

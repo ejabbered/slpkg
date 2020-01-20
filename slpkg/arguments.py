@@ -30,8 +30,7 @@ from slpkg.slack.slack_version import slack_ver
 
 def header():
     """help header message"""
-    print("\nslpkg - version {0} | Slackware release: {1} - {2}\n".format(
-        _meta_.__version__, _meta_.slack_rel, slack_ver()))
+    print(f"\nslpkg - version {_meta_.__version__} | Slackware release: {_meta_.slack_rel} - {slack_ver()}\n")
 
 
 def options():
@@ -220,11 +219,11 @@ def usage(repo):
         all_repos = RepoList().all_repos.keys()
         del RepoList().all_repos
         if repo in all_repos:
-            error_repo = ("slpkg: Error: Repository '{0}' is not activated"
-                          "\n".format(repo))
+            error_repo = (f"slpkg: Error: Repository '{repo}' is not activated"
+                          "\n")
         else:
-            error_repo = ("slpkg: Error: Repository '{0}' does not exist"
-                          "\n".format(repo))
+            error_repo = (f"slpkg: Error: Repository '{repo}' does not exist"
+                          "\n")
         print("\n" + error_repo)
         raise SystemExit(1)
     print(usage.__doc__)

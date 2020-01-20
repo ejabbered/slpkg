@@ -35,7 +35,9 @@ except ImportError:
     from distutils.core import setup
 
 docs_requires = []
-tests_requires = []
+tests_requires = [
+    "pytest>=5.3.2"
+]
 install_requires = [
     "urllib3>=1.25.7"
 ]

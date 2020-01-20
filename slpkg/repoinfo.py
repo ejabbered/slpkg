@@ -35,6 +35,9 @@ class RepoInfo:
     """Repository information
     """
     def __init__(self):
+        self.green = _meta_.color["GREEN"]
+        self.red = _meta_.color["RED"]
+        self.endc = _meta_.color["ENDC"]
         self.form = {
             "Last updated:": "",
             "Number of packages:": "",
@@ -55,17 +58,14 @@ class RepoInfo:
         """
         View repository information
         """
-        status = "{0}disabled{1}".format(self.meta.color["RED"],
-                                         self.meta.color["ENDC"])
+        status = f"{self.red}disabled{self.endc}"
         self.form["Status:"] = status
         self.form["Default:"] = "no"
         if repo in self.meta.default_repositories:
             self.form["Default:"] = "yes"
         if (repo in self.meta.repositories and
-                os.path.isfile(self.meta.lib_path + "{0}_repo/PACKAGES."
-                               "TXT".format(repo))):
-            status = "{0}enabled{1}".format(self.meta.color["GREEN"],
-                                            self.meta.color["ENDC"])
+            os.path.isfile(self.meta.lib_path + f"{repo}_repo/PACKAGES.TXT")):
+            status = f"{self.green}enabled{self.endc}"
             if repo != "sbo":
                 data = self.repository_data(repo)
                 size = units(data[1], data[2])

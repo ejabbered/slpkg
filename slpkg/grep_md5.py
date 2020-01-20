@@ -39,11 +39,11 @@ def pkg_checksum(binary, repo):
     elif repo == "slpkg":
         CHECKSUMS_md5 = URL(_meta_.CHECKSUMS_link).reading()
     else:
-        lib = "{0}{1}_repo/CHECKSUMS.md5".format(_meta_.lib_path, repo)
+        lib = f"{_meta_.lib_path}{repo}_repo/CHECKSUMS.md5"
         f = open(lib, "r")
         CHECKSUMS_md5 = f.read()
         f.close()
     for line in CHECKSUMS_md5.splitlines():
-        if line.endswith("/{0}".format(binary)):
+        if line.endswith(f"/{binary}"):
             md5 = line.split()[0]
     return md5

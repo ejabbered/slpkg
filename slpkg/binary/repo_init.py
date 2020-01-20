@@ -41,22 +41,21 @@ class RepoInit:
 
     def fetch(self):
         if self.repo in self.meta.default_repositories:
-            exec("self._init_{0}()".format(self.repo))
+            exec(f"self._init_{self.repo}()")
         else:
             exec("self._init_custom()")
-        self.lib = self.meta.lib_path + "{0}_repo/PACKAGES.TXT".format(
-            self.repo)
+        self.lib = self.meta.lib_path + f"{self.repo}_repo/PACKAGES.TXT"
         PACKAGES_TXT = Utils().read_file(self.lib)
         return PACKAGES_TXT, self.mirror
 
     def _init_custom(self):
-        self.mirror = "{0}".format(Repo().custom_repository()[self.repo])
+        self.mirror = f"{Repo.custom_repository()[self.repo]}"
 
     def _init_slack(self):
         self.mirror = mirrors(name="", location="")
 
     def _init_rlw(self):
-        self.mirror = "{0}{1}/".format(self.def_repo_dict["rlw"], slack_ver())
+        self.mirror = f"{self.def_repo_dict}{slack_ver()}/"
 
     def _init_alien(self):
         ver = slack_ver()
@@ -65,30 +64,28 @@ class RepoInit:
             arch = "x86_64"
         if self.meta.slack_rel == "current":
             ver = self.meta.slack_rel
-        self.mirror = "{0}{1}/{2}/".format(self.def_repo_dict["alien"],
-                                           ver, arch)
+        self.mirror = f"{self.def_repo_dict['alien']}{ver}/{arch}/"
 
     def _init_slacky(self):
         arch = ""
         if self.meta.arch == "x86_64":
             arch = "64"
-        self.mirror = "{0}slackware{1}-{2}/".format(
-            self.def_repo_dict["slacky"], arch, slack_ver())
+        self.mirror = f"{self.def_repo_dict}slackware{arch}-{slack_ver()}/"
 
     def _init_conrad(self):
         self.mirror = self.def_repo_dict["conrad"]
 
     def _init_slonly(self):
         ver = slack_ver()
-        arch = "{0}-x86".format(ver)
+        arch = f"{ver}-x86"
         if self.meta.arch == "x86_64":
-            arch = "{0}-x86_64".format(ver)
+            arch = f"{ver}-x86_64"
         if self.meta.slack_rel == "current":
             if self.meta.arch == "x86_64":
-                arch = "{0}-x86_64".format(self.meta.slack_rel)
+                arch = f"{self.meta.slack_rel}-x86_64"
             else:
-                arch = "{0}-x86".format(self.meta.slack_rel)
-        self.mirror = "{0}{1}/".format(self.def_repo_dict["slonly"], arch)
+                arch = f"{self.meat.slack_rel}-x86"
+        self.mirror = f"{self.def_repo_dict['slonly']}{arch}/"
 
     def _init_ktown(self):
         self.mirror = self.def_repo_dict["ktown"]
@@ -103,23 +100,20 @@ class RepoInit:
         arch = ""
         if self.meta.arch == "x86_64":
             arch = "64"
-        self.mirror = "{0}slacke{1}/slackware{2}-{3}/".format(
-            self.def_repo_dict["slacke"], self.meta.slacke_sub_repo[1:-1],
-            arch, slack_ver())
+        self.mirror = (f"{self.def_repo_dict['slacke']}"
+                       f"slacke{self.meta.slacke_sub_repo[1:-1]}/slackware{arch}-{slack_ver()}/")
 
     def _init_salix(self):
         arch = "i486"
         if self.meta.arch == "x86_64":
             arch = "x86_64"
-        self.mirror = "{0}{1}/{2}/".format(self.def_repo_dict["salix"],
-                                           arch, slack_ver())
+        self.mirror = f"{self.def_repo_dict['salix']}{arch}/{slack_ver()}/"
 
     def _init_slackl(self):
         arch = "i486"
         if self.meta.arch == "x86_64":
             arch = "x86_64"
-        self.mirror = "{0}{1}/current/".format(self.def_repo_dict["slackl"],
-                                               arch)
+        self.mirror = f"{self.def_repo_dict['slackl']}{arch}/current/"
 
     def _init_rested(self):
         self.mirror = self.def_repo_dict["rested"]
@@ -128,28 +122,22 @@ class RepoInit:
         arch = "x86"
         if self.meta.arch == "x86_64":
             arch = "x86_64"
-        self.mirror = "{0}{1}/{2}/{3}/".format(
-            self.def_repo_dict["msb"], slack_ver(),
-            self.meta.msb_sub_repo[1:-1], arch)
+        self.mirror = f"{self.def_repo_dict['msb']}{slack_ver()}/{self.meta.msb_sub_repo[1:-1]}/{arch}/"
 
     def _init_csb(self):
         arch = "x86"
         if self.meta.arch == "x86_64":
             arch = "x86_64"
-        self.mirror = "{0}{1}/{2}".format(
-            self.def_repo_dict["csb"], slack_ver(), arch)
+        self.mirror = f"{self.def_repo_dict['csb']}{slack_ver()}/{arch}"
 
     def _init_connos(self):
         arch = ""
         if self.meta.arch == "x86_64":
             arch = "64"
-        self.mirror = "{0}slack-n-free{1}-{2}/".format(
-            self.def_repo_dict["connos"], arch, slack_ver())
+        self.mirror = f"{self.def_repo_dict['connos']}slack-n-free{arch}-{slack_ver()}/"
 
     def _init_mles(self):
         arch = "32"
         if self.meta.arch == "x86_64":
             arch = "64"
-        self.mirror = "{0}{1}-{2}-{3}bit/".format(
-            self.def_repo_dict["mles"],
-            self.meta.mles_sub_repo[1:-1], slack_ver(), arch)
+        self.mirror = f"{self.def_repo_dict['mles']}{self.meta.mles_sub_repo[1:-1]}-{slack_ver()}-{arch}bit/"

@@ -37,14 +37,12 @@ def library(repo):
     pkg_list, packages = [], ""
     if repo == "sbo":
         if (os.path.isfile(
-                _meta_.lib_path + "{0}_repo/SLACKBUILDS.TXT".format(repo))):
-            packages = Utils().read_file(_meta_.lib_path + "{0}_repo/"
-                                         "SLACKBUILDS.TXT".format(repo))
+                _meta_.lib_path + f"{repo}_repo/SLACKBUILDS.TXT")):
+            packages = Utils().read_file(_meta_.lib_path + f"{repo}_repo/SLACKBUILDS.TXT")
     else:
         if (os.path.isfile(
-                _meta_.lib_path + "{0}_repo/PACKAGES.TXT".format(repo))):
-            packages = Utils().read_file(_meta_.lib_path + "{0}_repo/"
-                                         "PACKAGES.TXT".format(repo))
+                _meta_.lib_path + f"{repo}_repo/PACKAGES.TXT")):
+            packages = Utils().read_file(_meta_.lib_path + f"{repo}_repo/PACKAGES.TXT")
     for line in packages.splitlines():
         if repo == "sbo":
             if line.startswith("SLACKBUILD NAME: "):

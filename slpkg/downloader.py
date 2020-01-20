@@ -42,6 +42,9 @@ class Download:
         self.repo = repo
         self.file_name = ""
         self.meta = _meta_
+        self.green = _meta_.color["GREEN"]
+        self.red = _meta_.color["RED"]
+        self.endc = _meta_.color["ENDC"]
         self.msg = Msg()
         self.dir_prefix = ""
         self.downder = self.meta.downder
@@ -61,24 +64,13 @@ class Download:
                 self._make_tarfile(self.file_name, source_dir)
 
             self._check_certificate()
-            print("\n[{0}/{1}][ {2}Download{3} ] --> {4}\n".format(
-                dwn_count, len(self.url), self.meta.color["GREEN"],
-                self.meta.color["ENDC"],
-                self.file_name))
+            print(f"\n[{dwn_count}/{len(self.url)}][ {self.green}Download{self.endc} ] --> {self.file_name}\n")
             if self.downder in ["wget"]:
-                subprocess.call("{0} {1} {2}{3} {4}".format(
-                                self.downder, self.downder_options,
-                                self.dir_prefix, self.path, dwn),
-                                shell=True)
+                subprocess.call(f"{self.downder} {self.downder_options} {self.dir_prefix}{self.path} {dwn}", shell=True)
             if self.downder in ["aria2c"]:
-                subprocess.call("{0} {1} {2}{3} {4}".format(
-                                self.downder, self.downder_options,
-                                self.dir_prefix, self.path[:-1], dwn),
-                                shell=True)
+                subprocess.call(f"{self.downder} {self.downder_options} {self.dir_prefix}{self.path[:-1]} {dwn}", shell=True)
             elif self.downder in ["curl", "http"]:
-                subprocess.call("{0} {1} {2}{3} {4}".format(
-                                self.downder, self.downder_options,
-                                self.path, self.file_name, dwn), shell=True)
+                subprocess.call(f"{self.downder} {self.downder_options} {self.path}{self.file_name} {dwn}", shell=True)
             self._check_if_downloaded()
             dwn_count += 1
 
@@ -102,9 +94,7 @@ class Download:
         if not os.path.isfile(self.path + self.file_name):
             print()
             self.msg.template(78)
-            print("| Download '{0}' file [ {1}FAILED{2} ]".format(
-                self.file_name, self.meta.color["RED"],
-                self.meta.color["ENDC"]))
+            print(f"| Download '{self.file_name}' file [ {self.red}FAILED{self.endc} ]")
             self.msg.template(78)
             print()
             if not self.msg.answer() in ["y", "Y"]:
@@ -118,8 +108,7 @@ class Download:
             certificate = (' --no-check-certificate --header="Cookie: '
                            'oraclelicense=accept-securebackup-cookie"')
             self.msg.template(78)
-            print("| '{0}' need to go ahead downloading".format(
-                certificate[:23].strip()))
+            print(f"| '{certificate[:23].strip()}' need to go ahead downloading")
             self.msg.template(78)
             print()
             self.downder_options += certificate

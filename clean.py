@@ -49,11 +49,11 @@ class Clean:
     def start(self):
         for f in self.files:
             if os.path.isfile(f):
-                print("Remove file --> {0}".format(f))
+                print(f"Remove file --> {f}")
                 os.remove(f)
         for d in self.dirs:
             if os.path.exists(d):
-                print("Remove directory --> {0}".format(d))
+                print(f"Remove directory --> {d}")
                 shutil.rmtree(d)
 
 

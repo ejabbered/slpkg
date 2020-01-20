@@ -26,6 +26,12 @@ import os
 import subprocess
 
 
+# class ImportErrorGraphEasy(Exception):
+#    def __init__(self, GraphEasyImportError):
+#        Exception.__init__(self, "graph-easy required")
+#        self.GraphEasyImportError = GraphEasyImportError
+
+
 class Graph:
     """Drawing dependencies diagram
     """
@@ -46,13 +52,10 @@ class Graph:
         try:
             import pygraphviz as pgv
         except ImportError:
-            graph_easy, comma = "", ""
-            if (self.image == "ascii" and
-                    not os.path.isfile("/usr/bin/graph-easy")):
-                comma = ","
-                graph_easy = " graph-easy"
-            print("Require 'pygraphviz{0}{1}': Install with 'slpkg -s sbo "
-                  "pygraphviz{1}'".format(comma, graph_easy))
+            if self.image == "ascii" and not os.path.isfile("/usr/bin/graph-easy"):
+                print("Require 'grap_easy': Install with 'slpkg -s sbo graph-easy'")
+            else:
+                print("Require 'pygraphviz: Install with 'slpkg -s sbo pygraphviz'")
             raise SystemExit()
         if self.image != "ascii":
             self.check_file()
@@ -60,24 +63,23 @@ class Graph:
             G = pgv.AGraph(deps_dict)
             G.layout(prog="fdp")
             if self.image == "ascii":
-                G.write("{0}.dot".format(self.image))
+                G.write(f"{self.image}.dot")
                 self.graph_easy()
             G.draw(self.image)
         except IOError:
             raise SystemExit()
         if os.path.isfile(self.image):
-            print("Graph image file '{0}' created".format(self.image))
+            print(f"Graph image file '{self.image}' created")
         raise SystemExit()
 
     def check_file(self):
         """Check for file format and type
         """
         try:
-            image_type = ".{0}".format(self.image.split(".")[1])
+            image_type = f".{self.image.split('.')[1]}"
             if image_type not in self.file_format:
-                print("Format: '{0}' not recognized. Use one of "
-                      "them:\n{1}".format(self.image.split(".")[1],
-                                          ", ".join(self.file_format)))
+                print(f"Format: '{self.image.split('.')[1]}' not recognized. Use one of "
+                      f"them:\n{', '.join(self.file_format)}")
                 raise SystemExit()
         except IndexError:
             print("slpkg: Error: Image file suffix missing")
@@ -91,12 +93,12 @@ class Graph:
                   "graph-easy'")
             self.remove_dot()
             raise SystemExit()
-        subprocess.call("graph-easy {0}.dot".format(self.image), shell=True)
+        subprocess.call(f"graph-easy {self.image}.dot", shell=True)
         self.remove_dot()
         raise SystemExit()
 
     def remove_dot(self):
         """Remove .dot files
         """
-        if os.path.isfile("{0}.dot".format(self.image)):
-            os.remove("{0}.dot".format(self.image))
+        if os.path.isfile(f"{self.image}.dot"):
+            os.remove(f"{self.image}.dot")

@@ -34,7 +34,6 @@ def status(sec):
     if _meta_.prg_bar in ["on", "ON"]:
         syms = ["|", "/", "-", "\\"]
         for sym in syms:
-            print("\b{0}{1}{2}".format(_meta_.color["GREY"], sym,
-                                       _meta_.color["ENDC"]), end="")
+            print(f"\b{_meta_.color['GREY']}{sym}{_meta_.color['ENDC']}", end="")
             print(end="", flush=True)
             time.sleep(float(sec))

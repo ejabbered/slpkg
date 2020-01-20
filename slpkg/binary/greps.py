@@ -165,8 +165,7 @@ class Requires:
             else:
                 return ""
         else:
-            PACKAGES_TXT = Utils().read_file("{0}{1}_repo/PACKAGES.TXT".format(
-                _meta_.lib_path, self.repo))
+            PACKAGES_TXT = Utils().read_file(f"{_meta_.lib_path}{self.repo}_repo/PACKAGES.TXT")
             for line in PACKAGES_TXT.splitlines():
                 if line.startswith("PACKAGE NAME:"):
                     pkg_name = split_package(line[14:].strip())[0]

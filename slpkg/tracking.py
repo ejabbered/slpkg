@@ -81,20 +81,16 @@ class TrackingDeps:
             pkg_len = len(self.name) + 24
             print()    # new line at start
             self.msg.template(pkg_len)
-            print("| Package {0}{1}{2} dependencies :".format(
-                self.cyan, self.name, self.endc))
+            print(f"| Package {self.cyan}{self.name}{self.endc} dependencies :")
             self.msg.template(pkg_len)
             print("\\")
-            print(" +---{0}[ Tree of dependencies ]{1}".format(self.yellow,
-                                                               self.endc))
+            print(f" +---{self.yellow}[ Tree of dependencies ]{self.endc}")
             index = 0
             for pkg in self.dependencies:
                 if "--check-deps" in self.flag:
                     used = self.check_used(pkg)
                     self.deps_used(pkg, used)
-                    used = "{0} {1}{2}{3}".format(
-                        "is dependence on -->", self.cyan,
-                        ", ".join(used), self.endc)
+                    used = f"is dependence on --> {self.cyan}{', '.join(used)}{self.endc}"
                 else:
                     used = ""
                 index += 1
@@ -103,14 +99,10 @@ class TrackingDeps:
                     if self.meta.use_colors in ["off", "OFF"]:
                         installed = "* "
                     print(" |")
-                    print(" {0}{1}: {2}{3}{4} {5}{6}".format(
-                        "+--", index, self.green, pkg,
-                        self.endc, installed, used))
+                    print(f" +--{index}: {self.green}{pkg}{self.endc} {installed}{used}")
                 else:
                     print(" |")
-                    print(" {0}{1}: {2}{3}{4} {5}".format(
-                        "+--", index, self.red, pkg,
-                        self.endc, installed))
+                    print(f" +--{index}: {self.red}{pkg}{self.endc} {installed}")
             if self.meta.use_colors in ["off", "OFF"]:
                 print("\n * = Installed\n")
             else:
@@ -132,7 +124,7 @@ class TrackingDeps:
                 self.dependencies_list = Requires(self.flag).sbo(self.name)
         else:
             PACKAGES_TXT = Utils().read_file(
-                self.meta.lib_path + "{0}_repo/PACKAGES.TXT".format(self.repo))
+                self.meta.lib_path + f"{self.repo}_repo/PACKAGES.TXT")
             self.names = Utils().package_name(PACKAGES_TXT)
             self.bin_case_insensitive()
             self.find_pkg = search_pkg(self.name, self.repo)

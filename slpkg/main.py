@@ -677,8 +677,7 @@ class ArgParse:
                 self.args.remove(arg)
                 break
         if tag and tag not in colors:
-            print("\nslpkg: Error: Available colors {0}\n".format(
-                colors))
+            print(f"\nslpkg: Error: Available colors {colors}\n")
             raise SystemExit()
         if (len(self.args) == 3 and self.args[0] in options and
                 self.args[1] in self.meta.repositories and tag in colors):
@@ -779,7 +778,7 @@ class ArgParse:
             from dialog import Dialog
         except ImportError:
             print("Require 'pythondialog': Install with 'slpkg -s sbo "
-                  "python2-pythondialog'")
+                  "python3-pythondialog'")
             raise SystemExit()
 
 

@@ -23,6 +23,7 @@
 
 
 import os
+from collections import OrderedDict
 
 from slpkg.splitting import split_package
 
@@ -50,18 +51,16 @@ class Utils:
     def remove_dbs(self, double):
         """Remove double item from list
         """
-        one = []
-        for dup in double:
-            if dup not in one:
-                one.append(dup)
-        return one
+        return list(OrderedDict.fromkeys(double))
 
     def read_file(self, registry):
         """Returns reading file
         """
-        with open(registry, "r") as file_txt:
+        code = self.check_encoding('', registry)
+        if not code:
+            code = "utf-8"
+        with open(registry, "r", encoding=code) as file_txt:
             read_file = file_txt.read()
-            file_txt.close()
             return read_file
 
     def package_name(self, PACKAGES_TXT):
@@ -102,8 +101,7 @@ class Utils:
         else:
             return file_name
 
-    @staticmethod
-    def check_encoding(path, f):
+    def check_encoding(self, path, f):
         """Checking the file encoding default is utf-8
         """
         try:

@@ -50,6 +50,9 @@ class QueuePkgs:
             "#\n"
         ]
         self.meta = _meta_
+        self.green = _meta_.color["GREEN"]
+        self.red = _meta_.color["RED"]
+        self.endc = _meta_.color["ENDC"]
         self.quit = False
         self.queue = self.meta.lib_path + "queue/"
         self.queue_list = self.queue + "queue_list"
@@ -82,8 +85,7 @@ class QueuePkgs:
         print("\nPackages in the queue:\n")
         for pkg in self.packages():
             if pkg:
-                print("{0}{1}{2}".format(self.meta.color["GREEN"], pkg,
-                                         self.meta.color["ENDC"]))
+                print(f"{self.green}{pkg}{self.endc}")
                 self.quit = True
         if self.quit:
             print()   # new line at exit
@@ -98,13 +100,11 @@ class QueuePkgs:
             for pkg in pkgs:
                 find = sbo_search_pkg(pkg)
                 if pkg not in queue_list and find is not None:
-                    print("{0}{1}{2}".format(self.meta.color["GREEN"], pkg,
-                                             self.meta.color["ENDC"]))
+                    print(f"{self.green}{pkg}{self.endc}")
                     queue.write(pkg + "\n")
                     self.quit = True
                 else:
-                    print("{0}{1}{2}".format(self.meta.color["RED"], pkg,
-                                             self.meta.color["ENDC"]))
+                    print(f"{self.red}{pkg}{self.endc}")
                     self.quit = True
             queue.close()
         if self.quit:
@@ -119,8 +119,7 @@ class QueuePkgs:
                 if line not in pkgs:
                     queue.write(line + "\n")
                 else:
-                    print("{0}{1}{2}".format(self.meta.color["RED"], line,
-                                             self.meta.color["ENDC"]))
+                    print(f"{self.red}{line}{self.endc}")
                     self.quit = True
             queue.close()
         if self.quit:
@@ -161,13 +160,13 @@ class QueuePkgs:
             print()   # new line at start
             for pkg in packages:
                 ver = SBoGrep(pkg).version()
-                prgnam = "{0}-{1}".format(pkg, ver)
+                prgnam = f"{pkg}-{ver}"
                 if find_package(prgnam, self.meta.output):
                     binary = slack_package(prgnam)
                     PackageManager(binary).upgrade(flag="--install-new")
                 else:
-                    print("\nPackage {0} not found in the {1} for "
-                          "installation\n".format(prgnam, self.meta.output))
+                    print(f"\nPackage {prgnam} not found in the {self.meta.output} for "
+                          f"installation\n")
         else:
             print("\nPackages not found in the queue for installation\n")
             raise SystemExit(1)

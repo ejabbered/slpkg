@@ -22,8 +22,6 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
-import sys
-
 from slpkg.messages import Msg
 from slpkg.__metadata__ import MetaData as _meta_
 
@@ -35,7 +33,10 @@ class Auto:
     """
     def __init__(self, packages):
         self.packages = packages
-        self.meta = _meta_
+        self.green = _meta_.color["GREEN"]
+        self.red = _meta_.color["RED"]
+        self.cyan = _meta_.color["CYAN"]
+        self.endc = _meta_.color["ENDC"]
         self.msg = Msg()
         self.commands = {
             "i": "installpkg",
@@ -54,10 +55,7 @@ class Auto:
         print("| Choose a Slackware command:")
         self.msg.template(78)
         for com in sorted(self.commands):
-            print("| {0}{1}{2}) {3}{4}{5}".format(
-                self.meta.color["RED"], com, self.meta.color["ENDC"],
-                self.meta.color["GREEN"], self.commands[com],
-                self.meta.color["ENDC"]))
+            print(f"| {self.red}{com}{self.endc}) {self.green}{self.commands[com]}{self.endc}")
         self.msg.template(78)
         try:
             self.choice = input(" > ")
@@ -65,9 +63,7 @@ class Auto:
             print()
             raise SystemExit()
         if self.choice in self.commands.keys():
-            print("   \x1b[1A{0}{1}{2}\n\n".format(
-                self.meta.color["CYAN"], self.commands[self.choice],
-                self.meta.color["ENDC"]), end="")
+            print(f"   \x1b[1A{self.cyan}{self.commands[self.choice]}{self.endc}", end="\n\n")
             print(end="", flush=True)
         self.execute()
 

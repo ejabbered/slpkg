@@ -34,6 +34,9 @@ class Updates:
     def __init__(self, repo):
         self.repo = repo
         self.meta = _meta_
+        self.green = _meta_.color["GREEN"]
+        self.grey = _meta_.color["GREY"]
+        self.endc = _meta_.color["ENDC"]
         self.msg = Msg()
         self.check = 2
         self.st = ""
@@ -111,15 +114,14 @@ class Updates:
         self.count_repo += 1
         if self.check == 1:
             self.count_news += 1
-            self.st = "{0}News in ChangeLog.txt{1}".format(
-                self.meta.color["GREEN"], self.meta.color["ENDC"])
+            self.st = f"{self.green}News in ChangeLog.txt{self.endc}"
         elif self.check == 0:
             self.st = "No changes in ChangeLog.txt"
 
     def print_status(self, repo):
         """Print status
         """
-        print("  {0}{1}{2}".format(repo, " " * (19 - len(repo)), self.st))
+        print(f"  {repo}{' ' * (19 - len(repo))}{self.st}")
 
     def summary(self):
         """Print summary
@@ -131,6 +133,4 @@ class Updates:
             cmd = "Repository is updated."
         if self.count_news > 0:
             cmd = "Run the command 'slpkg update'."
-        print("{0}From {1} repositories need {2} updating. {3}{4}\n".format(
-            self.meta.color["GREY"], self.count_repo, self.count_news, cmd,
-            self.meta.color["ENDC"]))
+        print(f"{self.grey}From {self.count_repo} repositories need {self.count_news} updating. {cmd}{self.endc}", end="\n")
