@@ -63,24 +63,23 @@ class Graph:
             G = pgv.AGraph(deps_dict)
             G.layout(prog="fdp")
             if self.image == "ascii":
-                G.write("{0}.dot".format(self.image))
+                G.write(f"{self.image}.dot")
                 self.graph_easy()
             G.draw(self.image)
         except IOError:
             raise SystemExit()
         if os.path.isfile(self.image):
-            print("Graph image file '{0}' created".format(self.image))
+            print(f"Graph image file '{self.image}' created")
         raise SystemExit()
 
     def check_file(self):
         """Check for file format and type
         """
         try:
-            image_type = ".{0}".format(self.image.split(".")[1])
+            image_type = f".{self.image.split('.')[1]}"
             if image_type not in self.file_format:
-                print("Format: '{0}' not recognized. Use one of "
-                      "them:\n{1}".format(self.image.split(".")[1],
-                                          ", ".join(self.file_format)))
+                print(f"Format: '{self.image.split('.')[1]}' not recognized. Use one of "
+                      f"them:\n{', '.join(self.file_format)}")
                 raise SystemExit()
         except IndexError:
             print("slpkg: Error: Image file suffix missing")
