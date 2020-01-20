@@ -1,10 +1,6 @@
 from slpkg.utils import Utils
 
 
-def test_units():
-    assert ["Kb", "Kb"], ["100", "100"] == units(['100', ['100']])
-
-
 def test_dimensional_list():
     lists = [[1, 2, 3, 4, 5]]
     utils = Utils()
