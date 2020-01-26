@@ -25,7 +25,6 @@
 def units(comp_sum, uncomp_sum):
     """Calculate package size
     """
-    print(comp_sum, uncomp_sum)
     compressed = round((sum(map(float, comp_sum)) / 1024), 2)
     uncompressed = round((sum(map(float, uncomp_sum)) / 1024), 2)
     comp_unit = uncomp_unit = "Mb"
@@ -41,5 +40,4 @@ def units(comp_sum, uncomp_sum):
     if uncompressed < 1:
         uncompressed = sum(map(int, uncomp_sum))
         uncomp_unit = "Kb"
-    print(comp_unit, uncomp_unit, compressed, uncompressed)
     return [comp_unit, uncomp_unit], [compressed, uncompressed]
