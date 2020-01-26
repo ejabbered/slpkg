@@ -3,11 +3,16 @@
 
 ##### Usage
 
-First you need to run '`slpkg update`' to synchronize the lists of packages, also every time you add
-a new repository. To add or remove repositories must edit the file '`/etc/slpkg/repositories.conf`'
-or run '`slpkg repo-enable`' (python3-pythondialog required). Add custom repositories with the
-command '`slpkg add-repo <repository name> <URL>`' and after run '`slpkg update`' to update package
-list. View list of repositories with the command `slpkg repo-list` or get repository information
+Before you start to use slpkg need to run '`slpkg update`' to synchronize the lists of packages,
+also every time you add a new repository.
+
+To add or remove repositories you have to edit the file '`/etc/slpkg/repositories.conf`'
+or run '`slpkg repo-enable`' (python3-pythondialog required).
+
+Add custom repositories with the command '`slpkg add-repo <repository name> <URL>`' and
+after run '`slpkg update`' to update package list.
+
+View list of repositories with the command `slpkg repo-list` or get repository information
 with the command '`slpkg repo-info <repository>`'.
 
 Update slpkg itself simply run '`slpkg update slpkg`', and slpkg check from GitLab repository if the
@@ -16,7 +21,7 @@ new version is available.
 Checking packages health with the command '`slpkg health`' and slpkg check if the files missing
 from the package file list.
 
-Print the dependencies status with the command '`slpkg deps-status`' or draw image map dependencies
+View the dependencies status with the command '`slpkg deps-status`' or draw image map dependencies
 with the additional option '`--graph=[image]`'.
 
 Manage '`.new`' configuration files with the command '`slpkg new-config`', like remove, overwrite,
@@ -43,7 +48,7 @@ Use '`--checklist`' option to help you to choose easy the packages. For advanced
 option '`--skip`' give them more power (see manpage).
 
 The most famous command is '`slpkg -s <repository> <packages>`', this command downloads, build and
-installs packages with the resolve all the dependencies or switch off resolve with the  option
+installs packages and resolve all the dependencies or switch off resolve with the option
 '`--resolve-off`'. Also the additional option '`--case-ins`' help you find the packages with case
 insensitive. Two new arguments, help you to rebuild '`--rebuild`' or reinstall '`--reinstall`' packages.
 The last one argument '`--patches`' help you to switch in the '`patches/`' directory, only for the slack
@@ -54,26 +59,26 @@ package dependency tree and also shows to you which ones are installed on your s
 Check if the packages used from other packages with the option '`--check-deps`' or draw image map
 dependencies with the additional option '`--graph=[image]`'.
 
-Get information description of a package with the command '`slpkg -p <repository> <package>`' and 
+Get information description of a package with the command '`slpkg -p <repository> <package>`' and
 change the color of the text with the additional flag '`--color=[]`'.
 
 View a SBo package page on your terminal with command `slpkg -n <package>` and then manage
 multiple choices such read, download, build, install etc.
 
-If you want to find a package of all the repositories, that command will solve your hands
+If you want to find a package of all the repositories, this command will solve your hands
 '`slpkg -F <packages>`', it will search in all the enable repositories and will print all the
 packages that match the description that you enter.
 
-If you want to see if any packages are installed on your system enter the command 
+If you want to see if any packages are installed on your system enter the command
 '`slpkg -f <packages>`'. The option '`--third-party`' help you to view only the third-party
 packages
 
 The next three commands '`slpkg --installpkg, --upgradepkg, --removepkg <packages>`' install, upgrade,
-remove packages from your system events. Notable mention you must give in the command 
+remove packages from your system events. Notable mention you must give in the command
 '`slpkg --removepkg <packages>`' which  you can remove the packages with all dependencies together
 after editing configuration file '`/etc/slpkg/slpkg.conf`' (default is disable) or add additional
 option '`--deps`'. Also you can check if the packages they are used as dependency with additional
-option '`--check-deps`'. Option '`--tag`' allow to remove packages with by TAG. Optional you can use
+option '`--check-deps`'. Option '`--tag`' allow to remove packages by TAG. Optional you can use
 the dialog utility with the additional option '`--checklist`' (require python3-pythondialog). Rmove
 third-party packages with the option '`--third-party`'.
 
