@@ -171,7 +171,6 @@ def log_head(path, log_file, log_time):
         log.write("Date : " + time.strftime("%d/%m/%Y") + "\n")
         log.write("Time : " + log_time + "\n\n")
         log.write("#" * 79 + "\n\n")
-        log.close()
 
 
 def log_end(path, log_file, sum_time):
@@ -185,7 +184,6 @@ def log_end(path, log_file, sum_time):
         log.write(f"Total build time : {sum_time}\n")
         log.write(" " * 38 + "E N D\n\n")
         log.write("#" * 79 + "\n\n")
-        log.close()
 
 
 def build_time(start_time):
