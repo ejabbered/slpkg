@@ -58,10 +58,15 @@ class Requires:
                     # if require in blacklist
                     if "%README%" not in req and req not in self.blacklist:
                         dependencies.append(req)
-                if dependencies:
-                    self.dep_results.append(dependencies)
-                    for dep in dependencies:
-                        self.sbo(dep)
+                self.deep_check(dependencies)
             return self.dep_results
         else:
             return []
+
+    def deep_check(self, dependencies):
+        """Checking if dependencies are finnished
+        """
+        if dependencies:
+            self.dep_results.append(dependencies)
+            for dep in dependencies:
+                self.sbo(dep)
