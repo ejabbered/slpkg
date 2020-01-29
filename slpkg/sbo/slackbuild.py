@@ -65,11 +65,7 @@ class SBoInstall:
         self.arch = SBoArch().get()
         self.build_folder = self.meta.build_path
         self._SOURCES = self.meta.SBo_SOURCES
-        for fl in self.flag:
-            if fl.startswith("--directory-prefix="):
-                self.build_folder = fl.split("=")[1]
-                if not self.build_folder.endswith("/"):
-                    self.build_folder += "/"
+        self.init_flags()
         self.unst = ["UNSUPPORTED", "UNTESTED"]
         self.master_packages = []
         self.deps = []
@@ -85,6 +81,15 @@ class SBoInstall:
         self.msg.reading()
         self.data = SBoGrep(name="").names()
         self.blacklist = BlackList().packages(pkgs=self.data, repo="sbo")
+
+    def init_flags(self):
+        """Flags initialization
+        """
+        for fl in self.flag:
+            if fl.startswith("--directory-prefix="):
+                self.build_folder = fl.split("=")[1]
+                if not self.build_folder.endswith("/"):
+                    self.build_folder += "/"
 
     def start(self, is_upgrade):
         """Start view, build and install SBo packages
