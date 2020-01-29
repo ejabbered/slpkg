@@ -191,7 +191,6 @@ class BinaryInstall:
         lowercase
         """
         if "--case-ins" in self.flag:
-            data = []
             data = list(Utils().package_name(self.PACKAGES_TXT))
             data_dict = Utils().case_sensitive(data)
             for pkg in self.packages:
@@ -271,18 +270,16 @@ class BinaryInstall:
             dependencies = []
             dependencies = Utils().dimensional_list(Dependencies(
                 self.repo, self.blacklist).binary(dep, self.flag))
-            requires += self._fix_deps_repos(dependencies)
+            requires += list(self._fix_deps_repos(dependencies))
             self.deps_dict[dep] = Utils().remove_dbs(requires)
         return Utils().remove_dbs(requires)
 
     def _fix_deps_repos(self, dependencies):
         """Fix store deps include in repository
         """
-        requires = []
         for dep in dependencies:
             if dep in self.repo_pkg_names:
-                requires.append(dep)
-        return requires
+                yield dep
 
     def views(self, install, comp_sum):
         """Views packages
