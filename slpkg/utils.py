@@ -66,11 +66,9 @@ class Utils:
     def package_name(self, PACKAGES_TXT):
         """Returns list with all the names of packages repository
         """
-        packages = []
         for line in PACKAGES_TXT.splitlines():
             if line.startswith("PACKAGE NAME:"):
-                packages.append(split_package(line[14:].strip())[0])
-        return packages
+                yield split_package(line[14:].strip())[0]
 
     def check_downloaded(self, path, maybe_downloaded):
         """Check if files downloaded and return downloaded

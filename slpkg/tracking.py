@@ -125,7 +125,7 @@ class TrackingDeps:
         else:
             PACKAGES_TXT = Utils().read_file(
                 self.meta.lib_path + f"{self.repo}_repo/PACKAGES.TXT")
-            self.names = Utils().package_name(PACKAGES_TXT)
+            self.names = list(Utils().package_name(PACKAGES_TXT))
             self.bin_case_insensitive()
             self.find_pkg = search_pkg(self.name, self.repo)
             if self.find_pkg:

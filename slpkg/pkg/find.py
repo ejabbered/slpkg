@@ -31,7 +31,7 @@ def searching(find_pkg, directory):
     """Find packages
     """
     if os.path.isdir(directory):
-        installed = sorted(os.listdir(directory))
+        installed = os.listdir(directory)
         blacklist = BlackList().packages(pkgs=installed, repo="local")
         if os.path.exists(directory):
             for pkg in installed:

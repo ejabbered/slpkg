@@ -68,11 +68,7 @@ class BinaryInstall:
         self.msg = Msg()
         self.version = self.meta.slack_rel
         self.tmp_path = self.meta.slpkg_tmp_packages
-        for fl in self.flag:
-            if fl.startswith("--directory-prefix="):
-                self.tmp_path = fl.split("=")[1]
-                if not self.tmp_path.endswith("/"):
-                    self.tmp_path += "/"
+        self.init_flags()
         self.dwn, self.dep_dwn = [], []
         self.install, self.dep_install = [], []
         self.comp_sum, self.dep_comp_sum = [], []
@@ -88,6 +84,15 @@ class BinaryInstall:
             self.repo_pkg_names.append(split_package(name)[0])
         self.blacklist = BlackList().packages(self.data[0], self.repo)
         self.matching = False
+
+    def init_flags(self):
+        """Flags initiliazation
+        """
+        for fl in self.flag:
+            if fl.startswith("--directory-prefix="):
+                self.tmp_path = fl.split("=")[1]
+                if not self.tmp_path.endswith("/"):
+                    self.tmp_path += "/"
 
     def start(self, is_upgrade):
         """
@@ -187,7 +192,7 @@ class BinaryInstall:
         """
         if "--case-ins" in self.flag:
             data = []
-            data = Utils().package_name(self.PACKAGES_TXT)
+            data = list(Utils().package_name(self.PACKAGES_TXT))
             data_dict = Utils().case_sensitive(data)
             for pkg in self.packages:
                 index = self.packages.index(pkg)

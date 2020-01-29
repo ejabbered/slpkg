@@ -34,7 +34,7 @@ def search_pkg(name, repo):
     and return the name.
     """
     PACKAGES_TXT = Utils().read_file(_meta_.lib_path + f"{repo}_repo/PACKAGES.TXT")
-    names = Utils().package_name(PACKAGES_TXT)
+    names = list(Utils().package_name(PACKAGES_TXT))
     blacklist = BlackList().packages(pkgs=names, repo=repo)
     for line in PACKAGES_TXT.splitlines():
         status(0)
