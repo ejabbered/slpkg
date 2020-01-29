@@ -75,7 +75,6 @@ class BlackList:
                     print(f"{self.green}{pkg}{self.endc}")
                     black_conf.write(pkg + "\n")
                     self.quit = True
-            black_conf.close()
         if self.quit:
             print()   # new line at exit
 
@@ -90,7 +89,6 @@ class BlackList:
                 else:
                     print(f"{self.red}{line}{self.endc}")
                     self.quit = True
-            remove.close()
         if self.quit:
             print()   # new line at exit
 

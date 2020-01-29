@@ -65,11 +65,7 @@ class SBoInstall:
         self.arch = SBoArch().get()
         self.build_folder = self.meta.build_path
         self._SOURCES = self.meta.SBo_SOURCES
-        for fl in self.flag:
-            if fl.startswith("--directory-prefix="):
-                self.build_folder = fl.split("=")[1]
-                if not self.build_folder.endswith("/"):
-                    self.build_folder += "/"
+        self.init_flags()
         self.unst = ["UNSUPPORTED", "UNTESTED"]
         self.master_packages = []
         self.deps = []
@@ -85,6 +81,15 @@ class SBoInstall:
         self.msg.reading()
         self.data = SBoGrep(name="").names()
         self.blacklist = BlackList().packages(pkgs=self.data, repo="sbo")
+
+    def init_flags(self):
+        """Flags initialization
+        """
+        for fl in self.flag:
+            if fl.startswith("--directory-prefix="):
+                self.build_folder = fl.split("=")[1]
+                if not self.build_folder.endswith("/"):
+                    self.build_folder += "/"
 
     def start(self, is_upgrade):
         """Start view, build and install SBo packages
@@ -307,10 +312,8 @@ class SBoInstall:
     def filenames(self, sources):
         """Return filenames from sources links
         """
-        filename = []
         for src in sources:
-            filename.append(src.split("/")[-1])
-        return filename
+            yield src.split("/")[-1]
 
     def build_install(self):
         """Build and install packages if not already installed
@@ -343,13 +346,14 @@ class SBoInstall:
                 sbo_link = SBoLink(sbo_url).tar_gz()
                 script = sbo_link.split("/")[-1]
                 if self.meta.sbosrcarch in ["on", "ON"]:
-                    src_link = self.sbosrcarsh(prgnam, sbo_link, src_link)
+                    src_link = list(self.sbosrcarsh(prgnam, sbo_link, src_link))
                 Download(self.build_folder, sbo_link.split(),
                          repo="sbo").start()
                 Download(self._SOURCES, src_link, repo="sbo").start()
                 if "--download-only" in self.flag:
                     continue
-                sources = self.filenames(src_link)
+                sources = list(self.filenames(src_link))
+                print(sources)
                 BuildPackage(script, sources, self.build_folder,
                              auto=False).build()
                 binary = slack_package(prgnam)
@@ -384,10 +388,8 @@ class SBoInstall:
 
     def sbosrcarsh(self, prgnam, sbo_link, src_link):
         """Alternative repository for sbo sources"""
-        sources = []
         name = "-".join(prgnam.split("-")[:-1])
         category = f"{sbo_link.split('/')[-2]}/{name}/"
         for link in src_link:
             source = link.split("/")[-1]
-            sources.append(f"{self.meta.sbosrcarch_link}{category}{source}")
-        return sources
+            yield f"{self.meta.sbosrcarch_link}{category}{source}"

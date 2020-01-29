@@ -47,14 +47,18 @@ class SBoGrep:
         self.unst = ["UNSUPPORTED", "UNTESTED"]
         self.SLACKBUILDS_TXT = Utils().read_file(self.sbo_txt)
 
-    def names(self):
-        """Grab all packages name
+    def _names_grabbing(self):
+        """Generator that collecting all packages names
         """
-        pkg_names = []
         for line in self.SLACKBUILDS_TXT.splitlines():
             if line.startswith(self.line_name):
-                pkg_names.append(line[17:].strip())
-        return pkg_names
+                yield line[17:].strip()
+
+    def names(self):
+        """Alias method convert generator and return
+        a list
+        """
+        return list(self._names_grabbing())
 
     def source(self):
         """Grab sources downloads links
@@ -138,7 +142,7 @@ class SBoGrep:
             return md5sum64
 
     def description(self):
-        """Grab package verion
+        """Grab package version
         """
         for line in self.SLACKBUILDS_TXT.splitlines():
             if line.startswith(self.line_name):

@@ -65,7 +65,6 @@ class QueuePkgs:
             with open(self.queue_list, "w") as queue:
                 for line in queue_file:
                     queue.write(line)
-                queue.close()
         self.queued = Utils().read_file(self.queue_list)
 
     def packages(self):
@@ -106,7 +105,6 @@ class QueuePkgs:
                 else:
                     print(f"{self.red}{pkg}{self.endc}")
                     self.quit = True
-            queue.close()
         if self.quit:
             print()   # new line at exit
 
@@ -121,7 +119,6 @@ class QueuePkgs:
                 else:
                     print(f"{self.red}{line}{self.endc}")
                     self.quit = True
-            queue.close()
         if self.quit:
             print()   # new line at exit
 

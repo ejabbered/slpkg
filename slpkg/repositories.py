@@ -82,7 +82,6 @@ class Repo:
                     print("\nRepository '{0}' successfully "
                           "removed\n".format(repo))
                     rem_repo = True
-            repos.close()
         if not rem_repo:
             print("\nRepository '{0}' doesn't exist\n".format(repo))
         raise SystemExit()
