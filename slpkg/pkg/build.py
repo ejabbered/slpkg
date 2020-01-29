@@ -108,7 +108,7 @@ class BuildPackage:
                 log_end(self.build_logs, self.log_file, sum_time)
                 print(f"Total build time for the package {self.prgnam} : {sum_time}\n")
             else:
-                subprocess.call(f"{' '.join(pass_ver)} ./{self.prgnam}.SlackBuild", shell=True)
+                subprocess.call(f"{' '.join(pass_var)} ./{self.prgnam}.SlackBuild", shell=True)
             os.chdir(self.path)
         except KeyboardInterrupt:   # (OSError, IOError):
             self.msg.pkg_not_found("\n", self.prgnam, "Wrong file", "\n")
