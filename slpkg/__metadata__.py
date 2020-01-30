@@ -29,11 +29,9 @@ def remove_repositories(repositories, default_repositories):
     """
     Remove no default repositories
     """
-    repos = []
     for repo in repositories:
         if repo in default_repositories:
-            repos.append(repo)
-    return repos
+            yield repo
 
 
 def update_repositories(repositories, conf_path):
@@ -194,7 +192,7 @@ class MetaData:
     mles_sub_repo = grab_sub_repo(repositories, "mles")
 
     # remove no default repositories
-    repositories = remove_repositories(repositories, default_repositories)
+    repositories = list(remove_repositories(repositories, default_repositories))
     # add custom repositories
     update_repositories(repositories, conf_path)
 
