@@ -133,4 +133,5 @@ class Updates:
             cmd = "Repository is updated."
         if self.count_news > 0:
             cmd = "Run the command 'slpkg update'."
-        print(f"{self.grey}From {self.count_repo} repositories need {self.count_news} updating. {cmd}{self.endc}", end="\n")
+        print(f"{self.grey}From {self.count_repo} repositories need"
+              f" {self.count_news} updating. {cmd}{self.endc}", end="\n")
