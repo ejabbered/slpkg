@@ -110,7 +110,7 @@ Stay updated, see SUN [(Slackware Update Notifier)](https://gitlab.com/dslackw/s
 
 ##### Optional dependencies
 
-* [python2-pythondialog](http://slackbuilds.org/repository/14.2/python/python2-pythondialog/) for dialog box interface
+* [python3-pythondialog](http://slackbuilds.org/repository/14.2/python/python3-pythondialog/) for dialog box interface
 * [pygraphviz](http://slackbuilds.org/repository/14.2/graphics/pygraphviz/) for drawing dependencies diagram
 * [graph-easy](http://slackbuilds.org/repository/14.2/graphics/graph-easy/) for drawing ascii dependencies diagram
 * [httpie](https://slackbuilds.org/repository/14.2/network/httpie/) alternative downloader
@@ -142,7 +142,7 @@ Default available Repositories:
 
 You can enable more default repositories just edit the file '`/etc/slpkg/repositories.conf`',
 by default are '`slack`' and '`sbo`' repositories is enabled. Please read the [REPOSITORIES.md](https://gitlab.com/dslackw/slpkg/blob/master/REPOSITORIES.md) 
-file for each of the particularities. Alternative you can run the command '`slpkg repo-enable`' ('`python2-pythondialog`' required).
+file for each of the particularities. Alternative you can run the command '`slpkg repo-enable`' ('`python3-pythondialog`' required).
 If a repository is not in the above list, manage the custom repositories with the commands '`repo-add`' and '`repo-remove`'.
 
 
