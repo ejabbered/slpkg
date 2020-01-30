@@ -64,13 +64,20 @@ class Download:
                 self._make_tarfile(self.file_name, source_dir)
 
             self._check_certificate()
-            print(f"\n[{dwn_count}/{len(self.url)}][ {self.green}Download{self.endc} ] --> {self.file_name}\n")
+            print(f"\n[{dwn_count}/{len(self.url)}][ {self.green}"
+                  f"Download{self.endc} ] --> {self.file_name}\n")
             if self.downder in ["wget"]:
-                subprocess.call(f"{self.downder} {self.downder_options} {self.dir_prefix}{self.path} {dwn}", shell=True)
+                subprocess.call(f"{self.downder} {self.downder_options}"
+                                f" {self.dir_prefix}{self.path} {dwn}",
+                                shell=True)
             if self.downder in ["aria2c"]:
-                subprocess.call(f"{self.downder} {self.downder_options} {self.dir_prefix}{self.path[:-1]} {dwn}", shell=True)
+                subprocess.call(f"{self.downder} {self.downder_options}"
+                                f" {self.dir_prefix}{self.path[:-1]} {dwn}",
+                                shell=True)
             elif self.downder in ["curl", "http"]:
-                subprocess.call(f"{self.downder} {self.downder_options} {self.path}{self.file_name} {dwn}", shell=True)
+                subprocess.call(f"{self.downder} {self.downder_options}"
+                                f" {self.path}{self.file_name} {dwn}",
+                                shell=True)
             self._check_if_downloaded()
             dwn_count += 1
 
@@ -94,7 +101,8 @@ class Download:
         if not os.path.isfile(self.path + self.file_name):
             print()
             self.msg.template(78)
-            print(f"| Download '{self.file_name}' file [ {self.red}FAILED{self.endc} ]")
+            print(f"| Download '{self.file_name}' file"
+                  f" [ {self.red}FAILED{self.endc} ]")
             self.msg.template(78)
             print()
             if not self.msg.answer() in ["y", "Y"]:
@@ -108,7 +116,8 @@ class Download:
             certificate = (' --no-check-certificate --header="Cookie: '
                            'oraclelicense=accept-securebackup-cookie"')
             self.msg.template(78)
-            print(f"| '{certificate[:23].strip()}' need to go ahead downloading")
+            print(f"| '{certificate[:23].strip()}' need to go"
+                  f" ahead downloading")
             self.msg.template(78)
             print()
             self.downder_options += certificate
