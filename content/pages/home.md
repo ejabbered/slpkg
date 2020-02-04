@@ -153,12 +153,12 @@ Please report any bugs in [ISSUES](https://gitlab.com/dslackw/slpkg/issues)
 
 ##### Testing
 
-The majority of trials have been made in an environment Slackware x86_64 'stable'.
+The majority of trials have been made in Slackware x86_64 'stable' environment.
 
 
 ##### Slackware Current
 
-For Slackware 'current' users, they must change the variable VERSION in '`/etc/slpkg/slpkg.conf`'
+Slackware 'current' users, they have to change the variable VERSION in '`/etc/slpkg/slpkg.conf`'
 file.
 
 Edit the configuration file easy with the command:
@@ -170,13 +170,12 @@ $ slpkg -g edit
 
 ##### Slackware ARM
 
-You must use only two repositories, currently there are 'slack' and 'sbo'.
+You should use only two repositories, currently there are 'slack' and 'sbo'.
 
 ##### Slackware Mirrors
 
 Slpkg use the central mirror [http://mirrors.slackware.com/slackware/](http://mirrors.slackware.com/slackware/)
-to find the
-nearest one. If however for some reason this troublesome please edit the file in
+to find the nearest one. If however for some reason this troublesome please edit the file in
 '`/etc/slpkg/slackware-mirrors`'.
 
 
