@@ -353,7 +353,6 @@ class SBoInstall:
                 if "--download-only" in self.flag:
                     continue
                 sources = list(self.filenames(src_link))
-                print(sources)
                 BuildPackage(script, sources, self.build_folder,
                              auto=False).build()
                 binary = slack_package(prgnam)

@@ -80,5 +80,5 @@ class FindFromRepos:
         """
         ver = ""
         if repo == "sbo":
-            ver = "-" + SBoGrep(find).version()
+            ver = f"-{SBoGrep(find).version()}"
         return ver

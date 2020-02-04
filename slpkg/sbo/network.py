@@ -23,7 +23,6 @@
 
 
 import os
-import sys
 import pydoc
 
 from slpkg.utils import Utils

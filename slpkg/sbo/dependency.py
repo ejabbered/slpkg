@@ -68,5 +68,4 @@ class Requires:
         """
         if dependencies:
             self.dep_results.append(dependencies)
-            for dep in dependencies:
-                self.sbo(dep)
+            [self.sbo(dep) for dep in dependencies]
