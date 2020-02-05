@@ -141,7 +141,7 @@ Default available Repositories:
 
 
 You can enable more default repositories just edit the file '`/etc/slpkg/repositories.conf`',
-by default are '`slack`' and '`sbo`' repositories is enabled. Please read the [REPOSITORIES.md](https://gitlab.com/dslackw/slpkg/blob/master/REPOSITORIES.md) 
+by default '`slack`' and '`sbo`' repositories are enabled. Please read the [REPOSITORIES.md](https://gitlab.com/dslackw/slpkg/blob/master/REPOSITORIES.md) 
 file for each of the particularities. Alternative you can run the command '`slpkg repo-enable`' ('`python3-pythondialog`' required).
 If a repository is not in the above list, manage the custom repositories with the commands '`repo-add`' and '`repo-remove`'.
 
@@ -182,7 +182,7 @@ to find the nearest one. If however for some reason this troublesome please edit
 ##### Slpkg configuration
 
 It is important to read the configuration file '`/etc/slpkg/slpkg.conf`'. You will find many
-useful options to configure the program so as you need it.
+useful options to configure the program so as you want it.
 
 
 ##### Configuration files
@@ -369,6 +369,6 @@ Thank you very much!
 
 ##### Copyright
 
-Copyright 2014-2019 © Dimitris Zlatanidis.
+Copyright 2014-2020 © Dimitris Zlatanidis.
 Slackware® is a Registered Trademark of Patrick Volkerding.
 Linux is a Registered Trademark of Linus Torvalds.
