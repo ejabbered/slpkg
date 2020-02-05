@@ -86,8 +86,8 @@ class Config:
     def reset(self):
         """Reset slpkg.conf file with default values
         """
-        shutil.copy2(self.config_file + ".orig", self.config_file)
-        if filecmp.cmp(self.config_file + ".orig", self.config_file):
+        shutil.copy2(f"{self.config_file}.orig", self.config_file)
+        if filecmp.cmp(f"{self.config_file}.orig", self.config_file):
             print(f"{self.green}The reset was done{self.endc}")
         else:
             print(f"{self.red}Reset failed{self.endc}")
