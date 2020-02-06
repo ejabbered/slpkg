@@ -3,7 +3,7 @@
 
 # manager.py file is part of slpkg.
 
-# Copyright 2014-2019 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
+# Copyright 2014-2020 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
 # All rights reserved.
 
 # Slpkg is a user-friendly package manager for Slackware installations
@@ -407,10 +407,10 @@ class PackageManager:
                     match_cache = match.lower()
                 if ("--third-party" in flag and not self.binary and
                         split_name not in slack_names):
-                        packages.append(match)
+                    packages.append(match)
                 if ("--third-party" in flag and pkg_cache in match_cache and
                         split_name not in slack_names):
-                        packages.append(match)
+                    packages.append(match)
                 if pkg_cache in match_cache and not flag:
                     packages.append(match)
                 if ("--case-ins" in flag and "--third-party" not in flag and

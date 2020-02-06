@@ -3,7 +3,7 @@
 
 # __metadata__.py file is part of slpkg.
 
-# Copyright 2014-2019 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
+# Copyright 2014-2020 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
 # All rights reserved.
 
 # Slpkg is a user-friendly package manager for Slackware installations
@@ -29,11 +29,9 @@ def remove_repositories(repositories, default_repositories):
     """
     Remove no default repositories
     """
-    repos = []
     for repo in repositories:
         if repo in default_repositories:
-            repos.append(repo)
-    return repos
+            yield repo
 
 
 def update_repositories(repositories, conf_path):
@@ -78,7 +76,7 @@ class MetaData:
 
     __all__ = "slpkg"
     __author__ = "dslackw"
-    __version_info__ = (3, 7, 5)
+    __version_info__ = (3, 8, 0)
     __version__ = "{0}.{1}.{2}".format(*__version_info__)
     __license__ = "GNU General Public License v3 (GPLv3)"
     __email__ = "d.zlatanidis@gmail.com"
@@ -194,7 +192,7 @@ class MetaData:
     mles_sub_repo = grab_sub_repo(repositories, "mles")
 
     # remove no default repositories
-    repositories = remove_repositories(repositories, default_repositories)
+    repositories = list(remove_repositories(repositories, default_repositories))
     # add custom repositories
     update_repositories(repositories, conf_path)
 

@@ -3,7 +3,7 @@
 
 # slack_find.py file is part of slpkg.
 
-# Copyright 2014-2019 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
+# Copyright 2014-2020 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
 # All rights reserved.
 
 # Slpkg is a user-friendly package manager for Slackware installations

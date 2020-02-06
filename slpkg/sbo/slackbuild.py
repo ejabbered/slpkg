@@ -3,7 +3,7 @@
 
 # slackbuild.py file is part of slpkg.
 
-# Copyright 2014-2019 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
+# Copyright 2014-2020 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
 # All rights reserved.
 
 # Slpkg is a user-friendly package manager for Slackware installations
@@ -58,6 +58,7 @@ class SBoInstall:
         self.flag = flag
         self.meta = _meta_
         self.green = _meta_.color["GREEN"]
+        self.red = _meta_.color["RED"]
         self.yellow = _meta_.color["YELLOW"]
         self.grey = _meta_.color["GREY"]
         self.endc = _meta_.color["ENDC"]
@@ -353,7 +354,6 @@ class SBoInstall:
                 if "--download-only" in self.flag:
                     continue
                 sources = list(self.filenames(src_link))
-                print(sources)
                 BuildPackage(script, sources, self.build_folder,
                              auto=False).build()
                 binary = slack_package(prgnam)

@@ -3,7 +3,7 @@
 
 # main.py file is part of slpkg.
 
-# Copyright 2014-2019 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
+# Copyright 2014-2020 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
 # All rights reserved.
 
 # Slpkg is a user-friendly package manager for Slackware installations
@@ -324,11 +324,11 @@ class ArgParse:
             else:
                 usage(self.args[1])
         elif len(self.args) == 1 and self.args[0] in options:
-                Updates(repo="").ALL()
+            Updates(repo="").ALL()
         elif len(self.args) == 2 and self.args[0] in options:
-                Updates(self.args[1]).run()
+            Updates(self.args[1]).run()
         elif (len(self.args) >= 2 and self.args[0] in options and
-                self.args[1] not in self.meta.repositories):
+              self.args[1] not in self.meta.repositories):
             usage(self.args[1])
         else:
             usage("")

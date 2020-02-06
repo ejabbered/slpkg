@@ -1,4 +1,12 @@
-3.7.5 - 15/01/2020
+3.8.0 - 05/02/2020
+Added:
+- Many changes happen in this version, a big part of code has been rewritten
+- to improve the code for support Python 3. Possibly will there are some bugs
+- in the feture versions I would appreciate it if report them.
+
+- Cheers,
+- Dimitris
+
 Fixed:
 - Bugfix: merge files with slack repository between current and slack versions
 Updated:

@@ -3,7 +3,7 @@
 
 # checksum.py file is part of slpkg.
 
-# Copyright 2014-2019 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
+# Copyright 2014-2020 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
 # All rights reserved.
 
 # Slpkg is a user-friendly package manager for Slackware installations
@@ -38,7 +38,8 @@ def check_md5(pkg_md5, src_file):
         md5s = md5(src_file)
         if pkg_md5 != md5s:
             Msg().template(78)
-            print(f"| MD5SUM check for {src_file.split('/')[-1]} [ {red}FAILED{endc} ]")
+            print(f"| MD5SUM check for {src_file.split('/')[-1]}"
+                  f" [ {red}FAILED{endc} ]")
             Msg().template(78)
             print(f"| Expected: {pkg_md5}")
             print(f"| Found: {md5s}")
@@ -48,6 +49,7 @@ def check_md5(pkg_md5, src_file):
                 raise SystemExit()
         else:
             Msg().template(78)
-            print(f"| MD5SUM check for {src_file.split('/')[-1]} [ {green}PASSED{endc} ]")
+            print(f"| MD5SUM check for {src_file.split('/')[-1]}"
+                  f" [ {green}PASSED{endc} ]")
             Msg().template(78)
         print()   # new line after pass checksum

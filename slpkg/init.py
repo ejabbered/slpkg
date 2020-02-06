@@ -3,7 +3,7 @@
 
 # init.py file is part of slpkg.
 
-# Copyright 2014-2019 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
+# Copyright 2014-2020 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
 # All rights reserved.
 
 # Slpkg is a user-friendly package manager for Slackware installations
@@ -51,6 +51,11 @@ class Initialization:
         self._SOURCES = self.meta.SBo_SOURCES
         self.slpkg_tmp_packages = self.meta.slpkg_tmp_packages
         self.slpkg_tmp_patches = self.meta.slpkg_tmp_patches
+        self.constructing()
+
+    def constructing(self):
+        """Creating the all necessary directories
+        """
         if not os.path.exists(self.conf_path):
             os.mkdir(self.conf_path)
         if not os.path.exists(self.log_path):
