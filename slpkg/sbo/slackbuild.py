@@ -58,6 +58,7 @@ class SBoInstall:
         self.flag = flag
         self.meta = _meta_
         self.green = _meta_.color["GREEN"]
+        self.red = _meta_.color["RED"]
         self.yellow = _meta_.color["YELLOW"]
         self.grey = _meta_.color["GREY"]
         self.endc = _meta_.color["ENDC"]
