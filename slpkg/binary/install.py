@@ -28,7 +28,6 @@ from pkg_resources import parse_version
 from slpkg.utils import Utils
 from slpkg.sizes import units
 from slpkg.messages import Msg
-from slpkg.toolbar import status
 from slpkg.checksum import check_md5
 from slpkg.blacklist import BlackList
 from slpkg.downloader import Download
@@ -266,7 +265,6 @@ class BinaryInstall:
                 self.flag != "--resolve-off"):
             self.msg.resolving()
         for dep in self.packages:
-            status(0.05)
             dependencies = []
             dependencies = Utils().dimensional_list(Dependencies(
                 self.repo, self.blacklist).binary(dep, self.flag))

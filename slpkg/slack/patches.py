@@ -31,7 +31,6 @@ from slpkg.utils import Utils
 from slpkg.sizes import units
 from slpkg.messages import Msg
 from slpkg.url_read import URL
-from slpkg.toolbar import status
 from slpkg.checksum import check_md5
 from slpkg.blacklist import BlackList
 from slpkg.downloader import Download
@@ -138,7 +137,6 @@ class Patches:
         data = repo_data(self.PACKAGES_TXT, "slack", self.flag)
         black = BlackList().packages(pkgs=data[0], repo="slack")
         for name, loc, comp, uncomp in zip(data[0], data[1], data[2], data[3]):
-            status(0.0003)
             repo_pkg_name = split_package(name)[0]
             if (not os.path.isfile(self.meta.pkg_path + name[:-4]) and
                     repo_pkg_name not in black and
@@ -163,9 +161,8 @@ class Patches:
         text = "Press 'spacebar' to unchoose packages from upgrade"
         title = " Upgrade "
         backtitle = f"{self.meta.__all__} {self.meta.__version__}"
-        status = True
         pkgs = DialogUtil(data, text, title, backtitle,
-                          status).checklist()
+                          status=True).checklist()
         index = 0
         for pkg, comp, uncomp in zip(self.upgrade_all, self.comp_sum,
                                      self.uncomp_sum):

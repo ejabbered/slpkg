@@ -24,7 +24,6 @@
 
 import sys
 
-from slpkg.toolbar import status
 from slpkg.blacklist import BlackList
 from slpkg.__metadata__ import MetaData as _meta_
 
@@ -52,8 +51,6 @@ class Requires:
             requires = SBoGrep(name).requires()
             if requires:
                 for req in requires:
-                    status(0.03)
-                    # toolbar_width = status(index, toolbar_width, 1)
                     # avoid to add %README% as dependency and
                     # if require in blacklist
                     if "%README%" not in req and req not in self.blacklist:

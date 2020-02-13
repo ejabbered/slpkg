@@ -26,7 +26,6 @@ import os
 from pkg_resources import parse_version
 
 from slpkg.messages import Msg
-from slpkg.toolbar import status
 from slpkg.blacklist import BlackList
 from slpkg.splitting import split_package
 from slpkg.upgrade_checklist import choose_upg
@@ -43,7 +42,6 @@ def sbo_upgrade(skip, flag):
     data = SBoGrep(name="").names()
     blacklist = BlackList().packages(pkgs=data, repo="sbo")
     for pkg in sbo_list():
-        status(0.02)
         name = split_package(pkg)[0]
         ver = split_package(pkg)[1]
         if (name in data and name not in skip and name not in blacklist):

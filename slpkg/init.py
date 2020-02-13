@@ -123,8 +123,6 @@ class Initialization:
         CHECKSUMS_MD5 = mirrors(md5_file, "")
         self.EXTRA = mirrors(lib_file, dirs[1])
         self.EXT_CHECKSUMS = mirrors(md5_file, dirs[1])
-        # self.PASTURE = mirrors(lib_file, dirs[2])
-        # self.PAS_CHECKSUMS = mirrors(md5_file, dirs[2])
         self.PATCHES = mirrors(lib_file, dirs[2])
         self.PAT_CHECKSUMS = mirrors(md5_file, dirs[2])
         ChangeLog_txt = mirrors(log_file, "")
@@ -134,9 +132,6 @@ class Initialization:
         self.down(lib + dirs[0], CHECKSUMS_MD5, repo_name)
         self.down(lib + dirs[1], self.EXTRA, repo_name)
         self.down(lib + dirs[1], self.EXT_CHECKSUMS, repo_name)
-        # if slack_ver() != "14.0":   # no pasture/ folder for 14.0 version
-        #     self.down(lib + dirs[2], self.PASTURE, repo_name)
-        #     self.down(lib + dirs[2], self.PAS_CHECKSUMS, repo_name)
         self.down(lib + dirs[2], self.PATCHES, repo_name)
         self.down(lib + dirs[2], self.PAT_CHECKSUMS, repo_name)
         self.down(log, ChangeLog_txt, repo_name)
@@ -675,9 +670,6 @@ class Initialization:
                 self.down(lib_path + "core/", CHECKSUMS_MD5, repo)
                 self.down(lib_path + "extra/", self.EXTRA, repo)
                 self.down(lib_path + "extra/", self.EXT_CHECKSUMS, repo)
-                # if slack_ver() != "14.0":  # no pasture/ folder for 14.0 version
-                #     self.down(lib_path + "pasture/", self.PASTURE, repo)
-                #     self.down(lib_path + "pasture/", self.PAS_CHECKSUMS, repo)
             # download new files
             if repo != "slack":
                 self.down(lib_path, PACKAGES_TXT, repo)

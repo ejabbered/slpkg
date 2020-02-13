@@ -28,7 +28,6 @@ from pkg_resources import parse_version
 
 from slpkg.utils import Utils
 from slpkg.messages import Msg
-from slpkg.toolbar import status
 from slpkg.log_deps import write_deps
 from slpkg.blacklist import BlackList
 from slpkg.downloader import Download
@@ -99,7 +98,6 @@ class SBoInstall:
         self.is_upgrade = is_upgrade
         self.case_insensitive()
         for _sbo in self.slackbuilds:
-            status(0.03)
             if _sbo in self.data and _sbo not in self.blacklist:
                 sbo_deps = Requires(self.flag).sbo(_sbo)
                 self.deps += sbo_deps
@@ -233,7 +231,6 @@ class SBoInstall:
         """
         sbo_versions, sources = [], []
         for sbo in slackbuilds:
-            status(0.02)
             sbo_ver = f"{sbo}-{SBoGrep(sbo).version()}"
             sbo_versions.append(sbo_ver)
             sources.append(SBoGrep(sbo).source())

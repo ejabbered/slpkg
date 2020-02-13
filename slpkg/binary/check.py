@@ -25,7 +25,6 @@
 from pkg_resources import parse_version
 
 from slpkg.messages import Msg
-from slpkg.toolbar import status
 from slpkg.splitting import split_package
 from slpkg.upgrade_checklist import choose_upg
 from slpkg.__metadata__ import MetaData as _meta_
@@ -48,7 +47,6 @@ def pkg_upgrade(repo, skip, flag):
     # unsize = data[3]
     data = repo_data(PACKAGES_TXT, repo, flag="")
     for pkg in installed():
-        status(0.0005)
         inst_pkg = split_package(pkg)
         for name in data[0]:
             if name:    # this tips because some pkg_name is empty

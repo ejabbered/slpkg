@@ -22,7 +22,6 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
-import sys
 import time
 
 from slpkg.__metadata__ import MetaData as _meta_

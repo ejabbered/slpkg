@@ -24,7 +24,6 @@
 
 import sys
 
-from slpkg.toolbar import status
 from slpkg.__metadata__ import MetaData as _meta_
 
 from slpkg.binary.greps import Requires
@@ -48,7 +47,6 @@ class Dependencies:
             requires = Requires(name, self.repo).get_deps()
             if requires:
                 for req in requires:
-                    status(0)
                     if req and req not in self.black:
                         dependencies.append(req)
                 if dependencies:
