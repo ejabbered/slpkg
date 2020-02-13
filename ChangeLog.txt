@@ -4,6 +4,7 @@ Fixed:
   and patches directory #122
 Updated:
 - Removed status progress bar
+- Setup and installing
 
 3.8.0 - 05/02/2020
 Added:

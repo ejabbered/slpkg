@@ -25,8 +25,6 @@
 import os
 import sys
 import time
-import shutil
-from slpkg.md5sum import md5
 from slpkg.__metadata__ import MetaData as _meta_
 
 try:
@@ -79,7 +77,16 @@ setup(
     package_data={"": ["LICENSE", "README.md", "CHANGELOG"]},
     data_files=[("man/man8", ["man/slpkg.8"]),
                 ("/etc/bash_completion.d", ["conf/slpkg.bash-completion"]),
-                ("/etc/fish/completions", ["conf/slpkg.fish"])],
+                ("/etc/fish/completions", ["conf/slpkg.fish"]),
+                ("/etc/slpkg", ["conf/slpkg.conf",
+                                "conf/repositories.conf",
+                                "conf/blacklist",
+                                "conf/slackware-mirrors",
+                                "conf/default-repositories",
+                                "conf/custom-repositories",
+                                "conf/rlworkman.deps",
+                                "conf/pkg_security"])
+                ],
     install_requires=install_requires,
     extras_require={
         "optional": optional_requires,
@@ -104,29 +111,3 @@ setup(
         "Topic :: Utilities"],
     python_requires=">=3.7"
 )
-
-# Install configuration files with pip.
-if "install" in sys.argv:
-    conf_file = [
-        "conf/slpkg.conf",
-        "conf/repositories.conf",
-        "conf/blacklist",
-        "conf/slackware-mirrors",
-        "conf/default-repositories",
-        "conf/custom-repositories",
-        "conf/rlworkman.deps",
-        "conf/pkg_security"
-    ]
-    if not os.path.exists(_meta_.conf_path):
-        os.makedirs(_meta_.conf_path)
-    for conf in conf_file:
-        filename = conf.split("/")[-1]
-        if os.path.isfile(_meta_.conf_path + filename):
-            old = md5(_meta_.conf_path + filename)
-            new = md5(conf)
-            if old != new:
-                shutil.copy2(conf, _meta_.conf_path + filename + ".new")
-        else:
-            shutil.copy2(conf, _meta_.conf_path)
-    shutil.copy2(conf_file[0],
-                 _meta_.conf_path + conf_file[0].split("/")[-1] + ".orig")
