@@ -129,7 +129,7 @@ class Patches:
             if self.meta.arch == "x86_64":
                 slack_arch = "64"
             print(f"\nSlackware{slack_arch} '{self.version}' v{slack_ver()}"
-                  f"distribution is up to date!\n")
+                  f" distribution is up to date!\n")
 
     def store(self):
         """
