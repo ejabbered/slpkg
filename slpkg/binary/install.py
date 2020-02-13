@@ -46,8 +46,6 @@ from slpkg.binary.greps import repo_data
 from slpkg.binary.repo_init import RepoInit
 from slpkg.binary.dependency import Dependencies
 
-from slpkg.slack.slack_version import slack_ver
-
 
 class BinaryInstall:
     """Install binaries packages with all dependencies from
@@ -288,7 +286,8 @@ class BinaryInstall:
         for pkg, comp in zip(install, comp_sum):
             pkg_repo = split_package(pkg[:-4])
             if find_package(pkg[:-4], self.meta.pkg_path):
-                pkg_sum += 1
+                if "--reinstall" in self.flag:
+                    pkg_sum += 1
                 COLOR = self.meta.color["GREEN"]
             elif pkg_repo[0] == GetFromInstalled(pkg_repo[0]).name():
                 COLOR = self.meta.color["YELLOW"]
