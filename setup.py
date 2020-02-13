@@ -23,7 +23,6 @@
 
 
 import os
-import sys
 import time
 from slpkg.__metadata__ import MetaData as _meta_
 
@@ -50,12 +49,11 @@ optional_requires = [
 
 def print_logo():
     """print slpkg logo"""
-    if "install" not in sys.argv:
-        logo_fname = os.path.join(os.path.dirname(__file__), 'logo.txt')
-        with open(logo_fname, 'rb') as f:
-            logo = f.read().decode('utf-8')
-            print(logo)
-            time.sleep(1)
+    logo_fname = os.path.join(os.path.dirname(__file__), 'logo.txt')
+    with open(logo_fname, 'rb') as f:
+        logo = f.read().decode('utf-8')
+        print(logo)
+        time.sleep(1)
 
 
 print_logo()
@@ -77,16 +75,7 @@ setup(
     package_data={"": ["LICENSE", "README.md", "CHANGELOG"]},
     data_files=[("man/man8", ["man/slpkg.8"]),
                 ("/etc/bash_completion.d", ["conf/slpkg.bash-completion"]),
-                ("/etc/fish/completions", ["conf/slpkg.fish"]),
-                ("/etc/slpkg", ["conf/slpkg.conf",
-                                "conf/repositories.conf",
-                                "conf/blacklist",
-                                "conf/slackware-mirrors",
-                                "conf/default-repositories",
-                                "conf/custom-repositories",
-                                "conf/rlworkman.deps",
-                                "conf/pkg_security"])
-                ],
+                ("/etc/fish/completions", ["conf/slpkg.fish"])],
     install_requires=install_requires,
     extras_require={
         "optional": optional_requires,

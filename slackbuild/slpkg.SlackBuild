@@ -82,6 +82,14 @@ python3 setup.py install --root=$PKG
 find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
 
+# install configuration files
+mkdir -p $PKG/etc/slpkg
+CONFIGS="slpkg.conf repositories.conf blacklist slackware-mirrors \
+    default-repositories custom-repositories rlworkman.deps pkg_security"
+for file in $CONFIGS; do
+    install -D -m0644 conf/$file $PKG/etc/slpkg/${file}.new
+done
+
 # keep original configuration file for reset
 cp -p conf/slpkg.conf $PKG/etc/slpkg/slpkg.conf.orig
 

@@ -11,7 +11,7 @@ distribution like SalixOS, Slackel etc.
 
 ##### Install slpkg
 
-There are mainly 3 ways:
+There are mainly 2 ways:
 
 1. Suggested method, download latest slpkg version from:
    '`https://gitlab.com/dslackw/slpkg/releases`'
@@ -21,6 +21,3 @@ There are mainly 3 ways:
 
 2. Download binary package from '`https://sourceforge.net/projects/slpkg/files/binary/`'
    and use Slackware command '`upgradepkg --install-new <slpkg binary>`'
-
-3. Using pip: '`pip3 install https://gitlab.com/dslackw/slpkg/-/archive/3.8.0/slpkg-3.8.0.tar.gz`'
-   or instead '`'python3 -m pip install`''.
