@@ -38,6 +38,7 @@ def repo_data(PACKAGES_TXT, repo, flag):
     for line in PACKAGES_TXT.splitlines():
         if _meta_.rsl_deps in ["on", "ON"] and "--resolve-off" not in flag:
             status(0.000005)
+
         if line.startswith("PACKAGE NAME:"):
             name.append(line[15:].strip())
         if line.startswith("PACKAGE LOCATION:"):
@@ -46,7 +47,14 @@ def repo_data(PACKAGES_TXT, repo, flag):
             size.append(line[28:-2].strip())
         if line.startswith("PACKAGE SIZE (uncompressed):"):
             unsize.append(line[30:-2].strip())
-    if repo == "rlw":
+
+    if repo == "slack":
+        (rname,
+         rlocation,
+         rsize,
+         runsize
+         ) = slack_filter(name, location, size, unsize, flag)
+    elif repo == "rlw":
         (rname,
          rlocation,
          rsize,
@@ -73,6 +81,30 @@ def repo_data(PACKAGES_TXT, repo, flag):
     else:
         rname, rlocation, rsize, runsize = name, location, size, unsize
     return [rname, rlocation, rsize, runsize]
+
+
+def slack_filter(name, location, size, unsize, flag):
+    """Slackware filter seperate packages from patches/ directory
+    """
+    (fname, flocation, fsize, funsize) = ([] for i in range(4))
+
+    if "--patches" not in flag:
+        for n, l, s, u in zip(name, location, size, unsize):
+            if f"_slack{slack_ver()}" not in n:
+                fname.append(n)
+                flocation.append(l)
+                fsize.append(s)
+                funsize.append(u)
+
+    if "--patches" in flag:
+        for n, l, s, u in zip(name, location, size, unsize):
+            if f"_slack{slack_ver()}" in n:
+                fname.append(n)
+                flocation.append(l)
+                fsize.append(s)
+                funsize.append(u)
+
+    return [fname, flocation, fsize, funsize]
 
 
 def rlw_filter(name, location, size, unsize):

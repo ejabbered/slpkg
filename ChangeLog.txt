@@ -1,3 +1,8 @@
+3.8.1 - 13/02/2020
+FIxed:
+- Bugfix double install packages from slack regular repo
+  and patches directory #122
+
 3.8.0 - 05/02/2020
 Added:
 - Many changes happen in this version, a big part of code has been rewritten

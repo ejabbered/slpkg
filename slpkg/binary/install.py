@@ -331,6 +331,7 @@ class BinaryInstall:
                     install.append(pk)
                     comp_sum.append(comp)
                     uncomp_sum.append(uncomp)
+
         if not install:
             for pkg in packages:
                 for pk, loc, comp, uncomp in zip(self.data[0], self.data[1],
@@ -346,26 +347,5 @@ class BinaryInstall:
         install.reverse()
         comp_sum.reverse()
         uncomp_sum.reverse()
-        if self.repo == "slack":
-            dwn, install, comp_sum, uncomp_sum = self.patches(dwn, install,
-                                                              comp_sum,
-                                                              uncomp_sum)
-        return [dwn, install, comp_sum, uncomp_sum]
 
-    def patches(self, dwn, install, comp_sum, uncomp_sum):
-        """Seperates packages from patches/ directory
-        """
-        dwnp, installp, comp_sump, uncomp_sump = ([] for i in range(4))
-        for d, i, c, u in zip(dwn, install, comp_sum, uncomp_sum):
-            if "_slack" + slack_ver() in i:
-                dwnp.append(d)
-                dwn.remove(d)
-                installp.append(i)
-                install.remove(i)
-                comp_sump.append(c)
-                comp_sum.remove(c)
-                uncomp_sump.append(u)
-                uncomp_sum.remove(u)
-        if "--patches" in self.flag:
-            return dwnp, installp, comp_sump, uncomp_sump
-        return dwn, install, comp_sum, uncomp_sum
+        return [dwn, install, comp_sum, uncomp_sum]
