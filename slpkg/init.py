@@ -114,7 +114,7 @@ class Initialization:
             os.mkdir(log)
         if not os.path.exists(lib):
             os.mkdir(lib)
-        dirs = ["core/", "extra/", "pasture/", "patches/"]
+        dirs = ["core/", "extra/", "patches/"]
         for d in dirs:
             if not os.path.exists(lib + d):
                 os.mkdir(lib + d)
@@ -123,10 +123,10 @@ class Initialization:
         CHECKSUMS_MD5 = mirrors(md5_file, "")
         self.EXTRA = mirrors(lib_file, dirs[1])
         self.EXT_CHECKSUMS = mirrors(md5_file, dirs[1])
-        self.PASTURE = mirrors(lib_file, dirs[2])
-        self.PAS_CHECKSUMS = mirrors(md5_file, dirs[2])
-        self.PATCHES = mirrors(lib_file, dirs[3])
-        self.PAT_CHECKSUMS = mirrors(md5_file, dirs[3])
+        # self.PASTURE = mirrors(lib_file, dirs[2])
+        # self.PAS_CHECKSUMS = mirrors(md5_file, dirs[2])
+        self.PATCHES = mirrors(lib_file, dirs[2])
+        self.PAT_CHECKSUMS = mirrors(md5_file, dirs[2])
         ChangeLog_txt = mirrors(log_file, "")
         if self.check:
             return self.checks_logs(log, ChangeLog_txt)
@@ -134,21 +134,19 @@ class Initialization:
         self.down(lib + dirs[0], CHECKSUMS_MD5, repo_name)
         self.down(lib + dirs[1], self.EXTRA, repo_name)
         self.down(lib + dirs[1], self.EXT_CHECKSUMS, repo_name)
-        if slack_ver() != "14.0":   # no pasture/ folder for 14.0 version
-            self.down(lib + dirs[2], self.PASTURE, repo_name)
-            self.down(lib + dirs[2], self.PAS_CHECKSUMS, repo_name)
-        self.down(lib + dirs[3], self.PATCHES, repo_name)
-        self.down(lib + dirs[3], self.PAT_CHECKSUMS, repo_name)
+        # if slack_ver() != "14.0":   # no pasture/ folder for 14.0 version
+        #     self.down(lib + dirs[2], self.PASTURE, repo_name)
+        #     self.down(lib + dirs[2], self.PAS_CHECKSUMS, repo_name)
+        self.down(lib + dirs[2], self.PATCHES, repo_name)
+        self.down(lib + dirs[2], self.PAT_CHECKSUMS, repo_name)
         self.down(log, ChangeLog_txt, repo_name)
         self.remote(log, ChangeLog_txt, lib, PACKAGES_TXT, CHECKSUMS_MD5,
                     FILELIST_TXT, repo_name)
         self.merge(lib, "PACKAGES.TXT", ["core/PACKAGES.TXT",
                                          "extra/PACKAGES.TXT",
-                                         "pasture/PACKAGES.TXT",
                                          "patches/PACKAGES.TXT"])
         self.merge(lib, "CHECKSUMS.md5", ["core/CHECKSUMS.md5",
                                           "extra/CHECKSUMS.md5",
-                                          "pasture/CHECKSUMS.md5",
                                           "patches/CHECKSUMS_md5"])
 
     def sbo(self):
@@ -669,7 +667,7 @@ class Initialization:
             self.file_remove(lib_path, CHECKSUMS_MD5.split("/")[-1])
             self.file_remove(lib_path, FILELIST_TXT.split("/")[-1])
             if repo == "slack":
-                dirs = ["core/", "extra/", "pasture/"]
+                dirs = ["core/", "extra/"]
                 for d in dirs:
                     self.file_remove(lib_path + d, "PACKAGES.TXT")
                     self.file_remove(lib_path + d, "CHECKSUMS.md5")
@@ -677,9 +675,9 @@ class Initialization:
                 self.down(lib_path + "core/", CHECKSUMS_MD5, repo)
                 self.down(lib_path + "extra/", self.EXTRA, repo)
                 self.down(lib_path + "extra/", self.EXT_CHECKSUMS, repo)
-                if slack_ver() != "14.0":  # no pasture/ folder for 14.0 version
-                    self.down(lib_path + "pasture/", self.PASTURE, repo)
-                    self.down(lib_path + "pasture/", self.PAS_CHECKSUMS, repo)
+                # if slack_ver() != "14.0":  # no pasture/ folder for 14.0 version
+                #     self.down(lib_path + "pasture/", self.PASTURE, repo)
+                #     self.down(lib_path + "pasture/", self.PAS_CHECKSUMS, repo)
             # download new files
             if repo != "slack":
                 self.down(lib_path, PACKAGES_TXT, repo)
