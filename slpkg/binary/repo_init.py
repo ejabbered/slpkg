@@ -41,9 +41,9 @@ class RepoInit:
 
     def fetch(self):
         if self.repo in self.meta.default_repositories:
-            exec(f"self._init_{self.repo}()")
+            getattr(self, f"_init_{self.repo}")()
         else:
-            exec("self._init_custom()")
+            self._init_custom()
         self.lib = self.meta.lib_path + f"{self.repo}_repo/PACKAGES.TXT"
         PACKAGES_TXT = Utils().read_file(self.lib)
         return PACKAGES_TXT, self.mirror
