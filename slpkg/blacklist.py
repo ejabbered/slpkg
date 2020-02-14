@@ -53,11 +53,10 @@ class BlackList:
     def listed(self):
         """Print blacklist packages
         """
-        print("\nPackages in the blacklist:\n")
+        print("Packages in the blacklist:\n")
         for black in self.get_black():
             if black:
                 print(f"{self.green}{black}{self.endc}")
-        print()
 
     def add(self, pkgs):
         """Add blacklist packages if not exist
@@ -70,7 +69,6 @@ class BlackList:
                 if pkg not in blacklist:
                     print(f"{self.green}{pkg}{self.endc}")
                     black_conf.write(pkg + "\n")
-            print()
 
     def remove(self, pkgs):
         """Remove packages from blacklist
@@ -82,4 +80,3 @@ class BlackList:
                     remove.write(line + "\n")
                 else:
                     print(f"{self.red}{line}{self.endc}")
-            print()
