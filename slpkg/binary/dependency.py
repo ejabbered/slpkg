@@ -49,10 +49,14 @@ class Dependencies:
                 for req in requires:
                     if req and req not in self.black:
                         dependencies.append(req)
-                if dependencies:
-                    self.dep_results.append(dependencies)
-                    for dep in dependencies:
-                        self.binary(dep, flag)
+                self.deep_check(dependencies, flag)
             return self.dep_results
         else:
             return []
+
+    def deep_check(self, dependencies, flag):
+        """Checking if dependencies are finnished
+        """
+        if dependencies:
+            self.dep_results.append(dependencies)
+            [self.binary(dep, flag) for dep in dependencies]
