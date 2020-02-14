@@ -63,7 +63,7 @@ class BlackList:
         """
         blacklist = self.get_black()
         pkgs = set(pkgs)
-        print("\nAdd packages in the blacklist:\n")
+        print("Add packages in the blacklist:\n")
         with open(self.blackfile, "a") as black_conf:
             for pkg in pkgs:
                 if pkg not in blacklist:
@@ -73,7 +73,7 @@ class BlackList:
     def remove(self, pkgs):
         """Remove packages from blacklist
         """
-        print("\nRemove packages from the blacklist:\n")
+        print("Remove packages from the blacklist:\n")
         with open(self.blackfile, "w") as remove:
             for line in self.black_conf.splitlines():
                 if line not in pkgs:
