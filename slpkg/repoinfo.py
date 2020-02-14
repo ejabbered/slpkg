@@ -64,7 +64,7 @@ class RepoInfo:
         if repo in self.meta.default_repositories:
             self.form["Default:"] = "yes"
         if (repo in self.meta.repositories and
-            os.path.isfile(self.meta.lib_path + f"{repo}_repo/PACKAGES.TXT")):
+                os.path.isfile(self.meta.lib_path + f"{repo}_repo/PACKAGES.TXT")):
             status = f"{self.green}enabled{self.endc}"
             if repo != "sbo":
                 data = self.repository_data(repo)
