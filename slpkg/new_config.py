@@ -62,7 +62,7 @@ class NewConfig:
         """Find all '.new' files from /etc/ folder
         and subfolders
         """
-        print("\nSearch for .new configuration files:\n")
+        print("Search for .new configuration files:\n")
         for path, dirs, files in os.walk(self.etc):
             del dirs    # delete unsed
             for f in files:

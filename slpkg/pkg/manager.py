@@ -199,7 +199,7 @@ class PackageManager:
     def _view_removed(self):
         """View packages before removed
         """
-        print("\nPackages with name matching [ {0}{1}{2} ]\n".format(
+        print("Packages with name matching [ {0}{1}{2} ]\n".format(
             self.cyan, ", ".join(self.binary), self.endc))
         removed, packages = self._get_removed()
         if packages and "--checklist" in self.extra:
@@ -220,10 +220,9 @@ class PackageManager:
             self._calc_sizes()
             self._remove_summary()
         if "--third-party" in self.extra:
-            print("\n")
+            print()
             self.msg.template(78)
-            print(("| {0}{1}*** WARNING ***{2}").format(
-                " " * 27, self.red, self.endc))
+            print(f"| {' ' * 27}{self.red}*** WARNING ***{self.endc}")
             print("| Before you use third-party option, be sure you have"
                   " updated the packages \n| lists. Run the command"
                   " 'slpkg update' and 'slpkg -c slack --upgrade'")
@@ -395,7 +394,7 @@ class PackageManager:
         matching, packages = 0, []
         pkg_cache, match_cache = "", ""
         slack_packages, slack_names = slackware_repository()
-        print("\nPackages with matching name [ {0}{1}{2} ]\n".format(
+        print("Packages with matching name [ {0}{1}{2} ]\n".format(
             self.cyan, ", ".join(self.binary), self.endc))
         for pkg in self.binary:
             for match in find_package("", self.meta.pkg_path):
@@ -454,7 +453,8 @@ class PackageManager:
         for pkg in self.binary:
             name = GetFromInstalled(pkg).name()
             ver = GetFromInstalled(pkg).version()
-            find = find_package(f"{name}{ver}{self.meta.sp}", self.meta.pkg_path)
+            find = find_package(f"{name}{ver}{self.meta.sp}",
+                                self.meta.pkg_path)
             if find:
                 package = Utils().read_file(
                     self.meta.pkg_path + "".join(find))
@@ -536,8 +536,8 @@ class PackageManager:
         packages = ""
         if repo == "sbo":
             if (os.path.isfile(
-                    self.meta.lib_path + f"{repo}_repo/SLACKBUILDS.TXT")):
-                packages = Utils().read_file(self.meta.lib_path + f"{repo}_repo/SLACKBUILDS.TXT")
+                    self.meta.lib_path + "sbo_repo/SLACKBUILDS.TXT")):
+                packages = Utils().read_file(self.meta.lib_path + "sbo_repo/SLACKBUILDS.TXT")
         else:
             if (os.path.isfile(
                     self.meta.lib_path + f"{repo}_repo/PACKAGES.TXT")):

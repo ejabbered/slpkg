@@ -30,7 +30,7 @@ from slpkg.slack.slack_version import slack_ver
 
 def header():
     """help header message"""
-    print(f"\nslpkg - version {_meta_.__version__} | Slackware release: {_meta_.slack_rel} - {slack_ver()}\n")
+    print(f"slpkg - version {_meta_.__version__} | Slackware release: {_meta_.slack_rel} - {slack_ver()}\n")
 
 
 def options():

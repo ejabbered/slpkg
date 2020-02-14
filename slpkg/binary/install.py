@@ -28,7 +28,6 @@ from pkg_resources import parse_version
 from slpkg.utils import Utils
 from slpkg.sizes import units
 from slpkg.messages import Msg
-from slpkg.toolbar import status
 from slpkg.checksum import check_md5
 from slpkg.blacklist import BlackList
 from slpkg.downloader import Download
@@ -46,8 +45,6 @@ from slpkg.pkg.installed import GetFromInstalled
 from slpkg.binary.greps import repo_data
 from slpkg.binary.repo_init import RepoInit
 from slpkg.binary.dependency import Dependencies
-
-from slpkg.slack.slack_version import slack_ver
 
 
 class BinaryInstall:
@@ -82,7 +79,7 @@ class BinaryInstall:
         self.repo_pkg_names = []
         for name in self.data[0]:
             self.repo_pkg_names.append(split_package(name)[0])
-        self.blacklist = BlackList().packages(self.data[0], self.repo)
+        self.blacklist = BlackList().get_black()
         self.matching = False
 
     def init_flags(self):
@@ -266,7 +263,6 @@ class BinaryInstall:
                 self.flag != "--resolve-off"):
             self.msg.resolving()
         for dep in self.packages:
-            status(0.05)
             dependencies = []
             dependencies = Utils().dimensional_list(Dependencies(
                 self.repo, self.blacklist).binary(dep, self.flag))
@@ -290,7 +286,8 @@ class BinaryInstall:
         for pkg, comp in zip(install, comp_sum):
             pkg_repo = split_package(pkg[:-4])
             if find_package(pkg[:-4], self.meta.pkg_path):
-                pkg_sum += 1
+                if "--reinstall" in self.flag:
+                    pkg_sum += 1
                 COLOR = self.meta.color["GREEN"]
             elif pkg_repo[0] == GetFromInstalled(pkg_repo[0]).name():
                 COLOR = self.meta.color["YELLOW"]
@@ -331,6 +328,7 @@ class BinaryInstall:
                     install.append(pk)
                     comp_sum.append(comp)
                     uncomp_sum.append(uncomp)
+
         if not install:
             for pkg in packages:
                 for pk, loc, comp, uncomp in zip(self.data[0], self.data[1],
@@ -346,26 +344,5 @@ class BinaryInstall:
         install.reverse()
         comp_sum.reverse()
         uncomp_sum.reverse()
-        if self.repo == "slack":
-            dwn, install, comp_sum, uncomp_sum = self.patches(dwn, install,
-                                                              comp_sum,
-                                                              uncomp_sum)
-        return [dwn, install, comp_sum, uncomp_sum]
 
-    def patches(self, dwn, install, comp_sum, uncomp_sum):
-        """Seperates packages from patches/ directory
-        """
-        dwnp, installp, comp_sump, uncomp_sump = ([] for i in range(4))
-        for d, i, c, u in zip(dwn, install, comp_sum, uncomp_sum):
-            if "_slack" + slack_ver() in i:
-                dwnp.append(d)
-                dwn.remove(d)
-                installp.append(i)
-                install.remove(i)
-                comp_sump.append(c)
-                comp_sum.remove(c)
-                uncomp_sump.append(u)
-                uncomp_sum.remove(u)
-        if "--patches" in self.flag:
-            return dwnp, installp, comp_sump, uncomp_sump
-        return dwn, install, comp_sum, uncomp_sum
+        return [dwn, install, comp_sum, uncomp_sum]

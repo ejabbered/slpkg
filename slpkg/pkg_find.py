@@ -38,6 +38,7 @@ class FindFromRepos:
         self.count_pkg = 0
         self.count_repo = 0
         self.meta = _meta_
+        self.msg = Msg()
         self.cyan = self.meta.color["CYAN"]
         self.grey = self.meta.color["GREY"]
         self.endc = self.meta.color["ENDC"]
@@ -45,10 +46,10 @@ class FindFromRepos:
     def find(self, pkg, flag):
         """Start to find packages and print
         """
-        print(f"\nPackages with name matching [ {self.cyan}{', '.join(pkg)}{self.endc} ]\n")
-        Msg().template(78)
+        print(f"Packages with name matching [ {self.cyan}{', '.join(pkg)}{self.endc} ]\n")
+        self.msg.template(78)
         print(f"| Repository Package {' ' * 54}Size")
-        Msg().template(78)
+        self.msg.template(78)
         for repo in _meta_.repositories:
             PACKAGES_TXT = PackageManager(pkg).list_lib(repo)
             packages, sizes = PackageManager(pkg).list_greps(repo,

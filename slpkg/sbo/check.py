@@ -26,7 +26,6 @@ import os
 from pkg_resources import parse_version
 
 from slpkg.messages import Msg
-from slpkg.toolbar import status
 from slpkg.blacklist import BlackList
 from slpkg.splitting import split_package
 from slpkg.upgrade_checklist import choose_upg
@@ -38,12 +37,12 @@ from slpkg.sbo.greps import SBoGrep
 def sbo_upgrade(skip, flag):
     """Return packages for upgrade
     """
-    Msg().checking()
+    msg = Msg()
+    msg.checking()
     upgrade_names = []
     data = SBoGrep(name="").names()
-    blacklist = BlackList().packages(pkgs=data, repo="sbo")
+    blacklist = BlackList().get_black()
     for pkg in sbo_list():
-        status(0.02)
         name = split_package(pkg)[0]
         ver = split_package(pkg)[1]
         if (name in data and name not in skip and name not in blacklist):
@@ -51,7 +50,7 @@ def sbo_upgrade(skip, flag):
             package = f"{name}-{ver}"
             if parse_version(sbo_package) > parse_version(package):
                 upgrade_names.append(name)
-    Msg().done()
+    msg.done()
     if "--checklist" in flag:
         upgrade_names = choose_upg(upgrade_names)
     return upgrade_names
@@ -60,8 +59,6 @@ def sbo_upgrade(skip, flag):
 def sbo_list():
     """Return all SBo packages
     """
-    sbo_packages = []
     for pkg in os.listdir(_meta_.pkg_path):
         if pkg.endswith("_SBo"):
-            sbo_packages.append(pkg)
-    return sbo_packages
+            yield pkg

@@ -32,6 +32,10 @@ class RepoList:
     """
     def __init__(self):
         self.meta = _meta_
+        self.green = self.meta.color["GREEN"]
+        self.red = self.meta.color["RED"]
+        self.grey = self.meta.color["GREY"]
+        self.endc = self.meta.color["ENDC"]
         self.msg = Msg()
         self.all_repos = Repo().default_repository()
         self.all_repos["slack"] = Repo().slack()
@@ -41,7 +45,6 @@ class RepoList:
         """View or enabled or disabled repositories
         """
         def_cnt, cus_cnt = 0, 0
-        print()
         self.msg.template(78)
         print("{0}{1}{2}{3}{4}{5}{6}".format(
             "| Repo id", " " * 2,
@@ -50,13 +53,13 @@ class RepoList:
             "Status"))
         self.msg.template(78)
         for repo_id, repo_URL in sorted(self.all_repos.items()):
-            status, COLOR = "disabled", self.meta.color["RED"]
+            status, COLOR = "disabled", self.red
             default = "yes"
             if len(repo_URL) > 49:
                 repo_URL = repo_URL[:48] + "~"
             if repo_id in self.meta.repositories:
                 def_cnt += 1
-                status, COLOR = "enabled", self.meta.color["GREEN"]
+                status, COLOR = "enabled", self.green
             if repo_id not in self.meta.default_repositories:
                 cus_cnt += 1
                 default = "no"
@@ -64,13 +67,12 @@ class RepoList:
                 repo_id, " " * (9 - len(repo_id)),
                 repo_URL, " " * (52 - len(repo_URL)),
                 default, " " * (8 - len(default)),
-                COLOR, status, self.meta.color["ENDC"]))
+                COLOR, status, self.endc))
 
         print("\nRepositories summary")
         print("=" * 79)
-        print("{0}{1}/{2} enabled default repositories and {3} custom.".format(
-            self.meta.color["GREY"], def_cnt, len(self.all_repos), cus_cnt))
+        print(f"{self.grey}{def_cnt}/{len(self.all_repos)} enabled default "
+              f"repositories and {cus_cnt} custom.")
         print("Edit the file '/etc/slpkg/repositories.conf' for enable "
               "and disable default\nrepositories or run 'slpkg "
-              "repo-enable' command.\n{0}".format(self.meta.color["ENDC"]))
-        raise SystemExit()
+              f"repo-enable' command.{self.endc}")

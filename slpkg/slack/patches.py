@@ -31,7 +31,6 @@ from slpkg.utils import Utils
 from slpkg.sizes import units
 from slpkg.messages import Msg
 from slpkg.url_read import URL
-from slpkg.toolbar import status
 from slpkg.checksum import check_md5
 from slpkg.blacklist import BlackList
 from slpkg.downloader import Download
@@ -129,16 +128,15 @@ class Patches:
             if self.meta.arch == "x86_64":
                 slack_arch = "64"
             print(f"\nSlackware{slack_arch} '{self.version}' v{slack_ver()}"
-                  f"distribution is up to date!\n")
+                  f" distribution is up to date!\n")
 
     def store(self):
         """
         Store and return packages for upgrading
         """
         data = repo_data(self.PACKAGES_TXT, "slack", self.flag)
-        black = BlackList().packages(pkgs=data[0], repo="slack")
+        black = BlackList().get_black()
         for name, loc, comp, uncomp in zip(data[0], data[1], data[2], data[3]):
-            status(0.0003)
             repo_pkg_name = split_package(name)[0]
             if (not os.path.isfile(self.meta.pkg_path + name[:-4]) and
                     repo_pkg_name not in black and
@@ -163,9 +161,8 @@ class Patches:
         text = "Press 'spacebar' to unchoose packages from upgrade"
         title = " Upgrade "
         backtitle = f"{self.meta.__all__} {self.meta.__version__}"
-        status = True
         pkgs = DialogUtil(data, text, title, backtitle,
-                          status).checklist()
+                          status=True).checklist()
         index = 0
         for pkg, comp, uncomp in zip(self.upgrade_all, self.comp_sum,
                                      self.uncomp_sum):
@@ -187,10 +184,10 @@ class Patches:
         """
         for upg, size in sorted(zip(self.upgrade_all, self.comp_sum)):
             pkg_repo = split_package(upg[:-4])
-            color = self.meta.color["RED"]
+            color = self.red
             pkg_inst = GetFromInstalled(pkg_repo[0]).name()
             if pkg_repo[0] == pkg_inst:
-                color = self.meta.color["YELLOW"]
+                color = self.yellow
             ver = GetFromInstalled(pkg_repo[0]).version()
             print(f"  {color}{pkg_repo[0] + ver}{self.endc}"
                   f"{' ' * (23-len(pkg_repo[0] + ver))} {pkg_repo[1]}"

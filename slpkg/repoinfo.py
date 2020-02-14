@@ -61,11 +61,14 @@ class RepoInfo:
         status = f"{self.red}disabled{self.endc}"
         self.form["Status:"] = status
         self.form["Default:"] = "no"
+
         if repo in self.meta.default_repositories:
             self.form["Default:"] = "yes"
+
         if (repo in self.meta.repositories and
-            os.path.isfile(self.meta.lib_path + f"{repo}_repo/PACKAGES.TXT")):
+                os.path.isfile(self.meta.lib_path + f"{repo}_repo/PACKAGES.TXT")):
             status = f"{self.green}enabled{self.endc}"
+
             if repo != "sbo":
                 data = self.repository_data(repo)
                 size = units(data[1], data[2])
@@ -79,18 +82,20 @@ class RepoInfo:
                 self.form["Status:"] = status
                 self.form["Last updated:"] = data[3]
         elif (repo == "sbo" and os.path.isfile(
-                self.meta.lib_path + "{0}_repo/SLACKBUILDS.TXT".format(repo))):
-            status = "{0}enabled{1}".format(self.meta.color["GREEN"],
-                                            self.meta.color["ENDC"])
+                self.meta.lib_path + f"{repo}_repo/SLACKBUILDS.TXT")):
+            status = f"{self.green}enabled{self.endc}"
             sum_sbo_pkgs = 0
+
             for line in (Utils().read_file(
                     self.meta.lib_path + "sbo_repo/SLACKBUILDS."
                     "TXT").splitlines()):
                 if line.startswith("SLACKBUILD NAME: "):
                     sum_sbo_pkgs += 1
+
             changelog_txt = Utils().read_file(
                 self.meta.log_path + "sbo/ChangeLog.txt")
             last_upd = changelog_txt.split("\n", 1)[0]
+
             self.form["Repo id:"] = repo
             self.form["Repo url:"] = self.all_repos[repo]
             self.form["Total compressed packages:"] = ""
@@ -98,19 +103,17 @@ class RepoInfo:
             self.form["Number of packages:"] = sum_sbo_pkgs
             self.form["Status:"] = status
             self.form["Last updated:"] = last_upd
-        print()
+
         for key, value in sorted(self.form.items()):
-            print(self.meta.color["GREY"] + key + self.meta.color["ENDC"],
-                  value)
-        print()
-        raise SystemExit()
+            print(f"{self.green}{key}{self.endc} {value}")
 
     def repository_data(self, repo):
         """
         Grap data packages
         """
         sum_pkgs, size, unsize, last_upd = 0, [], [], ""
-        f = self.meta.lib_path + repo + "_repo/PACKAGES.TXT"
+        f = f"{self.meta.lib_path}{repo}_repo/PACKAGES.TXT"
+
         for line in Utils().read_file(f).splitlines():
             if line.startswith("PACKAGES.TXT;"):
                 last_upd = line[14:].strip()
@@ -120,8 +123,10 @@ class RepoInfo:
                 size.append(line[28:-2].strip())
             if line.startswith("PACKAGE SIZE (uncompressed):  "):
                 unsize.append(line[30:-2].strip())
+
         if repo in ["salix", "slackl"]:
             log = Utils().read_file(
-                self.meta.log_path + "{0}/ChangeLog.txt".format(repo))
+                self.meta.log_path + f"{repo}/ChangeLog.txt")
             last_upd = log.split("\n", 1)[0]
+
         return [sum_pkgs, size, unsize, last_upd]

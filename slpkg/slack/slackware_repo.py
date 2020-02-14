@@ -33,7 +33,7 @@ def slackware_repository():
     """
     slack_repo, packages, names, name = [], [], [], ""
     slack_repo = repo_data(
-        Utils().read_file(_meta_.lib_path + "slack_repo/PACKAGES.TXT"),
+        Utils().read_file(f"{_meta_.lib_path}slack_repo/PACKAGES.TXT"),
         "slack", "")
     for pkg in slack_repo[0]:
         name = split_package(pkg)[0]
