@@ -32,7 +32,6 @@ class BlackList:
     """Blacklist class to add, remove or listed packages
     in blacklist file."""
     def __init__(self):
-        self.quit = False
         self.green = _meta_.color["GREEN"]
         self.red = _meta_.color["RED"]
         self.endc = _meta_.color["ENDC"]
@@ -58,9 +57,7 @@ class BlackList:
         for black in self.get_black():
             if black:
                 print(f"{self.green}{black}{self.endc}")
-                self.quit = True
-        if self.quit:
-            print()   # new line at exit
+        print()
 
     def add(self, pkgs):
         """Add blacklist packages if not exist
@@ -73,9 +70,7 @@ class BlackList:
                 if pkg not in blacklist:
                     print(f"{self.green}{pkg}{self.endc}")
                     black_conf.write(pkg + "\n")
-                    self.quit = True
-        if self.quit:
-            print()   # new line at exit
+            print()
 
     def remove(self, pkgs):
         """Remove packages from blacklist
@@ -87,6 +82,4 @@ class BlackList:
                     remove.write(line + "\n")
                 else:
                     print(f"{self.red}{line}{self.endc}")
-                    self.quit = True
-        if self.quit:
-            print()   # new line at exit
+            print()
