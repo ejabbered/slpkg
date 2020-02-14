@@ -5,7 +5,7 @@ Fixed:
 Updated:
 - Removed status progress bar
 - Setup and installing
-- Managed blacklit in the simple way
+- Managed blacklist in the simple way
 
 3.8.0 - 05/02/2020
 Added:
