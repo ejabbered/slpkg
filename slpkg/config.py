@@ -44,7 +44,6 @@ class Config:
     def view(self):
         """View slpkg config file
         """
-        print()   # new line at start
         conf_args = [
             "RELEASE",
             "SLACKWARE_VERSION",

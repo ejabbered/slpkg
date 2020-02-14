@@ -53,7 +53,7 @@ def print_logo():
     with open(logo_fname, 'rb') as f:
         logo = f.read().decode('utf-8')
         print(logo)
-        time.sleep(1)
+        time.sleep(0.5)
 
 
 print_logo()

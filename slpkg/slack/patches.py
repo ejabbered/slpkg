@@ -184,10 +184,10 @@ class Patches:
         """
         for upg, size in sorted(zip(self.upgrade_all, self.comp_sum)):
             pkg_repo = split_package(upg[:-4])
-            color = self.meta.color["RED"]
+            color = self.red
             pkg_inst = GetFromInstalled(pkg_repo[0]).name()
             if pkg_repo[0] == pkg_inst:
-                color = self.meta.color["YELLOW"]
+                color = self.yellow
             ver = GetFromInstalled(pkg_repo[0]).version()
             print(f"  {color}{pkg_repo[0] + ver}{self.endc}"
                   f"{' ' * (23-len(pkg_repo[0] + ver))} {pkg_repo[1]}"
