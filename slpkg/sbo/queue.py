@@ -44,19 +44,22 @@ class QueuePkgs:
     installation
     """
     def __init__(self):
-        queue_file = [
-            "# In this file you can create a list of\n",
-            "# packages you want to build or install.\n",
-            "#\n"
-        ]
         self.meta = _meta_
         self.green = _meta_.color["GREEN"]
         self.red = _meta_.color["RED"]
         self.endc = _meta_.color["ENDC"]
-        self.quit = False
         self.queue = self.meta.lib_path + "queue/"
         self.queue_list = self.queue + "queue_list"
         self._SOURCES = self.meta.SBo_SOURCES
+        self.touch()
+
+    def touch(self):
+        """Creating the directories and the queue file
+        """
+        queue_file = [
+            "# In this file you can create a list of\n",
+            "# packages you want to build or install.\n",
+            "#\n"]
         if not os.path.exists(self.meta.lib_path):
             os.mkdir(self.meta.lib_path)
         if not os.path.exists(self.queue):
@@ -71,61 +74,48 @@ class QueuePkgs:
         """Return queue list from /var/lib/queue/queue_list
         file.
         """
-        queue_list = []
         for read in self.queued.splitlines():
             read = read.lstrip()
             if not read.startswith("#"):
-                queue_list.append(read.replace("\n", ""))
-        return queue_list
+                yield read.replace("\n", "")
 
     def listed(self):
         """Print packages from queue
         """
-        print("\nPackages in the queue:\n")
+        print("Packages in the queue:\n")
         for pkg in self.packages():
-            if pkg:
-                print(f"{self.green}{pkg}{self.endc}")
-                self.quit = True
-        if self.quit:
-            print()   # new line at exit
+            print(f"{self.green}{pkg}{self.endc}")
 
     def add(self, pkgs):
         """Add packages in queue if not exist
         """
-        queue_list = self.packages()
+        queue_list = list(self.packages())
         pkgs = list(OrderedDict.fromkeys(pkgs))
-        print("\nAdd packages in the queue:\n")
+        print("Add packages in the queue:\n")
         with open(self.queue_list, "a") as queue:
             for pkg in pkgs:
                 find = sbo_search_pkg(pkg)
                 if pkg not in queue_list and find is not None:
                     print(f"{self.green}{pkg}{self.endc}")
                     queue.write(pkg + "\n")
-                    self.quit = True
                 else:
                     print(f"{self.red}{pkg}{self.endc}")
-                    self.quit = True
-        if self.quit:
-            print()   # new line at exit
 
     def remove(self, pkgs):
         """Remove packages from queue
         """
-        print("\nRemove packages from the queue:\n")
+        print("Remove packages from the queue:\n")
         with open(self.queue_list, "w") as queue:
             for line in self.queued.splitlines():
                 if line not in pkgs:
                     queue.write(line + "\n")
                 else:
                     print(f"{self.red}{line}{self.endc}")
-                    self.quit = True
-        if self.quit:
-            print()   # new line at exit
 
     def build(self):
         """Build packages from queue
         """
-        packages = self.packages()
+        packages = list(self.packages())
         if packages:
             for pkg in packages:
                 if not os.path.exists(self.meta.build_path):
@@ -152,7 +142,7 @@ class QueuePkgs:
     def install(self):
         """Install packages from queue
         """
-        packages = self.packages()
+        packages = list(self.packages())
         if packages:
             print()   # new line at start
             for pkg in packages:
