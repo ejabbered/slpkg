@@ -45,7 +45,7 @@ class FindFromRepos:
     def find(self, pkg, flag):
         """Start to find packages and print
         """
-        print(f"\nPackages with name matching [ {self.cyan}{', '.join(pkg)}{self.endc} ]\n")
+        print(f"Packages with name matching [ {self.cyan}{', '.join(pkg)}{self.endc} ]\n")
         Msg().template(78)
         print(f"| Repository Package {' ' * 54}Size")
         Msg().template(78)
