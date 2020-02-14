@@ -80,7 +80,7 @@ class SBoInstall:
         self.count_uni = 0
         self.msg.reading()
         self.data = SBoGrep(name="").names()
-        self.blacklist = BlackList().packages(pkgs=self.data, repo="sbo")
+        self.blacklist = BlackList().get_black()
 
     def init_flags(self):
         """Flags initialization

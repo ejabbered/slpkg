@@ -79,7 +79,7 @@ class BinaryInstall:
         self.repo_pkg_names = []
         for name in self.data[0]:
             self.repo_pkg_names.append(split_package(name)[0])
-        self.blacklist = BlackList().packages(self.data[0], self.repo)
+        self.blacklist = BlackList().get_black()
         self.matching = False
 
     def init_flags(self):

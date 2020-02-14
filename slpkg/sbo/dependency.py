@@ -37,8 +37,7 @@ class Requires:
         self.flag = flag
         self.meta = _meta_
         self.SLACKBUILDS_TXT = SBoGrep(name="").names()
-        self.blacklist = BlackList().packages(pkgs=self.SLACKBUILDS_TXT,
-                                              repo="sbo")
+        self.blacklist = BlackList().get_black()
         self.dep_results = []
 
     def sbo(self, name):

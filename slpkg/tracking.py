@@ -129,7 +129,7 @@ class TrackingDeps:
             self.bin_case_insensitive()
             self.find_pkg = search_pkg(self.name, self.repo)
             if self.find_pkg:
-                self.black = BlackList().packages(self.names, self.repo)
+                self.black = BlackList().get_black()
                 self.dependencies_list = Dependencies(
                     self.repo, self.black).binary(self.name, self.flag)
 

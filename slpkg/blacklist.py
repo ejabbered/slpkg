@@ -25,7 +25,6 @@
 import os
 
 from slpkg.utils import Utils
-from slpkg.splitting import split_package
 from slpkg.__metadata__ import MetaData as _meta_
 
 
@@ -91,53 +90,3 @@ class BlackList:
                     self.quit = True
         if self.quit:
             print()   # new line at exit
-
-    def packages(self, pkgs, repo):
-        """Return packages in blacklist or by repository
-        """
-        self.black = []
-        for bl in self.get_black():
-            pr = bl.split(":")
-            for pkg in pkgs:
-                self.__priority(pr, repo, pkg)
-                self.__blackpkg(bl, repo, pkg)
-        return self.black
-
-    def __add(self, repo, pkg):
-        """Split packages by repository
-        """
-        if repo == "sbo":
-            return pkg
-        else:
-            return split_package(pkg)[0]
-
-    def __priority(self, pr, repo, pkg):
-        """Add packages in blacklist by priority
-        """
-        if (pr[0] == repo and pr[1].startswith("*") and
-                pr[1].endswith("*")):
-            if pr[1][1:-1] in pkg:
-                self.black.append(self.__add(repo, pkg))
-        elif pr[0] == repo and pr[1].endswith("*"):
-            if pkg.startswith(pr[1][:-1]):
-                self.black.append(self.__add(repo, pkg))
-        elif pr[0] == repo and pr[1].startswith("*"):
-            if pkg.endswith(pr[1][1:]):
-                self.black.append(self.__add(repo, pkg))
-        elif pr[0] == repo and "*" not in pr[1]:
-            self.black.append(self.__add(repo, pkg))
-
-    def __blackpkg(self, bl, repo, pkg):
-        """Add packages in blacklist
-        """
-        if bl.startswith("*") and bl.endswith("*"):
-            if bl[1:-1] in pkg:
-                self.black.append(self.__add(repo, pkg))
-        elif bl.endswith("*"):
-            if pkg.startswith(bl[:-1]):
-                self.black.append(self.__add(repo, pkg))
-        elif bl.startswith("*"):
-            if pkg.endswith(bl[1:]):
-                self.black.append(self.__add(repo, pkg))
-        if bl not in self.black and "*" not in bl:
-            self.black.append(bl)

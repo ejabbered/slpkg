@@ -76,7 +76,7 @@ class SBoNetwork:
             self.with_checklist()
         grep = SBoGrep(self.name)
         self.sbo_files = grep.files()
-        self.blacklist = BlackList().packages(pkgs=self.data, repo="sbo")
+        self.blacklist = BlackList().get_black()
         self.sbo_url = sbo_search_pkg(self.name)
         if self.sbo_url:
             self.sbo_desc = grep.description()[len(self.name) + 2:-1]

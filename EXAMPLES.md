@@ -1202,14 +1202,7 @@ Packages in blacklist:
 live555
 faac
 
-Note: you can use asterisk "*" to match more packages like:
 
-*lib*   \\ Add all packages inlcude string "lib"
-*lib    \\ Add all packages ends with string "lib"
-lib*    \\ Add all packages starts with string "lib"
-
-multi:*multilib*   \\ Add all packages include string "multilib" from "multi"
-                   \\ repository.
 ```
 
 Print a package description:

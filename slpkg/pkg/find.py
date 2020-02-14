@@ -32,7 +32,7 @@ def searching(find_pkg, directory):
     """
     if os.path.isdir(directory):
         installed = os.listdir(directory)
-        blacklist = BlackList().packages(pkgs=installed, repo="local")
+        blacklist = BlackList().get_black()
         if os.path.exists(directory):
             for pkg in installed:
                 if (not pkg.startswith(".") and pkg.startswith(find_pkg) and

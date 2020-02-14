@@ -40,7 +40,7 @@ def sbo_upgrade(skip, flag):
     Msg().checking()
     upgrade_names = []
     data = SBoGrep(name="").names()
-    blacklist = BlackList().packages(pkgs=data, repo="sbo")
+    blacklist = BlackList().get_black()
     for pkg in sbo_list():
         name = split_package(pkg)[0]
         ver = split_package(pkg)[1]
