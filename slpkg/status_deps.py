@@ -23,7 +23,6 @@
 
 
 import os
-import sys
 
 from slpkg.utils import Utils
 from slpkg.messages import Msg
