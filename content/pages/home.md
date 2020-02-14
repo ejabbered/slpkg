@@ -1,4 +1,4 @@
-Title: slpkg 3.8.0
+Title: slpkg 3.8.1
 Date: 2019-12-20
 Authors: dslackw
 Slug: home
@@ -51,8 +51,8 @@ Download the latest release
 *(Required root privileges for the install)*
 
 ```
-$ tar xvf slpkg-3.8.0.tar.gz
-$ cd slpkg-3.8.0
+$ tar xvf slpkg-3.8.1.tar.gz
+$ cd slpkg-3.8.1
 $ ./install.sh
 ```
 
@@ -71,7 +71,7 @@ $ removepkg slpkg
 Using pip:
 
 ```
-$ pip3 install https://gitlab.com/dslackw/slpkg/-/archive/3.8.0/slpkg-3.8.0.tar.gz
+$ pip3 install https://gitlab.com/dslackw/slpkg/-/archive/3.8.1/slpkg-3.8.1.tar.gz
 ```
 
 Uninstall
