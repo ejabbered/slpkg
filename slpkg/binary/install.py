@@ -63,6 +63,7 @@ class BinaryInstall:
         self.yellow = _meta_.color['YELLOW']
         self.endc = _meta_.color["ENDC"]
         self.msg = Msg()
+        self.utils = Utils()
         self.version = self.meta.slack_rel
         self.tmp_path = self.meta.slpkg_tmp_packages
         self.init_flags()
@@ -159,10 +160,10 @@ class BinaryInstall:
                         self.msg.template(78)
                 if "--download-only" in self.flag:
                     raise SystemExit()
-                self.dep_install = Utils().check_downloaded(
-                    self.tmp_path, self.dep_install)
-                self.install = Utils().check_downloaded(
-                    self.tmp_path, self.install)
+                self.dep_install = list(self.utils.check_downloaded(
+                    self.tmp_path, self.dep_install))
+                self.install = list(self.utils.check_downloaded(
+                    self.tmp_path, self.install))
                 ins, upg = self.install_packages()
                 self.msg.reference(ins, upg)
                 write_deps(self.deps_dict)
@@ -188,8 +189,8 @@ class BinaryInstall:
         lowercase
         """
         if "--case-ins" in self.flag:
-            data = list(Utils().package_name(self.PACKAGES_TXT))
-            data_dict = Utils().case_sensitive(data)
+            data = list(self.utils.package_name(self.PACKAGES_TXT))
+            data_dict = self.utils.case_sensitive(data)
             for pkg in self.packages:
                 index = self.packages.index(pkg)
                 for key, value in data_dict.items():
@@ -200,7 +201,7 @@ class BinaryInstall:
         """Update dependencies dictionary with all package
         """
         for dep in self.dependencies:
-            deps = Utils().dimensional_list(Dependencies(
+            deps = self.utils.dimensional_list(Dependencies(
                 self.repo, self.blacklist).binary(
                     dep, self.flag))
             self.deps_dict[dep] = deps
@@ -210,7 +211,7 @@ class BinaryInstall:
         or if added to install two or more times
         """
         packages = []
-        for mas in Utils().remove_dbs(self.packages):
+        for mas in self.utils.remove_dbs(self.packages):
             if mas not in self.dependencies:
                 packages.append(mas)
         self.packages = packages
@@ -264,11 +265,11 @@ class BinaryInstall:
             self.msg.resolving()
         for dep in self.packages:
             dependencies = []
-            dependencies = Utils().dimensional_list(Dependencies(
+            dependencies = self.utils.dimensional_list(Dependencies(
                 self.repo, self.blacklist).binary(dep, self.flag))
             requires += list(self._fix_deps_repos(dependencies))
-            self.deps_dict[dep] = Utils().remove_dbs(requires)
-        return Utils().remove_dbs(requires)
+            self.deps_dict[dep] = self.utils.remove_dbs(requires)
+        return self.utils.remove_dbs(requires)
 
     def _fix_deps_repos(self, dependencies):
         """Fix store deps include in repository

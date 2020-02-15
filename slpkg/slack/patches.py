@@ -110,8 +110,8 @@ class Patches:
             if self.msg.answer() in ["y", "Y"]:
                 Download(self.patch_path, self.dwn_links,
                          repo="slack").start()
-                self.upgrade_all = self.utils.check_downloaded(
-                    self.patch_path, self.upgrade_all)
+                self.upgrade_all = list(self.utils.check_downloaded(
+                    self.patch_path, self.upgrade_all))
                 self.upgrade()
                 self.kernel()
                 if self.meta.slackpkg_log in ["on", "ON"]:

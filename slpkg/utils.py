@@ -74,11 +74,9 @@ class Utils:
         """Check if files downloaded and return downloaded
         packages
         """
-        downloaded = []
         for pkg in maybe_downloaded:
-            if os.path.isfile(path + pkg):
-                downloaded.append(pkg)
-        return downloaded
+            if os.path.isfile(f"{path}{pkg}"):
+                yield pkg
 
     def read_config(self, config):
         """Read config file and returns first uncomment line
@@ -103,7 +101,7 @@ class Utils:
         """Checking the file encoding default is utf-8
         """
         try:
-            with open(path + f, "r") as ftest:
+            with open(f"{path}{f}", "r") as ftest:
                 ftest.read()
         except UnicodeDecodeError:
             return "ISO-8859-1"

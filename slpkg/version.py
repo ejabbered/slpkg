@@ -22,20 +22,15 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
-from slpkg.__metadata__ import MetaData as _meta_
+from slpkg.__metadata__ import MetaData as m
 
 
 def prog_version():
     """Print version, license and email
     """
-    print("Version   : {0}\n"
-          "Licence   : {1}\n"
-          "Email     : {2}\n"
-          "Homepage  : {3}\n"
-          "Twitter   : {4}\n"
-          "Maintainer: {5}".format(_meta_.__version__,
-                                   _meta_.__license__,
-                                   _meta_.__email__,
-                                   _meta_.__homepage__,
-                                   _meta_.__twitter__,
-                                   _meta_.__maintainer__))
+    print(f"Version   : {m.__version__}\n"
+          f"Licence   : {m.__license__}\n"
+          f"Email     : {m.__email__}\n"
+          f"Homepage  : {m.__homepage__}\n"
+          f"Twitter   : {m.__twitter__}\n"
+          f"Maintainer: {m.__maintainer__}")
