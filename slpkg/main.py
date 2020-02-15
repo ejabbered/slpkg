@@ -48,6 +48,7 @@ from slpkg.status_deps import DependenciesStatus
 
 from slpkg.init import (
     Update,
+    Upgrade,
     Initialization,
     check_exists_repositories
 )
@@ -121,15 +122,32 @@ class ArgParse:
     def command_update(self):
         """Update package lists repositories
         """
+        update = Update()
         if len(self.args) == 1 and self.args[0] == "update":
-            Update().repository(only="")
+            update.run(repos="")
         elif (len(self.args) == 2 and self.args[0] == "update" and
                 self.args[1].startswith("--repositories=")):
             repos = self.args[1].split("=")[-1].split(",")
             for rp in repos:
                 if rp not in self.meta.repositories:
                     repos.remove(rp)
-            Update().repository(repos)
+            update.run(repos)
+        else:
+            usage("")
+
+    def command_upgrade(self):
+        """Recreate repositories package lists
+        """
+        upgrade = Upgrade()
+        if len(self.args) == 1 and self.args[0] == "upgrade":
+            upgrade.run(repos="")
+        elif (len(self.args) == 2 and self.args[0] == "upgrade" and
+                self.args[1].startswith("--repositories=")):
+            repos = self.args[1].split("=")[-1].split(",")
+            for rp in repos:
+                if rp not in self.meta.repositories:
+                    repos.remove(rp)
+            upgrade.run(repos)
         else:
             usage("")
 
@@ -171,21 +189,6 @@ class ArgParse:
         """
         if len(self.args) == 2 and self.args[0] == "repo-remove":
             Repo().remove(self.args[1])
-        else:
-            usage("")
-
-    def command_upgrade(self):
-        """Recreate repositories package lists
-        """
-        if len(self.args) == 1 and self.args[0] == "upgrade":
-            Initialization(False).upgrade(only="")
-        elif (len(self.args) == 2 and self.args[0] == "upgrade" and
-                self.args[1].startswith("--repositories=")):
-            repos = self.args[1].split("=")[-1].split(",")
-            for rp in repos:
-                if rp not in self.meta.repositories:
-                    repos.remove(rp)
-            Initialization(False).upgrade(repos)
         else:
             usage("")
 

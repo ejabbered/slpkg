@@ -527,7 +527,7 @@ class Initialization:
         version = self.meta.msb_sub_repo[1:-1]
         if self.meta.slack_rel == "current":
             ver_slack = self.meta.slack_rel
-        PACKAGES_TXT = f"{repo}{ver_slack}/{version}/{ar}/{md5_file}"
+        PACKAGES_TXT = f"{repo}{ver_slack}/{version}/{ar}/{lib_file}"
         FILELIST_TXT = ""
         CHECKSUMS_MD5 = f"{repo}{ver_slack}/{version}/{ar}/{md5_file}"
         ChangeLog_txt = f"{repo}{log_file}"
@@ -709,30 +709,42 @@ class Initialization:
             return True
         return False
 
-    def upgrade(self, only):
-        """Remove all package lists with changelog and checksums files
-        and create lists again"""
+
+class Upgrade:
+
+    def __init__(self):
+        self.meta = _meta_
+        self.log_path = self.meta.log_path
+        self.lib_path = self.meta.lib_path
+
+    def run(self, repos):
+        """Removing and creating the packages lists
+        """
         repositories = self.meta.repositories
-        if only:
-            repositories = only
+
+        # Replace the enabled repositories from user defined
+        if repos:
+            repositories = repos
+
         for repo in repositories:
             changelogs = f"{self.log_path}{repo}/ChangeLog.txt"
             if os.path.isfile(changelogs):
                 os.remove(changelogs)
-            if os.path.isdir(self.lib_path + f"{repo}_repo/"):
-                for f in (os.listdir(self.lib_path + f"{repo}_repo/")):
+
+            if os.path.isdir(f"{self.lib_path}{repo}_repo/"):
+                for f in os.listdir(f"{self.lib_path}{repo}_repo/"):
                     files = f"{self.lib_path}{repo}_repo/{f}"
                     if os.path.isfile(files):
                         os.remove(files)
                     elif os.path.isdir(files):
                         shutil.rmtree(files)
-        Update().repository(only)
+        update = Update()
+        update.run(repos)
 
 
 class Update:
 
     def __init__(self):
-        self.initialization = globals()['Initialization'](False)
         self.meta = _meta_
         self.grey = _meta_.color["GREY"]
         self.red = _meta_.color["RED"]
@@ -741,21 +753,23 @@ class Update:
         self.done = f"{self.grey}Done{self.endc}\n"
         self.error = f"{self.red}Error{self.endc}\n"
 
-    def repository(self, only):
+    def run(self, repos):
         """Update repositories lists
         """
         print("\nCheck and update repositories:\n")
         default = self.meta.default_repositories
         enabled = self.meta.repositories
-        if only:
-            enabled = only
+
+        # Replace the enabled repositories from user defined
+        if repos:
+            enabled = repos
+
         for repo in enabled:
             if check_for_local_repos(repo) is True:
                 continue
             print(f"{self.grey}Check repository [{self.cyan}{repo}{self.grey}] ... {self.endc}", end="", flush=True)
             if repo in default:
-                update = getattr(self.initialization, repo)
-                update()
+                getattr(Initialization(False), repo)()
                 print(self.done, end="")
             elif repo in enabled:
                 Initialization(False).custom(repo)
@@ -776,7 +790,6 @@ def check_exists_repositories(repo):
         pkg_list = "PACKAGES.TXT"
         return ""
     if not os.path.isfile(f"{_meta_.lib_path}{repo}_repo/{pkg_list}"):
-        # .format(_meta_.lib_path, repo, "_repo/{0}".format(pkg_list))):
         return repo
     return ""
 
