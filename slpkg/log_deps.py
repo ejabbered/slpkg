@@ -34,13 +34,13 @@ def write_deps(deps_dict):
     into directory `/var/log/slpkg/dep/`
     """
     for name, dependencies in deps_dict.items():
-        if find_package(name + _meta_.sp, _meta_.pkg_path):
-            dep_path = _meta_.log_path + "dep/"
+        if find_package(f"{name}-", _meta_.pkg_path):
+            dep_path = f"{_meta_.log_path}dep/"
             if not os.path.exists(dep_path):
                 os.mkdir(dep_path)
-            if os.path.isfile(dep_path + name):
-                os.remove(dep_path + name)
+            if os.path.isfile(f"{dep_path}{name}"):
+                os.remove(f"{dep_path}{name}")
             if len(dependencies) >= 1:
-                with open(dep_path + name, "w") as f:
+                with open(f"{dep_path}{name}", "w") as f:
                     for dep in dependencies:
-                        f.write(dep + "\n")
+                        f.write(f"{dep}\n")

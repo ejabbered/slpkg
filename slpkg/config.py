@@ -36,6 +36,7 @@ class Config:
     def __init__(self):
         self.config_file = "/etc/slpkg/slpkg.conf"
         self.meta = _meta_
+        self.utils = Utils()
         self.green = _meta_.color["GREEN"]
         self.red = _meta_.color["RED"]
         self.cyan = _meta_.color["CYAN"]
@@ -66,11 +67,10 @@ class Config:
             "DOWNDER_OPTIONS",
             "SLACKPKG_LOG",
             "ONLY_INSTALLED",
-            "PRG_BAR",
             "EDITOR",
             "NOT_DOWNGRADE"
         ]
-        read_conf = Utils().read_file(self.config_file)
+        read_conf = self.utils.read_file(self.config_file)
         for line in read_conf.splitlines():
             if not line.startswith("#") and line.split("=")[0] in conf_args:
                 print(line)

@@ -30,4 +30,4 @@ def s_user():
     """
     if getpass.getuser() != "root":
         print("\nslpkg: Error: Must have root privileges\n")
-        raise SystemExit()
+        raise SystemExit(1)

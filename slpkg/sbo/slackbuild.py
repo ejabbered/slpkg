@@ -62,6 +62,7 @@ class SBoInstall:
         self.grey = _meta_.color["GREY"]
         self.endc = _meta_.color["ENDC"]
         self.msg = Msg()
+        self.utils = Utils()
         self.arch = SBoArch().get()
         self.build_folder = self.meta.build_path
         self._SOURCES = self.meta.SBo_SOURCES
@@ -172,7 +173,7 @@ class SBoInstall:
         lowercase
         """
         if "--case-ins" in self.flag:
-            data_dict = Utils().case_sensitive(self.data)
+            data_dict = self.utils.case_sensitive(self.data)
             for name in self.slackbuilds:
                 index = self.slackbuilds.index(name)
                 for key, value in data_dict.items():
@@ -182,10 +183,9 @@ class SBoInstall:
     def update_deps(self):
         """Update dependencies dictionary with all package
         """
-        utils = Utils()
         onelist, dependencies = [], []
-        onelist = utils.dimensional_list(self.deps)
-        dependencies = utils.remove_dbs(onelist)
+        onelist = self.utils.dimensional_list(self.deps)
+        dependencies = self.utils.remove_dbs(onelist)
         for dep in dependencies:
             deps = Requires(self.flag).sbo(dep)
             self.deps_dict[dep] = self.one_for_all(deps)
@@ -213,7 +213,7 @@ class SBoInstall:
         """Clear master slackbuilds if already exist in dependencies
         or if added to install two or more times
         """
-        self.master_packages = Utils().remove_dbs(self.master_packages)
+        self.master_packages = self.utils.remove_dbs(self.master_packages)
         for mas in self.master_packages:
             if mas in self.dependencies:
                 self.master_packages.remove(mas)
@@ -246,8 +246,8 @@ class SBoInstall:
         deps.reverse()
         # Inverting the list brings the
         # dependencies in order to be installed.
-        requires = Utils().dimensional_list(deps)
-        dependencies = Utils().remove_dbs(requires)
+        requires = self.utils.dimensional_list(deps)
+        dependencies = self.utils.remove_dbs(requires)
         return dependencies
 
     def top_view(self):

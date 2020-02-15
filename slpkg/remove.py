@@ -34,7 +34,7 @@ def delete_package(path, packages):
     """
     if _meta_.del_all in ["on", "ON"]:
         for pkg in packages:
-            os.remove(path + pkg)
+            os.remove(f"{path}{pkg}")
 
 
 def delete_folder(folder):

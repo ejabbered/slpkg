@@ -1,6 +1,7 @@
 3.8.2 - 15/02/2020
 Fixed:
 - SBo repository view Packages and New version
+- msb repository PACKAGES.txt file
 
 3.8.1 - 13/02/2020
 Fixed:

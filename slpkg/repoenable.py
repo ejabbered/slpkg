@@ -112,15 +112,15 @@ Keys: SPACE   select or deselect the highlighted repositories,
                 if self.tag_line and line.startswith("#"):
                     repo = "".join(line.split("#")).strip()
                     if repo in self.selected:
-                        new_conf.write(line.replace(line, repo + "\n"))
+                        new_conf.write(line.replace(line, f"{repo}\n"))
                         continue
                 if (self.tag_line and not line.startswith("#") and
                         line != self.tag):
                     repo = line.strip()
                     if repo not in self.selected:
-                        new_conf.write(line.replace(line, "# " + line + "\n"))
+                        new_conf.write(line.replace(line, f"# {line}\n"))
                         continue
-                new_conf.write(line + "\n")
+                new_conf.write(f"{line}\n")
 
     def clear_screen(self):
         """Clear screen

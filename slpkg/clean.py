@@ -39,11 +39,10 @@ def clean_tmp():
     # Delete a whole slpkg folder from the tmp directory
     if os.path.exists(tmps[0]):
         shutil.rmtree(tmps[0])
-        print("All packages and sources were deleted from: {0}".format(
-            tmps[0]))
+        print(f"All packages and sources were deleted from: {tmps[0]}")
     # Recreate the paths again
     if not os.path.exists(tmps[0]):
         for tmp in tmps:
-            print("Created directory: {0}".format(tmp))
+            print(f"Created directory: {tmp}")
             os.mkdir(tmp)
         print("Done!")

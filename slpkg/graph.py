@@ -78,8 +78,8 @@ class Graph:
         try:
             image_type = f".{self.image.split('.')[1]}"
             if image_type not in self.file_format:
-                print(f"Format: '{self.image.split('.')[1]}' not recognized. Use one of "
-                      f"them:\n{', '.join(self.file_format)}")
+                print(f"Format: '{self.image.split('.')[1]}' not recognized."
+                      f" Use one of them:\n{', '.join(self.file_format)}")
                 raise SystemExit()
         except IndexError:
             print("slpkg: Error: Image file suffix missing")
@@ -89,8 +89,8 @@ class Graph:
         """Draw ascii diagram. graph-easy perl module require
         """
         if not os.path.isfile("/usr/bin/graph-easy"):
-            print("Require 'graph-easy': Install with 'slpkg -s sbo "
-                  "graph-easy'")
+            print("Require 'graph-easy': Install with 'slpkg -s sbo"
+                  " graph-easy'")
             self.remove_dot()
             raise SystemExit()
         subprocess.call(f"graph-easy {self.image}.dot", shell=True)

@@ -31,11 +31,7 @@ class DialogUtil:
     """Create dialog checklist
     """
     def __init__(self, *args):
-        try:
-            from dialog import Dialog
-        except ImportError:
-            raise SystemExit()
-        self.d = Dialog(dialog="dialog", autowidgetsize=True)
+        self.imp_dialog()
         self.data = args[0]
         self.text = args[1]
         self.title = args[2]
@@ -43,6 +39,13 @@ class DialogUtil:
         self.status = args[4]
         self.ununicode = []
         self.tags = []
+
+    def imp_dialog(self):
+        try:
+            from dialog import Dialog
+        except ImportError:
+            raise SystemExit()
+        self.d = Dialog(dialog="dialog", autowidgetsize=True)
 
     def checklist(self):
         """Run dialog checklist

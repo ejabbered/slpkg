@@ -83,8 +83,7 @@ class Patches:
             self.PACKAGES_TXT = URL(mirrors("PACKAGES.TXT", "")).reading()
 
     def start(self):
-        """
-        Install new patches from official Slackware mirrors
+        """Install new patches from official Slackware mirrors
         """
         self.store()
         self.msg.done()
@@ -131,8 +130,7 @@ class Patches:
                   f" distribution is up to date!\n")
 
     def store(self):
-        """
-        Store and return packages for upgrading
+        """Store and return packages for upgrading
         """
         data = repo_data(self.PACKAGES_TXT, "slack", self.flag)
         black = BlackList().get_black()
@@ -179,8 +177,7 @@ class Patches:
             raise SystemExit()
 
     def views(self):
-        """
-        Views packages
+        """Views packages
         """
         for upg, size in sorted(zip(self.upgrade_all, self.comp_sum)):
             pkg_repo = split_package(upg[:-4])
@@ -196,8 +193,7 @@ class Patches:
                   f"{' ' * (7-len(pkg_repo[3]))}Slack{size:>12} K")
 
     def upgrade(self):
-        """
-        Upgrade packages
+        """Upgrade packages
         """
         for pkg in self.upgrade_all:
             check_md5(pkg_checksum(pkg, "slack_patches"),
@@ -216,8 +212,7 @@ class Patches:
                 self.installed.append(pkg_ver)
 
     def kernel(self):
-        """
-        Check if kernel upgraded if true
+        """Check if kernel upgraded if true
         then reinstall "lilo"
         """
         for core in self.upgrade_all:
@@ -253,13 +248,13 @@ class Patches:
         from Slackware official mirrors after update distribution.
         """
         NEW_ChangeLog_txt = URL(mirrors("ChangeLog.txt", "")).reading()
-        if os.path.isfile(self.meta.slackpkg_lib_path + "ChangeLog.txt.old"):
-            os.remove(self.meta.slackpkg_lib_path + "ChangeLog.txt.old")
-        if os.path.isfile(self.meta.slackpkg_lib_path + "ChangeLog.txt"):
-            shutil.copy2(self.meta.slackpkg_lib_path + "ChangeLog.txt",
-                         self.meta.slackpkg_lib_path + "ChangeLog.txt.old")
-            os.remove(self.meta.slackpkg_lib_path + "ChangeLog.txt")
-        with open(self.meta.slackpkg_lib_path + "ChangeLog.txt", "w") as log:
+        if os.path.isfile(f"{self.meta.slackpkg_lib_path}ChangeLog.txt.old"):
+            os.remove(f"{self.meta.slackpkg_lib_path}ChangeLog.txt.old")
+        if os.path.isfile(f"{self.meta.slackpkg_lib_path}ChangeLog.txt"):
+            shutil.copy2(f"{self.meta.slackpkg_lib_path}ChangeLog.txt",
+                         f"{self.meta.slackpkg_lib_path}ChangeLog.txt.old")
+            os.remove(f"{self.meta.slackpkg_lib_path}ChangeLog.txt")
+        with open(f"{self.meta.slackpkg_lib_path}ChangeLog.txt", "w") as log:
             log.write(NEW_ChangeLog_txt)
 
     def update_lists(self):
@@ -269,4 +264,4 @@ class Patches:
         print(f"{self.green}Update the package lists ?{self.endc}")
         print("=" * 79)
         if self.msg.answer() in ["y", "Y"]:
-            Update().repository(["slack"])
+            Update().run(["slack"])

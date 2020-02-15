@@ -30,7 +30,7 @@ def pkg_security(pkgs):
     """Check packages before install or upgrade for security
     reasons. Configuration file in the /etc/slpkg/pkg_security"""
     security_packages = Utils().read_file("/etc/slpkg/pkg_security")
-    packages = []
+    packages, msg = [], Msg()
     for read in security_packages.splitlines():
         read = read.lstrip()
         if not read.startswith("#"):
@@ -38,6 +38,6 @@ def pkg_security(pkgs):
     for p in pkgs:
         for pkg in packages:
             if p == pkg:
-                Msg().security_pkg(p)
-                if not Msg().answer() in ["y", "Y"]:
+                msg.security_pkg(p)
+                if not msg.answer() in ["y", "Y"]:
                     raise SystemExit()

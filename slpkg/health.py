@@ -73,7 +73,7 @@ class PackageHealth:
         self.packages()
         self.cf = 0
         for pkg in self.installed:
-            if os.path.isfile(self.meta.pkg_path + pkg):
+            if os.path.isfile(f"{self.meta.pkg_path}{pkg}"):
                 self.lf = 0
                 with open(self.pkg_path + pkg, "r") as fopen:
                     for line in fopen:

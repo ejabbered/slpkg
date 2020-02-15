@@ -38,6 +38,8 @@ class RepoInfo:
         self.green = _meta_.color["GREEN"]
         self.red = _meta_.color["RED"]
         self.endc = _meta_.color["ENDC"]
+        self.repo = Repo()
+        self.utils = Utils()
         self.form = {
             "Last updated:": "",
             "Number of packages:": "",
@@ -49,9 +51,9 @@ class RepoInfo:
             "Total uncompressed packages:": ""
         }
         self.meta = _meta_
-        self.all_repos = Repo().default_repository()
-        self.all_repos["slack"] = Repo().slack()
-        self.all_repos.update(Repo().custom_repository())
+        self.all_repos = self.repo.default_repository()
+        self.all_repos["slack"] = self.repo.slack()
+        self.all_repos.update(self.repo.custom_repository())
         del RepoList().all_repos
 
     def view(self, repo):
@@ -66,7 +68,7 @@ class RepoInfo:
             self.form["Default:"] = "yes"
 
         if (repo in self.meta.repositories and
-                os.path.isfile(self.meta.lib_path + f"{repo}_repo/PACKAGES.TXT")):
+                os.path.isfile(f"{self.meta.lib_path}{repo}_repo/PACKAGES.TXT")):
             status = f"{self.green}enabled{self.endc}"
 
             if repo != "sbo":
@@ -81,19 +83,20 @@ class RepoInfo:
                 self.form["Number of packages:"] = data[0]
                 self.form["Status:"] = status
                 self.form["Last updated:"] = data[3]
+
         elif (repo == "sbo" and os.path.isfile(
-                self.meta.lib_path + f"{repo}_repo/SLACKBUILDS.TXT")):
+                f"{self.meta.lib_path}{repo}_repo/SLACKBUILDS.TXT")):
             status = f"{self.green}enabled{self.endc}"
             sum_sbo_pkgs = 0
 
-            for line in (Utils().read_file(
-                    self.meta.lib_path + "sbo_repo/SLACKBUILDS."
+            for line in (self.utils.read_file(
+                    f"{self.meta.lib_path}sbo_repo/SLACKBUILDS."
                     "TXT").splitlines()):
                 if line.startswith("SLACKBUILD NAME: "):
                     sum_sbo_pkgs += 1
 
-            changelog_txt = Utils().read_file(
-                self.meta.log_path + "sbo/ChangeLog.txt")
+            changelog_txt = self.utils.read_file(
+                f"{self.meta.log_path}sbo/ChangeLog.txt")
             last_upd = changelog_txt.split("\n", 1)[0]
 
             self.form["Repo id:"] = repo
@@ -108,13 +111,12 @@ class RepoInfo:
             print(f"{self.green}{key}{self.endc} {value}")
 
     def repository_data(self, repo):
-        """
-        Grap data packages
+        """Grap data packages
         """
         sum_pkgs, size, unsize, last_upd = 0, [], [], ""
         f = f"{self.meta.lib_path}{repo}_repo/PACKAGES.TXT"
 
-        for line in Utils().read_file(f).splitlines():
+        for line in self.utils.read_file(f).splitlines():
             if line.startswith("PACKAGES.TXT;"):
                 last_upd = line[14:].strip()
             if line.startswith("PACKAGE NAME:"):
@@ -125,8 +127,8 @@ class RepoInfo:
                 unsize.append(line[30:-2].strip())
 
         if repo in ["salix", "slackl"]:
-            log = Utils().read_file(
-                self.meta.log_path + f"{repo}/ChangeLog.txt")
+            log = self.utils.read_file(
+                f"{self.meta.log_path}{repo}/ChangeLog.txt")
             last_upd = log.split("\n", 1)[0]
 
         return [sum_pkgs, size, unsize, last_upd]

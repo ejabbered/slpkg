@@ -50,6 +50,7 @@ class TrackingDeps:
         self.flag = flag
         self.meta = _meta_
         self.msg = Msg()
+        self.utils = Utils()
         self.green = self.meta.color["GREEN"]
         self.yellow = self.meta.color["YELLOW"]
         self.cyan = self.meta.color["CYAN"]
@@ -59,6 +60,11 @@ class TrackingDeps:
         self.dependencies = []
         self.dependencies_list = []
         self.deps_dict = {}
+        self.init_flags()
+
+    def init_flags(self):
+        """Flags initialization
+        """
         for i in range(0, len(self.flag)):
             if self.flag[i].startswith("--graph="):
                 self.image = self.flag[i].split("=")[1]
@@ -71,8 +77,8 @@ class TrackingDeps:
         self.repositories()
         if self.find_pkg:
             self.dependencies_list.reverse()
-            self.requires = Utils().dimensional_list(self.dependencies_list)
-            self.dependencies = Utils().remove_dbs(self.requires)
+            self.requires = self.utils.dimensional_list(self.dependencies_list)
+            self.dependencies = self.utils.remove_dbs(self.requires)
             if self.dependencies == []:
                 self.dependencies = ["No dependencies"]
             if "--graph=" in self.flag:
@@ -123,9 +129,9 @@ class TrackingDeps:
             if self.find_pkg:
                 self.dependencies_list = Requires(self.flag).sbo(self.name)
         else:
-            PACKAGES_TXT = Utils().read_file(
-                self.meta.lib_path + f"{self.repo}_repo/PACKAGES.TXT")
-            self.names = list(Utils().package_name(PACKAGES_TXT))
+            PACKAGES_TXT = self.utils.read_file(
+                f"{self.meta.lib_path}{self.repo}_repo/PACKAGES.TXT")
+            self.names = list(self.utils.package_name(PACKAGES_TXT))
             self.bin_case_insensitive()
             self.find_pkg = search_pkg(self.name, self.repo)
             if self.find_pkg:
@@ -139,7 +145,7 @@ class TrackingDeps:
         """
         if "--case-ins" in self.flag:
             data = SBoGrep(name="").names()
-            data_dict = Utils().case_sensitive(data)
+            data_dict = self.utils.case_sensitive(data)
             for key, value in data_dict.items():
                 if key == self.name.lower():
                     self.name = value
@@ -149,7 +155,7 @@ class TrackingDeps:
         lowercase
         """
         if "--case-ins" in self.flag:
-            data_dict = Utils().case_sensitive(self.names)
+            data_dict = self.utils.case_sensitive(self.names)
             for key, value in data_dict.items():
                 if key == self.name.lower():
                     self.name = value
@@ -163,10 +169,10 @@ class TrackingDeps:
         """Check if dependencies used
         """
         used = []
-        dep_path = self.meta.log_path + "dep/"
+        dep_path = f"{self.meta.log_path}dep/"
         logs = find_package("", dep_path)
         for log in logs:
-            deps = Utils().read_file(dep_path + log)
+            deps = self.utils.read_file(f"{dep_path}{log}")
             for dep in deps.splitlines():
                 if pkg == dep:
                     used.append(log)
@@ -180,17 +186,17 @@ class TrackingDeps:
             for dep in dependencies:
                 deps = Requires(flag="").sbo(dep)
                 if dep not in self.deps_dict.values():
-                    self.deps_dict[dep] = Utils().dimensional_list(deps)
+                    self.deps_dict[dep] = self.utils.dimensional_list(deps)
         else:
             for dep in dependencies:
                 deps = Dependencies(self.repo, self.black).binary(dep, flag="")
                 if dep not in self.deps_dict.values():
-                    self.deps_dict[dep] = Utils().dimensional_list(deps)
+                    self.deps_dict[dep] = self.utils.dimensional_list(deps)
 
     def deps_used(self, pkg, used):
         """Create dependencies dictionary
         """
-        if find_package(pkg + self.meta.sp, self.meta.pkg_path):
+        if find_package(f"{pkg}-", self.meta.pkg_path):
             if pkg not in self.deps_dict.values():
                 self.deps_dict[pkg] = used
             else:

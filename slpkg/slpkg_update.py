@@ -62,7 +62,7 @@ def it_self_update():
                 answer = input("Would you like to upgrade [y/N]? ")
             except EOFError:
                 print()
-                raise SystemExit()
+                raise SystemExit(1)
         if answer in ["y", "Y"]:
             print()   # new line after answer
         else:
@@ -78,17 +78,16 @@ def it_self_update():
             os.makedirs(_meta_.build_path)
         Download(_meta_.build_path, dwn_link, repo="").start()
         os.chdir(_meta_.build_path)
-        slpkg_tar_file = "slpkg" + "-" + __new_version__ + ".tar.gz"
+        slpkg_tar_file = f"slpkg-{__new_version__}.tar.gz"
         tar = tarfile.open(slpkg_tar_file)
         tar.extractall()
         tar.close()
-        file_name = "{0}-{1}".format(_meta_.__all__, __new_version__)
+        file_name = f"{_meta_.__all__}-{__new_version__}"
         os.chdir(file_name)
         check_md5(pkg_checksum(slpkg_tar_file, _meta_.__all__),
                   _meta_.build_path + slpkg_tar_file)
         subprocess.call("chmod +x {0}".format("install.sh"), shell=True)
         subprocess.call("sh install.sh", shell=True)
     else:
-        print("\n{0}: There is no new version, already used the last!"
-              "\n".format(_meta_.__all__))
+        print(f"\n{_meta_.__all__}: There is no new version, already used the last!")
     raise SystemExit()
