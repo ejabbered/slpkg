@@ -70,11 +70,11 @@ class Utils:
             if line.startswith("PACKAGE NAME:"):
                 yield split_package(line[14:].strip())[0]
 
-    def check_downloaded(self, path, maybe_downloaded):
+    def check_downloaded(self, path, downloaded):
         """Check if files downloaded and return downloaded
         packages
         """
-        for pkg in maybe_downloaded:
+        for pkg in downloaded:
             if os.path.isfile(f"{path}{pkg}"):
                 yield pkg
 
