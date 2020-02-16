@@ -29,7 +29,6 @@ class SBoLink:
         self.sbo_url = sbo_url
 
     def tar_gz(self):
+        """Return link slackbuild tar.gz archive
         """
-        Return link slackbuild tar.gz archive
-        """
-        return (self.sbo_url[:-1] + ".tar.gz")
+        return f"{self.sbo_url[:-1]}.tar.gz"

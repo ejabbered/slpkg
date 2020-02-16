@@ -30,14 +30,15 @@ from slpkg.__metadata__ import MetaData as _meta_
 from slpkg.sbo.greps import SBoGrep
 
 
-class Requires:
+class Requires(BlackList):
     """Resolving SBo dependencies
     """
     def __init__(self, flag):
+        super().__init__()
         self.flag = flag
         self.meta = _meta_
         self.SLACKBUILDS_TXT = SBoGrep(name="").names()
-        self.blacklist = BlackList().get_black()
+        self.blacklist = list(self.get_black())
         self.dep_results = []
 
     def sbo(self, name):

@@ -51,7 +51,7 @@ class NewConfig:
         """
         self.find_new()
         for n in self.news:
-            print(f"{n}")
+            print(n)
         print()
         self.msg.template(78)
         print(f"| Installed {len(self.news)} new configuration files:")

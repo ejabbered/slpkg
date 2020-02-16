@@ -40,6 +40,7 @@ class DependenciesStatus:
         self.image = image
         self.meta = _meta_
         self.msg = Msg()
+        self.utils = Utils()
         self.grey = self.meta.color["GREY"]
         self.green = self.meta.color["GREEN"]
         self.endc = self.meta.color["ENDC"]
@@ -57,10 +58,10 @@ class DependenciesStatus:
         dictionary database
         """
         for pkg in self.installed:
-            if os.path.isfile(self.meta.pkg_path + pkg):
+            if os.path.isfile(f"{self.meta.pkg_path}{pkg}"):
                 name = split_package(pkg)[0]
                 for log in self.logs:
-                    deps = Utils().read_file(self.dep_path + log)
+                    deps = self.utils.read_file(f"{self.dep_path}{log}")
                     for dep in deps.splitlines():
                         if name == dep:
                             if name not in self.dmap.keys():
@@ -86,7 +87,7 @@ class DependenciesStatus:
         self.data()
         print()
         self.msg.template(78)
-        print("| {0}{1}{2}".format("Dependencies", " " * 20, "Packages"))
+        print(f"| Dependencies{' ' * 20}Packages")
         self.msg.template(78)
         for key, value in self.dmap.items():
             print("  {0}{1}{2}{3}{4}".format(
@@ -105,12 +106,12 @@ class DependenciesStatus:
         self.msg.template(78)
         self.data()
         for pkg, dep in self.dmap.items():
-            print("+ {0}{1}{2}".format(self.green, pkg, self.endc))
+            print(f"+ {self.green}{pkg}{self.endc}")
             print("|")
             for d in dep:
-                print("+-- {0}".format(d))
+                print(f"+-- {d}")
                 print("|")
-            print("\x1b[1A{0}\n".format(" "), end="", flush=True)
+            print("\x1b[1A \n", end="", flush=True)
         self.summary()
         if self.image:
             Graph(self.image).dependencies(self.dmap)

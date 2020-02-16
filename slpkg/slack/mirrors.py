@@ -29,9 +29,8 @@ from slpkg.slack.slack_version import slack_ver
 
 
 def mirrors(name, location):
-    """
-    Select Slackware official mirror packages
-    based architecture and version.
+    """Select Slackware official mirror packages
+       based architecture and version.
     """
     rel = _meta_.slack_rel
     ver = slack_ver()

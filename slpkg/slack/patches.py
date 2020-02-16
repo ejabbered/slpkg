@@ -50,10 +50,11 @@ from slpkg.slack.mirrors import mirrors
 from slpkg.slack.slack_version import slack_ver
 
 
-class Patches:
+class Patches(BlackList):
     """Upgrade distribution from official Slackware mirrors
     """
     def __init__(self, skip, flag):
+        super().__init__()
         self.skip = skip
         self.flag = flag
         self.meta = _meta_
@@ -83,8 +84,7 @@ class Patches:
             self.PACKAGES_TXT = URL(mirrors("PACKAGES.TXT", "")).reading()
 
     def start(self):
-        """
-        Install new patches from official Slackware mirrors
+        """Install new patches from official Slackware mirrors
         """
         self.store()
         self.msg.done()
@@ -111,8 +111,8 @@ class Patches:
             if self.msg.answer() in ["y", "Y"]:
                 Download(self.patch_path, self.dwn_links,
                          repo="slack").start()
-                self.upgrade_all = self.utils.check_downloaded(
-                    self.patch_path, self.upgrade_all)
+                self.upgrade_all = list(self.utils.check_downloaded(
+                    self.patch_path, self.upgrade_all))
                 self.upgrade()
                 self.kernel()
                 if self.meta.slackpkg_log in ["on", "ON"]:
@@ -131,11 +131,10 @@ class Patches:
                   f" distribution is up to date!\n")
 
     def store(self):
-        """
-        Store and return packages for upgrading
+        """Store and return packages for upgrading
         """
         data = repo_data(self.PACKAGES_TXT, "slack", self.flag)
-        black = BlackList().get_black()
+        black = list(self.get_black())
         for name, loc, comp, uncomp in zip(data[0], data[1], data[2], data[3]):
             repo_pkg_name = split_package(name)[0]
             if (not os.path.isfile(self.meta.pkg_path + name[:-4]) and
@@ -179,8 +178,7 @@ class Patches:
             raise SystemExit()
 
     def views(self):
-        """
-        Views packages
+        """Views packages
         """
         for upg, size in sorted(zip(self.upgrade_all, self.comp_sum)):
             pkg_repo = split_package(upg[:-4])
@@ -196,8 +194,7 @@ class Patches:
                   f"{' ' * (7-len(pkg_repo[3]))}Slack{size:>12} K")
 
     def upgrade(self):
-        """
-        Upgrade packages
+        """Upgrade packages
         """
         for pkg in self.upgrade_all:
             check_md5(pkg_checksum(pkg, "slack_patches"),
@@ -216,8 +213,7 @@ class Patches:
                 self.installed.append(pkg_ver)
 
     def kernel(self):
-        """
-        Check if kernel upgraded if true
+        """Check if kernel upgraded if true
         then reinstall "lilo"
         """
         for core in self.upgrade_all:
@@ -253,13 +249,13 @@ class Patches:
         from Slackware official mirrors after update distribution.
         """
         NEW_ChangeLog_txt = URL(mirrors("ChangeLog.txt", "")).reading()
-        if os.path.isfile(self.meta.slackpkg_lib_path + "ChangeLog.txt.old"):
-            os.remove(self.meta.slackpkg_lib_path + "ChangeLog.txt.old")
-        if os.path.isfile(self.meta.slackpkg_lib_path + "ChangeLog.txt"):
-            shutil.copy2(self.meta.slackpkg_lib_path + "ChangeLog.txt",
-                         self.meta.slackpkg_lib_path + "ChangeLog.txt.old")
-            os.remove(self.meta.slackpkg_lib_path + "ChangeLog.txt")
-        with open(self.meta.slackpkg_lib_path + "ChangeLog.txt", "w") as log:
+        if os.path.isfile(f"{self.meta.slackpkg_lib_path}ChangeLog.txt.old"):
+            os.remove(f"{self.meta.slackpkg_lib_path}ChangeLog.txt.old")
+        if os.path.isfile(f"{self.meta.slackpkg_lib_path}ChangeLog.txt"):
+            shutil.copy2(f"{self.meta.slackpkg_lib_path}ChangeLog.txt",
+                         f"{self.meta.slackpkg_lib_path}ChangeLog.txt.old")
+            os.remove(f"{self.meta.slackpkg_lib_path}ChangeLog.txt")
+        with open(f"{self.meta.slackpkg_lib_path}ChangeLog.txt", "w") as log:
             log.write(NEW_ChangeLog_txt)
 
     def update_lists(self):
@@ -269,4 +265,4 @@ class Patches:
         print(f"{self.green}Update the package lists ?{self.endc}")
         print("=" * 79)
         if self.msg.answer() in ["y", "Y"]:
-            Update().repository(["slack"])
+            Update().run(["slack"])

@@ -31,12 +31,11 @@ from slpkg.__metadata__ import MetaData as _meta_
 def slackware_repository():
     """Return all official Slackware packages
     """
-    slack_repo, packages, names, name = [], [], [], ""
+    slack_repo, packages, names = [], [], []
     slack_repo = repo_data(
         Utils().read_file(f"{_meta_.lib_path}slack_repo/PACKAGES.TXT"),
         "slack", "")
     for pkg in slack_repo[0]:
-        name = split_package(pkg)[0]
-        names.append(name)
+        names.append(split_package(pkg)[0])
         packages.append(pkg[:-4])
     return packages, names

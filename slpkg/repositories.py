@@ -28,7 +28,7 @@ from slpkg.utils import Utils
 from slpkg.__metadata__ import MetaData as _meta_
 
 
-class Repo:
+class Repo(Utils):
     """Manage repositories configuration files
     """
     def __init__(self):
@@ -36,9 +36,9 @@ class Repo:
         self.DEFAULT_REPOS_NAMES = self.meta.default_repositories
         self.custom_repo_file = "/etc/slpkg/custom-repositories"
         self.default_repo_file = "/etc/slpkg/default-repositories"
-        self.custom_repositories_list = Utils().read_file(
+        self.custom_repositories_list = self.read_file(
             self.custom_repo_file)
-        self.default_repositories_list = Utils().read_file(
+        self.default_repositories_list = self.read_file(
             self.default_repo_file)
         self.default_repository()
 
@@ -47,27 +47,25 @@ class Repo:
         """
         repo_name = []
         if not url.endswith("/"):
-            url = url + "/"
+            url += "/"
         for line in self.custom_repositories_list.splitlines():
             line = line.lstrip()
             if line and not line.startswith("#"):
                 repo_name.append(line.split()[0])
         if (repo in self.meta.repositories or repo in repo_name or
                 repo in self.meta.default_repositories):
-            print("\nRepository name '{0}' exist, select different name.\n"
+            print(f"\nRepository name '{repo}' exist, select different name.\n"
                   "View all repositories with command 'slpkg "
-                  "repo-list'.\n".format(repo))
-            raise SystemExit()
+                  "repo-list'.\n")
+            raise SystemExit(1)
         elif len(repo) > 6:
             print("\nslpkg: Error: Maximum repository name length must be "
                   "six (6) characters\n")
-            raise SystemExit()
+            raise SystemExit(1)
         with open(self.custom_repo_file, "a") as repos:
-            new_line = "  {0}{1}{2}\n".format(repo, " " * (10 - len(repo)),
-                                              url)
+            new_line = f"  {repo}{' ' * (10 - len(repo))}{url}\n"
             repos.write(new_line)
-        print("\nRepository '{0}' successfully added\n".format(repo))
-        raise SystemExit()
+        print(f"\nRepository '{repo}' successfully added\n")
 
     def remove(self, repo):
         """Remove custom repository
@@ -77,14 +75,13 @@ class Repo:
             for line in self.custom_repositories_list.splitlines():
                 repo_name = line.split()[0]
                 if repo_name != repo:
-                    repos.write(line + "\n")
+                    repos.write(f"{line}\n")
                 else:
-                    print("\nRepository '{0}' successfully "
-                          "removed\n".format(repo))
+                    print(f"\nRepository '{repo}' successfully "
+                          "removed\n")
                     rem_repo = True
         if not rem_repo:
-            print("\nRepository '{0}' doesn't exist\n".format(repo))
-        raise SystemExit()
+            print(f"\nRepository '{repo}' doesn't exist\n")
 
     def custom_repository(self):
         """Return dictionary with repo name and url (used external)
@@ -106,11 +103,10 @@ class Repo:
                 if line.split()[0] in self.DEFAULT_REPOS_NAMES:
                     default_dict_repo[line.split()[0]] = line.split()[1]
                 else:
-                    print("\nslpkg: Error: Repository name '{0}' is not "
-                          "default.\n              Please check file: "
-                          "/etc/slpkg/default-repositories\n".format(
-                              line.split()[0]))
-                    raise SystemExit()
+                    print(f"\nslpkg: Error: Repository name '{line.split()[0]}'"
+                          " is not default.\n              Please check file: "
+                          "/etc/slpkg/default-repositories\n")
+                    raise SystemExit(1)
         return default_dict_repo
 
     def slack(self):
@@ -120,8 +116,8 @@ class Repo:
         if self.meta.arch.startswith("arm"):
             default = "http://ftp.arm.slackware.com/slackwarearm/"
         if os.path.isfile("/etc/slpkg/slackware-mirrors"):
-            mirrors = Utils().read_file(
-                self.meta.conf_path + "slackware-mirrors")
+            mirrors = self.read_file(
+                f"{self.meta.conf_path}slackware-mirrors")
             for line in mirrors.splitlines():
                 line = line.rstrip()
                 if not line.startswith("#") and line:

@@ -30,6 +30,7 @@ from slpkg.__metadata__ import MetaData as _meta_
 def check_md5(pkg_md5, src_file):
     """MD5 Checksum
     """
+    msg = Msg()
     red = _meta_.color["RED"]
     green = _meta_.color["GREEN"]
     endc = _meta_.color["ENDC"]
@@ -37,19 +38,19 @@ def check_md5(pkg_md5, src_file):
         print()
         md5s = md5(src_file)
         if pkg_md5 != md5s:
-            Msg().template(78)
+            msg.template(78)
             print(f"| MD5SUM check for {src_file.split('/')[-1]}"
                   f" [ {red}FAILED{endc} ]")
-            Msg().template(78)
+            msg.template(78)
             print(f"| Expected: {pkg_md5}")
             print(f"| Found: {md5s}")
-            Msg().template(78)
+            msg.template(78)
             print()
             if not Msg().answer() in ["y", "Y"]:
                 raise SystemExit()
         else:
-            Msg().template(78)
+            msg.template(78)
             print(f"| MD5SUM check for {src_file.split('/')[-1]}"
                   f" [ {green}PASSED{endc} ]")
-            Msg().template(78)
+            msg.template(78)
         print()   # new line after pass checksum

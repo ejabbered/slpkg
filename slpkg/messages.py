@@ -158,4 +158,4 @@ class Msg:
         """Message for matching packages
         """
         print(f"\nNot found package with the name [ {self.cyan}{''.join(packages)}{self.endc} ]. "
-              f"Matching packages:\nNOTE: Not dependencies are resolved\n")
+              "Matching packages:\nNOTE: Not dependencies are resolved\n")

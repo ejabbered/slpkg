@@ -25,7 +25,6 @@
 import os
 from pkg_resources import parse_version
 
-
 from slpkg.utils import Utils
 from slpkg.messages import Msg
 from slpkg.log_deps import write_deps
@@ -48,10 +47,11 @@ from slpkg.sbo.search import sbo_search_pkg
 from slpkg.sbo.slack_find import slack_package
 
 
-class SBoInstall:
+class SBoInstall(BlackList, Utils):
     """Build and install SBo packages with all dependencies
     """
     def __init__(self, slackbuilds, flag):
+        super().__init__()
         self.slackbuilds = slackbuilds
         pkg_security(self.slackbuilds)
         self.flag = flag
@@ -80,7 +80,7 @@ class SBoInstall:
         self.count_uni = 0
         self.msg.reading()
         self.data = SBoGrep(name="").names()
-        self.blacklist = BlackList().get_black()
+        self.blacklist = list(self.get_black())
 
     def init_flags(self):
         """Flags initialization
@@ -172,7 +172,7 @@ class SBoInstall:
         lowercase
         """
         if "--case-ins" in self.flag:
-            data_dict = Utils().case_sensitive(self.data)
+            data_dict = self.case_sensitive(self.data)
             for name in self.slackbuilds:
                 index = self.slackbuilds.index(name)
                 for key, value in data_dict.items():
@@ -182,10 +182,9 @@ class SBoInstall:
     def update_deps(self):
         """Update dependencies dictionary with all package
         """
-        utils = Utils()
         onelist, dependencies = [], []
-        onelist = utils.dimensional_list(self.deps)
-        dependencies = utils.remove_dbs(onelist)
+        onelist = self.dimensional_list(self.deps)
+        dependencies = self.remove_dbs(onelist)
         for dep in dependencies:
             deps = Requires(self.flag).sbo(dep)
             self.deps_dict[dep] = self.one_for_all(deps)
@@ -213,7 +212,7 @@ class SBoInstall:
         """Clear master slackbuilds if already exist in dependencies
         or if added to install two or more times
         """
-        self.master_packages = Utils().remove_dbs(self.master_packages)
+        self.master_packages = self.remove_dbs(self.master_packages)
         for mas in self.master_packages:
             if mas in self.dependencies:
                 self.master_packages.remove(mas)
@@ -246,8 +245,8 @@ class SBoInstall:
         deps.reverse()
         # Inverting the list brings the
         # dependencies in order to be installed.
-        requires = Utils().dimensional_list(deps)
-        dependencies = Utils().remove_dbs(requires)
+        requires = self.dimensional_list(deps)
+        dependencies = self.remove_dbs(requires)
         return dependencies
 
     def top_view(self):
@@ -270,7 +269,7 @@ class SBoInstall:
         args[3] arch
         """
         ver = GetFromInstalled(args[1]).version()
-        print(f"  {args[0]}{args[1] + ver}{self.endc}"
+        print(f"  {args[0]}{args[1] + ver} {self.endc}"
               f"{' ' * (24-len(args[1] + ver))}{args[2]}"
               f"{' ' * (18-len(args[2]))} {args[3]}"
               f"{' ' * (15-len(args[3]))}{''}"

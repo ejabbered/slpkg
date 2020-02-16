@@ -38,7 +38,8 @@ from slpkg.binary.repo_init import RepoInit
 def pkg_upgrade(repo, skip, flag):
     """Checking packages for upgrade
     """
-    Msg().checking()
+    msg = Msg()
+    msg.checking()
     PACKAGES_TXT = RepoInit(repo).fetch()[0]
     pkgs_for_upgrade = []
     # name = data[0]
@@ -57,7 +58,7 @@ def pkg_upgrade(repo, skip, flag):
                     inst_pkg[0] not in skip and
                     repo_pkg[1] != "blacklist"):
                 pkgs_for_upgrade.append(repo_pkg[0])
-    Msg().done()
+    msg.done()
     if "--checklist" in flag:
         pkgs_for_upgrade = choose_upg(pkgs_for_upgrade)
     return pkgs_for_upgrade

@@ -34,15 +34,18 @@ from slpkg.pkg.find import find_package
 def library(repo):
     """Load packages from slpkg library and from local
     """
+    utils = Utils()
     pkg_list, packages = [], ""
     if repo == "sbo":
         if (os.path.isfile(
                 f"{_meta_.lib_path}{repo}_repo/SLACKBUILDS.TXT")):
-            packages = Utils().read_file(f"{_meta_.lib_path}{repo}_repo/SLACKBUILDS.TXT")
+            packages = utils.read_file(
+                f"{_meta_.lib_path}{repo}_repo/SLACKBUILDS.TXT")
     else:
         if (os.path.isfile(
                 f"{_meta_.lib_path}{repo}_repo/PACKAGES.TXT")):
-            packages = Utils().read_file(f"{_meta_.lib_path}{repo}_repo/PACKAGES.TXT")
+            packages = utils.read_file(
+                f"{_meta_.lib_path}{repo}_repo/PACKAGES.TXT")
     for line in packages.splitlines():
         if repo == "sbo":
             if line.startswith("SLACKBUILD NAME: "):

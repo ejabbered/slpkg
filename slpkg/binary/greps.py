@@ -44,7 +44,7 @@ def repo_data(PACKAGES_TXT, repo, flag):
         if line.startswith("PACKAGE SIZE (uncompressed):"):
             unsize.append(line[30:-2].strip())
 
-    if repo == "slack":
+    if repo == "slack" and "--upgrade" not in flag:
         (rname,
          rlocation,
          rsize,

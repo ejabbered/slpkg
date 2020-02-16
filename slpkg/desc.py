@@ -38,6 +38,7 @@ class PkgDesc:
         self.paint = paint
         self.meta = _meta_
         self.msg = Msg()
+        self.utils = Utils()
         self.lib = ""
         self.color = {
             "red": self.meta.color["RED"],
@@ -57,10 +58,10 @@ class PkgDesc:
         if self.repo == "sbo":
             description = SBoGrep(self.name).description()
         else:
-            PACKAGES_TXT = Utils().read_file(self.lib)
+            PACKAGES_TXT = self.utils.read_file(self.lib)
             for line in PACKAGES_TXT.splitlines():
                 if line.startswith(self.name + ":"):
-                    description += line[len(self.name) + 2:] + "\n"
+                    description += f"{line[len(self.name) + 2:]}\n"
                     count += 1
                     if count == 11:
                         break

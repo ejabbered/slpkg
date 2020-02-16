@@ -25,10 +25,11 @@
 import os
 
 from slpkg.utils import Utils
+from slpkg.splitting import split_package
 from slpkg.__metadata__ import MetaData as _meta_
 
 
-class BlackList:
+class BlackList(Utils):
     """Blacklist class to add, remove or listed packages
     in blacklist file."""
     def __init__(self):
@@ -38,30 +39,43 @@ class BlackList:
         self.blackfile = "/etc/slpkg/blacklist"
         self.black_conf = ""
         if os.path.isfile(self.blackfile):
-            self.black_conf = Utils().read_file(self.blackfile)
+            self.black_conf = self.read_file(self.blackfile)
 
     def get_black(self):
         """Return blacklist packages from /etc/slpkg/blacklist
         configuration file."""
-        blacklist = []
+        blacklist = list(self.black_filter())
+        installed = os.listdir("/var/log/packages/")
+
+        for black in blacklist:
+            if black.endswith("*"):
+                for inst in installed:
+                    if inst.startswith(black[:-1]):
+                        yield split_package(inst)[0]
+            else:
+                yield black
+
+    def black_filter(self):
+        """Return all the installed files that start
+        by the name*
+        """
         for read in self.black_conf.splitlines():
             read = read.lstrip()
             if not read.startswith("#"):
-                blacklist.append(read.replace("\n", ""))
-        return blacklist
+                yield read.replace("\n", "")
 
-    def listed(self):
+    def black_listed(self):
         """Print blacklist packages
         """
         print("Packages in the blacklist:\n")
-        for black in self.get_black():
+        for black in list(self.black_filter()):
             if black:
                 print(f"{self.green}{black}{self.endc}")
 
-    def add(self, pkgs):
+    def black_add(self, pkgs):
         """Add blacklist packages if not exist
         """
-        blacklist = self.get_black()
+        blacklist = list(self.black_filter())
         pkgs = set(pkgs)
         print("Add packages in the blacklist:\n")
         with open(self.blackfile, "a") as black_conf:
@@ -70,7 +84,7 @@ class BlackList:
                     print(f"{self.green}{pkg}{self.endc}")
                     black_conf.write(pkg + "\n")
 
-    def remove(self, pkgs):
+    def black_remove(self, pkgs):
         """Remove packages from blacklist
         """
         print("Remove packages from the blacklist:\n")

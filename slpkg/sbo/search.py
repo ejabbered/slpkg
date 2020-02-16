@@ -30,9 +30,10 @@ from slpkg.slack.slack_version import slack_ver
 
 
 def sbo_search_pkg(name):
-    """Search for package path from SLACKBUILDS.TXT file and
+    """Search for package path in SLACKBUILDS.TXT file and
     return url
     """
+    url = ""
     repo = Repo().default_repository()["sbo"]
     sbo_url = f"{repo}{slack_ver()}/"
     SLACKBUILDS_TXT = Utils().read_file(
@@ -41,5 +42,5 @@ def sbo_search_pkg(name):
         if line.startswith("SLACKBUILD LOCATION"):
             sbo_name = (line[23:].split("/")[-1].replace("\n", "")).strip()
             if name == sbo_name:
-                return (sbo_url + line[23:].strip() + "/")
-    return ""
+                url = f"{sbo_url}{line[23:].strip()}/"
+    return url
