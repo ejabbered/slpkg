@@ -48,10 +48,11 @@ from slpkg.sbo.search import sbo_search_pkg
 from slpkg.sbo.slack_find import slack_package
 
 
-class SBoInstall:
+class SBoInstall(BlackList):
     """Build and install SBo packages with all dependencies
     """
     def __init__(self, slackbuilds, flag):
+        super().__init__()
         self.slackbuilds = slackbuilds
         pkg_security(self.slackbuilds)
         self.flag = flag
@@ -81,7 +82,7 @@ class SBoInstall:
         self.count_uni = 0
         self.msg.reading()
         self.data = SBoGrep(name="").names()
-        self.blacklist = BlackList().get_black()
+        self.blacklist = list(self.get_black())
 
     def init_flags(self):
         """Flags initialization

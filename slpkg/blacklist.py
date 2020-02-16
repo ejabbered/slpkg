@@ -45,20 +45,15 @@ class BlackList:
         """Return blacklist packages from /etc/slpkg/blacklist
         configuration file."""
         blacklist = list(self.black_filter())
-        lenght = len(blacklist)
         installed = os.listdir("/var/log/packages/")
 
-        for b in blacklist:
-            if b.endswith("*"):
-                for i in installed:
-                    if i.startswith(b[:-1]):
-                        blacklist.append(split_package(i)[0])
-
-        # Cleaning the first packages that contain * in the end
-        # of the package name
-        blacklist = blacklist[lenght:]
-
-        return blacklist
+        for black in blacklist:
+            if black.endswith("*"):
+                for inst in installed:
+                    if inst.startswith(black[:-1]):
+                        yield split_package(inst)[0]
+            else:
+                yield black
 
     def black_filter(self):
         """Return all the installed files that start
@@ -69,7 +64,7 @@ class BlackList:
             if not read.startswith("#"):
                 yield read.replace("\n", "")
 
-    def listed(self):
+    def black_listed(self):
         """Print blacklist packages
         """
         print("Packages in the blacklist:\n")
@@ -77,7 +72,7 @@ class BlackList:
             if black:
                 print(f"{self.green}{black}{self.endc}")
 
-    def add(self, pkgs):
+    def black_add(self, pkgs):
         """Add blacklist packages if not exist
         """
         blacklist = list(self.black_filter())
@@ -89,7 +84,7 @@ class BlackList:
                     print(f"{self.green}{pkg}{self.endc}")
                     black_conf.write(pkg + "\n")
 
-    def remove(self, pkgs):
+    def black_remove(self, pkgs):
         """Remove packages from blacklist
         """
         print("Remove packages from the blacklist:\n")

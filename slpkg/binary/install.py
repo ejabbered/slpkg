@@ -47,11 +47,12 @@ from slpkg.binary.repo_init import RepoInit
 from slpkg.binary.dependency import Dependencies
 
 
-class BinaryInstall:
+class BinaryInstall(BlackList):
     """Install binaries packages with all dependencies from
     repository
     """
     def __init__(self, packages, repo, flag):
+        super().__init__()
         self.packages = packages
         pkg_security(packages)
         self.repo = repo
@@ -80,7 +81,7 @@ class BinaryInstall:
         self.repo_pkg_names = []
         for name in self.data[0]:
             self.repo_pkg_names.append(split_package(name)[0])
-        self.blacklist = BlackList().get_black()
+        self.blacklist = list(self.get_black())
         self.matching = False
 
     def init_flags(self):

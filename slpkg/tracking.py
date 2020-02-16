@@ -38,13 +38,14 @@ from slpkg.binary.search import search_pkg
 from slpkg.binary.dependency import Dependencies
 
 
-class TrackingDeps:
+class TrackingDeps(BlackList):
     """View tree of dependencies and also
     highlight packages with color green
     if already installed and color red
     if not installed.
     """
     def __init__(self, name, repo, flag):
+        super().__init__()
         self.name = name
         self.repo = repo
         self.flag = flag
@@ -135,7 +136,7 @@ class TrackingDeps:
             self.bin_case_insensitive()
             self.find_pkg = search_pkg(self.name, self.repo)
             if self.find_pkg:
-                self.black = BlackList().get_black()
+                self.black = list(self.get_black())
                 self.dependencies_list = Dependencies(
                     self.repo, self.black).binary(self.name, self.flag)
 

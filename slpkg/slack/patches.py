@@ -50,10 +50,11 @@ from slpkg.slack.mirrors import mirrors
 from slpkg.slack.slack_version import slack_ver
 
 
-class Patches:
+class Patches(BlackList):
     """Upgrade distribution from official Slackware mirrors
     """
     def __init__(self, skip, flag):
+        super().__init__()
         self.skip = skip
         self.flag = flag
         self.meta = _meta_
@@ -133,8 +134,7 @@ class Patches:
         """Store and return packages for upgrading
         """
         data = repo_data(self.PACKAGES_TXT, "slack", self.flag)
-        b = BlackList()
-        black = b.get_black()
+        black = list(self.get_black())
         for name, loc, comp, uncomp in zip(data[0], data[1], data[2], data[3]):
             repo_pkg_name = split_package(name)[0]
             if (not os.path.isfile(self.meta.pkg_path + name[:-4]) and

@@ -49,7 +49,6 @@ from slpkg.status_deps import DependenciesStatus
 from slpkg.init import (
     Update,
     Upgrade,
-    Initialization,
     check_exists_repositories
 )
 from slpkg.__metadata__ import MetaData as _meta_
@@ -67,9 +66,10 @@ from slpkg.binary.check import pkg_upgrade
 from slpkg.binary.install import BinaryInstall
 
 
-class ArgParse:
+class ArgParse(BlackList):
 
     def __init__(self, args):
+        super().__init__()
         self.args = args
         self.meta = _meta_
         self.msg = Msg()
@@ -463,7 +463,6 @@ class ArgParse:
     def pkg_blacklist(self):
         """Manage blacklist packages
         """
-        blacklist = BlackList()
         options = [
             "-b",
             "--blacklist"
@@ -475,19 +474,19 @@ class ArgParse:
         command = ["list"]
         if (len(self.args) == 2 and self.args[0] in options and
                 self.args[1] == command[0]):
-            blacklist.listed()
+            self.black_listed()
         elif (len(self.args) > 2 and self.args[0] in options and
                 flag[0] in self.args):
             self.args.remove(flag[0])
-            blacklist.add(self.args[1:])
+            self.black_add(self.args[1:])
         elif (len(self.args) == 2 and self.args[0] in options and
                 flag[1] in self.args):
             self.args.remove(flag[1])
-            blacklist.remove(blacklist.get_black())
+            self.black_remove(list(self.get_black()))
         elif (len(self.args) > 2 and self.args[0] in options and
                 flag[1] in self.args):
             self.args.remove(flag[1])
-            blacklist.remove(self.args[1:])
+            self.black_remove(self.args[1:])
         else:
             usage("")
 

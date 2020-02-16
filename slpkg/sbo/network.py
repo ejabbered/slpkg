@@ -48,11 +48,12 @@ from slpkg.sbo.slack_find import slack_package
 from slpkg.slack.slack_version import slack_ver
 
 
-class SBoNetwork:
+class SBoNetwork(BlackList):
     """View SBo site in terminal and also read, build or
     install packages
     """
     def __init__(self, name, flag):
+        super().__init__()
         self.name = name
         self.flag = flag
         self.meta = _meta_
@@ -76,7 +77,6 @@ class SBoNetwork:
             self.with_checklist()
         grep = SBoGrep(self.name)
         self.sbo_files = grep.files()
-        self.blacklist = BlackList().get_black()
         self.sbo_url = sbo_search_pkg(self.name)
         if self.sbo_url:
             self.sbo_desc = grep.description()[len(self.name) + 2:-1]
@@ -92,7 +92,7 @@ class SBoNetwork:
         """View SlackBuild package, read or install them
         from slackbuilds.org
         """
-        if self.sbo_url and self.name not in self.blacklist:
+        if self.sbo_url and self.name not in self.get_black():
             self.prgnam = f"{self.name}-{self.sbo_version}"
             self.view_sbo()
             while True:
