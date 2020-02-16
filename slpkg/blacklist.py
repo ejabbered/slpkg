@@ -73,14 +73,14 @@ class BlackList:
         """Print blacklist packages
         """
         print("Packages in the blacklist:\n")
-        for black in self.get_black():
+        for black in list(self.black_filter()):
             if black:
                 print(f"{self.green}{black}{self.endc}")
 
     def add(self, pkgs):
         """Add blacklist packages if not exist
         """
-        blacklist = self.get_black()
+        blacklist = list(self.black_filter())
         pkgs = set(pkgs)
         print("Add packages in the blacklist:\n")
         with open(self.blackfile, "a") as black_conf:
