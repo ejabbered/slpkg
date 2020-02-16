@@ -320,7 +320,7 @@ class ArgParse:
                     BinaryInstall(pkg_upgrade("slack", skip, flag),
                                   "slack", flag).start(is_upgrade=True)
                 else:
-                    Patches(skip, flag).start()
+                    Patches(skip, flags[0]).start()
             elif self.args[1] == "sbo":
                 SBoInstall(sbo_upgrade(skip, flag), flag).start(
                     is_upgrade=True)
