@@ -39,7 +39,7 @@ from slpkg.__metadata__ import MetaData as _meta_
 from slpkg.slack.slackware_repo import slackware_repository
 
 
-class PackageManager:
+class PackageManager(Utils):
     """Package manager class for install, upgrade,
     reinstall, remove, find and display packages"""
     def __init__(self, binary):
@@ -253,7 +253,7 @@ class PackageManager:
         """
         self.size = 0
         packages = []
-        dependencies = (Utils().read_file(path + package)).splitlines()
+        dependencies = (self.read_file(path + package)).splitlines()
         for dep in dependencies:
             if GetFromInstalled(dep).name():
                 ver = GetFromInstalled(dep).version()
@@ -343,7 +343,7 @@ class PackageManager:
         if "--check-deps" in self.extra:
             package, dependency, pkg_dep = [], [], []
             for pkg in find_package("", self.dep_path):
-                deps = Utils().read_file(self.dep_path + pkg)
+                deps = self.read_file(self.dep_path + pkg)
                 for rmv in removes:
                     if GetFromInstalled(rmv).name() and rmv in deps.split():
                         pkg_dep.append(f"{rmv} is dependency of the package --> {pkg}")
@@ -435,7 +435,7 @@ class PackageManager:
     def _sizes(self, package):
         """Package size summary
         """
-        data = Utils().read_file(self.meta.pkg_path + package)
+        data = self.read_file(self.meta.pkg_path + package)
         for line in data.splitlines():
             if line.startswith("UNCOMPRESSED PACKAGE SIZE:"):
                 digit = float((''.join(re.findall(
@@ -456,7 +456,7 @@ class PackageManager:
             find = find_package(f"{name}{ver}{self.meta.sp}",
                                 self.meta.pkg_path)
             if find:
-                package = Utils().read_file(
+                package = self.read_file(
                     self.meta.pkg_path + "".join(find))
                 print(package)
             else:
@@ -537,12 +537,13 @@ class PackageManager:
         if repo == "sbo":
             if (os.path.isfile(
                     self.meta.lib_path + "sbo_repo/SLACKBUILDS.TXT")):
-                packages = Utils().read_file(self.meta.lib_path + "sbo_repo/SLACKBUILDS.TXT")
+                packages = self.read_file(f"{self.meta.lib_path}"
+                                          "sbo_repo/SLACKBUILDS.TXT")
         else:
             if (os.path.isfile(
                     self.meta.lib_path + f"{repo}_repo/PACKAGES.TXT")):
-                packages = Utils().read_file(self.meta.lib_path + "{0}_repo/"
-                                             "PACKAGES.TXT".format(repo))
+                packages = self.read_file(f"{self.meta.lib_path}"
+                                          f"{repo}_repo/PACKAGES.TXT")
         return packages
 
     def list_color_tag(self, pkg):

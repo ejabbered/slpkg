@@ -33,14 +33,13 @@ from slpkg.__metadata__ import MetaData as _meta_
 from slpkg.pkg.find import find_package
 
 
-class DependenciesStatus:
+class DependenciesStatus(Utils):
     """Print dependencies status used by packages
     """
     def __init__(self, image):
         self.image = image
         self.meta = _meta_
         self.msg = Msg()
-        self.utils = Utils()
         self.grey = self.meta.color["GREY"]
         self.green = self.meta.color["GREEN"]
         self.endc = self.meta.color["ENDC"]
@@ -61,7 +60,7 @@ class DependenciesStatus:
             if os.path.isfile(f"{self.meta.pkg_path}{pkg}"):
                 name = split_package(pkg)[0]
                 for log in self.logs:
-                    deps = self.utils.read_file(f"{self.dep_path}{log}")
+                    deps = self.read_file(f"{self.dep_path}{log}")
                     for dep in deps.splitlines():
                         if name == dep:
                             if name not in self.dmap.keys():
