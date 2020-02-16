@@ -29,7 +29,7 @@ from slpkg.splitting import split_package
 from slpkg.__metadata__ import MetaData as _meta_
 
 
-class BlackList:
+class BlackList(Utils):
     """Blacklist class to add, remove or listed packages
     in blacklist file."""
     def __init__(self):
@@ -39,7 +39,7 @@ class BlackList:
         self.blackfile = "/etc/slpkg/blacklist"
         self.black_conf = ""
         if os.path.isfile(self.blackfile):
-            self.black_conf = Utils().read_file(self.blackfile)
+            self.black_conf = self.read_file(self.blackfile)
 
     def get_black(self):
         """Return blacklist packages from /etc/slpkg/blacklist
