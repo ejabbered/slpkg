@@ -25,6 +25,7 @@
 import os
 
 from slpkg.utils import Utils
+from slpkg.splitting import split_package
 from slpkg.__metadata__ import MetaData as _meta_
 
 
@@ -43,12 +44,30 @@ class BlackList:
     def get_black(self):
         """Return blacklist packages from /etc/slpkg/blacklist
         configuration file."""
-        blacklist = []
+        blacklist = list(self.black_filter())
+        lenght = len(blacklist)
+        installed = os.listdir("/var/log/packages/")
+
+        for b in blacklist:
+            if b.endswith("*"):
+                for i in installed:
+                    if i.startswith(b[:-1]):
+                        blacklist.append(split_package(i)[0])
+
+        # Cleaning the first packages that contain * in the end
+        # of the package name
+        blacklist = blacklist[lenght:]
+
+        return blacklist
+
+    def black_filter(self):
+        """Return all the installed files that start
+        by the name*
+        """
         for read in self.black_conf.splitlines():
             read = read.lstrip()
             if not read.startswith("#"):
-                blacklist.append(read.replace("\n", ""))
-        return blacklist
+                yield read.replace("\n", "")
 
     def listed(self):
         """Print blacklist packages

@@ -10,6 +10,9 @@
 # To blacklist the package 'wicd-1.7.2.4-x86_64-4.txz' the line will be:
 # wicd
 #
+# To blacklist packages that start with name add * the end of the name:
+# kernel*
+#
 #
 # Sometimes the automatic kernel update creates problems because you
 # may need to file intervention 'lilo'. The slpkg automatically detects

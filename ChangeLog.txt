@@ -4,6 +4,8 @@ Fixed:
 - msb repository PACKAGES.txt file
 BugFix:
 - Upgrade distribution with option -c, --check
+Added:
+- Managing multi packages in blacklist file
 
 3.8.1 - 13/02/2020
 Fixed:

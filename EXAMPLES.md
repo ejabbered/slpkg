@@ -1175,8 +1175,7 @@ $ slpkg -q install (install packages from queue)
 $ slpkg -q build-install (build and install)
 ```
 
-Add or remove the packages in blacklist file manually from '`/etc/slpkg/blacklist`' or
-with the following options:
+Add or remove packages in blacklist file manually from the '`/etc/slpkg/blacklist`' file or with the following options:
 
 ```
 $ slpkg -b live555 speex faac --add
