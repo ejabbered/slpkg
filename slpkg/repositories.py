@@ -28,7 +28,7 @@ from slpkg.utils import Utils
 from slpkg.__metadata__ import MetaData as _meta_
 
 
-class Repo:
+class Repo(Utils):
     """Manage repositories configuration files
     """
     def __init__(self):
@@ -36,9 +36,9 @@ class Repo:
         self.DEFAULT_REPOS_NAMES = self.meta.default_repositories
         self.custom_repo_file = "/etc/slpkg/custom-repositories"
         self.default_repo_file = "/etc/slpkg/default-repositories"
-        self.custom_repositories_list = Utils().read_file(
+        self.custom_repositories_list = self.read_file(
             self.custom_repo_file)
-        self.default_repositories_list = Utils().read_file(
+        self.default_repositories_list = self.read_file(
             self.default_repo_file)
         self.default_repository()
 
@@ -116,7 +116,7 @@ class Repo:
         if self.meta.arch.startswith("arm"):
             default = "http://ftp.arm.slackware.com/slackwarearm/"
         if os.path.isfile("/etc/slpkg/slackware-mirrors"):
-            mirrors = Utils().read_file(
+            mirrors = self.read_file(
                 f"{self.meta.conf_path}slackware-mirrors")
             for line in mirrors.splitlines():
                 line = line.rstrip()

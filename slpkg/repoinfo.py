@@ -31,7 +31,7 @@ from slpkg.repolist import RepoList
 from slpkg.__metadata__ import MetaData as _meta_
 
 
-class RepoInfo:
+class RepoInfo(Utils):
     """Repository information
     """
     def __init__(self):
@@ -39,7 +39,6 @@ class RepoInfo:
         self.red = _meta_.color["RED"]
         self.endc = _meta_.color["ENDC"]
         self.repo = Repo()
-        self.utils = Utils()
         self.form = {
             "Last updated:": "",
             "Number of packages:": "",
@@ -89,13 +88,13 @@ class RepoInfo:
             status = f"{self.green}enabled{self.endc}"
             sum_sbo_pkgs = 0
 
-            for line in (self.utils.read_file(
+            for line in (self.read_file(
                     f"{self.meta.lib_path}sbo_repo/SLACKBUILDS."
                     "TXT").splitlines()):
                 if line.startswith("SLACKBUILD NAME: "):
                     sum_sbo_pkgs += 1
 
-            changelog_txt = self.utils.read_file(
+            changelog_txt = self.read_file(
                 f"{self.meta.log_path}sbo/ChangeLog.txt")
             last_upd = changelog_txt.split("\n", 1)[0]
 
@@ -116,7 +115,7 @@ class RepoInfo:
         sum_pkgs, size, unsize, last_upd = 0, [], [], ""
         f = f"{self.meta.lib_path}{repo}_repo/PACKAGES.TXT"
 
-        for line in self.utils.read_file(f).splitlines():
+        for line in self.read_file(f).splitlines():
             if line.startswith("PACKAGES.TXT;"):
                 last_upd = line[14:].strip()
             if line.startswith("PACKAGE NAME:"):
@@ -127,7 +126,7 @@ class RepoInfo:
                 unsize.append(line[30:-2].strip())
 
         if repo in ["salix", "slackl"]:
-            log = self.utils.read_file(
+            log = self.read_file(
                 f"{self.meta.log_path}{repo}/ChangeLog.txt")
             last_upd = log.split("\n", 1)[0]
 
