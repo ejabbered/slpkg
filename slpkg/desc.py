@@ -29,7 +29,7 @@ from slpkg.__metadata__ import MetaData as _meta_
 from slpkg.sbo.greps import SBoGrep
 
 
-class PkgDesc:
+class PkgDesc(Utils):
     """Print package description from the repository
     """
     def __init__(self, name, repo, paint):
@@ -38,7 +38,6 @@ class PkgDesc:
         self.paint = paint
         self.meta = _meta_
         self.msg = Msg()
-        self.utils = Utils()
         self.lib = ""
         self.color = {
             "red": self.meta.color["RED"],
@@ -58,7 +57,7 @@ class PkgDesc:
         if self.repo == "sbo":
             description = SBoGrep(self.name).description()
         else:
-            PACKAGES_TXT = self.utils.read_file(self.lib)
+            PACKAGES_TXT = self.read_file(self.lib)
             for line in PACKAGES_TXT.splitlines():
                 if line.startswith(self.name + ":"):
                     description += f"{line[len(self.name) + 2:]}\n"

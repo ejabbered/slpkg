@@ -48,7 +48,7 @@ from slpkg.sbo.slack_find import slack_package
 from slpkg.slack.slack_version import slack_ver
 
 
-class SBoNetwork(BlackList):
+class SBoNetwork(BlackList, Utils):
     """View SBo site in terminal and also read, build or
     install packages
     """
@@ -135,7 +135,7 @@ class SBoNetwork(BlackList):
         lowercase
         """
         if "--case-ins" in self.flag:
-            data_dict = Utils().case_sensitive(self.data)
+            data_dict = self.case_sensitive(self.data)
             for key, value in data_dict.items():
                 if key == self.name.lower():
                     self.name = value

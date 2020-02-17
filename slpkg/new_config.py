@@ -31,7 +31,7 @@ from slpkg.utils import Utils
 from slpkg.__metadata__ import MetaData as _meta_
 
 
-class NewConfig:
+class NewConfig(Utils):
     """Manage .new configuration files
     """
     def __init__(self):
@@ -179,9 +179,9 @@ class NewConfig:
         """Print the differences between the two files
         """
         if os.path.isfile(n[:-4]):
-            diff1 = Utils().read_file(n[:-4]).splitlines()
+            diff1 = self.read_file(n[:-4]).splitlines()
         if os.path.isfile(n):
-            diff2 = Utils().read_file(n).splitlines()
+            diff2 = self.read_file(n).splitlines()
         lines, ln, c = [], 0, 0
         for a, b in itertools.izip_longest(diff1, diff2):
             ln += 1
@@ -208,9 +208,9 @@ class NewConfig:
         """Merge new file into old
         """
         if os.path.isfile(n[:-4]):
-            old = Utils().read_file(n[:-4]).splitlines()
+            old = self.read_file(n[:-4]).splitlines()
         if os.path.isfile(n):
-            new = Utils().read_file(n).splitlines()
+            new = self.read_file(n).splitlines()
         with open(n[:-4], "w") as out:
             for l1, l2 in itertools.izip_longest(old, new):
                 if l1 is None:

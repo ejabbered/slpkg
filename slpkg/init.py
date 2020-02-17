@@ -35,7 +35,7 @@ from slpkg.slack.mirrors import mirrors
 from slpkg.slack.slack_version import slack_ver
 
 
-class Initialization:
+class Initialization(Utils):
     """Slpkg initialization start all from here. Create local
     package lists and update or upgrade these.
     """
@@ -685,8 +685,7 @@ class Initialization:
             for f in infiles:
                 if os.path.isfile(f"{path}{f}"):
                     # checking the encoding before read the file
-                    utils = Utils()
-                    code = utils.check_encoding(path, f)
+                    code = self.check_encoding(path, f)
                     with open(path + f, "r", encoding=code) as in_f:
                         for line in in_f:
                             out_f.write(line)

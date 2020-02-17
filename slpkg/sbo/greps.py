@@ -26,7 +26,7 @@ from slpkg.utils import Utils
 from slpkg.__metadata__ import MetaData as _meta_
 
 
-class SBoGrep:
+class SBoGrep(Utils):
     """Grab data from SLACKBUILDS.TXT file
     """
     def __init__(self, name):
@@ -45,7 +45,7 @@ class SBoGrep:
         self.sbo_txt = self.meta.lib_path + "sbo_repo/SLACKBUILDS.TXT"
         self.answer = ["y", "Y"]
         self.unst = ["UNSUPPORTED", "UNTESTED"]
-        self.SLACKBUILDS_TXT = Utils().read_file(self.sbo_txt)
+        self.SLACKBUILDS_TXT = self.read_file(self.sbo_txt)
 
     def _names_grabbing(self):
         """Generator that collecting all packages names

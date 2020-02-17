@@ -30,13 +30,12 @@ from slpkg.utils import Utils
 from slpkg.__metadata__ import MetaData as _meta_
 
 
-class Config:
+class Config(Utils):
     """Print or edit slpkg configuration file
     """
     def __init__(self):
         self.config_file = "/etc/slpkg/slpkg.conf"
         self.meta = _meta_
-        self.utils = Utils()
         self.green = _meta_.color["GREEN"]
         self.red = _meta_.color["RED"]
         self.cyan = _meta_.color["CYAN"]
@@ -70,7 +69,7 @@ class Config:
             "EDITOR",
             "NOT_DOWNGRADE"
         ]
-        read_conf = self.utils.read_file(self.config_file)
+        read_conf = self.read_file(self.config_file)
         for line in read_conf.splitlines():
             if not line.startswith("#") and line.split("=")[0] in conf_args:
                 print(line)

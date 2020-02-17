@@ -50,7 +50,7 @@ from slpkg.slack.mirrors import mirrors
 from slpkg.slack.slack_version import slack_ver
 
 
-class Patches(BlackList):
+class Patches(BlackList, Utils):
     """Upgrade distribution from official Slackware mirrors
     """
     def __init__(self, skip, flag):
@@ -75,7 +75,6 @@ class Patches(BlackList):
         self.installed = []
         self.comp_sum = []
         self.uncomp_sum = []
-        self.utils = Utils()
         self.msg.checking()
         if self.version == "stable":
             self.PACKAGES_TXT = URL(mirrors("PACKAGES.TXT",
@@ -111,7 +110,7 @@ class Patches(BlackList):
             if self.msg.answer() in ["y", "Y"]:
                 Download(self.patch_path, self.dwn_links,
                          repo="slack").start()
-                self.upgrade_all = list(self.utils.check_downloaded(
+                self.upgrade_all = list(self.check_downloaded(
                     self.patch_path, self.upgrade_all))
                 self.upgrade()
                 self.kernel()
