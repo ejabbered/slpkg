@@ -30,9 +30,10 @@ from slpkg.splitting import split_package
 def searching(find_pkg, directory):
     """Find packages
     """
+    black = BlackList()
     if os.path.isdir(directory):
         installed = os.listdir(directory)
-        blacklist = list(BlackList().get_black())
+        blacklist = list(black.get_black())
         if os.path.exists(directory):
             for pkg in installed:
                 if (not pkg.startswith(".") and pkg.startswith(find_pkg) and

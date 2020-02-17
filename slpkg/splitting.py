@@ -29,14 +29,18 @@ def split_package(package):
     """
     name = ver = arch = build = []
     split = package.split("-")
+
     if len(split) > 2:
         build = split[-1]
         build_a, build_b = "", ""
         build_a = build[:1]
+
         if build[1:2].isdigit():
             build_b = build[1:2]
+
         build = build_a + build_b
         arch = split[-2]
         ver = split[-3]
         name = "-".join(split[:-3])
+
     return [name, ver, arch, build]

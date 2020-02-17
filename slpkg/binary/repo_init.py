@@ -30,7 +30,7 @@ from slpkg.slack.mirrors import mirrors
 from slpkg.slack.slack_version import slack_ver
 
 
-class RepoInit:
+class RepoInit(Utils):
     """Return PACKAGES.TXT and mirror by repository
     """
     def __init__(self, repo):
@@ -45,7 +45,7 @@ class RepoInit:
         else:
             self._init_custom()
         self.lib = self.meta.lib_path + f"{self.repo}_repo/PACKAGES.TXT"
-        PACKAGES_TXT = Utils().read_file(self.lib)
+        PACKAGES_TXT = self.read_file(self.lib)
         return PACKAGES_TXT, self.mirror
 
     def _init_custom(self):

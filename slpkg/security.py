@@ -29,8 +29,8 @@ from slpkg.messages import Msg
 def pkg_security(pkgs):
     """Check packages before install or upgrade for security
     reasons. Configuration file in the /etc/slpkg/pkg_security"""
-    security_packages = Utils().read_file("/etc/slpkg/pkg_security")
-    packages, msg = [], Msg()
+    packages, msg, utils = [], Msg(), Utils()
+    security_packages = utils.read_file("/etc/slpkg/pkg_security")
     for read in security_packages.splitlines():
         read = read.lstrip()
         if not read.startswith("#"):

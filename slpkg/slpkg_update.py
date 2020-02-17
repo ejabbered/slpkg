@@ -48,10 +48,12 @@ def it_self_update():
                                                  branch,
                                                  _meta_.__all__))
     version_data = URL(ver_link).reading()
+
     for line in version_data.splitlines():
         line = line.strip()
         if line.startswith("__version_info__"):
             __new_version__ = ".".join(re.findall(r"\d+", line))
+
     if __new_version__ > _meta_.__version__:
         if _meta_.default_answer in ["y", "Y"]:
             answer = _meta_.default_answer
@@ -63,10 +65,12 @@ def it_self_update():
             except EOFError:
                 print()
                 raise SystemExit(1)
+
         if answer in ["y", "Y"]:
             print()   # new line after answer
         else:
             raise SystemExit()
+
         dwn_link = ["https://{0}.com/{1}/{2}/-/archive/"
                     "{3}/{4}-{5}.tar.gz".format(repository,
                                                 _meta_.__author__,
@@ -74,8 +78,10 @@ def it_self_update():
                                                 __new_version__,
                                                 _meta_.__all__,
                                                 __new_version__)]
+
         if not os.path.exists(_meta_.build_path):
             os.makedirs(_meta_.build_path)
+
         Download(_meta_.build_path, dwn_link, repo="").start()
         os.chdir(_meta_.build_path)
         slpkg_tar_file = f"slpkg-{__new_version__}.tar.gz"
@@ -88,6 +94,7 @@ def it_self_update():
                   _meta_.build_path + slpkg_tar_file)
         subprocess.call("chmod +x {0}".format("install.sh"), shell=True)
         subprocess.call("sh install.sh", shell=True)
+
     else:
         print(f"\n{_meta_.__all__}: There is no new version, already used the last!\n")
     raise SystemExit()
