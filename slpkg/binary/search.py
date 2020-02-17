@@ -33,8 +33,8 @@ def search_pkg(name, repo):
     """
     utils = Utils()
     black = BlackList()
-    PACKAGES_TXT = utils.read_file(_meta_.lib_path + f"{repo}_repo/PACKAGES.TXT")
-    names = list(black.package_name(PACKAGES_TXT))
-    blacklist = list(BlackList().get_black())
-    if name in names and name not in blacklist:
+    text = utils.read_file(_meta_.lib_path + f"{repo}_repo/PACKAGES.TXT")
+    PACKAGES_TXT = list(utils.package_name(text))
+    blacklist = list(black.get_black())
+    if name in PACKAGES_TXT and name not in blacklist:
         return name
