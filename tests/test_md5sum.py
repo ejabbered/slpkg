@@ -8,4 +8,4 @@ def test_md5_superuser():
 
 def test_md5_security():
     result = md5('slpkg/security.py')
-    assert result == "36c3a9213a27ab0b49e9c1bdd5bd2db6"
+    assert result == "eb8dbea4dec6d72353d30475670389f0"
