@@ -35,7 +35,10 @@ class URL:
         self.meta = _meta_
         self.red = _meta_.color["RED"]
         self.endc = _meta_.color["ENDC"]
-        self.http = urllib3.PoolManager()
+        if self.meta.http_proxy:
+            self.http = urllib3.ProxyManager(self.meta.http_proxy)
+        else:
+            self.http = urllib3.PoolManager()
 
     def reading(self):
         """Open url and read
