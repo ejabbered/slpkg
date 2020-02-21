@@ -67,7 +67,8 @@ class Config(Utils):
             "SLACKPKG_LOG",
             "ONLY_INSTALLED",
             "EDITOR",
-            "NOT_DOWNGRADE"
+            "NOT_DOWNGRADE",
+            "HTTP_PROXY",
         ]
         read_conf = self.read_file(self.config_file)
         for line in read_conf.splitlines():

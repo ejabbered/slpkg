@@ -1,6 +1,8 @@
-3.8.3 - 17/02/2020
+3.8.3 - 21/02/2020
 BugFix:
 - Counting packages for binaries repositories
+Added:
+- Feature for proxy servers
 
 3.8.2 - 15/02/2020
 Fixed:
