@@ -38,7 +38,7 @@ from slpkg.binary.search import search_pkg
 from slpkg.binary.dependency import Dependencies
 
 
-class TrackingDeps(BlackList):
+class TrackingDeps(BlackList, Utils):
     """View tree of dependencies and also
     highlight packages with color green
     if already installed and color red
@@ -51,7 +51,6 @@ class TrackingDeps(BlackList):
         self.flag = flag
         self.meta = _meta_
         self.msg = Msg()
-        self.utils = Utils()
         self.green = self.meta.color["GREEN"]
         self.yellow = self.meta.color["YELLOW"]
         self.cyan = self.meta.color["CYAN"]
@@ -78,8 +77,8 @@ class TrackingDeps(BlackList):
         self.repositories()
         if self.find_pkg:
             self.dependencies_list.reverse()
-            self.requires = self.utils.dimensional_list(self.dependencies_list)
-            self.dependencies = self.utils.remove_dbs(self.requires)
+            self.requires = self.dimensional_list(self.dependencies_list)
+            self.dependencies = self.remove_dbs(self.requires)
             if self.dependencies == []:
                 self.dependencies = ["No dependencies"]
             if "--graph=" in self.flag:
@@ -130,9 +129,9 @@ class TrackingDeps(BlackList):
             if self.find_pkg:
                 self.dependencies_list = Requires(self.flag).sbo(self.name)
         else:
-            PACKAGES_TXT = self.utils.read_file(
+            PACKAGES_TXT = self.read_file(
                 f"{self.meta.lib_path}{self.repo}_repo/PACKAGES.TXT")
-            self.names = list(self.utils.package_name(PACKAGES_TXT))
+            self.names = list(self.package_name(PACKAGES_TXT))
             self.bin_case_insensitive()
             self.find_pkg = search_pkg(self.name, self.repo)
             if self.find_pkg:
@@ -146,7 +145,7 @@ class TrackingDeps(BlackList):
         """
         if "--case-ins" in self.flag:
             data = SBoGrep(name="").names()
-            data_dict = self.utils.case_sensitive(data)
+            data_dict = self.case_sensitive(data)
             for key, value in data_dict.items():
                 if key == self.name.lower():
                     self.name = value
@@ -156,7 +155,7 @@ class TrackingDeps(BlackList):
         lowercase
         """
         if "--case-ins" in self.flag:
-            data_dict = self.utils.case_sensitive(self.names)
+            data_dict = self.case_sensitive(self.names)
             for key, value in data_dict.items():
                 if key == self.name.lower():
                     self.name = value
@@ -173,7 +172,7 @@ class TrackingDeps(BlackList):
         dep_path = f"{self.meta.log_path}dep/"
         logs = find_package("", dep_path)
         for log in logs:
-            deps = self.utils.read_file(f"{dep_path}{log}")
+            deps = self.read_file(f"{dep_path}{log}")
             for dep in deps.splitlines():
                 if pkg == dep:
                     used.append(log)
@@ -187,12 +186,12 @@ class TrackingDeps(BlackList):
             for dep in dependencies:
                 deps = Requires(flag="").sbo(dep)
                 if dep not in self.deps_dict.values():
-                    self.deps_dict[dep] = self.utils.dimensional_list(deps)
+                    self.deps_dict[dep] = self.dimensional_list(deps)
         else:
             for dep in dependencies:
                 deps = Dependencies(self.repo, self.black).binary(dep, flag="")
                 if dep not in self.deps_dict.values():
-                    self.deps_dict[dep] = self.utils.dimensional_list(deps)
+                    self.deps_dict[dep] = self.dimensional_list(deps)
 
     def deps_used(self, pkg, used):
         """Create dependencies dictionary

@@ -34,7 +34,8 @@ VERSION=${VERSION:-$(__version)}
 # Installation script.
 # With this script allows you to install the slpkg as a Slackware package binary file.
 # Support wget download.
-ARCHIVES="$PRGNAM-$VERSION.tar.gz $PRGNAM-$VERSION.zip v$VERSION.tar.gz v$VERSION.zip"
+ARCHIVES="$PRGNAM-$VERSION.tar.gz $PRGNAM-$VERSION.zip v$VERSION.tar.gz v$VERSION.zip \
+	      $PRGNAM-$VERSION.tar.bz2"
 cd ..
 for file in $ARCHIVES; do
   if [ -f $file ]; then

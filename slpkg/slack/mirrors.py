@@ -34,20 +34,21 @@ def mirrors(name, location):
     """
     rel = _meta_.slack_rel
     ver = slack_ver()
-    repo = Repo().slack()
+    repo = Repo()
+    slack = repo.slack()
     if _meta_.arch == "x86_64":
         if rel == "stable":
-            http = f"{repo}slackware64-{ver}/{location}{name}"
+            http = f"{slack}slackware64-{ver}/{location}{name}"
         else:
-            http = f"{repo}slackware64-{rel}/{location}{name}"
+            http = f"{slack}slackware64-{rel}/{location}{name}"
     elif _meta_.arch.startswith("arm"):
         if rel == "stable":
-            http = f"{repo}slackwarearm-{ver}/{location}{name}"
+            http = f"{slack}slackwarearm-{ver}/{location}{name}"
         else:
-            http = f"{repo}slackwarearm-{rel}/{location}{name}"
+            http = f"{slack}slackwarearm-{rel}/{location}{name}"
     else:
         if rel == "stable":
-            http = f"{repo}slackware-{ver}/{location}{name}"
+            http = f"{slack}slackware-{ver}/{location}{name}"
         else:
-            http = f"{repo}slackware-{rel}/{location}{name}"
+            http = f"{slack}slackware-{rel}/{location}{name}"
     return http

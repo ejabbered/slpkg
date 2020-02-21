@@ -31,8 +31,10 @@ def search_pkg(name, repo):
     """Search if package exists in PACKAGES.TXT file
     and return the name.
     """
-    PACKAGES_TXT = Utils().read_file(_meta_.lib_path + f"{repo}_repo/PACKAGES.TXT")
-    names = list(Utils().package_name(PACKAGES_TXT))
-    blacklist = list(BlackList().get_black())
-    if name in names and name not in blacklist:
+    utils = Utils()
+    black = BlackList()
+    text = utils.read_file(_meta_.lib_path + f"{repo}_repo/PACKAGES.TXT")
+    PACKAGES_TXT = list(utils.package_name(text))
+    blacklist = list(black.get_black())
+    if name in PACKAGES_TXT and name not in blacklist:
         return name

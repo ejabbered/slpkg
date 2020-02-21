@@ -39,7 +39,7 @@ from slpkg.__metadata__ import MetaData as _meta_
 from slpkg.sbo.greps import SBoGrep
 
 
-class BuildPackage:
+class BuildPackage(Utils):
     """Build SBo packages from source
     """
     def __init__(self, script, sources, path, auto):
@@ -118,7 +118,7 @@ class BuildPackage:
         """
         new_sources = []
         for src in self.sources:
-            new_sources.append(Utils().fix_file_name(src))
+            new_sources.append(self.fix_file_name(src))
         self.sources = new_sources
 
     def _create_md5_dict(self):

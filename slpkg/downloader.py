@@ -32,7 +32,7 @@ from slpkg.slack.slack_version import slack_ver
 from slpkg.__metadata__ import MetaData as _meta_
 
 
-class Download:
+class Download(Utils):
     """Downloader manager. Slpkg use wget by default but support
     curl, aria2 and httpie
     """
@@ -57,7 +57,7 @@ class Download:
         dwn_count = 1
         self._directory_prefix()
         for dwn in self.url:
-            self.file_name = Utils().fix_file_name(dwn.split("/")[-1])
+            self.file_name = self.fix_file_name(dwn.split("/")[-1])
 
             if dwn.startswith("file:///"):
                 source_dir = dwn[7:-7].replace(slack_ver(), "")

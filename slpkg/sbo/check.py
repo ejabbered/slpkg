@@ -38,10 +38,11 @@ def sbo_upgrade(skip, flag):
     """Return packages for upgrade
     """
     msg = Msg()
+    black = BlackList()
     msg.checking()
     upgrade_names = []
     data = SBoGrep(name="").names()
-    blacklist = list(BlackList().get_black())
+    blacklist = list(black.get_black())
     for pkg in sbo_list():
         name = split_package(pkg)[0]
         ver = split_package(pkg)[1]

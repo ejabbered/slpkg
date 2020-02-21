@@ -34,10 +34,12 @@ def sbo_search_pkg(name):
     return url
     """
     url = ""
-    repo = Repo().default_repository()["sbo"]
-    sbo_url = f"{repo}{slack_ver()}/"
-    SLACKBUILDS_TXT = Utils().read_file(
-        _meta_.lib_path + "sbo_repo/SLACKBUILDS.TXT")
+    utils = Utils()
+    repo = Repo()
+    sbo = repo.default_repository()["sbo"]
+    sbo_url = f"{sbo}{slack_ver()}/"
+    SLACKBUILDS_TXT = utils.read_file(
+        f"{_meta_.lib_path}sbo_repo/SLACKBUILDS.TXT")
     for line in SLACKBUILDS_TXT.splitlines():
         if line.startswith("SLACKBUILD LOCATION"):
             sbo_name = (line[23:].split("/")[-1].replace("\n", "")).strip()

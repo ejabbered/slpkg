@@ -39,7 +39,7 @@ from slpkg.sbo.search import sbo_search_pkg
 from slpkg.sbo.slack_find import slack_package
 
 
-class QueuePkgs:
+class QueuePkgs(Utils):
     """Manage SBo packages, add or remove for building or
     installation
     """
@@ -68,7 +68,7 @@ class QueuePkgs:
             with open(self.queue_list, "w") as queue:
                 for line in queue_file:
                     queue.write(line)
-        self.queued = Utils().read_file(self.queue_list)
+        self.queued = self.read_file(self.queue_list)
 
     def packages(self):
         """Return queue list from /var/lib/queue/queue_list

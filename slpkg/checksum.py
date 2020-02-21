@@ -46,7 +46,7 @@ def check_md5(pkg_md5, src_file):
             print(f"| Found: {md5s}")
             msg.template(78)
             print()
-            if not Msg().answer() in ["y", "Y"]:
+            if not msg.answer() in ["y", "Y"]:
                 raise SystemExit()
         else:
             msg.template(78)

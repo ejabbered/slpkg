@@ -25,13 +25,19 @@
 import os
 import urllib3
 
+from slpkg.__metadata__ import MetaData as _meta_
+
 
 class FileSize:
     """Check local or remote file size
     """
     def __init__(self, registry):
+        self.meta = _meta_
         self.registry = registry
-        self.http = urllib3.PoolManager()
+        if self.meta.http_proxy:
+            self.http = urllib3.ProxyManager(self.meta.http_proxy)
+        else:
+            self.http = urllib3.PoolManager()
 
     def server(self):
         """Returns the size of remote files

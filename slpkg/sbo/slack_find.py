@@ -33,6 +33,7 @@ from slpkg.pkg.find import find_package
 def slack_package(prgnam):
     """Return maximum binary Slackware package from output directory
     """
+    msg = Msg()
     binaries, cache, binary = [], "0", ""
     for pkg in find_package(prgnam, _meta_.output):
         if pkg.startswith(prgnam) and pkg[:-4].endswith("_SBo"):
@@ -43,6 +44,6 @@ def slack_package(prgnam):
             binary = bins
             cache = binary
     if not binary:
-        Msg().build_FAILED(prgnam)
+        msg.build_FAILED(prgnam)
         raise SystemExit(1)
     return ["".join(_meta_.output + binary)]

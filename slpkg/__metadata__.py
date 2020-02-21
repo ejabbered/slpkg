@@ -76,7 +76,7 @@ class MetaData:
 
     __all__ = "slpkg"
     __author__ = "dslackw"
-    __version_info__ = (3, 8, 2)
+    __version_info__ = (3, 8, 3)
     __version__ = "{0}.{1}.{2}".format(*__version_info__)
     __license__ = "GNU General Public License v3 (GPLv3)"
     __email__ = "d.zlatanidis@gmail.com"
@@ -124,9 +124,9 @@ class MetaData:
         "DOWNDER_OPTIONS": "-c -N",
         "SLACKPKG_LOG": "on",
         "ONLY_INSTALLED": "off",
-        "PRG_BAR": "off",
         "EDITOR": "nano",
-        "NOT_DOWNGRADE": "off"
+        "NOT_DOWNGRADE": "off",
+        "HTTP_PROXY": "",
     }
 
     default_repositories = ["slack", "sbo", "rlw", "alien", "slacky", "conrad",
@@ -172,9 +172,9 @@ class MetaData:
     downder_options = _conf_slpkg["DOWNDER_OPTIONS"]
     slackpkg_log = _conf_slpkg["SLACKPKG_LOG"]
     only_installed = _conf_slpkg["ONLY_INSTALLED"]
-    prg_bar = _conf_slpkg["PRG_BAR"]
     editor = _conf_slpkg["EDITOR"]
     not_downgrade = _conf_slpkg["NOT_DOWNGRADE"]
+    http_proxy = _conf_slpkg["HTTP_PROXY"]
 
     # SBo downloading sources path
     SBo_SOURCES = build_path + "_SOURCES/"

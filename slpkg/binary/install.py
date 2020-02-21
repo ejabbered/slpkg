@@ -23,6 +23,7 @@
 
 
 import os
+from itertools import zip_longest
 from pkg_resources import parse_version
 
 from slpkg.utils import Utils
@@ -47,7 +48,7 @@ from slpkg.binary.repo_init import RepoInit
 from slpkg.binary.dependency import Dependencies
 
 
-class BinaryInstall(BlackList):
+class BinaryInstall(BlackList, Utils):
     """Install binaries packages with all dependencies from
     repository
     """
@@ -64,7 +65,6 @@ class BinaryInstall(BlackList):
         self.yellow = _meta_.color['YELLOW']
         self.endc = _meta_.color["ENDC"]
         self.msg = Msg()
-        self.utils = Utils()
         self.version = self.meta.slack_rel
         self.tmp_path = self.meta.slpkg_tmp_packages
         self.init_flags()
@@ -100,7 +100,7 @@ class BinaryInstall(BlackList):
         self.case_insensitive()
         # fix if packages is for upgrade
         self.is_upgrade = is_upgrade
-        mas_sum = dep_sum = sums = [0, 0, 0]
+        mas_sum = dep_sum = sums = 0, 0, 0, 0
         self.msg.done()
         self.dependencies = self.resolving_deps()
         self.update_deps()
@@ -124,22 +124,23 @@ class BinaryInstall(BlackList):
             if self.dependencies:
                 print("Installing for dependencies:")
                 dep_sum = self.views(self.dep_install, self.dep_comp_sum)
-            # sums[0] --> installed
-            # sums[1] --> upgraded
-            # sums[2] --> uninstall
-            sums = [sum(i) for i in zip(mas_sum, dep_sum)]
+            # sums[0] --> total packages
+            # sums[1] --> reinstall
+            # sums[2] --> upgraded
+            # sums[3] --> uninstall
+            sums = [sum(s) for s in zip_longest(mas_sum, dep_sum)]
             unit, size = units(self.comp_sum + self.dep_comp_sum,
                                self.uncomp_sum + self.dep_uncomp_sum)
             if self.matching and [""] != self.packages:
                 print("\nMatching summary")
                 print("=" * 79)
-                print(f"Total {sum(sums)} matching packages\n")
+                print(f"Total {sums[0]} matching packages\n")
                 raise SystemExit(1)
             print("\nInstalling summary")
             print("=" * 79)
-            print(f"{self.grey}Total {sum(sums)} {self.msg.pkg(sum(sums))}.")
-            print(f"{sums[2]} {self.msg.pkg(sums[2])} will be installed, {sums[1]} will be upgraded and "
-                  f"{sums[0]} will be reinstalled.")
+            print(f"{self.grey}Total {sums[0]} {self.msg.pkg(sums[0])}.")
+            print(f"{sums[3]} {self.msg.pkg(sums[3])} will be installed, {sums[2]} will be upgraded and "
+                  f"{sums[1]} will be reinstalled.")
             print(f"Need to get {size[0]} {unit[0]} of archives.")
             print(f"After this process, {size[1]} {unit[1]} of additional disk "
                   f"space will be used.{self.endc}")
@@ -161,9 +162,9 @@ class BinaryInstall(BlackList):
                         self.msg.template(78)
                 if "--download-only" in self.flag:
                     raise SystemExit()
-                self.dep_install = list(self.utils.check_downloaded(
+                self.dep_install = list(self.check_downloaded(
                     self.tmp_path, self.dep_install))
-                self.install = list(self.utils.check_downloaded(
+                self.install = list(self.check_downloaded(
                     self.tmp_path, self.install))
                 ins, upg = self.install_packages()
                 self.msg.reference(ins, upg)
@@ -190,8 +191,8 @@ class BinaryInstall(BlackList):
         lowercase
         """
         if "--case-ins" in self.flag:
-            data = list(self.utils.package_name(self.PACKAGES_TXT))
-            data_dict = self.utils.case_sensitive(data)
+            data = list(self.package_name(self.PACKAGES_TXT))
+            data_dict = self.case_sensitive(data)
             for pkg in self.packages:
                 index = self.packages.index(pkg)
                 for key, value in data_dict.items():
@@ -202,7 +203,7 @@ class BinaryInstall(BlackList):
         """Update dependencies dictionary with all package
         """
         for dep in self.dependencies:
-            deps = self.utils.dimensional_list(Dependencies(
+            deps = self.dimensional_list(Dependencies(
                 self.repo, self.blacklist).binary(
                     dep, self.flag))
             self.deps_dict[dep] = deps
@@ -212,7 +213,7 @@ class BinaryInstall(BlackList):
         or if added to install two or more times
         """
         packages = []
-        for mas in self.utils.remove_dbs(self.packages):
+        for mas in self.remove_dbs(self.packages):
             if mas not in self.dependencies:
                 packages.append(mas)
         self.packages = packages
@@ -266,11 +267,11 @@ class BinaryInstall(BlackList):
             self.msg.resolving()
         for dep in self.packages:
             dependencies = []
-            dependencies = self.utils.dimensional_list(Dependencies(
+            dependencies = self.dimensional_list(Dependencies(
                 self.repo, self.blacklist).binary(dep, self.flag))
             requires += list(self._fix_deps_repos(dependencies))
-            self.deps_dict[dep] = self.utils.remove_dbs(requires)
-        return self.utils.remove_dbs(requires)
+            self.deps_dict[dep] = self.remove_dbs(requires)
+        return self.remove_dbs(requires)
 
     def _fix_deps_repos(self, dependencies):
         """Fix store deps include in repository
@@ -282,14 +283,16 @@ class BinaryInstall(BlackList):
     def views(self, install, comp_sum):
         """Views packages
         """
-        pkg_sum = uni_sum = upg_sum = 0
+        pkg_sum = uni_sum = upg_sum = res_sum = 0
+
         # fix repositories align
         repo = self.repo + (" " * (6 - (len(self.repo))))
         for pkg, comp in zip(install, comp_sum):
+            pkg_sum += 1
             pkg_repo = split_package(pkg[:-4])
             if find_package(pkg[:-4], self.meta.pkg_path):
                 if "--reinstall" in self.flag:
-                    pkg_sum += 1
+                    res_sum += 1
                 COLOR = self.meta.color["GREEN"]
             elif pkg_repo[0] == GetFromInstalled(pkg_repo[0]).name():
                 COLOR = self.meta.color["YELLOW"]
@@ -303,7 +306,7 @@ class BinaryInstall(BlackList):
                   f"{' ' * (18-len(pkg_repo[1]))} {pkg_repo[2]}"
                   f"{' ' * (8-len(pkg_repo[2]))}{pkg_repo[3]}"
                   f"{' ' * (7-len(pkg_repo[3]))}{repo}{comp:>11}{' K'}")
-        return [pkg_sum, upg_sum, uni_sum]
+        return [pkg_sum, res_sum, upg_sum, uni_sum]
 
     def top_view(self):
         """Print packages status bar

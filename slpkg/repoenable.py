@@ -30,7 +30,7 @@ from slpkg.dialog_box import DialogUtil
 from slpkg.__metadata__ import MetaData as _meta_
 
 
-class RepoEnable:
+class RepoEnable(Utils):
     """Read repositories.conf file and update with new enabled or
     disabled repositories
     """
@@ -43,8 +43,8 @@ class RepoEnable:
         self.tag = "[REPOSITORIES]"
         self.tag_line = False
         self.repositories_conf = "repositories.conf"
-        self.conf = Utils().read_file(
-            self.meta.conf_path + self.repositories_conf)
+        self.conf = self.read_file(f"{self.meta.conf_path}"
+                                   f"{self.repositories_conf}")
         self.enabled = []
         self.disabled = []
         self.selected = []

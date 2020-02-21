@@ -68,7 +68,8 @@ mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
 rm -rf $PRGNAM-$VERSION
 tar xvf $CWD/$PRGNAM-$VERSION.tar.gz || tar xvf $CWD/v$VERSION.tar.gz \
-    || unzip $CWD/$PRGNAM-$VERSION.zip || unzip $CWD/v$VERSION.zip
+    || tar xvf $CWD/$PRGNAM-$VERSION.tar.bz2 || unzip $CWD/$PRGNAM-$VERSION.zip \
+	|| unzip $CWD/v$VERSION.zip
 cd $PRGNAM-$VERSION
 chown -R root:root .
 find -L . \
