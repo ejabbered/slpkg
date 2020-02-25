@@ -28,6 +28,7 @@ import sys
 import time
 import shutil
 import tarfile
+import itertools
 import subprocess
 import multiprocessing
 
@@ -126,7 +127,7 @@ class BuildPackage(Utils):
         """
         self.sbo_md5 = {}
         md5_lists = SBoGrep(self.prgnam).checksum()
-        for src, md5 in zip(self.sources, md5_lists):
+        for src, md5 in itertools.zip_longest(self.sources, md5_lists):
             self.sbo_md5[src] = md5
 
     def _makeflags(self):
