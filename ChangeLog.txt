@@ -1,6 +1,8 @@
 3.8.4 - 25/02/2020
 BugFix:
 - Grab MD5SUM from wrong info file return None
+Updated:
+- Slackware mirrors
 
 3.8.3 - 21/02/2020
 BugFix:
