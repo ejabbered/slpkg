@@ -1,3 +1,5 @@
+import pytest
+
 from slpkg.binary.search import search_pkg
 from slpkg.sbo.search import sbo_search_pkg
 
@@ -10,7 +12,7 @@ def test_search():
     test = search_pkg(name, repo)
     assert name == test
 
-
+@pytest.mark.skip(reason="no way of currently testing in Gtilab")
 def test_sbo_search():
     """Testing found the name from binaries repos
     """
