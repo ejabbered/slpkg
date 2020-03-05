@@ -42,7 +42,6 @@ def slack_package(prgnam):
             TAG = os.environ['TAG']
             break
 
-    binaries, cache, binary = [], "0", ""
     for pkg in find_package(prgnam, _meta_.output):
         if pkg.startswith(prgnam) and pkg[:-4].endswith(TAG):
             binaries.append(pkg)
