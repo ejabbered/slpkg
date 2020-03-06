@@ -22,6 +22,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
+import os
 from pkg_resources import parse_version
 
 from slpkg.messages import Msg
@@ -34,16 +35,25 @@ def slack_package(prgnam):
     """Return maximum binary Slackware package from output directory
     """
     msg = Msg()
-    binaries, cache, binary = [], "0", ""
+    TAG, binaries, cache, binary = "_SBo", [], "0", ""
+
+    for exp in os.environ.keys():
+        if exp == "TAG":
+            TAG = os.environ["TAG"]
+            break
+
     for pkg in find_package(prgnam, _meta_.output):
-        if pkg.startswith(prgnam) and pkg[:-4].endswith("_SBo"):
+        if pkg.startswith(prgnam) and pkg[:-4].endswith(TAG):
             binaries.append(pkg)
+
     for bins in binaries:
         binary = bins
         if parse_version(bins) > parse_version(cache):
             binary = bins
             cache = binary
+
     if not binary:
-        msg.build_FAILED(prgnam)
+        msg.pkg_not_found(prgnam)
         raise SystemExit(1)
+
     return ["".join(_meta_.output + binary)]
