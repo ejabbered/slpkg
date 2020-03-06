@@ -37,9 +37,9 @@ def slack_package(prgnam):
     msg = Msg()
     TAG, binaries, cache, binary = "_SBo", [], "0", ""
 
-    for tags in os.environ.keys():
-        if tags == "TAG":
-            TAG = os.environ['TAG']
+    for exp in os.environ.keys():
+        if exp == "TAG":
+            TAG = os.environ["TAG"]
             break
 
     for pkg in find_package(prgnam, _meta_.output):
