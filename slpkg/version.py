@@ -32,5 +32,4 @@ def prog_version():
           f"Licence   : {m.__license__}\n"
           f"Email     : {m.__email__}\n"
           f"Homepage  : {m.__homepage__}\n"
-          f"Twitter   : {m.__twitter__}\n"
           f"Maintainer: {m.__maintainer__}")

@@ -76,12 +76,11 @@ class MetaData:
 
     __all__ = "slpkg"
     __author__ = "dslackw"
-    __version_info__ = (3, 8, 5)
+    __version_info__ = (3, 8, 6)
     __version__ = "{0}.{1}.{2}".format(*__version_info__)
     __license__ = "GNU General Public License v3 (GPLv3)"
     __email__ = "d.zlatanidis@gmail.com"
     __maintainer__ = "Dimitris Zlatanidis (dslackw)"
-    __twitter__ = "https://twitter.com/dslackw"
     __homepage__ = "https://dslackw.gitlab.io/slpkg/"
 
     # Default Slackware release

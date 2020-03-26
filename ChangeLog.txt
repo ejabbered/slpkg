@@ -1,3 +1,7 @@
+3.8.6 - 22/03/2020
+BugFix:
+- Message function pkg_not_found arguments
+
 3.8.5 - 5/03/2020
 Added:
 - set export variable $TAG #126
