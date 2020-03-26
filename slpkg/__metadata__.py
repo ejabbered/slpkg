@@ -81,7 +81,6 @@ class MetaData:
     __license__ = "GNU General Public License v3 (GPLv3)"
     __email__ = "d.zlatanidis@gmail.com"
     __maintainer__ = "Dimitris Zlatanidis (dslackw)"
-    __twitter__ = "https://twitter.com/dslackw"
     __homepage__ = "https://dslackw.gitlab.io/slpkg/"
 
     # Default Slackware release
