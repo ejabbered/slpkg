@@ -158,9 +158,10 @@ class Patches(BlackList, Utils):
             data.append(upg[:-4])
         text = "Press 'spacebar' to unchoose packages from upgrade"
         title = " Upgrade "
+        status = True
         backtitle = f"{self.meta.__all__} {self.meta.__version__}"
         pkgs = DialogUtil(data, text, title, backtitle,
-                          status=True).checklist()
+                          status).checklist()
         index = 0
         for pkg, comp, uncomp in zip(self.upgrade_all, self.comp_sum,
                                      self.uncomp_sum):
