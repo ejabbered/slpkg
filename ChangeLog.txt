@@ -1,3 +1,7 @@
+3.8.7 - 01/04/2020
+BuFix:
+- '--checklist' flag doesn't work since 3.8.1 to 3.8.6 version #127
+
 3.8.6 - 22/03/2020
 BugFix:
 - Message function pkg_not_found arguments
