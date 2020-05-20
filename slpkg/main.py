@@ -320,7 +320,7 @@ class ArgParse(BlackList):
                     BinaryInstall(pkg_upgrade("slack", skip, flag),
                                   "slack", flag).start(is_upgrade=True)
                 else:
-                    Patches(skip, flags).start()
+                    Patches(skip, flag).start()
             elif self.args[1] == "sbo":
                 SBoInstall(sbo_upgrade(skip, flag), flag).start(
                     is_upgrade=True)
