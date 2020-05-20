@@ -32,7 +32,7 @@ AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
 # Blogroll
-LINKS = ((u'Download', u'https://gitlab.com/dslackw/slpkg/-/archive/3.8.7/slpkg-3.8.7.tar.gz'),
+LINKS = ((u'Download', u'https://gitlab.com/dslackw/slpkg/-/archive/3.8.8/slpkg-3.8.8.tar.gz'),
          (u'GitLab', u'https://gitlab.com/dslackw/slpkg'),
          (u'Slackware', u'http://www.slackware.com/'),
          (u'SlackBuilds', u'https://slackbuilds.org/repository/14.2/system/slpkg/'),

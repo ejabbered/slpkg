@@ -1,4 +1,4 @@
-Title: slpkg 3.8.7
+Title: slpkg 3.8.8
 Date: 2019-12-20
 Authors: dslackw
 Slug: home
@@ -51,8 +51,8 @@ Download the latest release
 *(Required root privileges for the install)*
 
 ```
-$ tar xvf slpkg-3.8.7.tar.gz
-$ cd slpkg-3.8.7
+$ tar xvf slpkg-3.8.8.tar.gz
+$ cd slpkg-3.8.8
 $ ./install.sh
 ```
 
