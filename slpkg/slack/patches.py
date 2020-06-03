@@ -100,7 +100,7 @@ class Patches(BlackList, Utils):
             unit, size = units(self.comp_sum, self.uncomp_sum)
             print("\nInstalling summary")
             print("=" * 79)
-            print(f"{self.grey}Total {self.count_upg}"
+            print(f"{self.grey}Total {self.count_upg} "
                   f"{self.msg.pkg(len(self.upgrade_all))} will be upgraded and"
                   f" {self.count_added} will be installed.")
             print(f"Need to get {size[0]} {unit[0]} of archives.")
