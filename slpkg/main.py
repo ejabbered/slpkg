@@ -341,13 +341,13 @@ class ArgParse(BlackList):
         """
         flag, skip = [], ""
         if flags[0] in self.args:
-            for arg in self.args[3:]:
+            for arg in self.args:
                 if arg.startswith(flags[1]):
                     skip = Regex(arg.split("=")[1]).get()
                     self.args.remove(arg)
                 if arg in flags:
                     flag.append(arg)
-                    if arg in self.args:
+                    if arg not in self.args:
                         self.args.remove(arg)
         if "--checklist" in flag:
             self.if_checklist()
