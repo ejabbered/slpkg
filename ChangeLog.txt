@@ -1,3 +1,7 @@
+3.8.9 - 03/06/2020
+BugFix:
+- Fixed Slackware distribution --upgrade flag
+
 3.8.8 - 20/05/2020
 BugFix:
 - Fixed the name of variable flags to flag for patches upgrade option
