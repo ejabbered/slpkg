@@ -309,6 +309,12 @@ class ArgParse(BlackList):
             "--rebuild"
         ]
         flag, skip = self.__pkg_upgrade_flags(flags)
+
+        # Remove --checklist flag from args so that works with
+        # both conditions
+        if flags[3] in self.args:
+            self.args.remove(flags[3])
+
         if (len(self.args) == 3 and self.args[0] in options and
                 self.args[2] == flags[0] and
                 self.args[1] in self.meta.repositories):
